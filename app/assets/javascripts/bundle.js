@@ -283,6 +283,34 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/util/SessionAPI.js":
+/*!*************************************!*\
+  !*** ./frontend/util/SessionAPI.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "requestLogin": () => (/* binding */ requestLogin),
+/* harmony export */   "requestLogout": () => (/* binding */ requestLogout)
+/* harmony export */ });
+var requestLogin = function requestLogin(credentials) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/session',
+    data: credentials
+  });
+};
+var requestLogout = function requestLogout() {
+  return $.ajax({
+    method: 'DELETE',
+    url: 'api/session'
+  });
+};
+
+/***/ }),
+
 /***/ "./node_modules/history/esm/history.js":
 /*!*********************************************!*\
   !*** ./node_modules/history/esm/history.js ***!
@@ -35953,13 +35981,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./root */ "./frontend/root.jsx");
+/* harmony import */ var _util_SessionAPI__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util/SessionAPI */ "./frontend/util/SessionAPI.js");
+
 
 
 
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById('root');
   console.log("hello");
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, null), root);
+  window.requestLogin = _util_SessionAPI__WEBPACK_IMPORTED_MODULE_3__.requestLogin;
+  window.requestLogout = _util_SessionAPI__WEBPACK_IMPORTED_MODULE_3__.requestLogout; // ReactDOM.render(<Root />, root);
 });
 })();
 

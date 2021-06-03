@@ -5,8 +5,7 @@ class Api::SessionsController < ApplicationController
 
     if @user && @user.is_password?(params[:password])
       login(@user)
-      p session[:session_token]
-      render json: @user
+      render '/api/users/show', user: @user
     end
     
   end
