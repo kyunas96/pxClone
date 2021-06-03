@@ -200,15 +200,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "requestLogout": () => (/* binding */ requestLogout)
 /* harmony export */ });
 /* harmony import */ var _util_SessionAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/SessionAPI */ "./frontend/util/SessionAPI.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 var SESSION_LOGIN = 'SESSION_LOGIN';
 var SESSION_LOGOUT = 'SESSION_LOGOUT';
 
 var sessionLogin = function sessionLogin(session) {
-  return {
-    type: SESSION_LOGIN,
-    session: session
-  };
+  return _objectSpread({
+    type: SESSION_LOGIN
+  }, session);
 };
 
 var sessionLogout = function sessionLogout() {
@@ -219,6 +224,7 @@ var sessionLogout = function sessionLogout() {
 
 var requestLogin = function requestLogin(session) {
   return function (dispatch) {
+    console.log(session);
     return _util_SessionAPI__WEBPACK_IMPORTED_MODULE_0__.requestLogin(session).then(function (data) {
       return dispatch(sessionLogin(data));
     });
@@ -279,18 +285,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/Util */ "./frontend/util/Util.js");
+/* harmony import */ var _loginSignup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loginSignup */ "./frontend/components/base/loginSignup.jsx");
+/* harmony import */ var _userInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./userInfo */ "./frontend/components/base/userInfo.jsx");
+
+
 
 
 
 var Header = function Header(props) {
+  console.log(props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "499px"), (0,_util_Util__WEBPACK_IMPORTED_MODULE_1__.isEmpty)(props.currentUser) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(LoginSignup, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(UserInfo, {
-    user: props.user
-  }));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "499px"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+{
+  /* <LoginSignup /> : 
+         <UserInfo user={props.currentUser} action={props.logout} /> */
+}
 
 /***/ }),
 
@@ -309,27 +322,98 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./header */ "./frontend/components/base/header.jsx");
 /* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/Util */ "./frontend/util/Util.js");
+/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log(state);
-  console.log((0,_util_Util__WEBPACK_IMPORTED_MODULE_3__.isEmpty)(state.session));
+  console.log(state); // console.log(isEmpty(state.session));
+
   var currentUser = {};
+  var loggedIn = false;
 
   if (!(0,_util_Util__WEBPACK_IMPORTED_MODULE_3__.isEmpty)(state.session)) {
-    currentUser.currentUserId = state.session.id;
-    currentUser.currentUserName = state.session.username;
+    loggedIn = true;
+    currentUser.id = state.session.id;
+    currentUser.userName = state.session.username;
   }
 
   return {
+    loggedIn: loggedIn,
     currentUser: currentUser
   };
 };
 
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    login: function login(credentials) {
+      return dispatch((0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_4__.requestLogin)(credentials));
+    },
+    logout: function logout() {
+      return dispatch((0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_4__.requestLogout)());
+    }
+  };
+};
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, null)(_header__WEBPACK_IMPORTED_MODULE_2__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/base/loginSignup.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/base/loginSignup.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var LoginSignup = function LoginSignup(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "login-signup"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/login"
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/signup"
+  }, "Signup"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoginSignup);
+
+/***/ }),
+
+/***/ "./frontend/components/base/userInfo.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/base/userInfo.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var UserInfo = function UserInfo(props) {
+  console.log(props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, props.user.userName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: props.logout
+  }, "Logout"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserInfo);
 
 /***/ }),
 
@@ -345,7 +429,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -385,11 +468,7 @@ var Index = /*#__PURE__*/function (_React$Component) {
   _createClass(Index, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Welcome to the Index!!!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "/login"
-      }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "/signup"
-      }, "Sign Up"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Welcome to the Index!!!"));
     }
   }]);
 
@@ -517,6 +596,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var sessionReducer = function sessionReducer() {
@@ -526,8 +611,7 @@ var sessionReducer = function sessionReducer() {
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
-      console.log(action.session);
-      return action.session;
+      return _objectSpread({}, action.session);
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGOUT:
       return {};
@@ -37081,9 +37165,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./root */ "./frontend/root.jsx");
-/* harmony import */ var _util_SessionAPI__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util/SessionAPI */ "./frontend/util/SessionAPI.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _reducers_rootReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reducers/rootReducer */ "./frontend/reducers/rootReducer.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
+/* harmony import */ var _reducers_rootReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./reducers/rootReducer */ "./frontend/reducers/rootReducer.js");
+/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/sessionActions */ "./frontend/actions/sessionActions.js");
 
 
 
@@ -37092,10 +37176,14 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById('root');
-  var store = (0,_store_store__WEBPACK_IMPORTED_MODULE_4__.default)();
+  var store = (0,_store_store__WEBPACK_IMPORTED_MODULE_3__.default)();
   window.store = store;
-  window.requestLogin = _util_SessionAPI__WEBPACK_IMPORTED_MODULE_3__.requestLogin;
-  window.requestLogout = _util_SessionAPI__WEBPACK_IMPORTED_MODULE_3__.requestLogout;
+  var creds = {
+    username: "kevin",
+    password: "password"
+  };
+  window.requestLogin = (0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_5__.requestLogin)(creds); // console.log(store);
+
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: store
   }), root);

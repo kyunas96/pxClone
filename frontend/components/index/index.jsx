@@ -10,8 +10,8 @@ class Index extends React.Component{
     return (
       <div>
         <h3>Welcome to the Index!!!</h3>
-        <Link to='/login'>Login</Link>
-        <Link to='/signup'>Sign Up</Link>
+        {/* <Link to='/login'>Login</Link>
+        <Link to='/signup'>Sign Up</Link> */}
       </div>
     )
   }
