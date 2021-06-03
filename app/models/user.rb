@@ -9,15 +9,16 @@ class User < ApplicationRecord
 
   # SPIRE
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+  # def self.find_by_credentials(username, password)
+  #   user = User.find_by(username: username)
+  #   p user
 
-    if user && user.is_password?(pw)
-      return user
-    else
-      return nil
-    end
-  end
+  #   if user && user.is_password?(password)
+  #     return user
+  #   else
+  #     return nil
+  #   end
+  # end
 
   def password=(pw)
     # saving the password into an instance variable makes it accessible to the
