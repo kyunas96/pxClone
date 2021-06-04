@@ -1,0 +1,23 @@
+.header {
+  height: 10vh;
+  width: 100vw;
+  padding: 4% 1% 0 1%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.splash-logo {
+  min-height: 40%;
+  width: 10%;
+}
+
+#logo_svg {
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    fill: rgb(81, 130, 238);
+  }
+}

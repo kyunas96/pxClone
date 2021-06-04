@@ -3,17 +3,16 @@ import * as SessionAPI from '../util/SessionAPI';
 export const SESSION_LOGIN = 'SESSION_LOGIN';
 export const SESSION_LOGOUT = 'SESSION_LOGOUT';
 
-const sessionLogin = session => ({
+export const sessionLogin = payload => ({
   type: SESSION_LOGIN,
-  ...session
+  payload
 })
 
-const sessionLogout = () => ({
+export const sessionLogout = () => ({
   type: SESSION_LOGOUT
 })
 
 export const requestLogin = session => dispatch => {
-  console.log(session)
  return SessionAPI.requestLogin(session)
     .then(data => dispatch(sessionLogin(data)))
 }
@@ -22,3 +21,10 @@ export const requestLogout = () => dispatch => (
   SessionAPI.requestLogout()
     .then(() => dispatch(sessionLogout()))
 )
+
+// session:
+// errors: []
+// user: { id: 1, username: "kevin" }
+// __proto__: Object
+// type: "SESSION_LOGIN"
+// __proto__: Object

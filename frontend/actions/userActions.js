@@ -1,16 +1,17 @@
 import * as APIUtil from '../util/UserAPI';
+import { sessionLogin } from './sessionActions';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_USER = 'RECEIVE_USER';
 
-const receiveUsers = users => ({
+const receiveUsers = payload => ({
   type: RECEIVE_USERS,
   users
 })
 
-const receiveUser = user => ({
+const receiveUser = payload => ({
   type: RECEIVE_USER,
-  user
+  payload
 })
 
 export const requestUsers = () => dispatch => (
@@ -25,7 +26,10 @@ export const requestUser = userId => dispatch => (
 
 export const createUser = user => dispatch => (
   APIUtil.createUser(user)
-    .then(data => dispatch(receiveUser(data)))
+    .then(data => {
+      dispatch(receiveUser(data))
+      dispatch(sessionLogin(data))
+    })
 )
 
 export const updateUser = user => dispatch => (
@@ -33,3 +37,8 @@ export const updateUser = user => dispatch => (
     .then(data => dispatch(receiveUser(data)))
 )
 
+
+// Sign Up action layout
+// type: "RECEIVE_USER"
+// user: { user: { … }, errors: Array(2) }
+// __proto__: Object

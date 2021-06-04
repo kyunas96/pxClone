@@ -1,6 +1,8 @@
-  json.session do
+  json.user do
     json.extract! @user, :id, :username
   end
 
-  json.set! :sessionErrors, "#{@errors}"
+  json.set! :errors do
+    json.array! @errors
+  end
 

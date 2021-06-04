@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './root';
 import configureStore from './store/store';
 import rootReducer from './reducers/rootReducer';
-import { requestLogin}  from './actions/sessionActions';
+import { requestLogin }  from './actions/sessionActions';
 
 
 document.addEventListener("DOMContentLoaded", () => {

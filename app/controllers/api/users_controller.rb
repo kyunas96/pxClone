@@ -13,17 +13,14 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(
-      username: params[:username],
-      email: params[:email],
-      password: params[:password]
-    )
+    @user = User.new(user_params)
+    @errors = []
 
     if @user.save
       render :show
     else
       @errors = @user.errors.full_messages
-      render json: @errors
+      render :show
     end
 
   end
@@ -42,8 +39,8 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  # def user_params
-  #   params.require(:user).permit(:username, :email, :password)
-  # end
+  def user_params
+    params.require(:user).permit(:username, :email, :password)
+  end
   
 end
