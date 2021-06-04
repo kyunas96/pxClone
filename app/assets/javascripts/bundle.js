@@ -185,6 +185,39 @@ function _setPrototypeOf(o, p) {
 
 /***/ }),
 
+/***/ "./frontend/actions/errorActions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/errorActions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RESET_SESSION_ERRORS": () => (/* binding */ RESET_SESSION_ERRORS),
+/* harmony export */   "RESET_POST_FROM_ERRORS": () => (/* binding */ RESET_POST_FROM_ERRORS),
+/* harmony export */   "resetSessionErrors": () => (/* binding */ resetSessionErrors),
+/* harmony export */   "resetPostFormErrors": () => (/* binding */ resetPostFormErrors)
+/* harmony export */ });
+var RESET_SESSION_ERRORS = 'RESET_SESSION_ERRORS';
+var RESET_POST_FROM_ERRORS = 'RESET_POST_FROM_ERRORS';
+var resetSessionErrors = function resetSessionErrors() {
+  return function (dispatch) {
+    return dispatch({
+      type: RESET_SESSION_ERRORS
+    });
+  };
+};
+var resetPostFormErrors = function resetPostFormErrors() {
+  return function (dispatch) {
+    return dispatch({
+      type: RESET_POST_FROM_ERRORS
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/sessionActions.js":
 /*!********************************************!*\
   !*** ./frontend/actions/sessionActions.js ***!
@@ -196,8 +229,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SESSION_LOGIN": () => (/* binding */ SESSION_LOGIN),
 /* harmony export */   "SESSION_LOGOUT": () => (/* binding */ SESSION_LOGOUT),
+/* harmony export */   "RESET_SESSION_ERRORS": () => (/* binding */ RESET_SESSION_ERRORS),
 /* harmony export */   "sessionLogin": () => (/* binding */ sessionLogin),
 /* harmony export */   "sessionLogout": () => (/* binding */ sessionLogout),
+/* harmony export */   "resetSessionErrors": () => (/* binding */ resetSessionErrors),
 /* harmony export */   "requestLogin": () => (/* binding */ requestLogin),
 /* harmony export */   "requestLogout": () => (/* binding */ requestLogout)
 /* harmony export */ });
@@ -205,6 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var SESSION_LOGIN = 'SESSION_LOGIN';
 var SESSION_LOGOUT = 'SESSION_LOGOUT';
+var RESET_SESSION_ERRORS = 'RESET_SESSION_ERRORS';
 var sessionLogin = function sessionLogin(payload) {
   return {
     type: SESSION_LOGIN,
@@ -214,6 +250,11 @@ var sessionLogin = function sessionLogin(payload) {
 var sessionLogout = function sessionLogout() {
   return {
     type: SESSION_LOGOUT
+  };
+};
+var resetSessionErrors = function resetSessionErrors() {
+  return {
+    type: RESET_SESSION_ERRORS
   };
 };
 var requestLogin = function requestLogin(session) {
@@ -364,6 +405,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _userInfo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userInfo */ "./frontend/components/base/userInfo.jsx");
 /* harmony import */ var _logo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./logo */ "./frontend/components/base/logo.jsx");
 /* harmony import */ var _loginSignup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loginSignup */ "./frontend/components/base/loginSignup.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
@@ -388,7 +430,10 @@ function Header(props) {
     className: "header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "splash-logo"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_logo__WEBPACK_IMPORTED_MODULE_2__.default, null)), innerContent);
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+    to: "/",
+    className: ""
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_logo__WEBPACK_IMPORTED_MODULE_2__.default, null))), innerContent);
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
@@ -458,8 +503,9 @@ var LoginSignup = function LoginSignup(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/login"
   }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    signup: "",
     to: "/signup"
-  }, "Signup"));
+  }, "Sign up"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoginSignup);
@@ -607,8 +653,10 @@ var FormErrors = function FormErrors(props) {
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "session-form-errors"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, props.errors.forEach(function (error) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, error);
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, props.errors.map(function (error, i) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        key: "".concat(i)
+      }, error);
     })));
   }
 };
@@ -631,6 +679,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_form */ "./frontend/components/login_signup/session_form.jsx");
 /* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+/* harmony import */ var _actions_errorActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/errorActions */ "./frontend/actions/errorActions.js");
+
 
 
 
@@ -652,6 +702,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     action: function action(credentials) {
       return dispatch((0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_2__.requestLogin)(credentials));
+    },
+    reset: function reset() {
+      return dispatch((0,_actions_errorActions__WEBPACK_IMPORTED_MODULE_3__.resetSessionErrors)());
     }
   };
 };
@@ -736,6 +789,11 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.reset();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -798,6 +856,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_form */ "./frontend/components/login_signup/session_form.jsx");
 /* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/userActions */ "./frontend/actions/userActions.js");
+/* harmony import */ var _actions_errorActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/errorActions */ "./frontend/actions/errorActions.js");
+
 
 
 
@@ -819,6 +879,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     action: function action(credentials) {
       return dispatch((0,_actions_userActions__WEBPACK_IMPORTED_MODULE_2__.createUser)(credentials));
+    },
+    reset: function reset() {
+      return dispatch((0,_actions_errorActions__WEBPACK_IMPORTED_MODULE_3__.resetSessionErrors)());
     }
   };
 };
@@ -922,6 +985,9 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
       return action.payload.errors;
+
+    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.RESET_SESSION_ERRORS:
+      return {};
 
     default:
       return state;

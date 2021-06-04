@@ -22,9 +22,9 @@ function Header(props) {
     <div className='header'>
       <div className='splash-logo'>
       {/* <h1>What the fuck</h1> */}
-        {/* <Link to='/' className=''> */}
+        <Link to='/' className=''>
           <Logo />
-        {/* </Link> */}
+        </Link>
       </div>
       {innerContent}
     </div>

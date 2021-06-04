@@ -21,6 +21,10 @@ class SessionForm extends React.Component {
     }
   }
 
+  componentWillUnmount(){
+    this.props.reset()
+  }
+
   render() {
     if (this.props.loggedIn){
       return <Redirect to='/'/>

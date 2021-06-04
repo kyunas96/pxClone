@@ -5,7 +5,7 @@ const LoginSignup = props => (
 
   <div className='login-signup'>
     <Link to='/login'>Login</Link>
-    <Link to='/signup'>Signup</Link>
+    <Link signup="" to='/signup'>Sign up</Link>
   </div>
 )
 

@@ -8,8 +8,8 @@ const FormErrors = props => {
     return (
       <div className='session-form-errors'>
         <ul>
-          {props.errors.forEach(error => (
-            <li>{error}</li>
+          {props.errors.map((error, i) => (
+            <li key={`${i}`}>{error}</li>
           ))}
         </ul>
       </div>
