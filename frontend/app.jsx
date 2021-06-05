@@ -9,7 +9,7 @@ const App = (props) => {
   console.log(props)
 
   return (
-    <div>
+    <div id='app'>
       <HeaderContainer />
       <Switch>
         {/* <Route exact path='/' component={IndexComponent} /> */}
