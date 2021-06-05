@@ -1,17 +1,30 @@
 import React from 'react';
+import UserInfoDropdown from './userInfoDropdown';
 
 class UserInfo extends React.Component {
   constructor(props) {
     super(props)
-    this.setState = { showDropdown: false }
+    this.state = { showDropdown: false }
+  }
+
+  toggleDropdown(e){
+    e.preventDefault();
+    this.setState(prevState => ({
+       showDropdown: !prevState.showDropdown 
+      })
+    )
   }
 
   render() {
     return (
       <div className='user-info' >
-        <img src='assets/user-circle-solid.svg'></img>
-        {/* <span>{props.currentUser.username}</span> */}
-        <button onClick={this.props.logout}>Logout</button>
+        <button className='user-info-toggle' onClick={e => this.toggleDropdown(e)}>
+        </button>
+        {this.state.showDropdown ?
+          <UserInfoDropdown
+            currentUser={this.props.currentUser}
+            logout={this.props.logout}
+          /> : (null)}
       </div>
     )
   }
