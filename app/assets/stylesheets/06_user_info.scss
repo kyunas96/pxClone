@@ -1,0 +1,10 @@
+.user-info{
+  display: flex;
+  flex-direction: row;
+  height: 45%;
+  
+  > img{
+    cursor: pointer;
+  }
+}
+

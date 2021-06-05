@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Logo = () => (
-  <svg id="logo_svg" data-name="Logo SVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 20">
+  <svg id="logo_svg" data-name="Logo SVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 20">
     <title>500px</title>
     <path d="M24.83,0a10,10,0,1,0,10,10h0A10.09,10.09,0,0,0,24.83,0Zm0,
           17.9a7.85,7.85,0,1,1,7.8-7.9h0A7.9,7.9,0,0,1,24.83,17.9ZM46.32,0a10,

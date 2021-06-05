@@ -36,7 +36,8 @@ class SignUpForm extends React.Component{
     return (
       <div className='session-form-container'>
         <FormErrors errors={this.props.errors} />
-        <form className='session-form' onSubmit={e => this.handleSubmit(e)}>
+        <form className='session-form signup' onSubmit={e => this.handleSubmit(e)}>
+          <h2>Signup for 500px</h2>
           <SessionInput
             title='username'
             type='text'

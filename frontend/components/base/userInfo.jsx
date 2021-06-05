@@ -1,14 +1,20 @@
 import React from 'react';
 
-const UserInfo = props => {
-  // console.log(props.currentUser.username);
+class UserInfo extends React.Component {
+  constructor(props) {
+    super(props)
+    this.setState = { showDropdown: false }
+  }
 
-  return (
-    <div className='user-info'>
-      <span>{props.currentUser.username}</span>
-      <button onClick={props.logout}>Logout</button>
-    </div>
-  )
+  render() {
+    return (
+      <div className='user-info' >
+        <img src='assets/user-circle-solid.svg'></img>
+        {/* <span>{props.currentUser.username}</span> */}
+        <button onClick={this.props.logout}>Logout</button>
+      </div>
+    )
+  }
 }
 
 export default UserInfo;

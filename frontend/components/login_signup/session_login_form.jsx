@@ -34,8 +34,10 @@ class LoginForm extends React.Component {
 
     return (
       <div className='session-form-container'>
+        
         <FormErrors errors={this.props.errors} />
         <form className='session-form' onSubmit={e => this.handleSubmit(e)}>
+          <h2>Log in to 500px</h2>
           <SessionInput
             title='username'
             type='text'
@@ -51,7 +53,7 @@ class LoginForm extends React.Component {
             autoComplete='current-password'
           />
 
-          <button type='submit'>Login</button>
+          <button type='submit'>Log in</button>
         </form>
       </div>
     )
