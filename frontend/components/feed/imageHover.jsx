@@ -8,21 +8,36 @@ import React from 'react';
 //    the image
 
 const ImageHover = props => {
-  const likeImage = postId => {
+  // const likeImage = postId => {
 
-  }
+  // }
 
-  <div className='image-hover'>
-    <img>
-      Will store the user image
-      for the user that posted the image
-    </img>
-    <span>
-      Will display the username of the
-      user that posted the image
-    </span>
-    <button>Like</button>
-  </div>
+  return (
+    <div className='image-hover'>
+      <div className='image-hover-top'>
+        {props.post.title}
+      </div>
+      <div className='image-hover-bottom'>
+        <div className='hover-user'>
+          <span>
+            {props.post.username}
+          </span>
+          {
+            /* <img>
+            Will store the user image
+            for the user that posted the image
+            </img> */
+          }
+        </div>
+
+        <div className='hover-interaction'>
+          <button>Like</button>
+        </div>
+
+      </div>
+
+    </div>
+  )
 }
 
 export default ImageHover;
