@@ -1,0 +1,45 @@
+.user-info{
+  display: flex;
+  flex-direction: row;
+  height: 45%;
+  justify-content: center;
+  align-items: center;
+  
+  > img{
+    cursor: pointer;
+  }
+
+  .user-info-toggle{
+    width: 40px;
+    height: 40px;
+    border: none;
+    position: relative;
+    background-image: image-url('user-circle-solid.svg');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.user-info-drowpdown{
+  position: absolute;
+  top: 80px;
+  right: 185px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  // padding: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+
+  button, a{
+    font-size: 13.333px;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    padding: 10px 0 10px 8px;
+    cursor: pointer;
+  }
+}
+
