@@ -6,7 +6,6 @@ import SessionInput from './sessionInput';
 
 class SignUpForm extends React.Component{
   constructor(props){
-    console.log(props)
     super(props)
     this.state = this.props.credentials
     this.handleSubmit = this.handleSubmit.bind(this);

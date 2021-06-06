@@ -376,7 +376,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App(props) {
-  console.log(props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "app"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_base_header_container__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__.Route, {
@@ -415,7 +414,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Header(props) {
-  console.log(props);
   var innerContent;
 
   if (props.loggedIn) {
@@ -681,7 +679,7 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
   function UserInfoDropdown(props) {
     _classCallCheck(this, UserInfoDropdown);
 
-    console.log(props);
+    props;
     return _super.call(this, props);
   }
 
@@ -822,7 +820,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  // console.log(ownProps);
   return {
     credentials: {
       username: '',
@@ -945,7 +942,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       });
     });
 
-    console.log(_this.props);
     _this.state = _this.props.credentials;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -957,7 +953,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        _this2.setState(_defineProperty({}, field, e.currentTarget.value), console.log(_this2.state));
+        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -1065,7 +1061,6 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, SignUpForm);
 
-    console.log(props);
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
@@ -1169,7 +1164,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log(state);
   return {
     credentials: {
       username: '',
@@ -1320,8 +1314,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var checkActionForUser = function checkActionForUser(_ref) {
   var payload = _ref.payload;
-  console.log(payload.user.id); // console.log("inspecting payload:" + payload.user.id);
-
   return payload.user.id !== null && payload.user.username.length > 0;
 };
 
@@ -1333,13 +1325,11 @@ var nullUser = {
 var sessionReducer = function sessionReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : nullUser;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log(action);
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
       if (checkActionForUser(action)) {
-        console.log("action has user");
         return {
           loggedIn: true,
           currentUser: action.payload.user
@@ -38000,8 +37990,7 @@ document.addEventListener("DOMContentLoaded", function () {
     username: "kevin",
     password: "password"
   };
-  window.requestLogin = (0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_5__.requestLogin)(creds); // console.log(store);
-
+  window.requestLogin = (0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_5__.requestLogin)(creds);
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: store
   }), root);

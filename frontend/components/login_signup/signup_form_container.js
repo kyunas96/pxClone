@@ -4,7 +4,6 @@ import { createUser } from '../../actions/userActions';
 import { resetSessionErrors } from '../../actions/errorActions';
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     credentials: {
       username: '',

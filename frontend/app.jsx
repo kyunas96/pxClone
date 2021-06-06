@@ -6,7 +6,6 @@ import LoginContainer from './components/login_signup/login_form_container';
 import SignupContainer from './components/login_signup/signup_form_container';
 
 const App = (props) => {
-  console.log(props)
 
   return (
     <div id='app'>

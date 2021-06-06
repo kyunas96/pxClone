@@ -4,7 +4,6 @@ import { resetSessionErrors } from '../../actions/errorActions';
 import LoginForm from './session_login_form';
 
 const mapStateToProps = state => {
-  // console.log(ownProps);
   return {
     credentials: {
       username: '',

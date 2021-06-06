@@ -6,7 +6,6 @@ import SessionInput from './sessionInput';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
     this.state = this.props.credentials
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,7 +18,7 @@ class LoginForm extends React.Component {
 
   update(field) {
     return (e) => {
-      this.setState({ [field]: e.currentTarget.value }, console.log(this.state))
+      this.setState({ [field]: e.currentTarget.value })
     }
   }
 
