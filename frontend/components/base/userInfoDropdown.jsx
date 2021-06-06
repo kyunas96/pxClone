@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 class UserInfoDropdown extends React.Component {
   constructor(props) {
-    console.log(props);
+    (props);
     super(props)
   }
 

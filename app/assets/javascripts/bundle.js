@@ -364,10 +364,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _components_index_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/index/index */ "./frontend/components/index/index.jsx");
-/* harmony import */ var _components_base_header_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/base/header_container */ "./frontend/components/base/header_container.js");
-/* harmony import */ var _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/login_signup/login_form_container */ "./frontend/components/login_signup/login_form_container.js");
-/* harmony import */ var _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/login_signup/signup_form_container */ "./frontend/components/login_signup/signup_form_container.js");
+/* harmony import */ var _components_base_header_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/base/header_container */ "./frontend/components/base/header_container.js");
+/* harmony import */ var _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/login_signup/login_form_container */ "./frontend/components/login_signup/login_form_container.js");
+/* harmony import */ var _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/login_signup/signup_form_container */ "./frontend/components/login_signup/signup_form_container.js");
+/* harmony import */ var _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/feed/feedContainer */ "./frontend/components/feed/feedContainer.js");
 
 
 
@@ -376,15 +376,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App(props) {
-  console.log(props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "app"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_base_header_container__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_base_header_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__.Route, {
     path: "/login",
-    component: _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_3__.default
+    component: _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_2__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__.Route, {
     path: "/signup",
-    component: _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_4__.default
+    component: _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_3__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/feed",
+    component: _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_4__.default
   })));
 };
 
@@ -415,7 +417,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Header(props) {
-  console.log(props);
   var innerContent;
 
   if (props.loggedIn) {
@@ -681,7 +682,7 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
   function UserInfoDropdown(props) {
     _classCallCheck(this, UserInfoDropdown);
 
-    console.log(props);
+    props;
     return _super.call(this, props);
   }
 
@@ -707,10 +708,10 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/index/index.jsx":
-/*!*********************************************!*\
-  !*** ./frontend/components/index/index.jsx ***!
-  \*********************************************/
+/***/ "./frontend/components/feed/ImageHover.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/feed/ImageHover.jsx ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -719,6 +720,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+ // props
+// 1. user pertaining to post
+// 2. the post id
+// 3. the profile image of the user that posted the
+//    the image
+
+var ImageHover = function ImageHover(props) {
+  var likeImage = function likeImage(postId) {};
+
+  /*#__PURE__*/
+  react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", null, "Will store the user image for the user that posted the image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Will display the username of the user that posted the image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Like"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageHover);
+
+/***/ }),
+
+/***/ "./frontend/components/feed/feed.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/components/feed/feed.jsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./image */ "./frontend/components/feed/image.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -742,30 +775,128 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+ //import Masonry
+//import InfiniteScroll
+// Feed should associate itself with the current user 
 
+var Feed = /*#__PURE__*/function (_React$Component) {
+  _inherits(Feed, _React$Component);
 
-var Index = /*#__PURE__*/function (_React$Component) {
-  _inherits(Index, _React$Component);
+  var _super = _createSuper(Feed);
 
-  var _super = _createSuper(Index);
-
-  function Index(props) {
-    _classCallCheck(this, Index);
+  function Feed(props) {
+    _classCallCheck(this, Feed);
 
     return _super.call(this, props);
   }
 
-  _createClass(Index, [{
+  _createClass(Feed, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {// once the component has mounted, it must fetch the first batch of images
+      // that it will render
+    }
+  }, {
+    key: "grabNextBatch",
+    value: function grabNextBatch() {}
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Welcome to the Index!!!"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "feed-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
+        post: {
+          url: 'assets/img1'
+        }
+      }));
     }
   }]);
 
-  return Index;
+  return Feed;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Feed); // if the feed component implements the infinite scroll component, does it need 
+// a component wrapper?
+// what is the relationship between an infinite scroll component and a redux store
+// 1. write the components to make sure they render correctly
+// 2. deal with the logic of selecting images from the backend based on the user's
+//    the current user follows
+
+/***/ }),
+
+/***/ "./frontend/components/feed/feedContainer.js":
+/*!***************************************************!*\
+  !*** ./frontend/components/feed/feedContainer.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./feed */ "./frontend/components/feed/feed.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentUser: {
+      id: state.session.currentUser.id,
+      username: state.session.currentUser.username
+    }
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    likePost: function (_likePost) {
+      function likePost(_x) {
+        return _likePost.apply(this, arguments);
+      }
+
+      likePost.toString = function () {
+        return _likePost.toString();
+      };
+
+      return likePost;
+    }(function (postId) {
+      return dispatch(likePost(postId));
+    })
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, null)(_feed__WEBPACK_IMPORTED_MODULE_1__.default)); // when on the backend, a like will be created by grabbing the currentUser's id
+// and binding it the id of the post to create a new Like
+
+/***/ }),
+
+/***/ "./frontend/components/feed/image.jsx":
+/*!********************************************!*\
+  !*** ./frontend/components/feed/image.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _ImageHover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImageHover */ "./frontend/components/feed/ImageHover.jsx");
+
+
+
+var Image = function Image(props) {
+  console.log(props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: props.post.url
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Image);
 
 /***/ }),
 
@@ -824,7 +955,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  // console.log(ownProps);
   return {
     credentials: {
       username: '',
@@ -947,7 +1077,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       });
     });
 
-    console.log(_this.props);
     _this.state = _this.props.credentials;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -959,7 +1088,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        _this2.setState(_defineProperty({}, field, e.currentTarget.value), console.log(_this2.state));
+        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -1067,7 +1196,6 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, SignUpForm);
 
-    console.log(props);
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
@@ -1171,7 +1299,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log(state);
   return {
     credentials: {
       username: '',
@@ -1322,8 +1449,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var checkActionForUser = function checkActionForUser(_ref) {
   var payload = _ref.payload;
-  console.log(payload.user.id); // console.log("inspecting payload:" + payload.user.id);
-
   return payload.user.id !== null && payload.user.username.length > 0;
 };
 
@@ -1335,13 +1460,11 @@ var nullUser = {
 var sessionReducer = function sessionReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : nullUser;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log(action);
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
       if (checkActionForUser(action)) {
-        console.log("action has user");
         return {
           loggedIn: true,
           currentUser: action.payload.user
@@ -38002,8 +38125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     username: "kevin",
     password: "password"
   };
-  window.requestLogin = (0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_5__.requestLogin)(creds); // console.log(store);
-
+  window.requestLogin = (0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_5__.requestLogin)(creds);
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: store
   }), root);

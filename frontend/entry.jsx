@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.store = store;
   let creds = {username: "kevin", password: "password"}
   window.requestLogin = requestLogin(creds);
-  // console.log(store);
 
   ReactDOM.render(<Root store={store}/>, root);
 })

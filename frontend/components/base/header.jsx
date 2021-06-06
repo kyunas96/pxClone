@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 
 function Header(props) {
-  console.log(props);
 
   let innerContent;
 
