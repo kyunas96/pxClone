@@ -8,6 +8,7 @@ const Image = props => {
     <div className='image-container'>
       <img src={props.post.url}></img>
       <ImageHover post={{title: 'Daniel', username: 'kevin'}}></ImageHover>
+      <div className='shadow'></div>
     </div>
   )
 }

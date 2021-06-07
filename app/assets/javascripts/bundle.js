@@ -905,6 +905,8 @@ var Image = function Image(props) {
       title: 'Daniel',
       username: 'kevin'
     }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "shadow"
   }));
 };
 
