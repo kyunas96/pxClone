@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageHover from './ImageHover';
+import ImageHover from './imageHover';
 
 const Image = props => {
   console.log(props)
