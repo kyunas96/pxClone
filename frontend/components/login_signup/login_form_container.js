@@ -2,15 +2,17 @@ import { connect } from 'react-redux';
 import { requestLogin } from '../../actions/sessionActions';
 import { resetSessionErrors } from '../../actions/errorActions';
 import LoginForm from './session_login_form';
+import { withRouter } from 'react-router-dom';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     credentials: {
       username: '',
       password: ''
     },
     errors: state.errors.session,
-    loggedIn: state.session.loggedIn
+    loggedIn: state.session.loggedIn,
+    history: ownProps.history
   }
 }
 
@@ -19,4 +21,4 @@ const mapDispatchToProps = dispatch => ({
   reset: () => dispatch(resetSessionErrors())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm));
