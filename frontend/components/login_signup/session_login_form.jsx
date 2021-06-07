@@ -34,9 +34,9 @@ class LoginForm extends React.Component {
     return (
       <div className='session-form-container'>
         
-        <FormErrors errors={this.props.errors} />
         <form className='session-form' onSubmit={e => this.handleSubmit(e)}>
           <h2>Log in to 500px</h2>
+          <FormErrors errors={this.props.errors} />
           <SessionInput
             title='username'
             type='text'
