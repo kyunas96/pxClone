@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from './image';
-//import Masonry
+import Masonry from 'react-masonry-css';
 //import InfiniteScroll
 
 // Feed should associate itself with the current user 
@@ -19,10 +19,34 @@ class Feed extends React.Component {
   }
 
   render() {
+    const breakpointColumnsObj = {
+      default: 4,
+      1100: 3,
+      700: 2,
+      500: 1
+    };
+
     return (
-      <div className='feed-container'>
-        <Image post={{url: 'assets/img1'}} />
-      </div>
+      // <div className='feed-container'>
+      //   <Image post={{url: 'assets/img1'}} />
+      // </div>
+      // <ResponsiveMasonry >
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
+        <Image post={{ url: 'assets/img1' }} />
+        <Image post={{ url: 'assets/img2' }} />
+        <Image post={{ url: 'assets/img1' }} />
+        <Image post={{ url: 'assets/img2' }} />
+        <Image post={{ url: 'assets/img3' }} />
+        <Image post={{ url: 'assets/img2' }} />
+        <Image post={{ url: 'assets/img1' }} />
+        <Image post={{ url: 'assets/img2' }} />
+      </Masonry>
+      // </ResponsiveMasonry>
+
     )
   }
 }
