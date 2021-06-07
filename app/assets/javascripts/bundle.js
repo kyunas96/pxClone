@@ -725,12 +725,19 @@ __webpack_require__.r(__webpack_exports__);
 //    the image
 
 var ImageHover = function ImageHover(props) {
-  var likeImage = function likeImage(postId) {};
-
-  /*#__PURE__*/
-  react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  // const likeImage = postId => {
+  // }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-hover"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", null, "Will store the user image for the user that posted the image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Will display the username of the user that posted the image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Like"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover-top"
+  }, props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover-bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "hover-user"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, props.post.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "hover-interaction"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Like"))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageHover);
@@ -1107,14 +1114,14 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "session-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_formErrors__WEBPACK_IMPORTED_MODULE_1__.default, {
-        errors: this.props.errors
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "session-form",
         onSubmit: function onSubmit(e) {
           return _this3.handleSubmit(e);
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Log in to 500px"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessionInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Log in to 500px"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_formErrors__WEBPACK_IMPORTED_MODULE_1__.default, {
+        errors: this.props.errors
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessionInput__WEBPACK_IMPORTED_MODULE_2__.default, {
         title: "username",
         type: "text",
         value: this.state.username,
@@ -1238,14 +1245,14 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "session-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_formErrors__WEBPACK_IMPORTED_MODULE_1__.default, {
-        errors: this.props.errors
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "session-form signup",
         onSubmit: function onSubmit(e) {
           return _this3.handleSubmit(e);
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Signup for 500px"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessionInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Signup for 500px"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_formErrors__WEBPACK_IMPORTED_MODULE_1__.default, {
+        errors: this.props.errors
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessionInput__WEBPACK_IMPORTED_MODULE_2__.default, {
         title: "username",
         type: "text",
         value: this.state.username,
