@@ -4,6 +4,7 @@ import HeaderContainer from './components/base/header_container';
 import LoginContainer from './components/login_signup/login_form_container';
 import SignupContainer from './components/login_signup/signup_form_container';
 import FeedContainer from './components/feed/feedContainer';
+import ProfileContainer from './components/profile/profileContainer';
 
 const App = (props) => {
 
@@ -15,7 +16,7 @@ const App = (props) => {
         <Route path='/login' component={LoginContainer} />
         <Route path='/signup' component={SignupContainer} />
         <Route path='/feed' component={FeedContainer} />
-        {/* <Route path='/users/:userId' component={UserProfileContainer} /> */}
+        <Route path='/users/:userId' component={ProfileContainer} />
         {/* <Route path='/posts/new' component={NewPostContainer} /> */}
         {/* <Route path='/posts/:postId' component={PostShowContainer} /> */}
       </Switch>

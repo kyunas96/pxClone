@@ -7,12 +7,10 @@ class UserInfoDropdown extends React.Component {
     super(props)
   }
 
-
-
   render() {
     return (
       <div className='user-info-drowpdown'>
-        <Link to=''>Profile</Link>
+        <Link to={`/users/${this.props.currentUser.id}`}>Profile</Link>
         <button onClick={this.props.logout}>Logout</button>
       </div>
     )
