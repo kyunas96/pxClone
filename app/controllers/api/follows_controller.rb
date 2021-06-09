@@ -1,11 +1,19 @@
 class Api::FollowsController < ApplicationController 
 
   def followers
+    user = User.find_by(id: params[:user_id])
 
+    @followers = user.followers
+
+    render :followers
   end
 
   def followings
-    
+    user = User.find_by(id: params[:user_id])
+
+    @followings = user.followings
+
+    render :followings
   end
 
   def create

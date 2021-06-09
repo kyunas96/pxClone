@@ -6,15 +6,14 @@ Rails.application.routes.draw do
   namespace :api, default: { format: :json } do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:index, :show, :create, :update]
+    resources :profile, only: [:show]
+    resources :posts, only: [:create, :destroy]
 
     # Routes to FollowsController
-    get '/follows/followers' => 'follows#followers'
-    get '/follows/followings' => 'follows#followings'
     post '/follows' => 'follows#create'
     delete '/follows' => 'follows#destroy'
-
-    # Routes to PostsController
-    get 'posts' => 'posts#grab_batch'
-    get 'posts/:id' => 'posts#show'
+    # Mark for deprication
+    get '/follows/followers' => 'follows#followers'
+    get '/follows/followings' => 'follows#followings'
   end
 end

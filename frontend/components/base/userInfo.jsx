@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import UserInfoDropdown from './userInfoDropdown';
 
 class UserInfo extends React.Component {
@@ -25,6 +26,11 @@ class UserInfo extends React.Component {
             currentUser={this.props.currentUser}
             logout={this.props.logout}
           /> : (null)}
+          <div className='user-info-upload'>
+            {/* add icon here for upload */}
+            {/* <img></img> */}
+            <Link to='/post/create' className='upload-button'>Upload</Link>
+          </div>
       </div>
     )
   }

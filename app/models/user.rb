@@ -61,4 +61,6 @@ class User < ApplicationRecord
     source: :followed_user
 
   has_one_attached :user_photo
+
+  # has_many :posts
 end

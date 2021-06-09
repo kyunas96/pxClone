@@ -1,15 +1,28 @@
 class Api::PostsController < ApplicationController
 
-  # this action will grab a batch of images based on the batch_params
-  def grab_batch
-    # @posts = Posts.include(userid: current_user.following)
+  def create
+    @post = Post.new(post_params)
+
+    # if @post.save
+    #   render json: "Success"
+    # else
+    #   render json: @post.errors.full_messages
+    # end
   end
 
-  def show
-    p params
+  def destroy
+    @post = Post.find_by(id: params[:id])
+
+    if @post 
+      if current_user.id == @post.poster_id
+        # @post.destroy
+      end
+    else
+      render json: "Post does not exist"
+    end
   end
 
-  def batch_params
-    params.permit(:offset, :count)
+  def post_params
+    params.require(:post).permit(:title, :description, :photoFile)
   end
 end

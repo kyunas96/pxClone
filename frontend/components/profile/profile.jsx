@@ -26,7 +26,7 @@ class Profile extends React.Component {
           <img src='assets/img1'></img>
         </div>
         <h3>{this.state.user.username !== undefined ? this.state.user.username : ""}</h3>
-
+        {/* <button onClick={this.props.action()}></button> */}
       </div>
     )
   }

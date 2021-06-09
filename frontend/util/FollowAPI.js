@@ -1,9 +1,17 @@
 export const getFollowers = userId => (
-  $.ajax()
+  $.ajax({
+    method: 'GET',
+    url: '/api/follows/followers',
+    data: {user_id: userId}
+  })
 )
 
 export const getFollowings = userId => (
-
+  $.ajax({
+    method: 'GET',
+    url: '/api/follows/followings',
+    data: {user_id: userId}
+  })
 )
 
 export const createFollow = followedUserId => (
