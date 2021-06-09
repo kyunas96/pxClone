@@ -431,7 +431,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/login_signup/signup_form_container */ "./frontend/components/login_signup/signup_form_container.js");
 /* harmony import */ var _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/feed/feedContainer */ "./frontend/components/feed/feedContainer.js");
 /* harmony import */ var _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/profile/profileContainer */ "./frontend/components/profile/profileContainer.js");
-/* harmony import */ var _components_posts_postForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/posts/postForm */ "./frontend/components/posts/postForm.jsx");
+/* harmony import */ var _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/posts/createPostForm */ "./frontend/components/posts/createPostForm.jsx");
 
 
 
@@ -458,7 +458,7 @@ var App = function App(props) {
     component: _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_5__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_7__.Route, {
     path: "/post/create",
-    component: _components_posts_postForm__WEBPACK_IMPORTED_MODULE_6__.default
+    component: _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_6__.default
   })));
 };
 
@@ -1483,10 +1483,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/posts/postForm.jsx":
-/*!************************************************!*\
-  !*** ./frontend/components/posts/postForm.jsx ***!
-  \************************************************/
+/***/ "./frontend/components/posts/createPostForm.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/posts/createPostForm.jsx ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1496,6 +1496,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1519,40 +1521,116 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var PostForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(PostForm, _React$Component);
 
-  var _super = _createSuper(PostForm);
+var CreatePostForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(CreatePostForm, _React$Component);
 
-  function PostForm(props) {
-    _classCallCheck(this, PostForm);
+  var _super = _createSuper(CreatePostForm);
 
-    //should receive a post in props
-    return _super.call(this, props);
+  function CreatePostForm(props) {
+    var _this;
+
+    _classCallCheck(this, CreatePostForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      title: "",
+      description: "",
+      photoFile: null
+    };
+    _this.updateValue = _this.updateValue.bind(_assertThisInitialized(_this));
+    _this.updateFile = _this.updateFile.bind(_assertThisInitialized(_this));
+    _this.handleUpload = _this.handleUpload.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
-  _createClass(PostForm, [{
+  _createClass(CreatePostForm, [{
     key: "componentDidMount",
-    value: function componentDidMount() {//when the component mounts, should fetch the image url 
+    value: function componentDidMount() {}
+  }, {
+    key: "updateValue",
+    value: function updateValue(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, field, e.currentTarget.value), console.log(_this2.state));
+      };
+    } //make function to update the file field of the state 
+
+  }, {
+    key: "updateFile",
+    value: function updateFile(e) {
+      this.setState({
+        photoFile: e.currentTarget.files[0]
+      });
+    }
+  }, {
+    key: "handleUpload",
+    value: function handleUpload(e) {
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('[post][title]', this.state.title);
+      formData.append('[post][description]', this.state.description);
+
+      if (this.state.photoFile) {
+        formData.append('[post][photo]', this.state.photoFile);
+      }
+
+      $.ajax({
+        method: 'POST',
+        url: '/api/posts',
+        data: formData,
+        contentType: false,
+        processData: false
+      }).then(function (response) {
+        return console.log(response);
+      }, function (responseErrors) {
+        return console.log(responseErrors);
+      }); // for(const ele of formData.entries()){
+      //   console.log(ele)
+      // }
     }
   }, {
     key: "render",
     value: function render() {
+      console.log(this.state);
       return (
         /*#__PURE__*/
         // make sure to add `margin-top: 10vh;` in the css styles to accomodate
         // for the header
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-form"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "hi"))
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "post-form-preview"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+          onSubmit: this.handleUpload
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+          htmlFor: "title"
+        }, "Title:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+          id: "title",
+          type: "text",
+          name: "",
+          onChange: this.updateValue('title')
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+          htmlFor: "description"
+        }, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+          id: "description",
+          onChange: this.updateValue('description')
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+          type: "file",
+          onChange: this.updateFile
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+          type: "submit",
+          value: "Upload Photo"
+        })))
       );
     }
   }]);
 
-  return PostForm;
+  return CreatePostForm;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreatePostForm);
 
 /***/ }),
 
