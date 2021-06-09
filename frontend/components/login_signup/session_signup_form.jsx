@@ -9,6 +9,7 @@ class SignUpForm extends React.Component{
     super(props)
     this.state = this.props.credentials
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   handleSubmit= e => {
@@ -21,6 +22,12 @@ class SignUpForm extends React.Component{
     return (e) => {
       this.setState({ [field]: e.currentTarget.value})
     }
+  }
+
+  demoLogin(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    this.props.demoLogin()
   }
 
   componentWillUnmount(){
@@ -60,7 +67,7 @@ class SignUpForm extends React.Component{
           />
 
           <button type='submit'>Sign up</button>
-          <button onClick={this.props.demoLogin}>Demo Login</button>
+          <button onClick={this.demoLogin}>Demo Login</button>
         </form>
       </div>
     )

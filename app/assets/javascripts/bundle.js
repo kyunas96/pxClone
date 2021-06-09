@@ -1144,6 +1144,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
 
     _this.state = _this.props.credentials;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1155,6 +1156,13 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
+    }
+  }, {
+    key: "demoLogin",
+    value: function demoLogin(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.props.demoLogin();
     }
   }, {
     key: "componentWillUnmount",
@@ -1196,7 +1204,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "submit"
       }, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: this.props.demoLogin
+        onClick: this.demoLogin
       }, "Demo Login")));
     }
   }]);
@@ -1277,6 +1285,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
 
     _this.state = _this.props.credentials;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1288,6 +1297,13 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
+    }
+  }, {
+    key: "demoLogin",
+    value: function demoLogin(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.props.demoLogin();
     }
   }, {
     key: "componentWillUnmount",
@@ -1335,7 +1351,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "submit"
       }, "Sign up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: this.props.demoLogin
+        onClick: this.demoLogin
       }, "Demo Login")));
     }
   }]);
