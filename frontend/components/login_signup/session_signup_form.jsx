@@ -60,6 +60,7 @@ class SignUpForm extends React.Component{
           />
 
           <button type='submit'>Sign up</button>
+          <button onClick={this.props.demoLogin}>Demo Login</button>
         </form>
       </div>
     )

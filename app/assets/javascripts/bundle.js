@@ -708,44 +708,6 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/feed/ImageHover.jsx":
-/*!*************************************************!*\
-  !*** ./frontend/components/feed/ImageHover.jsx ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
- // props
-// 1. user pertaining to post
-// 2. the post id
-// 3. the profile image of the user that posted the
-//    the image
-
-var ImageHover = function ImageHover(props) {
-  // const likeImage = postId => {
-  // }
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "image-hover"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "image-hover-top"
-  }, props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "image-hover-bottom"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "hover-user"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, props.post.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "hover-interaction"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Like"))));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageHover);
-
-/***/ }),
-
 /***/ "./frontend/components/feed/feed.jsx":
 /*!*******************************************!*\
   !*** ./frontend/components/feed/feed.jsx ***!
@@ -935,7 +897,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _ImageHover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImageHover */ "./frontend/components/feed/ImageHover.jsx");
+/* harmony import */ var _imageHover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./imageHover */ "./frontend/components/feed/imageHover.jsx");
 
 
 
@@ -945,7 +907,7 @@ var Image = function Image(props) {
     className: "image-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: props.post.url
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ImageHover__WEBPACK_IMPORTED_MODULE_1__.default, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_imageHover__WEBPACK_IMPORTED_MODULE_1__.default, {
     post: {
       title: 'Daniel',
       username: 'kevin'
@@ -956,6 +918,44 @@ var Image = function Image(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Image);
+
+/***/ }),
+
+/***/ "./frontend/components/feed/imageHover.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/feed/imageHover.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+ // props
+// 1. user pertaining to post
+// 2. the post id
+// 3. the profile image of the user that posted the
+//    the image
+
+var ImageHover = function ImageHover(props) {
+  // const likeImage = postId => {
+  // }
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover-top"
+  }, props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover-bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "hover-user"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, props.post.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "hover-interaction"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Like"))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageHover);
 
 /***/ }),
 
@@ -1031,6 +1031,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     reset: function reset() {
       return dispatch((0,_actions_errorActions__WEBPACK_IMPORTED_MODULE_2__.resetSessionErrors)());
+    },
+    demoLogin: function demoLogin() {
+      return dispatch((0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_1__.requestLogin)({
+        username: 'demoUser',
+        password: 'password'
+      }));
     }
   };
 };
@@ -1189,7 +1195,9 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         autoComplete: "current-password"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "submit"
-      }, "Log in")));
+      }, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.props.demoLogin
+      }, "Demo Login")));
     }
   }]);
 
@@ -1326,7 +1334,9 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         autoComplete: "new-password"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "submit"
-      }, "Sign up")));
+      }, "Sign up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.props.demoLogin
+      }, "Demo Login")));
     }
   }]);
 
@@ -1351,7 +1361,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_signup_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_signup_form */ "./frontend/components/login_signup/session_signup_form.jsx");
 /* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/userActions */ "./frontend/actions/userActions.js");
-/* harmony import */ var _actions_errorActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/errorActions */ "./frontend/actions/errorActions.js");
+/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+/* harmony import */ var _actions_errorActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/errorActions */ "./frontend/actions/errorActions.js");
+
 
 
 
@@ -1375,7 +1387,13 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0,_actions_userActions__WEBPACK_IMPORTED_MODULE_2__.createUser)(credentials));
     },
     reset: function reset() {
-      return dispatch((0,_actions_errorActions__WEBPACK_IMPORTED_MODULE_3__.resetSessionErrors)());
+      return dispatch((0,_actions_errorActions__WEBPACK_IMPORTED_MODULE_4__.resetSessionErrors)());
+    },
+    demoLogin: function demoLogin() {
+      return dispatch((0,_actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.requestLogin)({
+        username: 'demoUser',
+        password: 'password'
+      }));
     }
   };
 };

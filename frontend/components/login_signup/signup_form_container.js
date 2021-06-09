@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import SignUpForm from './session_signup_form';
 import { createUser } from '../../actions/userActions';
+import { requestLogin } from '../../actions/sessionActions';
 import { resetSessionErrors } from '../../actions/errorActions';
 
 const mapStateToProps = state => {
@@ -17,7 +18,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   action: credentials => dispatch(createUser(credentials)),
-  reset: () => dispatch(resetSessionErrors())
+  reset: () => dispatch(resetSessionErrors()),
+  demoLogin: () => dispatch(requestLogin({username: 'demoUser', password: 'password'}))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

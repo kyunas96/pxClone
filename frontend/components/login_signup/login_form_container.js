@@ -16,7 +16,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   action: credentials => dispatch(requestLogin(credentials)),
-  reset: () => dispatch(resetSessionErrors())
+  reset: () => dispatch(resetSessionErrors()),
+  demoLogin: () => dispatch(requestLogin({ username: 'demoUser', password: 'password' }))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
