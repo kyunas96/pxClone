@@ -1,5 +1,6 @@
 import React from 'react';
 import { $CombinedState } from 'redux';
+import PostFormPreview from './postFormPreview';
 
 class CreatePostForm extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class CreatePostForm extends React.Component {
     this.state = {
       title: "",
       description: "",
+      photoURL: null,
       photoFile: null
     }
     this.updateValue = this.updateValue.bind(this);
@@ -26,7 +28,16 @@ class CreatePostForm extends React.Component {
 
   //make function to update the file field of the state 
   updateFile(e) {
-    this.setState({ photoFile: e.currentTarget.files[0] })
+    const file = e.currentTarget.files[0];
+    console.log(file)
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      console.log(fileReader.result)
+      this.setState({ photoFile: file, photoURL: fileReader.result })
+    }
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
   }
 
   handleUpload(e) {
@@ -34,7 +45,7 @@ class CreatePostForm extends React.Component {
     const formData = new FormData();
     formData.append('[post][title]', this.state.title)
     formData.append('[post][description]', this.state.description)
-    if(this.state.photoFile){
+    if (this.state.photoFile) {
       formData.append('[post][photo]', this.state.photoFile)
     }
     $.ajax({
@@ -47,26 +58,20 @@ class CreatePostForm extends React.Component {
       (response) => console.log(response),
       (responseErrors) => console.log(responseErrors)
     )
-    // for(const ele of formData.entries()){
-    //   console.log(ele)
-    // }
   }
 
   render() {
-    console.log(this.state)
+    const preview = this.state.photoURL ?
+      <PostFormPreview photo={this.state.photoURL} />
+      : null;
+
     return (
       // make sure to add `margin-top: 10vh;` in the css styles to accomodate
       // for the header
       <div className='post-form'>
-        <div className='post-form-preview'>
-          {
-            /* once the form has an image attached, it should be set as the source
-          for the image
-          */
-          }
-          <img></img>
-        </div>
+          <PostFormPreview photo={this.state.photoURL} />
         <form onSubmit={this.handleUpload}>
+          <h3>Upload a Photo</h3>
           <label htmlFor='title'>Title:</label>
 
           <input

@@ -617,6 +617,40 @@ var Logo = function Logo() {
 
 /***/ }),
 
+/***/ "./frontend/components/base/uploadButton.jsx":
+/*!***************************************************!*\
+  !*** ./frontend/components/base/uploadButton.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var UploadButton = function UploadButton() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    "aria-hidden": "true",
+    focusable: "false",
+    "data-prefix": "fas",
+    "data-icon": "arrow-up",
+    "class": "svg-inline--fa fa-arrow-up fa-w-14",
+    role: "img",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 448 512"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fill: "currentColor",
+    d: "M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadButton);
+
+/***/ }),
+
 /***/ "./frontend/components/base/userInfo.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/base/userInfo.jsx ***!
@@ -629,8 +663,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _userInfoDropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userInfoDropdown */ "./frontend/components/base/userInfoDropdown.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _uploadButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./uploadButton */ "./frontend/components/base/uploadButton.jsx");
+/* harmony import */ var _userInfoDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userInfoDropdown */ "./frontend/components/base/userInfoDropdown.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -652,6 +687,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -696,12 +732,12 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick(e) {
           return _this2.toggleDropdown(e);
         }
-      }), this.state.showDropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userInfoDropdown__WEBPACK_IMPORTED_MODULE_1__.default, {
+      }), this.state.showDropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userInfoDropdown__WEBPACK_IMPORTED_MODULE_2__.default, {
         currentUser: this.props.currentUser,
         logout: this.props.logout
       }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-info-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/post/create",
         className: "upload-button"
       }, "Upload")));
@@ -1495,6 +1531,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _postFormPreview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postFormPreview */ "./frontend/components/posts/postFormPreview.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1522,6 +1559,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var CreatePostForm = /*#__PURE__*/function (_React$Component) {
   _inherits(CreatePostForm, _React$Component);
 
@@ -1536,6 +1574,7 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       title: "",
       description: "",
+      photoURL: null,
       photoFile: null
     };
     _this.updateValue = _this.updateValue.bind(_assertThisInitialized(_this));
@@ -1560,9 +1599,24 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateFile",
     value: function updateFile(e) {
-      this.setState({
-        photoFile: e.currentTarget.files[0]
-      });
+      var _this3 = this;
+
+      var file = e.currentTarget.files[0];
+      console.log(file);
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        console.log(fileReader.result);
+
+        _this3.setState({
+          photoFile: file,
+          photoURL: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
     }
   }, {
     key: "handleUpload",
@@ -1586,25 +1640,25 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
         return console.log(response);
       }, function (responseErrors) {
         return console.log(responseErrors);
-      }); // for(const ele of formData.entries()){
-      //   console.log(ele)
-      // }
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state);
+      var preview = this.state.photoURL ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postFormPreview__WEBPACK_IMPORTED_MODULE_1__.default, {
+        photo: this.state.photoURL
+      }) : null;
       return (
         /*#__PURE__*/
         // make sure to add `margin-top: 10vh;` in the css styles to accomodate
         // for the header
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-form"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "post-form-preview"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postFormPreview__WEBPACK_IMPORTED_MODULE_1__.default, {
+          photo: this.state.photoURL
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
           onSubmit: this.handleUpload
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Upload a Photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
           htmlFor: "title"
         }, "Title:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           id: "title",
@@ -1631,6 +1685,34 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreatePostForm);
+
+/***/ }),
+
+/***/ "./frontend/components/posts/postFormPreview.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/posts/postFormPreview.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var PostFormPreview = function PostFormPreview(props) {
+  var classname = props.photo === null ? "" : "visible";
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-form-preview"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: classname,
+    src: props.photo
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostFormPreview);
 
 /***/ }),
 
