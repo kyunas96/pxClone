@@ -6,9 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-<<<<<<< HEAD
-User.create(username: 'demoUser', email: 'fake@email.com', password: 'password')
-=======
 require "open-uri"
 
 User.destroy_all
@@ -22,6 +19,8 @@ User.create(username: "Daniel", email: "daniel@email.com", password: "danielPass
 User.create(username: "Gabby", email: "gabby@email.com", password: "gabbyPassword")
 #4 :Kriste
 User.create(username: "Kriste", email: "kriste@email.com", password: "kristePassword")
+#5 :Demo
+User.create(username: "demoUser", email: "demo@email.com", password: "password")
 
 daniel1 = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/daniel1.jpeg")
 daniel2 = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/daniel2.jpeg")
@@ -104,4 +103,3 @@ topanga1Post.save!
 topanga2Post.save!
 tornPost.save!
 tunnelPost.save!
->>>>>>> user-profile

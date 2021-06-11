@@ -512,17 +512,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App(props) {
+  var loggedIn = store.getState().session.loggedIn;
+  console.log("loggedin:" + loggedIn);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "app"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_base_header_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    exact: true,
+    path: "/",
+    component: loggedIn ? _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_4__.default : null
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/login",
     component: _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_2__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/signup",
     component: _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
-    path: "/feed",
-    component: _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_4__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
     path: "/users/:userId",
     component: _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_5__.default
@@ -530,9 +533,8 @@ var App = function App(props) {
     path: "/post/create",
     component: _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_6__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Route, {
-    exact: true,
-    path: "/",
-    component: IndexComponent
+    path: "/posts/:postId",
+    component: _components_posts_postShowContainer__WEBPACK_IMPORTED_MODULE_7__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_8__.Redirect, {
     to: "/"
   })));

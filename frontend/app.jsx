@@ -9,19 +9,20 @@ import CreatePostForm from './components/posts/createPostForm';
 import PostShowContainer from './components/posts/postShowContainer';
 
 const App = (props) => {
-
+  const loggedIn = store.getState().session.loggedIn
+  console.log("loggedin:" + loggedIn)
   return (
     <div id='app'>
       <HeaderContainer />
       <Switch>
+        <Route exact path='/' component={loggedIn ? FeedContainer : null}/>
         <Route path='/login' component={LoginContainer} />
         <Route path='/signup' component={SignupContainer} />
-        <Route path='/feed' component={FeedContainer} />
+        {/* <Route path='/feed' component={FeedContainer} /> */}
         <Route path='/users/:userId' component={ProfileContainer} />
         <Route path='/post/create' component={CreatePostForm}/>
-        {/* <Route path='/posts/new' component={NewPostContainer} /> */}
-        {/* <Route path='/posts/:postId' component={PostShowContainer} /> */}
-        <Route exact path='/' component={IndexComponent} />
+        <Route path='/posts/:postId' component={PostShowContainer} />
+        {/* <Route exact path='/' component={IndexComponent} /> */}
         <Redirect to='/'/>
       </Switch>
     </div>
