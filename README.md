@@ -16,7 +16,7 @@ pxClone is a clone of 500px.com that allows users to share images with other use
 ### Features
 
 * Allows users to post images to the site and view them
-* Created a feed component that allows users to see images
+* Feed component that allows users to see images
 
 ### Solution Highlights
 
