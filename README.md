@@ -37,7 +37,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
   * To make a hover feature for images I had to overlay a div over the image that displayed on hover and position the hover components at both the top and the bottom of the image.
 
-  ```css
+  ```scss
   .image-hover {
   display: none;
   position: absolute;
@@ -64,5 +64,6 @@ shouldComponentUpdate(nextProps, nextState) {
     flex-direction: row;
     justify-content: space-between;
   }
+
 }
 ```
