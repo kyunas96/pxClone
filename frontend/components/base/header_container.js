@@ -1,7 +1,5 @@
-import React from 'react';
 import { connect } from 'react-redux'
 import Header from './header';
-import { isEmpty } from '../../util/Util';
 import { requestLogout } from '../../actions/sessionActions'
 
 const mapStateToProps = state => ({

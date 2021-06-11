@@ -1,0 +1,15 @@
+.user-profile {
+  margin-top: 10vh;
+  width: 100vw;
+  height: 90vh;
+  text-align: center;
+}
+
+.user-profile-picture {
+  img {
+    object-fit:cover;
+    object-position: center;
+    width: 100px;
+    height: 100px;
+  }
+}
