@@ -7,34 +7,32 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 class Feed extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      items: [
-        <Image post={{ url: 'assets/img1' }} />,
-        <Image post={{ url: 'assets/img2' }} />,
-        <Image post={{ url: 'assets/img3' }} />,
-        <Image post={{ url: 'assets/img1' }} />,
-        <Image post={{ url: 'assets/img2' }} />,
-        <Image post={{ url: 'assets/img3' }} />,
-      ]
-    }
-    this.fetchData = this.fetchData.bind(this);
   }
 
   componentDidMount() {
-    // once the component has mounted, it must fetch the first batch of images
-    // that it will render
+    this.props.getPosts()
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.posts !== undefined) {
+      console.log(nextProps)
+      console.log(nextState)
+      return true
+    } else {
+      return false;
+    }
   }
 
   fetchData() {
-    const newItems = [
-      <Image post={{ url: 'assets/img1' }} />,
-      <Image post={{ url: 'assets/img2' }} />,
-      <Image post={{ url: 'assets/img3' }} />
-    ]
+    // const newItems = [
+    //   <Image post={{ url: 'assets/img1' }} />,
+    //   <Image post={{ url: 'assets/img2' }} />,
+    //   <Image post={{ url: 'assets/img3' }} />
+    // ]
 
-    this.setState(prevState => ({
-      items: prevState.items.concat(newItems)
-    }), console.log(this.state))
+    // this.setState(prevState => ({
+    //   items: prevState.items.concat(newItems)
+    // }), console.log(this.state))
   }
 
   render() {
@@ -44,23 +42,35 @@ class Feed extends React.Component {
       700: 2,
       500: 1
     };
+    console.log(this.props)
+
+    let images = [];
+
+    if (this.props.posts !== null) {
+      // console.log(JSON.stringify(this.props.posts))
+      Object.values(this.props.posts).forEach(post => {
+        images.push(<Image post={post} />)
+      })
+    }
 
     return (
-      <InfiniteScroll
-        dataLength={this.state.items.length}
-        next={this.fetchData}
-        hasMore={true}
-        loader={<h4>Loading...</h4>}
-      >
+      // <InfiniteScroll
+      //   dataLength={this.state.items.length}
+      //   next={this.fetchData}
+      //   hasMore={true}
+      //   loader={<h4>Loading...</h4>}
+      // >
+      <div className='feed-container'>
         <Masonry
           breakpointCols={breakpointColumnsObj}
           className='my-masonry-grid'
           columnClassName='my-masonry-grid-column'
         >
-          {this.state.items}
+          {images}
         </Masonry>
+      </div>
 
-      </InfiniteScroll>
+      // </InfiniteScroll>
     )
   }
 }

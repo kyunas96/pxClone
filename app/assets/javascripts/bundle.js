@@ -940,68 +940,37 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Feed);
 
   function Feed(props) {
-    var _this;
-
     _classCallCheck(this, Feed);
 
-    _this = _super.call(this, props);
-    _this.state = {
-      items: [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img1'
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img2'
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img3'
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img1'
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img2'
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img3'
-        }
-      })]
-    };
-    _this.fetchData = _this.fetchData.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(Feed, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// once the component has mounted, it must fetch the first batch of images
-      // that it will render
+    value: function componentDidMount() {
+      this.props.getPosts();
+    }
+  }, {
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      if (nextProps.posts !== undefined) {
+        console.log(nextProps);
+        console.log(nextState);
+        return true;
+      } else {
+        return false;
+      }
     }
   }, {
     key: "fetchData",
-    value: function fetchData() {
-      var newItems = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img1'
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img2'
-        }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-        post: {
-          url: 'assets/img3'
-        }
-      })];
-      this.setState(function (prevState) {
-        return {
-          items: prevState.items.concat(newItems)
-        };
-      }, console.log(this.state));
+    value: function fetchData() {// const newItems = [
+      //   <Image post={{ url: 'assets/img1' }} />,
+      //   <Image post={{ url: 'assets/img2' }} />,
+      //   <Image post={{ url: 'assets/img3' }} />
+      // ]
+      // this.setState(prevState => ({
+      //   items: prevState.items.concat(newItems)
+      // }), console.log(this.state))
     }
   }, {
     key: "render",
@@ -1012,16 +981,35 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         700: 2,
         500: 1
       };
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_3__.default, {
-        dataLength: this.state.items.length,
-        next: this.fetchData,
-        hasMore: true,
-        loader: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Loading...")
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
-        breakpointCols: breakpointColumnsObj,
-        className: "my-masonry-grid",
-        columnClassName: "my-masonry-grid-column"
-      }, this.state.items));
+      console.log(this.props);
+      var images = [];
+
+      if (this.props.posts !== null) {
+        // console.log(JSON.stringify(this.props.posts))
+        Object.values(this.props.posts).forEach(function (post) {
+          images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
+            post: post
+          }));
+        });
+      }
+
+      return (
+        /*#__PURE__*/
+        // <InfiniteScroll
+        //   dataLength={this.state.items.length}
+        //   next={this.fetchData}
+        //   hasMore={true}
+        //   loader={<h4>Loading...</h4>}
+        // >
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "feed-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
+          breakpointCols: breakpointColumnsObj,
+          className: "my-masonry-grid",
+          columnClassName: "my-masonry-grid-column"
+        }, images)) // </InfiniteScroll>
+
+      );
     }
   }]);
 
@@ -1054,15 +1042,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./feed */ "./frontend/components/feed/feed.jsx");
+/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/postActions */ "./frontend/actions/postActions.js");
+
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    currentUser: {
-      id: state.session.currentUser.id,
-      username: state.session.currentUser.username
-    }
+    posts: state.entities.posts
   };
 };
 
@@ -1080,11 +1067,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return likePost;
     }(function (postId) {
       return dispatch(likePost(postId));
-    })
+    }),
+    getPosts: function getPosts() {
+      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestAllPosts)());
+    }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, null)(_feed__WEBPACK_IMPORTED_MODULE_1__.default)); // when on the backend, a like will be created by grabbing the currentUser's id
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_feed__WEBPACK_IMPORTED_MODULE_1__.default)); // when on the backend, a like will be created by grabbing the currentUser's id
 // and binding it the id of the post to create a new Like
 
 /***/ }),
@@ -1102,6 +1092,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _imageHover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./imageHover */ "./frontend/components/feed/imageHover.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -1109,16 +1101,18 @@ var Image = function Image(props) {
   console.log(props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "/posts/".concat(props.post.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: props.post.url
+    src: props.post.photoUrl
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_imageHover__WEBPACK_IMPORTED_MODULE_1__.default, {
     post: {
-      title: 'Daniel',
-      username: 'kevin'
+      title: props.post.title,
+      username: props.post.poster
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "shadow"
-  }));
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Image);
@@ -1667,11 +1661,15 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
           className: "post-show"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show-gallery"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "left-arrow"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           src: this.props.post.photoUrl
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "right-arrow"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show-description"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, this.props.post.title)));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, this.props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, "by ", this.props.post.poster)));
       } else {
         return null;
       }

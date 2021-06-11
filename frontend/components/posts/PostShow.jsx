@@ -29,10 +29,13 @@ class PostShow extends React.Component {
       return (
         <div className='post-show'>
           <div className='post-show-gallery'>
+            <div className='left-arrow'></div>
             <img src={this.props.post.photoUrl} />
+            <div className='right-arrow'></div>
           </div>
           <div className='post-show-description'>
             <h3>{this.props.post.title}</h3>
+            <h5>by {this.props.post.poster}</h5>
           </div>
         </div>
       )
