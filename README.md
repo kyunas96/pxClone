@@ -7,7 +7,7 @@ pxClone is a clone of 500px.com that allows users to share images with other use
 ### Live Demo: 
   * https://pxclone.herokuapp.com/
 
-### Technologies userd:
+### Technologies used:
 * Ruby on Rails
   * connected to s3 remote bucket using ActiveStorage
 * React 
@@ -19,6 +19,8 @@ pxClone is a clone of 500px.com that allows users to share images with other use
 * Created a feed component that allows users to see images
 
 ### Solution Highlights
+
+* The component that displayed the images never unmounted when swapping out images so I had to dynamically check the props from the container to determine if a rerender was necessary.
 
 ```js
 shouldComponentUpdate(nextProps, nextState) {
@@ -32,3 +34,35 @@ shouldComponentUpdate(nextProps, nextState) {
     }
   }
   ```
+
+  * To make a hover feature for images I had to overlay a div over the image that displayed on hover and position the hover components at both the top and the bottom of the image.
+
+  ```css
+  .image-hover {
+  display: none;
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.7);
+
+  .image-hover-top {
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+
+  .image-hover-bottom {
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+```
