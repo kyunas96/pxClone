@@ -35,7 +35,7 @@ shouldComponentUpdate(nextProps, nextState) {
   }
   ```
 
-  * To make a hover feature for images I had to overlay a div over the image that displayed on hover and position the hover components at both the top and the bottom of the image.
+  * To make a hover feature for images I had to overlay a div over the image that displayed on hover and position a title on the top and picture interactions on the bottom.
 
   ```scss
   .image-hover {
