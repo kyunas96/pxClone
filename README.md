@@ -39,31 +39,31 @@ shouldComponentUpdate(nextProps, nextState) {
 
   ```scss
   .image-hover {
-  display: none;
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-  background-color: transparent;
-  z-index: 3;
-  color: rgba(255, 255, 255, 0.7);
-
-  .image-hover-top {
-    padding-top: 10px;
-    padding-left: 10px;
-  }
-
-  .image-hover-bottom {
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    display: none;
+    position: absolute;
+    top: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-  }
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    z-index: 3;
+    color: rgba(255, 255, 255, 0.7);
+
+    .image-hover-top {
+      padding-top: 10px;
+      padding-left: 10px;
+    }
+
+    .image-hover-bottom {
+      padding-bottom: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
 }
 ```
