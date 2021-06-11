@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:index, :show, :create, :update]
     resources :profile, only: [:show]
-    resources :posts, only: [:create, :destroy]
+    resources :posts, only: [:index, :show, :create, :update, :destroy]
 
     # Routes to FollowsController
     post '/follows' => 'follows#create'

@@ -1,5 +1,17 @@
 class Api::PostsController < ApplicationController
 
+  def index
+    @posts = Post.all
+
+    render :index
+  end
+
+  def show
+    @post = Post.find_by(id: params[:id])
+    
+    render :show
+  end
+
   def create
     poster_id_appended = post_params
     poster_id_appended['poster_id'] = current_user.id

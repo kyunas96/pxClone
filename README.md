@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## pxClone
 
-Things you may want to cover:
+pxClone is a clone of 500px.com that allows users to share images with other users.
 
-* Ruby version
+### Live Demo: 
+  * https://pxclone.herokuapp.com/
 
-* System dependencies
+### Technologies userd:
+* Ruby on Rails
+  * connected to s3 remote bucket using ActiveStorage
+* React 
+* Redux
 
-* Configuration
+### Features
 
-* Database creation
+* Allows users to post images to the site and view them
+* Created a feed component that allows users to see images
 
-* Database initialization
+### Solution Highlights
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```js
+shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.postId !== nextProps.postId) {
+      this.props.requestPost(nextProps.postId)
+      return true;
+    } else if (nextProps.post !== this.props.post) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  ```

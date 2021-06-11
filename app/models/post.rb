@@ -9,4 +9,9 @@ class Post < ApplicationRecord
   end
 
   has_one_attached :photo
+
+  belongs_to :poster,
+    primary_key: :id,
+    foreign_key: :poster_id,
+    class_name: 'User'
 end

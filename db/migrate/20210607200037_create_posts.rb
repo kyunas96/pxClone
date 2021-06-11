@@ -9,3 +9,4 @@ class CreatePosts < ActiveRecord::Migration[5.2]
     add_index :posts, [:title, :poster_id], unique: true
   end
 end
+

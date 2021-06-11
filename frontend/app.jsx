@@ -6,6 +6,7 @@ import SignupContainer from './components/login_signup/signup_form_container';
 import FeedContainer from './components/feed/feedContainer';
 import ProfileContainer from './components/profile/profileContainer';
 import CreatePostForm from './components/posts/createPostForm';
+import PostShowContainer from './components/posts/postShowContainer';
 
 const App = (props) => {
 
@@ -20,7 +21,7 @@ const App = (props) => {
         <Route path='/users/:userId' component={ProfileContainer} />
         <Route path='/post/create' component={CreatePostForm}/>
         {/* <Route path='/posts/new' component={NewPostContainer} /> */}
-        {/* <Route path='/posts/:postId' component={PostShowContainer} /> */}
+        <Route path='/posts/:postId' component={PostShowContainer} />
       </Switch>
     </div>
   )
