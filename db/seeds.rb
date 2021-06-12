@@ -85,7 +85,7 @@ tornPost.photo.attach(io: torn, filename: "torn.jpg")
 tunnelPost.photo.attach(io: tunnel, filename: "tunnel.jpg")
 
 daniel1Post.save!
-daniel1Post.save!
+daniel2Post.save!
 daniel3Post.save!
 daniel4Post.save!
 davis1Post.save!
