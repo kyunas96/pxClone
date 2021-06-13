@@ -10,10 +10,10 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :create, :update, :destroy]
 
     # Routes to FollowsController
-    post '/follows' => 'follows#create'
-    delete '/follows' => 'follows#destroy'
+    # post '/follows' => 'follows#create'
+    # delete '/follows' => 'follows#destroy'
     # Mark for deprication
-    get '/follows/followers' => 'follows#followers'
-    get '/follows/followings' => 'follows#followings'
+    # get '/follows/followers' => 'follows#followers'
+    # get '/follows/followings' => 'follows#followings'
   end
 end
