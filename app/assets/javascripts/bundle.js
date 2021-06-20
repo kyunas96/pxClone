@@ -1688,10 +1688,28 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
       } else {
         return false;
       }
+    } // e.clientX < e.target.clientWidth / 2
+
+  }, {
+    key: "handleNavigation",
+    value: function handleNavigation(e) {
+      console.log(e);
+
+      if (e.target.className == "post-show-gallery") {
+        if (e.clientX < e.target.clientWidth / 2) {
+          // functionality that will go back a post
+          console.log("left");
+        } else {
+          // functionality that will go ahead a post
+          console.log("right");
+        }
+      }
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       console.log(this.props);
       var postItem = this.props.post ? this.props.post.title : null;
 
@@ -1699,13 +1717,12 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "post-show-gallery"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "left-arrow"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          className: "post-show-gallery",
+          onClick: function onClick(e) {
+            return _this2.handleNavigation(e);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           src: this.props.post.photoUrl
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "right-arrow"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show-description"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, this.props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, "by ", this.props.post.poster)));

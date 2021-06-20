@@ -1,5 +1,7 @@
+@import './00_variables.scss';
+
 .user-profile {
-  margin-top: 10vh;
+  margin-top: $header-height;
   width: 100vw;
   height: 90vh;
   text-align: center;

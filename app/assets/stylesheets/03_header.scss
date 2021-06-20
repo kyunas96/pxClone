@@ -1,7 +1,9 @@
+@import './00_variables.scss';
+
 .header {
   position: fixed;
   top: 0;
-  height: 80px;
+  height: $header-height;
   width: 100vw;
   padding: 5px 1% 0 1%;
   text-align: center;

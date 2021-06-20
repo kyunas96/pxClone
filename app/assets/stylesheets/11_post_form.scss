@@ -1,5 +1,7 @@
+@import './00_variables.scss';
+
 .post-form {
-  margin-top: 10vh;
+  margin-top: $header-height;
   padding: 30px;
   display: flex;
   flex-direction: row;

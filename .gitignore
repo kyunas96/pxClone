@@ -72,3 +72,5 @@ yarn-debug.log*
 /public/uploads
 
 .csv
+
+roadmap.txt
