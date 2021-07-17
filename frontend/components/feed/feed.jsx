@@ -48,8 +48,8 @@ class Feed extends React.Component {
 
     if (this.props.posts !== null) {
       // console.log(JSON.stringify(this.props.posts))
-      Object.values(this.props.posts).forEach(post => {
-        images.push(<Image post={post} />)
+      Object.values(this.props.posts).forEach((post, i) => {
+        images.push(<Image post={post} key={i}/>)
       })
     }
 

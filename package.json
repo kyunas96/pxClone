@@ -45,5 +45,8 @@
   "bugs": {
     "url": "https://github.com/yunasty/pxClone/issues"
   },
-  "homepage": "https://github.com/yunasty/pxClone#readme"
+  "homepage": "https://github.com/yunasty/pxClone#readme",
+  "devDependencies": {
+    "svg-url-loader": "^7.1.1"
+  }
 }

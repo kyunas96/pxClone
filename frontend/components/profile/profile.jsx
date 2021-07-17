@@ -1,20 +1,20 @@
 import React from 'react';
-import { requestUser } from '../../util/UserAPI';
+import defaultUserImage from '../../images/user-circle-solid.svg';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       user: {
-        id: null,
+        id: this.props.userId,
         username: ""
       }
     }
+    console.log("profile", this.state);
   }
 
   componentDidMount() {
-    requestUser(this.props.userId)
-      .then(data => this.setState({ user: data.user }))
+    this.props.fetchProfile(this.state.user.id);
     //after dispatching this action, is the user waiting in props???
     // this.setState({user: userInfo}, console.log(this.state))
   }
@@ -23,7 +23,7 @@ class Profile extends React.Component {
     return (
       <div className='user-profile'>
         <div className='user-profile-picture'>
-          <img src='assets/img1'></img>
+          <img src={defaultUserImage} />
         </div>
         <h3>{this.state.user.username !== undefined ? this.state.user.username : ""}</h3>
         {/* <button onClick={this.props.action()}></button> */}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import UploadButton from './uploadButton';
 import UserInfoDropdown from './userInfoDropdown';
+import userInfoButton from '../../images/user-circle-solid.svg';
 
 class UserInfo extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class UserInfo extends React.Component {
     return (
       <div className='user-info' >
         <button className='user-info-toggle' onClick={e => this.toggleDropdown(e)}>
+          <img src={userInfoButton} />
         </button>
         {this.state.showDropdown ?
           <UserInfoDropdown

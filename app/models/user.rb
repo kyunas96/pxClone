@@ -62,8 +62,10 @@ class User < ApplicationRecord
 
   has_one_attached :user_photo
 
-  # has_many :posts,
-    # primary_key: :id,
-    # foreign_key: :poster_id,
-    # class_name: 'Post'
+  has_one_attached :banner_image
+
+  has_many :posts,
+    primary_key: :id,
+    foreign_key: :poster_id,
+    class_name: :Post
 end

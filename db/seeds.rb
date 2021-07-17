@@ -11,15 +11,17 @@ User.destroy_all
 Post.destroy_all
 
 # 1: Kevin
-User.create(username: "Kevin", email: "kevinyunas@icloud.com", password: "myPassword")
+User.create!(username: "Kevin", email: "kevinyunas@icloud.com", password: "myPassword")
 # 2: Daniel
-User.create(username: "Daniel", email: "daniel@email.com", password: "danielPassword")
+User.create!(username: "Daniel", email: "daniel@email.com", password: "danielPassword")
 # 3: Gabby
-User.create(username: "Gabby", email: "gabby@email.com", password: "gabbyPassword")
+User.create!(username: "Gabby", email: "gabby@email.com", password: "gabbyPassword")
 #4 :Kriste
-User.create(username: "Kriste", email: "kriste@email.com", password: "kristePassword")
+User.create!(username: "Kriste", email: "kriste@email.com", password: "kristePassword")
 #5 :Demo
-User.create(username: "demoUser", email: "demo@email.com", password: "password")
+User.create!(username: "demoUser", email: "demo@email.com", password: "password")
+
+
 
 daniel1 = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/daniel1.jpeg")
 daniel2 = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/daniel2.jpeg")
