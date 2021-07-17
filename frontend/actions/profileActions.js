@@ -10,7 +10,7 @@ const receiveProfile = profile => ({
 
 export const getProfile = userId => dispatch => (
   ProfileAPI.getProfile(userId)
-    .then(data => receiveProfile(data))
+    .then(data => dispatch(receiveProfile(data)))
 )
 
 export const resetProfile = () => dispatch => (

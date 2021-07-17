@@ -6,7 +6,7 @@ import * as FollowActions from "../../actions/followActions";
 // determine follow status here, this will allow the component to respond to
 // changes in follow status as they occur
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
+  console.log("state", state.ui.profile)
   return{
     user: state.ui.profile,
     userId: ownProps.match.params.userId,

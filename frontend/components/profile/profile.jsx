@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfileHeader from './profile_header';
 import defaultUserImage from '../../images/user-circle-solid.svg';
 
 class Profile extends React.Component {
@@ -10,7 +11,6 @@ class Profile extends React.Component {
         username: ""
       }
     }
-    console.log("profile", this.state);
   }
 
   componentDidMount() {

@@ -45,7 +45,7 @@ class User < ApplicationRecord
   has_many :received_follows,
     primary_key: :id,
     foreign_key: :followed_user_id,
-    class_name: 'Follow'
+    class_name: :Follow
 
   has_many :followers,
     through: :received_follows,
@@ -54,14 +54,13 @@ class User < ApplicationRecord
   has_many :given_follows,
     primary_key: :id,
     foreign_key: :follower_id,
-    class_name: 'Follow'
+    class_name: :Follow
 
   has_many :followings,
     through: :given_follows,
     source: :followed_user
 
   has_one_attached :user_photo
-
   has_one_attached :banner_image
 
   has_many :posts,
