@@ -47,6 +47,7 @@
   },
   "homepage": "https://github.com/yunasty/pxClone#readme",
   "devDependencies": {
+    "file-loader": "^6.2.0",
     "svg-url-loader": "^7.1.1"
   }
 }

@@ -27,6 +27,12 @@ class Profile extends React.Component {
           profilePicture={this.props.profile.profilePicture}
           userId={this.state.id}
         />
+        <Link
+          className="profile-picture-edit"
+          to={`/users/${props.userId}/profile/userImage/edit`}
+        >
+          Edit
+        </Link>
       </div>
     );
   }

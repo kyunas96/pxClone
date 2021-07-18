@@ -2060,7 +2060,10 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         bannerPicture: this.props.profile.bannerPicture,
         profilePicture: this.props.profile.profilePicture,
         userId: this.state.id
-      }));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Link, {
+        className: "profile-picture-edit",
+        to: "/users/".concat(props.userId, "/profile/userImage/edit")
+      }, "Edit"));
     }
   }]);
 
@@ -2227,24 +2230,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../images/user-circle-solid.svg */ "./frontend/images/user-circle-solid.svg");
 /* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../images/portrait.jpg */ "./frontend/images/portrait.jpg");
+
 
 
  // class should have an edit button on hover that will link to the
 // profile picture edit page
 
 var ProfilePicture = function ProfilePicture(props) {
-  var imageUrl = props.profilePicture ? props.profilePicture : (_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default());
+  // const imageUrl = props.profilePicture ? props.profilePicture : defaultProfilePicture;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-picture-buffer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: imageUrl
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    className: "profile-picture-edit",
-    to: "/users/".concat(props.userId, "/profile/userImage/edit")
-  }, "Edit"));
+    src: _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_2__.default
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfilePicture);
@@ -2845,6 +2848,21 @@ var isEmpty = function isEmpty(object) {
 var capitalize = function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
 };
+
+/***/ }),
+
+/***/ "./frontend/images/portrait.jpg":
+/*!**************************************!*\
+  !*** ./frontend/images/portrait.jpg ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "df07bf55502bc1bf9b531725d80cc561.jpg");
 
 /***/ }),
 
@@ -39942,6 +39960,26 @@ function valueEqual(a, b) {
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
