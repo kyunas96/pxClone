@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import defaultProfilePicture from "../../images/user-circle-solid.svg";
 import myProfilePicture from "../../images/portrait.jpg";
 // class should have an edit button on hover that will link to the

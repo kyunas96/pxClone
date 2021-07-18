@@ -10,7 +10,7 @@ class ProfileHeader extends React.Component {
   render() {
     return (
       <div className="profile-header">
-        <ProfileBanner src={this.props.bannerPicture} />
+        {/* <ProfileBanner src={this.props.bannerPicture} /> */}
         <ProfilePicture
           src={this.props.profilePicture}
           userId={this.props.userId}
