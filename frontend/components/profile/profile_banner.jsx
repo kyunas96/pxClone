@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default ProfileBanner = (props) => (
-  <div>
+const ProfileBanner = (props) => (
+  <div className="profile-banner">
     <img src={props.banner} />
   </div>
 )
+
+export default ProfileBanner;

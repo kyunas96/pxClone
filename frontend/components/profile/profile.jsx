@@ -1,16 +1,16 @@
-import React from 'react';
-import ProfileHeader from './profile_header';
-import defaultUserImage from '../../images/user-circle-solid.svg';
+import React from "react";
+import ProfileHeader from "./profile_header";
+import defaultUserImage from "../../images/user-circle-solid.svg";
 
 class Profile extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       user: {
         id: this.props.userId,
         username: ""
-      }
-    }
+      },
+    };
   }
 
   componentDidMount() {
@@ -21,14 +21,14 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div className='user-profile'>
-        <div className='user-profile-picture'>
-          <img src={defaultUserImage} />
-        </div>
-        <h3>{this.state.user.username !== undefined ? this.state.user.username : ""}</h3>
-        {/* <button onClick={this.props.action()}></button> */}
+      <div className="user-profile">
+        <ProfileHeader
+          bannerPicture={this.props.profile.bannerPicture}
+          profilePicture={this.props.profile.profilePicture}
+          userId={this.state.id}
+        />
       </div>
-    )
+    );
   }
 }
 

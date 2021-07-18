@@ -1,34 +1,37 @@
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router';
-import HeaderContainer from './components/base/header_container';
-import LoginContainer from './components/login_signup/login_form_container';
-import SignupContainer from './components/login_signup/signup_form_container';
-import FeedContainer from './components/feed/feedContainer';
-import ProfileContainer from './components/profile/profileContainer';
-import CreatePostForm from './components/posts/createPostForm';
-import PostShowContainer from './components/posts/postShowContainer';
+import React from "react";
+import { Redirect, Route, Switch } from "react-router";
+import HeaderContainer from "./components/base/header_container";
+import LoginContainer from "./components/login_signup/login_form_container";
+import SignupContainer from "./components/login_signup/signup_form_container";
+import FeedContainer from "./components/feed/feedContainer";
+import ProfileContainer from "./components/profile/profileContainer";
+import CreatePostForm from "./components/posts/createPostForm";
+import PostShowContainer from "./components/posts/postShowContainer";
 
 const App = (props) => {
-  const loggedIn = store.getState().session.loggedIn
-  console.log("loggedin:" + loggedIn)
+  const loggedIn = store.getState().session.loggedIn;
+  console.log("loggedin:" + loggedIn);
   return (
-    <div id='app'>
+    <div id="app">
       <HeaderContainer />
       <Switch>
-        <Route exact path='/' component={loggedIn ? FeedContainer : null}/>
-        <Route path='/login' component={LoginContainer} />
-        <Route path='/signup' component={SignupContainer} />
+        <Route exact path="/" component={loggedIn ? FeedContainer : null} />
+        <Route path="/login" component={LoginContainer} />
+        <Route path="/signup" component={SignupContainer} />
         {/* <Route path='/feed' component={FeedContainer} /> */}
-        <Route path='/users/:userId' component={ProfileContainer} />
-        <Route path='/post/create' component={CreatePostForm}/>
-        <Route path='/posts/:postId' component={PostShowContainer} />
+        <Route path="/users/:userId" component={ProfileContainer} />
+        {/* {profileImageEdit to be written} */}
+        {/* <Route
+          path="/user/:userId/profile/userImage/edit"
+          component={profileImageEdit}
+        /> */}
+        <Route path="/post/create" component={CreatePostForm} />
+        <Route path="/posts/:postId" component={PostShowContainer} />
         {/* <Route exact path='/' component={IndexComponent} /> */}
-        <Redirect to='/'/>
+        <Redirect to="/" />
       </Switch>
     </div>
-  )
-
-}
+  );
+};
 
 export default App;
-
