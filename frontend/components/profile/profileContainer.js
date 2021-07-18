@@ -17,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 // is the action to call based on the follow status
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchProfile: (userId) => dispatch(getProfile(userId))
+  fetchProfile: (userId) => dispatch(getProfile(userId)),
+  toggleFollow: (userId) => dispatch(toggleFollow(userId, userProfileId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
