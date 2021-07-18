@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileHeader from "./profile_header";
-import { Link } from "react-router-dom";
+import ProfileBody from './profile_body';
 import defaultUserImage from "../../images/user-circle-solid.svg";
 
 class Profile extends React.Component {
@@ -28,12 +28,6 @@ class Profile extends React.Component {
           profilePicture={this.props.profile.profilePicture}
           userId={this.state.id}
         />
-        <Link
-          className="profile-picture-edit"
-          to={`/users/${this.props.userId}/profile/userImage/edit`}
-        >
-          Edit
-        </Link>
       </div>
     );
   }
