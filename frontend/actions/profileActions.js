@@ -13,6 +13,11 @@ export const getProfile = userId => dispatch => (
     .then(data => dispatch(receiveProfile(data)))
 )
 
+export const updateProfile = (userId, profile) => (
+  ProfileAPI.updateProfile(userId, profile)
+    .then(data => dispatch(receiveProfile(data)))
+)
+
 export const resetProfile = () => dispatch => (
   dispatch({type: RESET_PROFILE})
 )

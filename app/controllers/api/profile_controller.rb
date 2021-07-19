@@ -13,4 +13,16 @@ class Api::ProfileController < ApplicationController
       render json: "Profile not found"
     end
   end
+
+  def update 
+    if current_user.id == params[:id].to_i
+      @user = User.find_by(id: params[:id])
+    else
+      
+    end
+
+    p @user
+
+    render json: "Reached profile update"
+  end
 end

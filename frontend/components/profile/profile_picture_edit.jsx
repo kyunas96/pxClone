@@ -3,14 +3,14 @@ import Cropper from "react-easy-crop";
 
 class ProfilePictureEdit extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       imageSrc: null,
       crop: { x: 0, y: 0 },
       zoom: 1,
       aspect: 1 / 1,
     };
-    console.log("profilePictureEdit", this.props)
+    console.log("profilePictureEdit", this.props);
   }
 
   onCropChange = (crop) => {
@@ -35,7 +35,7 @@ class ProfilePictureEdit extends React.Component {
           />
         </div>
         <div className="cropper-controls">
-          <input 
+          <input
             id="cropper-zoom"
             type="range"
             min="1"
@@ -43,8 +43,7 @@ class ProfilePictureEdit extends React.Component {
             step="0.1"
             value={this.state.zoom}
             onChange={(e, zoom) => this.onZoomChange(zoom)}
-          >
-          </input>
+          ></input>
         </div>
       </div>
     );

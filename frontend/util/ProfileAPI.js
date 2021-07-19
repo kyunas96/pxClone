@@ -4,3 +4,11 @@ export const getProfile = userId => (
     url: `api/profile/${userId}`
   })
 )
+
+export const updateProfile = (userId, profile) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `api/profile/${userId}`,
+    data: profile
+  })
+)

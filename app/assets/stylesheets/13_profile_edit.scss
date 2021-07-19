@@ -1,0 +1,35 @@
+.profile-edit{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-edit-form{
+  width: 35%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid grey;
+}
+
+.profile-edit-name{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 25%;
+}
+
+.profile-edit-text{
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+
+  input{
+    // height: ;
+  }
+}
