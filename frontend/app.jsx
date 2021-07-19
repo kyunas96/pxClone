@@ -7,6 +7,7 @@ import FeedContainer from "./components/feed/feedContainer";
 import ProfileContainer from "./components/profile/profileContainer";
 import CreatePostForm from "./components/posts/createPostForm";
 import PostShowContainer from "./components/posts/postShowContainer";
+import ProfilePictureEdit from "./components/profile/profile_picture_edit_container";
 
 const App = (props) => {
   const loggedIn = store.getState().session.loggedIn;
@@ -19,11 +20,17 @@ const App = (props) => {
         <Route path="/login" component={LoginContainer} />
         <Route path="/signup" component={SignupContainer} />
         {/* <Route path='/feed' component={FeedContainer} /> */}
-        <Route path="/users/:userId" component={ProfileContainer} />
+
+        <Route
+          path="/users/:userId/profile/profilePicture/edit"
+          component={ProfilePictureEdit}
+        />
+        {/* <Route path="/users/:userId" component={ProfileContainer} /> */}
         {/* {profileImageEdit to be written} */}
+        {/* {bannerImageEdit to be written} */}
         {/* <Route
-          path="/user/:userId/profile/userImage/edit"
-          component={profileImageEdit}
+          path="/user/:userId/profile/bannerPicture/edit"
+          component={BannerPictureEdit}
         /> */}
         <Route path="/post/create" component={CreatePostForm} />
         <Route path="/posts/:postId" component={PostShowContainer} />

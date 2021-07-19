@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileHeader from "./profile_header";
+import ProfileHeader from "./profileHeader/profile_header";
 import ProfileBody from './profile_body';
 import defaultUserImage from "../../images/user-circle-solid.svg";
 

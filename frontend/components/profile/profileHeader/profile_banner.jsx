@@ -1,5 +1,5 @@
 import React from 'react';
-import bannerImage from '../../images/griffith.jpg';
+import bannerImage from '../../../images/griffith.jpg';
 
 const ProfileBanner = (props) => (
   <div className="profile-banner">

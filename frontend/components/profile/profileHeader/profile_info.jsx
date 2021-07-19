@@ -1,6 +1,6 @@
 import React from "react";
 import FollowButton from "./follow_button";
-import formatLocation from "../../util/Util";
+import formatLocation from "../../../util/Util";
 
 const ProfileInfo = (props) => {
   const formattedLocation = formatLocation(props.city, props.location)
