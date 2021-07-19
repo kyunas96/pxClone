@@ -5,7 +5,7 @@ import followReducer from './followReducer';
 
 const uiReducer = combineReducers({
   profile: profileReducer,
-  following: followReducer
+  following: followReducer,
 })
 
 export default uiReducer;

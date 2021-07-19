@@ -1984,6 +1984,40 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/follow_button.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/profile/follow_button.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var FollowButton = function FollowButton(props) {
+  var button;
+
+  if (props.following === true) {
+    button = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "follow-button follow"
+    });
+  } else {
+    button = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "follow-button following"
+    });
+  }
+
+  return button;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FollowButton);
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profile.jsx":
 /*!*************************************************!*\
   !*** ./frontend/components/profile/profile.jsx ***!
@@ -1997,9 +2031,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profile_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_header */ "./frontend/components/profile/profile_header.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../images/user-circle-solid.svg */ "./frontend/images/user-circle-solid.svg");
-/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _profile_body__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_body */ "./frontend/components/profile/profile_body.jsx");
+/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../images/user-circle-solid.svg */ "./frontend/images/user-circle-solid.svg");
+/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2033,24 +2067,15 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Profile);
 
   function Profile(props) {
-    var _this;
-
     _classCallCheck(this, Profile);
 
-    _this = _super.call(this, props);
-    _this.state = {
-      user: {
-        id: _this.props.userId,
-        username: ""
-      }
-    };
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(Profile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchProfile(this.state.user.id); //after dispatching this action, is the user waiting in props???
+      this.props.fetchProfile(this.props.userId); //after dispatching this action, is the user waiting in props???
       // this.setState({user: userInfo}, console.log(this.state))
     }
   }, {
@@ -2059,13 +2084,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_header__WEBPACK_IMPORTED_MODULE_1__.default, {
-        bannerPicture: this.props.profile.bannerPicture,
-        profilePicture: this.props.profile.profilePicture,
-        userId: this.state.id
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-        className: "profile-picture-edit",
-        to: "/users/".concat(this.props.userId, "/profile/userImage/edit")
-      }, "Edit"));
+        profile: this.props.profile
+      }));
     }
   }]);
 
@@ -2100,6 +2120,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   console.log("state", state.ui.profile);
   return {
+    following: state.ui.following,
     profile: state.ui.profile,
     userId: ownProps.match.params.userId
   };
@@ -2111,7 +2132,20 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchProfile: function fetchProfile(userId) {
       return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfile)(userId));
-    }
+    },
+    toggleFollow: function (_toggleFollow) {
+      function toggleFollow(_x) {
+        return _toggleFollow.apply(this, arguments);
+      }
+
+      toggleFollow.toString = function () {
+        return _toggleFollow.toString();
+      };
+
+      return toggleFollow;
+    }(function (userId) {
+      return dispatch(toggleFollow(userId, userProfileId));
+    })
   };
 };
 
@@ -2150,6 +2184,147 @@ var ProfileBanner = function ProfileBanner(props) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/profile_body.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/profile/profile_body.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _profile_feed_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_feed_container */ "./frontend/components/profile/profile_feed_container.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var ProfileBody = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProfileBody, _React$Component);
+
+  var _super = _createSuper(ProfileBody);
+
+  function ProfileBody(props) {
+    _classCallCheck(this, ProfileBody);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(ProfileBody, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-body"
+      });
+    }
+  }]);
+
+  return ProfileBody;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileBody);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile_feed.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/profile/profile_feed.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ProfileFeed = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProfileFeed, _React$Component);
+
+  var _super = _createSuper(ProfileFeed);
+
+  function ProfileFeed() {
+    _classCallCheck(this, ProfileFeed);
+
+    return _super.apply(this, arguments);
+  }
+
+  return ProfileFeed;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileFeed);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile_feed_container.js":
+/*!***************************************************************!*\
+  !*** ./frontend/components/profile/profile_feed_container.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _profile_feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_feed */ "./frontend/components/profile/profile_feed.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile_feed__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profile_header.jsx":
 /*!********************************************************!*\
   !*** ./frontend/components/profile/profile_header.jsx ***!
@@ -2164,6 +2339,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profile_picture__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_picture */ "./frontend/components/profile/profile_picture.jsx");
 /* harmony import */ var _profile_banner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_banner */ "./frontend/components/profile/profile_banner.jsx");
+/* harmony import */ var _profile_info__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile_info */ "./frontend/components/profile/profile_info.jsx");
+/* harmony import */ var _profile_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile_options */ "./frontend/components/profile/profile_options.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2190,6 +2367,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var ProfileHeader = /*#__PURE__*/function (_React$Component) {
   _inherits(ProfileHeader, _React$Component);
 
@@ -2204,10 +2383,13 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
   _createClass(ProfileHeader, [{
     key: "render",
     value: function render() {
+      console.log("header", this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, {
-        src: this.props.profilePicture,
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
+        src: this.props.bannerImage
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
+        isCurrentUser: this.props.isCurrentUser,
         userId: this.props.userId
       }));
     }
@@ -2217,6 +2399,73 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileHeader);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile_info.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/profile/profile_info.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/follow_button.jsx");
+/* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/Util */ "./frontend/util/Util.js");
+
+
+
+
+var ProfileInfo = function ProfileInfo(props) {
+  var formattedLocation = (0,_util_Util__WEBPACK_IMPORTED_MODULE_2__.default)(props.city, props.location);
+  var location = _util_Util__WEBPACK_IMPORTED_MODULE_2__.default !== "" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    id: "profile-location"
+  }, location) : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    id: "profile-username"
+  }, props.userName), location, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default, {
+    following: props.following
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    id: "profile-description"
+  }, props.description));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileInfo);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile_options.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/profile/profile_options.jsx ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var ProfileOptions = function ProfileOptions(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-options"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    className: "profile-edit-button",
+    to: "/users/".concat(props.userId, "/profile/userImage/edit")
+  }, "Edit"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileOptions);
 
 /***/ }),
 
@@ -2237,10 +2486,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../images/portrait.jpg */ "./frontend/images/portrait.jpg");
 
 
- // class should have an edit button on hover that will link to the
-// profile picture edit page
+
 
 var ProfilePicture = function ProfilePicture(props) {
+  // component will check if a profilePicture is passed in through props and if not
+  // the defaultProfilePicture will be used 
   // const imageUrl = props.profilePicture ? props.profilePicture : defaultProfilePicture;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture"
@@ -2299,6 +2549,38 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
   session: _sessionErrorsReducer__WEBPACK_IMPORTED_MODULE_0__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/followReducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/followReducer.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_PROFILE": () => (/* binding */ RECEIVE_PROFILE),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var RECEIVE_PROFILE = "RECEIVE_PROFILE";
+
+var followReducer = function followReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case RECEIVE_PROFILE:
+      return action.profile.following;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (followReducer);
 
 /***/ }),
 
@@ -2366,12 +2648,21 @@ __webpack_require__.r(__webpack_exports__);
 var profileReducer = function profileReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("profileReducer", action.profile);
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_profileActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PROFILE:
-      return action.profile;
+      var _action$profile = action.profile,
+          user_id = _action$profile.user_id,
+          isCurrentUser = _action$profile.isCurrentUser,
+          user_photo = _action$profile.user_photo,
+          banner_image = _action$profile.banner_image;
+      return {
+        user_id: user_id,
+        isCurrentUser: isCurrentUser,
+        user_photo: user_photo,
+        banner_image: banner_image
+      };
 
     case _actions_profileActions__WEBPACK_IMPORTED_MODULE_0__.RESET_PROFILE:
       return {};
@@ -2514,12 +2805,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _profileReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./profileReducer */ "./frontend/reducers/profileReducer.js");
+/* harmony import */ var _followReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./followReducer */ "./frontend/reducers/followReducer.js");
 
 
-var uiReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  profile: _profileReducer__WEBPACK_IMPORTED_MODULE_0__.default
+
+var uiReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  profile: _profileReducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  following: _followReducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (uiReducer);
 
@@ -2841,13 +3135,25 @@ var updateUser = function updateUser(user) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isEmpty": () => (/* binding */ isEmpty),
-/* harmony export */   "capitalize": () => (/* binding */ capitalize)
+/* harmony export */   "capitalize": () => (/* binding */ capitalize),
+/* harmony export */   "formatLocation": () => (/* binding */ formatLocation)
 /* harmony export */ });
 var isEmpty = function isEmpty(object) {
   return Object.keys(object).length === 0;
 };
 var capitalize = function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
+};
+var formatLocation = function formatLocation(city, country) {
+  if (city && country) {
+    return city + ", " + country;
+  } else if (city) {
+    return city;
+  } else if (country) {
+    return country;
+  } else {
+    return "";
+  }
 };
 
 /***/ }),

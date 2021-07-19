@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileOptions from './profile_options';
+import ProfileFeedContainer from './profile_feed_container';
 
 class ProfileBody extends React.Component {
   constructor(props){
@@ -11,7 +11,9 @@ class ProfileBody extends React.Component {
 
     return (
       <div className="profile-body">
-        <ProfileOptions />
+        {/* This component will be rendered with the userId of the 
+        current profile  */}
+        {/* <ProfileFeedContainer userId={this.props.userId} /> */}
       </div>
     )
   }

@@ -1,14 +1,14 @@
-json.user_id @user.id
+json.userId @user.id
 json.following @following
 json.isCurrentUser @isCurrentUser
 if @user.user_photo.attached?
-  json.user_photo url_for(@user.user_photo)
+  json.userPhoto url_for(@user.user_photo)
 else
-  json.user_photo nil
+  json.userPhoto nil
 end
 
 if @user.banner_image.attached?
-  json.banner_image url_for(@user.banner_image)
+  json.bannerImage url_for(@user.banner_image)
 else
-  json.banner_image nil
+  json.bannerImage nil
 end

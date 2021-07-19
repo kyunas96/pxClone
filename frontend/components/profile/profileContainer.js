@@ -8,6 +8,7 @@ import * as FollowActions from "../../actions/followActions";
 const mapStateToProps = (state, ownProps) => {
   console.log("state", state.ui.profile)
   return{
+    following: state.ui.following,
     profile: state.ui.profile,
     userId: ownProps.match.params.userId,
   }
