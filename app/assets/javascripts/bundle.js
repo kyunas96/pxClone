@@ -2009,10 +2009,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileHeader/profile_header */ "./frontend/components/profile/profileHeader/profile_header.jsx");
-/* harmony import */ var _profile_body__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_body */ "./frontend/components/profile/profile_body.jsx");
-/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../images/user-circle-solid.svg */ "./frontend/images/user-circle-solid.svg");
-/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _profile_body__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_body */ "./frontend/components/profile/profile_body.jsx");
+/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../images/user-circle-solid.svg */ "./frontend/images/user-circle-solid.svg");
+/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profileHeader/profile_header */ "./frontend/components/profile/profileHeader/profile_header.jsx");
+/* harmony import */ var _profileHeader_profile_banner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profileHeader/profile_banner */ "./frontend/components/profile/profileHeader/profile_banner.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2034,6 +2035,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -2062,9 +2064,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-profile"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_1__.default, {
-        profile: this.props.profile
-      }));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_banner__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_body__WEBPACK_IMPORTED_MODULE_1__.default, null));
     }
   }]);
 
@@ -2566,14 +2566,10 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
       console.log("header", this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
-        src: this.props.bannerImage
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, {
-        src: this.props.profile.profilePicture
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
         isCurrentUser: this.props.isCurrentUser,
         userId: this.props.userId
-      }));
+      })));
     }
   }]);
 
@@ -2634,17 +2630,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _pencil_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pencil.png */ "./frontend/components/profile/profileHeader/pencil.png");
+
 
 
 
 var ProfileOptions = function ProfileOptions(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-options"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     className: "profile-edit-button",
     to: "/users/".concat(props.userId, "/profile/edit")
-  }, "Edit"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: _pencil_png__WEBPACK_IMPORTED_MODULE_1__.default
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileOptions);
@@ -2666,13 +2666,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/user-circle-solid.svg */ "./frontend/images/user-circle-solid.svg");
 /* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../images/portrait.jpg */ "./frontend/images/portrait.jpg");
+/* harmony import */ var _profile_options__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile_options */ "./frontend/components/profile/profileHeader/profile_options.jsx");
+
 
 
 
 
 var ProfilePicture = function ProfilePicture(props) {
   // component will check if a profilePicture is passed in through props and if not
-  // the defaultProfilePicture will be used 
+  // the defaultProfilePicture will be used
   // const imageUrl = props.profilePicture ? props.profilePicture : defaultProfilePicture;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture"
@@ -2699,7 +2701,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _profile_feed_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_feed_container */ "./frontend/components/profile/profile_feed_container.js");
+/* harmony import */ var _profileHeader_profile_picture__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileHeader/profile_picture */ "./frontend/components/profile/profileHeader/profile_picture.jsx");
+/* harmony import */ var _profile_feed_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_feed_container */ "./frontend/components/profile/profile_feed_container.js");
+/* harmony import */ var _profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profileHeader/profile_header */ "./frontend/components/profile/profileHeader/profile_header.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2725,6 +2729,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var ProfileBody = /*#__PURE__*/function (_React$Component) {
   _inherits(ProfileBody, _React$Component);
 
@@ -2741,7 +2747,7 @@ var ProfileBody = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-body"
-      });
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_3__.default, null));
     }
   }]);
 
@@ -3501,6 +3507,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "c4791f126f9b3b0f9568923cafb87b7f.png");
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileHeader/pencil.png":
+/*!**************************************************************!*\
+  !*** ./frontend/components/profile/profileHeader/pencil.png ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "48a509a89a20feb467d397605662047f.png");
 
 /***/ }),
 

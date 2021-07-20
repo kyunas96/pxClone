@@ -1,7 +1,8 @@
 import React from "react";
-import ProfileHeader from "./profileHeader/profile_header";
 import ProfileBody from './profile_body';
 import defaultUserImage from "../../images/user-circle-solid.svg";
+import ProfileHeader from "./profileHeader/profile_header";
+import ProfileBanner from "./profileHeader/profile_banner";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -17,9 +18,11 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="user-profile">
-        <ProfileHeader
+        <ProfileBanner />
+        <ProfileBody />
+        {/* <ProfileHeader
           profile={this.props.profile}
-        />
+        /> */}
       </div>
     );
   }

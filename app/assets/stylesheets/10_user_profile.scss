@@ -1,7 +1,7 @@
 @import "./00_variables.scss";
 
 .user-profile {
-  margin-top: $header-height;
+  // margin-top: $header-height;
   width: 100vw;
   height: 90vh;
   text-align: center;
@@ -12,15 +12,34 @@
 
 .profile-header{
   width: 100%;
-  height: 55%;
+  height: 40%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+
+  & > div{
+    width: 33.33333%;
+    height: 100%;
+  }
+
+  & div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  & div:nth-child(3){
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 40px;
+  }
 }
 
 .profile-picture {
   position: relative;
-  padding-top: 2.5px;
+  padding-top: 1px;
   top: -50px;
   width: 100px;
   height: 100px;
@@ -32,7 +51,7 @@
 }
 
 .profile-picture-buffer {
-  width: 95px;
+  width: 94px;
   height: 95px;
   overflow: hidden;
   border-radius: 50%;
@@ -54,6 +73,33 @@
   img{
     object-fit: cover;
     object-position: 50% 40%;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.profile-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: white;
+  position: relative;
+  top: -15%;
+}
+
+.profile-options{
+  float: right;
+}
+
+.profile-edit-button{
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+
+  & img{
     width: 100%;
     height: 100%;
   }

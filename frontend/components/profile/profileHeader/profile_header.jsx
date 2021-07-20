@@ -13,15 +13,16 @@ class ProfileHeader extends React.Component {
     console.log("header", this.props);
     return (
       <div className="profile-header">
-        <ProfileBanner src={this.props.bannerImage} />
-        <ProfilePicture
-          src={this.props.profile.profilePicture}
-        />
-        <ProfileOptions
-          isCurrentUser={this.props.isCurrentUser}
-          userId={this.props.userId}
-        />
-        {/* <ProfileInfo profileInfo={} /> */}
+        <div></div>
+        <div>
+          <ProfilePicture />
+        </div>
+        <div>
+          <ProfileOptions
+            isCurrentUser={this.props.isCurrentUser}
+            userId={this.props.userId}
+          />
+        </div>
       </div>
     );
   }
