@@ -19,7 +19,9 @@ class Profile extends React.Component {
     return (
       <div className="user-profile">
         <ProfileBanner />
-        <ProfileBody />
+        <ProfileBody 
+          profile={this.props.profile}
+        />
         {/* <ProfileHeader
           profile={this.props.profile}
         /> */}

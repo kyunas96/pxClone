@@ -1,7 +1,7 @@
 import React from 'react';
-import ProfilePicture from './profileHeader/profile_picture';
 import ProfileFeedContainer from './profile_feed_container';
 import ProfileHeader from './profileHeader/profile_header';
+import ProfileInfo from './profileHeader/profile_info';
 
 class ProfileBody extends React.Component {
   constructor(props){
@@ -9,11 +9,12 @@ class ProfileBody extends React.Component {
   }
 
   render(){
-    
+    console.log("body", this.props)
 
     return (
       <div className="profile-body">
         <ProfileHeader />
+        <ProfileInfo />
         {/* This component will be rendered with the userId of the 
         current profile  */}
         {/* <ProfileFeedContainer userId={this.props.userId} /> */}

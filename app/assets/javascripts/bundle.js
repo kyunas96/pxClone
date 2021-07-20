@@ -2064,7 +2064,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-profile"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_banner__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_body__WEBPACK_IMPORTED_MODULE_1__.default, null));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_banner__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_body__WEBPACK_IMPORTED_MODULE_1__.default, {
+        profile: this.props.profile
+      }));
     }
   }]);
 
@@ -2599,8 +2601,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileInfo = function ProfileInfo(props) {
-  var formattedLocation = (0,_util_Util__WEBPACK_IMPORTED_MODULE_2__.default)(props.city, props.location);
-  var location = _util_Util__WEBPACK_IMPORTED_MODULE_2__.default !== "" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  var formattedLocation = (0,_util_Util__WEBPACK_IMPORTED_MODULE_2__.formatLocation)(props.city, props.location);
+  var location = formattedLocation !== "" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-location"
   }, location) : null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2701,9 +2703,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _profileHeader_profile_picture__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileHeader/profile_picture */ "./frontend/components/profile/profileHeader/profile_picture.jsx");
-/* harmony import */ var _profile_feed_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_feed_container */ "./frontend/components/profile/profile_feed_container.js");
-/* harmony import */ var _profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profileHeader/profile_header */ "./frontend/components/profile/profileHeader/profile_header.jsx");
+/* harmony import */ var _profile_feed_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_feed_container */ "./frontend/components/profile/profile_feed_container.js");
+/* harmony import */ var _profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profileHeader/profile_header */ "./frontend/components/profile/profileHeader/profile_header.jsx");
+/* harmony import */ var _profileHeader_profile_info__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profileHeader/profile_info */ "./frontend/components/profile/profileHeader/profile_info.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2745,9 +2747,10 @@ var ProfileBody = /*#__PURE__*/function (_React$Component) {
   _createClass(ProfileBody, [{
     key: "render",
     value: function render() {
+      console.log("body", this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_3__.default, null));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_info__WEBPACK_IMPORTED_MODULE_3__.default, null));
     }
   }]);
 
@@ -2977,6 +2980,7 @@ __webpack_require__.r(__webpack_exports__);
 var profileReducer = function profileReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("profileRed", action);
   Object.freeze(state);
 
   switch (action.type) {

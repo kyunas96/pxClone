@@ -1,4 +1,6 @@
 json.userId @user.id
+json.userName @user.username
+json.description @user.description
 json.following @following
 json.isCurrentUser @isCurrentUser
 if @user.user_photo.attached?
