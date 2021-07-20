@@ -6,22 +6,55 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 User.destroy_all
 Post.destroy_all
 
 # 1: Kevin
-User.create!(username: "Kevin", email: "kevinyunas@icloud.com", password: "myPassword")
+User.create!(
+  username: "Kevin", 
+  email: "kevinyunas@icloud.com", 
+  password: "myPassword",
+  country: "United States",
+  city: "Los Angeles",
+  description: "When I'm not programming I like running around LA and catching
+  the golden hour light or the breeze at the beach :)"
+)
 # 2: Daniel
-User.create!(username: "Daniel", email: "daniel@email.com", password: "danielPassword")
+User.create!(
+  username: "Daniel", 
+  email: "daniel@email.com", 
+  password: "danielPassword",
+  country: "United States",
+  city: "Los Angeles",
+  description: "Love film but it got too expensive :( so here are some digital
+  photo dumps"
+)
 # 3: Gabby
-User.create!(username: "Gabby", email: "gabby@email.com", password: "gabbyPassword")
+User.create!(
+  username: "Gabby", 
+  email: "gabby@email.com", 
+  password: "gabbyPassword",
+  country: "United States",
+  city: "Los Angeles",
+  description: "Picked up a camera in Davis, CA and haven't stopped since"
+)
 #4 :Kriste
-User.create!(username: "Kriste", email: "kriste@email.com", password: "kristePassword")
+User.create!(
+  username: "Kriste", 
+  email: "kriste@email.com", 
+  password: "kristePassword",
+  country: "United States",
+  city: "Los Angeles",
+  description: "When I'm not making music I enjoy catching a couple snapshots"
+)
 #5 :Demo
-User.create!(username: "demoUser", email: "demo@email.com", password: "password")
-
-
+User.create!(
+  username: "demoUser", 
+  email: "demo@email.com", 
+  password: "password",
+  country: "United States",
+  city: "Los Angeles"
+)
 
 daniel1 = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/daniel1.jpeg")
 daniel2 = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/daniel2.jpeg")
