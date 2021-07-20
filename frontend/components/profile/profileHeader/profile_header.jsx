@@ -14,9 +14,9 @@ class ProfileHeader extends React.Component {
     return (
       <div className="profile-header">
         <ProfileBanner src={this.props.bannerImage} />
-        {/* <ProfilePicture
+        <ProfilePicture
           src={this.props.profile.profilePicture}
-        /> */}
+        />
         <ProfileOptions
           isCurrentUser={this.props.isCurrentUser}
           userId={this.props.userId}

@@ -540,6 +540,9 @@ var App = function App(props) {
     path: "/users/:userId/profile/edit",
     component: _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_8__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    path: "/users/:userId/profile",
+    component: _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_5__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/post/create",
     component: _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_6__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
@@ -2144,8 +2147,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _profileHeader_profile_picture__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../profileHeader/profile_picture */ "./frontend/components/profile/profileHeader/profile_picture.jsx");
-/* harmony import */ var react_country_region_selector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-country-region-selector */ "./node_modules/react-country-region-selector/dist/rcrs.es.js");
+/* harmony import */ var _profile_edit_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit_header */ "./frontend/components/profile/profileEdit/profile_edit_header.jsx");
+/* harmony import */ var _profile_edit_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_edit_form */ "./frontend/components/profile/profileEdit/profile_edit_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2178,9 +2181,130 @@ var ProfileEdit = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProfileEdit);
 
   function ProfileEdit(props) {
+    _classCallCheck(this, ProfileEdit);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(ProfileEdit, [{
+    key: "selectCountry",
+    value: function selectCountry(val) {
+      this.setState({
+        country: val
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getUserProfile(this.props.userId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-edit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_1__.default, {
+        userId: this.props.userId
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form__WEBPACK_IMPORTED_MODULE_2__.default, null));
+    }
+  }]);
+
+  return ProfileEdit;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEdit);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/profile_edit_container.js":
+/*!***************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit_container.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _profile_edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit */ "./frontend/components/profile/profileEdit/profile_edit.jsx");
+/* harmony import */ var _actions_profileActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profileActions */ "./frontend/actions/profileActions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    userId: state.session.currentUser.id,
+    profile: state.ui.profile
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getUserProfile: function getUserProfile(userId) {
+      return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfile)(userId));
+    },
+    updateUserProfile: function updateUserProfile(userId, data) {
+      return (0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.updateProfile)(userId, data);
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile_edit__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/profile_edit_form.jsx":
+/*!***********************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit_form.jsx ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _profileHeader_profile_picture__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../profileHeader/profile_picture */ "./frontend/components/profile/profileHeader/profile_picture.jsx");
+/* harmony import */ var react_country_region_selector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-country-region-selector */ "./node_modules/react-country-region-selector/dist/rcrs.es.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProfileEditForm, _React$Component);
+
+  var _super = _createSuper(ProfileEditForm);
+
+  function ProfileEditForm(props) {
     var _this;
 
-    _classCallCheck(this, ProfileEdit);
+    _classCallCheck(this, ProfileEditForm);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -2196,24 +2320,10 @@ var ProfileEdit = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(ProfileEdit, [{
-    key: "selectCountry",
-    value: function selectCountry(val) {
-      this.setState({
-        country: val
-      });
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.getUserProfile(this.props.userID);
-    }
-  }, {
+  _createClass(ProfileEditForm, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "profile-edit"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "profile-edit-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-row"
@@ -2288,21 +2398,21 @@ var ProfileEdit = /*#__PURE__*/function (_React$Component) {
         className: "profile-edit-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "profile-edit-save"
-      }, "Save Changes"))));
+      }, "Save Changes")));
     }
   }]);
 
-  return ProfileEdit;
+  return ProfileEditForm;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEdit);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditForm);
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileEdit/profile_edit_container.js":
-/*!***************************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit_container.js ***!
-  \***************************************************************************/
+/***/ "./frontend/components/profile/profileEdit/profile_edit_header.jsx":
+/*!*************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit_header.jsx ***!
+  \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2310,32 +2420,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _profile_edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit */ "./frontend/components/profile/profileEdit/profile_edit.jsx");
-/* harmony import */ var _actions_profileActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profileActions */ "./frontend/actions/profileActions.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _arrowback_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./arrowback.png */ "./frontend/components/profile/profileEdit/arrowback.png");
 
 
 
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    userId: state.session.currentUser.id,
-    profile: state.ui.profile
-  };
+var ProfileEditHeader = function ProfileEditHeader(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-edit-header-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    className: "back-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: _arrowback_png__WEBPACK_IMPORTED_MODULE_1__.default
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-edit-title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Edit Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null));
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    getUserProfile: function getUserProfile(userId) {
-      return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfile)(userId));
-    },
-    updateUserProfile: function updateUserProfile(userId, data) {
-      return (0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.updateProfile)(userId, data);
-    }
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile_edit__WEBPACK_IMPORTED_MODULE_1__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditHeader);
 
 /***/ }),
 
@@ -2464,6 +2568,8 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
         className: "profile-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
         src: this.props.bannerImage
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, {
+        src: this.props.profile.profilePicture
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
         isCurrentUser: this.props.isCurrentUser,
         userId: this.props.userId
@@ -2537,7 +2643,7 @@ var ProfileOptions = function ProfileOptions(props) {
     className: "profile-options"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     className: "profile-edit-button",
-    to: "/users/".concat(props.userId, "/profile/userImage/edit")
+    to: "/users/".concat(props.userId, "/profile/edit")
   }, "Edit"));
 };
 
@@ -3380,6 +3486,21 @@ var formatLocation = function formatLocation(city, country) {
     return "";
   }
 };
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/arrowback.png":
+/*!***************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/arrowback.png ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "c4791f126f9b3b0f9568923cafb87b7f.png");
 
 /***/ }),
 

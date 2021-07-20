@@ -5,7 +5,7 @@ const ProfileOptions = (props) => (
   <div className="profile-options">
     <Link
       className="profile-edit-button"
-      to={`/users/${props.userId}/profile/userImage/edit`}
+      to={`/users/${props.userId}/profile/edit`}
     >
       Edit
     </Link>
