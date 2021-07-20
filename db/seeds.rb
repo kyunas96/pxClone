@@ -16,8 +16,8 @@ User.create!(
   password: "myPassword",
   country: "United States",
   city: "Los Angeles",
-  description: "When I'm not programming I like running around LA and catching
-  the golden hour light or the breeze at the beach :)"
+  description: 'When I\'m not programming I like running around LA and '\
+  'catching the golden hour light or the breeze at the beach :)'
 )
 # 2: Daniel
 User.create!(
@@ -26,8 +26,8 @@ User.create!(
   password: "danielPassword",
   country: "United States",
   city: "Los Angeles",
-  description: "Love film but it got too expensive :( so here are some digital
-  photo dumps"
+  description: 'Love film but it got too expensive :( so here are some '\
+  'digital photo dumps'
 )
 # 3: Gabby
 User.create!(

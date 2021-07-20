@@ -5,9 +5,8 @@ const profileReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_PROFILE:
-      const { user_id, isCurrentUser, user_photo, banner_image } =
-        action.profile;
-      return { user_id, isCurrentUser, user_photo, banner_image };
+      let newState = Object.assign({}, action.profile)
+      return newState;
     case RESET_PROFILE:
       return {};
     default:

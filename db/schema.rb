@@ -59,6 +59,10 @@ ActiveRecord::Schema.define(version: 2021_06_08_182951) do
     t.string "session_token", null: false
     t.string "country"
     t.string "city"
+    t.string "websiteURL"
+    t.string "instagram"
+    t.string "facebook"
+    t.string "twitter"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

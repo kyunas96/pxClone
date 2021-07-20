@@ -2064,8 +2064,10 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-profile"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_banner__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_body__WEBPACK_IMPORTED_MODULE_1__.default, {
-        profile: this.props.profile
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_banner__WEBPACK_IMPORTED_MODULE_4__.default, {
+        bannerImage: this.props.bannerImage
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_body__WEBPACK_IMPORTED_MODULE_1__.default, {
+        profile: this.props.profile.userInfo
       }));
     }
   }]);
@@ -2523,60 +2525,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_banner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_banner */ "./frontend/components/profile/profileHeader/profile_banner.jsx");
 /* harmony import */ var _profile_info__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile_info */ "./frontend/components/profile/profileHeader/profile_info.jsx");
 /* harmony import */ var _profile_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile_options */ "./frontend/components/profile/profileHeader/profile_options.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
 
 
 
-
-var ProfileHeader = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileHeader, _React$Component);
-
-  var _super = _createSuper(ProfileHeader);
-
-  function ProfileHeader(props) {
-    _classCallCheck(this, ProfileHeader);
-
-    return _super.call(this, props);
-  }
-
-  _createClass(ProfileHeader, [{
-    key: "render",
-    value: function render() {
-      console.log("header", this.props);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "profile-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
-        isCurrentUser: this.props.isCurrentUser,
-        userId: this.props.userId
-      })));
-    }
-  }]);
-
-  return ProfileHeader;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+var ProfileHeader = function ProfileHeader(_ref) {
+  var isCurrentUser = _ref.isCurrentUser,
+      userId = _ref.userId;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
+    isCurrentUser: isCurrentUser,
+    userId: userId
+  })));
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileHeader);
 
@@ -2600,20 +2564,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ProfileInfo = function ProfileInfo(props) {
-  var formattedLocation = (0,_util_Util__WEBPACK_IMPORTED_MODULE_2__.formatLocation)(props.city, props.location);
+var ProfileInfo = function ProfileInfo(_ref) {
+  var city = _ref.city,
+      country = _ref.country,
+      following = _ref.following,
+      userName = _ref.userName,
+      description = _ref.description,
+      socials = _ref.socials;
+  var formattedLocation = (0,_util_Util__WEBPACK_IMPORTED_MODULE_2__.formatLocation)(city, country);
   var location = formattedLocation !== "" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-location"
   }, location) : null;
+  var followButton = following === null ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default, {
+    following: following
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-username"
-  }, props.userName), location, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default, {
-    following: props.following
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, userName), location, followButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-description"
-  }, props.description));
+  }, description));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileInfo);
@@ -2706,56 +2677,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_feed_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_feed_container */ "./frontend/components/profile/profile_feed_container.js");
 /* harmony import */ var _profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profileHeader/profile_header */ "./frontend/components/profile/profileHeader/profile_header.jsx");
 /* harmony import */ var _profileHeader_profile_info__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profileHeader/profile_info */ "./frontend/components/profile/profileHeader/profile_info.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
 
 
+var ProfileBody = function ProfileBody(props) {
+  console.log('profileBody', props);
 
-var ProfileBody = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileBody, _React$Component);
-
-  var _super = _createSuper(ProfileBody);
-
-  function ProfileBody(props) {
-    _classCallCheck(this, ProfileBody);
-
-    return _super.call(this, props);
+  if (props.profile !== undefined) {
+    var _props$profile = props.profile,
+        city = _props$profile.city,
+        country = _props$profile.country,
+        following = _props$profile.following,
+        userName = _props$profile.userName,
+        description = _props$profile.description,
+        socials = _props$profile.socials;
   }
 
-  _createClass(ProfileBody, [{
-    key: "render",
-    value: function render() {
-      console.log("body", this.props);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "profile-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_info__WEBPACK_IMPORTED_MODULE_3__.default, null));
-    }
-  }]);
-
-  return ProfileBody;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_info__WEBPACK_IMPORTED_MODULE_3__.default, {
+    city: city,
+    country: country,
+    following: following,
+    username: userName,
+    description: description,
+    socials: socials
+  }));
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileBody);
 
@@ -2905,7 +2855,7 @@ var followReducer = function followReducer() {
 
   switch (action.type) {
     case RECEIVE_PROFILE:
-      return action.profile.following;
+      return action.profile.userInfo.following;
 
     default:
       return state;
@@ -2985,17 +2935,8 @@ var profileReducer = function profileReducer() {
 
   switch (action.type) {
     case _actions_profileActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PROFILE:
-      var _action$profile = action.profile,
-          user_id = _action$profile.user_id,
-          isCurrentUser = _action$profile.isCurrentUser,
-          user_photo = _action$profile.user_photo,
-          banner_image = _action$profile.banner_image;
-      return {
-        user_id: user_id,
-        isCurrentUser: isCurrentUser,
-        user_photo: user_photo,
-        banner_image: banner_image
-      };
+      var newState = Object.assign({}, action.profile);
+      return newState;
 
     case _actions_profileActions__WEBPACK_IMPORTED_MODULE_0__.RESET_PROFILE:
       return {};

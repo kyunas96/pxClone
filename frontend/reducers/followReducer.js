@@ -4,7 +4,7 @@ const followReducer = (state = {}, action) => {
   Object.freeze(state)
   switch(action.type){
     case RECEIVE_PROFILE:
-      return action.profile.following
+      return action.profile.userInfo.following
     default:
       return state;
   }

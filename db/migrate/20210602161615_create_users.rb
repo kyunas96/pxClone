@@ -7,6 +7,10 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :session_token, null: false, unique: true
       t.string :country
       t.string :city
+      t.string :websiteURL
+      t.string :instagram
+      t.string :facebook
+      t.string :twitter
       t.text :description
 
       t.datetime :created_at, null: false

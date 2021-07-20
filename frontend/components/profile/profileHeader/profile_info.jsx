@@ -2,19 +2,22 @@ import React from "react";
 import FollowButton from "./follow_button";
 import { formatLocation } from "../../../util/Util";
 
-const ProfileInfo = (props) => {
-  const formattedLocation = formatLocation(props.city, props.location);
+const ProfileInfo = ({city, country, following, userName, description, socials}) => {
+  const formattedLocation = formatLocation(city, country);
   const location =
     formattedLocation !== "" ? (
       <span id="profile-location">{location}</span>
     ) : null;
 
+  const followButton =
+    following === null ? null : <FollowButton following={following} />;
+
   return (
     <div className="profile-info">
-      <span id="profile-username">{props.userName}</span>
+      <span id="profile-username">{userName}</span>
       {location}
-      <FollowButton following={props.following} />
-      <span id="profile-description">{props.description}</span>
+      {followButton}
+      <span id="profile-description">{description}</span>
     </div>
   );
 };

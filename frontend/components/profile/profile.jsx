@@ -18,9 +18,9 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="user-profile">
-        <ProfileBanner />
+        <ProfileBanner bannerImage={this.props.bannerImage} />
         <ProfileBody 
-          profile={this.props.profile}
+          profile={this.props.profile.userInfo}
         />
         {/* <ProfileHeader
           profile={this.props.profile}
