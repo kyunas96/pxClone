@@ -8,6 +8,7 @@ class UserInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state = { showDropdown: false }
+    this.toggleDropdown = this.toggleDropdown.bind(this)
   }
 
   toggleDropdown(e) {
@@ -28,6 +29,7 @@ class UserInfo extends React.Component {
           <UserInfoDropdown
             currentUser={this.props.currentUser}
             logout={this.props.logout}
+            toggleDropdown={this.toggleDropdown}
           /> : (null)}
         <div className='user-info-upload'>
           <Link to='/post/create' className='upload-button'>

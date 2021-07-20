@@ -1,19 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 class UserInfoDropdown extends React.Component {
   constructor(props) {
-    (props);
-    super(props)
+    props;
+    super(props);
   }
 
   render() {
     return (
-      <div className='user-info-drowpdown'>
-        <Link to={`/users/${this.props.currentUser.id}`}>Profile</Link>
-        <button onClick={this.props.logout}>Logout</button>
+      <div className="user-info-drowpdown">
+        <div onClick={this.props.toggleDropdown}>
+          <Link to={`/users/${this.props.currentUser.id}/profile`}>
+            Profile
+          </Link>
+        </div>
+        <div onClick={this.props.logout}>Logout</div>
       </div>
-    )
+    );
   }
 }
 

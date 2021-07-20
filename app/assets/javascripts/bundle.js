@@ -797,6 +797,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       showDropdown: false
     };
+    _this.toggleDropdown = _this.toggleDropdown.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -826,7 +827,8 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
         src: (_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default())
       })), this.state.showDropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userInfoDropdown__WEBPACK_IMPORTED_MODULE_2__.default, {
         currentUser: this.props.currentUser,
-        logout: this.props.logout
+        logout: this.props.logout,
+        toggleDropdown: this.toggleDropdown
       }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-info-upload"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
@@ -898,9 +900,11 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-info-drowpdown"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        onClick: this.props.toggleDropdown
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "/users/".concat(this.props.currentUser.id)
-      }, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        to: "/users/".concat(this.props.currentUser.id, "/profile")
+      }, "Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         onClick: this.props.logout
       }, "Logout"));
     }
@@ -2559,7 +2563,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/profileHeader/follow_button.jsx");
-/* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/Util */ "./frontend/util/Util.js");
+/* harmony import */ var _profile_location__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_location */ "./frontend/components/profile/profileHeader/profile_location.jsx");
 
 
 
@@ -2571,10 +2575,6 @@ var ProfileInfo = function ProfileInfo(_ref) {
       userName = _ref.userName,
       description = _ref.description,
       socials = _ref.socials;
-  var formattedLocation = (0,_util_Util__WEBPACK_IMPORTED_MODULE_2__.formatLocation)(city, country);
-  var location = formattedLocation !== "" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    id: "profile-location"
-  }, location) : null;
   var followButton = following === null ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default, {
     following: following
   });
@@ -2582,12 +2582,55 @@ var ProfileInfo = function ProfileInfo(_ref) {
     className: "profile-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-username"
-  }, userName), location, followButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }, userName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_location__WEBPACK_IMPORTED_MODULE_2__.default, {
+    city: city,
+    country: country
+  }), followButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-description"
   }, description));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileInfo);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileHeader/profile_location.jsx":
+/*!************************************************************************!*\
+  !*** ./frontend/components/profile/profileHeader/profile_location.jsx ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _pin_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pin.png */ "./frontend/components/profile/pin.png");
+/* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/Util */ "./frontend/util/Util.js");
+
+
+
+
+var ProfileLocation = function ProfileLocation(_ref) {
+  var city = _ref.city,
+      country = _ref.country;
+  var formattedLocation = (0,_util_Util__WEBPACK_IMPORTED_MODULE_2__.formatLocation)(city, country);
+
+  if (formattedLocation !== "") {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      id: "profile-location"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      id: "location-pin"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      src: _pin_png__WEBPACK_IMPORTED_MODULE_1__.default
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, formattedLocation));
+  } else {
+    return null;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileLocation);
 
 /***/ }),
 
@@ -2609,15 +2652,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ProfileOptions = function ProfileOptions(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-options"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    className: "profile-edit-button",
-    to: "/users/".concat(props.userId, "/profile/edit")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _pencil_png__WEBPACK_IMPORTED_MODULE_1__.default
-  })));
+var ProfileOptions = function ProfileOptions(_ref) {
+  var isCurrentUser = _ref.isCurrentUser,
+      userId = _ref.userId;
+  console.log("options", isCurrentUser);
+
+  if (isCurrentUser) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "profile-options"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      className: "profile-edit-button",
+      to: "/users/".concat(userId, "/profile/edit")
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      src: _pencil_png__WEBPACK_IMPORTED_MODULE_1__.default
+    })));
+  } else {
+    return null;
+  }
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileOptions);
@@ -2692,16 +2743,21 @@ var ProfileBody = function ProfileBody(props) {
         following = _props$profile.following,
         userName = _props$profile.userName,
         description = _props$profile.description,
-        socials = _props$profile.socials;
+        socials = _props$profile.socials,
+        isCurrentUser = _props$profile.isCurrentUser,
+        userId = _props$profile.userId;
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_info__WEBPACK_IMPORTED_MODULE_3__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_header__WEBPACK_IMPORTED_MODULE_2__.default, {
+    isCurrentUser: isCurrentUser,
+    userId: userId
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_info__WEBPACK_IMPORTED_MODULE_3__.default, {
     city: city,
     country: country,
     following: following,
-    username: userName,
+    userName: userName,
     description: description,
     socials: socials
   }));
@@ -3437,6 +3493,21 @@ var formatLocation = function formatLocation(city, country) {
     return "";
   }
 };
+
+/***/ }),
+
+/***/ "./frontend/components/profile/pin.png":
+/*!*********************************************!*\
+  !*** ./frontend/components/profile/pin.png ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "8210970acff9062a268bb87466ab7f54.png");
 
 /***/ }),
 
