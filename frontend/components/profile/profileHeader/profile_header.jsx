@@ -1,7 +1,7 @@
 import React from "react";
 import ProfilePicture from "./profile_picture";
 import ProfileBanner from "./profile_banner";
-import ProfileInfo from "./profile_info";
+import ProfileInfoContainer from "./profileInfoContainer";
 import ProfileOptions from "./profile_options";
 
 const ProfileHeader = ({bannerImage, userPhoto, isCurrentUser, userId}) => (
@@ -16,7 +16,7 @@ const ProfileHeader = ({bannerImage, userPhoto, isCurrentUser, userId}) => (
       <ProfilePicture 
         src={userPhoto}
       />
-      {/* <ProfileInfo /> */}
+      <ProfileInfoContainer />
     </div>
     <div>
       <ProfileOptions

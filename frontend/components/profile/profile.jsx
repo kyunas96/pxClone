@@ -13,6 +13,10 @@ class Profile extends React.Component{
     this.props.fetchProfile(this.props.userId)
   }
 
+  componentDidUpdate(){
+    this.props.fetchProfile(this.props.userId)
+  }
+
   render(){
     return (
       <div className="profile">

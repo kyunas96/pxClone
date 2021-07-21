@@ -1,22 +1,17 @@
 import React from "react";
-import FollowButton from "./follow_button";
+import FollowButtonContainer from "./followButtonContainer";
 import ProfileLocation from "./profile_location";
 
-const ProfileInfo = (props) => {
-  console.log("profileInfo", toggleFollow);
-  const followButton =
-    following === null ? (null) : 
-    (<FollowButton 
-      following={following} 
-      toggleFollow={toggleFollow}
-      profileId={userId} 
-      />);
+const ProfileInfo = ({userName, city, country, description}) => {
+  // const followButton =
+  //   following === null ? (null) : 
+  //   (<FollowButtonContainer />)
 
   return (
     <div className="profile-info">
       <span id="profile-username">{userName}</span>
       <ProfileLocation city={city} country={country} />
-      {followButton}
+      {/* {followButton} */}
       <span id="profile-description">{description}</span>
     </div>
   );

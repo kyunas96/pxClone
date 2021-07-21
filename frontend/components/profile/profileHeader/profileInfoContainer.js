@@ -2,7 +2,10 @@ import { connect } from "react-redux";
 import ProfileInfo from "./profile_info";
 
 const mapStateToProps = (state, ownProps) => {
+  const renderFollow = (state.session.loggedIn && !state.ui.profile.isCurrentUser)
+  console.log("renderFollow", renderFollow)
   return {
+    renderFollow,
     userName: state.ui.profile.userName,
     city: state.ui.profile.city,
     country: state.ui.profile.country,

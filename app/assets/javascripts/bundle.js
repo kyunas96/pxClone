@@ -218,6 +218,37 @@ var resetPostFormErrors = function resetPostFormErrors() {
 
 /***/ }),
 
+/***/ "./frontend/actions/followActions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/followActions.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "toggleFollow": () => (/* binding */ toggleFollow)
+/* harmony export */ });
+/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/FollowAPI */ "./frontend/util/FollowAPI.js");
+/* harmony import */ var _profileActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileActions */ "./frontend/actions/profileActions.js");
+
+
+var toggleFollow = function toggleFollow(following, profileId) {
+  return function (dispatch) {
+    if (following === true) {
+      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.deleteFollow(profileId).then(function (data) {
+        return dispatch((0,_profileActions__WEBPACK_IMPORTED_MODULE_1__.receiveProfile)(data));
+      });
+    } else {
+      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.createFollow(profileId).then(function (data) {
+        return dispatch((0,_profileActions__WEBPACK_IMPORTED_MODULE_1__.receiveProfile)(data));
+      });
+    }
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/postActions.js":
 /*!*****************************************!*\
   !*** ./frontend/actions/postActions.js ***!
@@ -2043,6 +2074,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       this.props.fetchProfile(this.props.userId);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.props.fetchProfile(this.props.userId);
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2402,6 +2438,43 @@ var ProfileEditHeader = function ProfileEditHeader(props) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/profileHeader/followButtonContainer.js":
+/*!****************************************************************************!*\
+  !*** ./frontend/components/profile/profileHeader/followButtonContainer.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/profileHeader/follow_button.jsx");
+/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/followActions */ "./frontend/actions/followActions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    following: state.ui.profile.following,
+    profileId: state.ui.profile.userId
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    toggleFollow: function toggleFollow(following, userId) {
+      return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.toggleFollow)(following, userId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profileHeader/follow_button.jsx":
 /*!*********************************************************************!*\
   !*** ./frontend/components/profile/profileHeader/follow_button.jsx ***!
@@ -2463,6 +2536,40 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/profileHeader/profileInfoContainer.js":
+/*!***************************************************************************!*\
+  !*** ./frontend/components/profile/profileHeader/profileInfoContainer.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _profile_info__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_info */ "./frontend/components/profile/profileHeader/profile_info.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var renderFollow = state.session.loggedIn && !state.ui.profile.isCurrentUser;
+  console.log("renderFollow", renderFollow);
+  return {
+    renderFollow: renderFollow,
+    userName: state.ui.profile.userName,
+    city: state.ui.profile.city,
+    country: state.ui.profile.country,
+    description: state.ui.profile.description
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile_info__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profileHeader/profile_banner.jsx":
 /*!**********************************************************************!*\
   !*** ./frontend/components/profile/profileHeader/profile_banner.jsx ***!
@@ -2505,7 +2612,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profile_picture__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_picture */ "./frontend/components/profile/profileHeader/profile_picture.jsx");
 /* harmony import */ var _profile_banner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_banner */ "./frontend/components/profile/profileHeader/profile_banner.jsx");
-/* harmony import */ var _profile_info__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile_info */ "./frontend/components/profile/profileHeader/profile_info.jsx");
+/* harmony import */ var _profileInfoContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profileInfoContainer */ "./frontend/components/profile/profileHeader/profileInfoContainer.js");
 /* harmony import */ var _profile_options__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile_options */ "./frontend/components/profile/profileHeader/profile_options.jsx");
 
 
@@ -2528,7 +2635,7 @@ var ProfileHeader = function ProfileHeader(_ref) {
     className: "profile-picture-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, {
     src: userPhoto
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileInfoContainer__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
     isCurrentUser: isCurrentUser,
     userId: userId
   })));
@@ -2550,19 +2657,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/profileHeader/follow_button.jsx");
+/* harmony import */ var _followButtonContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./followButtonContainer */ "./frontend/components/profile/profileHeader/followButtonContainer.js");
 /* harmony import */ var _profile_location__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_location */ "./frontend/components/profile/profileHeader/profile_location.jsx");
 
 
 
 
-var ProfileInfo = function ProfileInfo(props) {
-  console.log("profileInfo", toggleFollow);
-  var followButton = following === null ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default, {
-    following: following,
-    toggleFollow: toggleFollow,
-    profileId: userId
-  });
+var ProfileInfo = function ProfileInfo(_ref) {
+  var userName = _ref.userName,
+      city = _ref.city,
+      country = _ref.country,
+      description = _ref.description;
+  // const followButton =
+  //   following === null ? (null) : 
+  //   (<FollowButtonContainer />)
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -2570,7 +2678,7 @@ var ProfileInfo = function ProfileInfo(props) {
   }, userName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_location__WEBPACK_IMPORTED_MODULE_2__.default, {
     city: city,
     country: country
-  }), followButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-description"
   }, description));
 };
@@ -3257,6 +3365,59 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/FollowAPI.js":
+/*!************************************!*\
+  !*** ./frontend/util/FollowAPI.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getFollowers": () => (/* binding */ getFollowers),
+/* harmony export */   "getFollowings": () => (/* binding */ getFollowings),
+/* harmony export */   "createFollow": () => (/* binding */ createFollow),
+/* harmony export */   "deleteFollow": () => (/* binding */ deleteFollow)
+/* harmony export */ });
+var getFollowers = function getFollowers(userId) {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/follows/followers',
+    data: {
+      user_id: userId
+    }
+  });
+};
+var getFollowings = function getFollowings(userId) {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/follows/followings',
+    data: {
+      user_id: userId
+    }
+  });
+};
+var createFollow = function createFollow(followedUserId) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/follows/',
+    data: {
+      followed_user_id: followedUserId
+    }
+  });
+};
+var deleteFollow = function deleteFollow(followedUserId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: '/api/follows/',
+    data: {
+      followed_user_id: followedUserId
+    }
+  });
+};
 
 /***/ }),
 
