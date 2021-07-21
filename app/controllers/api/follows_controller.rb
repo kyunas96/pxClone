@@ -27,7 +27,7 @@ class Api::FollowsController < ApplicationController
     )
 
     if @follow.save
-      render json: "created follow"
+      render json: {profile: {following: true}}
     else
       render json: "follow not created"
     end
@@ -47,6 +47,8 @@ class Api::FollowsController < ApplicationController
     # if @follow
     #   @follow.destroy
     # end
+
+    render json: {profile: {following: "blah"}}
   end
 
 end

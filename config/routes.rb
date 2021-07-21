@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :create, :update]
     resources :profile, only: [:show, :update]
     resources :posts, only: [:index, :show, :create, :update, :destroy]
-    resources :follows, only: [:create, :destroy]
+    # resources :follows, only: [:create, :destroy]
+    post '/follows' => 'follows#create'
+    delete '/follows' => 'follows#destroy'
 
     # Routes to FollowsController
     # post '/follows' => 'follows#create'

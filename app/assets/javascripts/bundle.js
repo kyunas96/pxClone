@@ -227,21 +227,29 @@ var resetPostFormErrors = function resetPostFormErrors() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_FOLLOW": () => (/* binding */ RECEIVE_FOLLOW),
 /* harmony export */   "toggleFollow": () => (/* binding */ toggleFollow)
 /* harmony export */ });
 /* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/FollowAPI */ "./frontend/util/FollowAPI.js");
-/* harmony import */ var _profileActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileActions */ "./frontend/actions/profileActions.js");
 
+var RECEIVE_FOLLOW = 'RECEIVE_FOLLOW';
+
+var receiveFollow = function receiveFollow(follow) {
+  return {
+    type: RECEIVE_FOLLOW,
+    follow: follow
+  };
+};
 
 var toggleFollow = function toggleFollow(following, profileId) {
   return function (dispatch) {
     if (following === true) {
       _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.deleteFollow(profileId).then(function (data) {
-        return dispatch((0,_profileActions__WEBPACK_IMPORTED_MODULE_1__.receiveProfile)(data));
+        return dispatch(receiveFollow(data));
       });
     } else {
       _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.createFollow(profileId).then(function (data) {
-        return dispatch((0,_profileActions__WEBPACK_IMPORTED_MODULE_1__.receiveProfile)(data));
+        return dispatch(receiveFollow(data));
       });
     }
   };
@@ -328,7 +336,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_PROFILE": () => (/* binding */ RECEIVE_PROFILE),
 /* harmony export */   "RESET_PROFILE": () => (/* binding */ RESET_PROFILE),
-/* harmony export */   "receiveProfile": () => (/* binding */ receiveProfile),
 /* harmony export */   "getProfile": () => (/* binding */ getProfile),
 /* harmony export */   "updateProfile": () => (/* binding */ updateProfile),
 /* harmony export */   "resetProfile": () => (/* binding */ resetProfile)
@@ -337,12 +344,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_PROFILE = 'RECEIVE_PROFILE';
 var RESET_PROFILE = 'RESET_PROFILE';
+
 var receiveProfile = function receiveProfile(profile) {
   return {
     type: RECEIVE_PROFILE,
     profile: profile
   };
 };
+
 var getProfile = function getProfile(userId) {
   return function (dispatch) {
     return _util_ProfileAPI__WEBPACK_IMPORTED_MODULE_0__.getProfile(userId).then(function (data) {
@@ -2458,7 +2467,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    following: state.ui.profile.following,
+    following: state.ui.following,
     profileId: state.ui.profile.userId
   };
 };
@@ -2493,6 +2502,7 @@ var FollowButton = function FollowButton(_ref) {
   var following = _ref.following,
       toggleFollow = _ref.toggleFollow,
       profileId = _ref.profileId;
+  console.log("follow", following);
   var classList = following === true ? "following" : "follow";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "follow-button ".concat(classList),
@@ -2666,13 +2676,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileInfo = function ProfileInfo(_ref) {
-  var userName = _ref.userName,
+  var renderFollow = _ref.renderFollow,
+      userName = _ref.userName,
       city = _ref.city,
       country = _ref.country,
       description = _ref.description;
-  // const followButton =
-  //   following === null ? (null) : 
-  //   (<FollowButtonContainer />)
+  var followButton = renderFollow === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButtonContainer__WEBPACK_IMPORTED_MODULE_1__.default, null) : null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -2680,7 +2689,7 @@ var ProfileInfo = function ProfileInfo(_ref) {
   }, userName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_location__WEBPACK_IMPORTED_MODULE_2__.default, {
     city: city,
     country: country
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  }), followButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-description"
   }, description));
 };
@@ -2997,19 +3006,20 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "RECEIVE_PROFILE": () => (/* binding */ RECEIVE_PROFILE),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var RECEIVE_PROFILE = "RECEIVE_PROFILE";
+/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/followActions */ "./frontend/actions/followActions.js");
+
 
 var followReducer = function followReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("freducer");
   Object.freeze(state);
 
   switch (action.type) {
-    case RECEIVE_PROFILE:
-      return action.profile.following;
+    case _actions_followActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_FOLLOW:
+      return action.follow;
 
     default:
       return state;

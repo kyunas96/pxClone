@@ -5,7 +5,7 @@ import { toggleFollow } from '../../../actions/followActions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    following: state.ui.profile.following,
+    following: state.ui.following,
     profileId: state.ui.profile.userId
   }
 }

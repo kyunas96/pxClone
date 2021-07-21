@@ -2,7 +2,9 @@
   margin-top: -25px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   width: 100%;
+  height: 100%;
 
   & *{
     margin-bottom: 10px;
@@ -36,5 +38,5 @@
 #profile-description{
   font-family: sans-serif;
   font-weight: 400;
-  height: 60px;
+  // height: 60px;
 }

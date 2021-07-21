@@ -1,10 +1,11 @@
-export const RECEIVE_PROFILE = "RECEIVE_PROFILE";
+import { RECEIVE_FOLLOW } from "../actions/followActions";
 
 const followReducer = (state = {}, action) => {
+  console.log("freducer",)
   Object.freeze(state)
   switch(action.type){
-    case RECEIVE_PROFILE:
-      return action.profile.following
+    case RECEIVE_FOLLOW:
+      return action.follow
     default:
       return state;
   }
