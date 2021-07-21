@@ -2,16 +2,7 @@ import React from "react";
 import FollowButton from "./follow_button";
 import ProfileLocation from "./profile_location";
 
-const ProfileInfo = ({
-  city,
-  country,
-  following,
-  userId,
-  userName,
-  description,
-  toggleFollow,
-  socials,
-}) => {
+const ProfileInfo = (props) => {
   console.log("profileInfo", toggleFollow);
   const followButton =
     following === null ? (null) : 

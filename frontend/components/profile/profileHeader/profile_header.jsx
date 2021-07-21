@@ -4,11 +4,19 @@ import ProfileBanner from "./profile_banner";
 import ProfileInfo from "./profile_info";
 import ProfileOptions from "./profile_options";
 
-const ProfileHeader = ({isCurrentUser, userId}) => (
+const ProfileHeader = ({bannerImage, userPhoto, isCurrentUser, userId}) => (
   <div className="profile-header">
+    <div className="profile-banner">
+      <ProfileBanner 
+        src={bannerImage}
+      />
+    </div>
     <div></div>
-    <div>
-      <ProfilePicture />
+    <div className="profile-picture-info">
+      <ProfilePicture 
+        src={userPhoto}
+      />
+      {/* <ProfileInfo /> */}
     </div>
     <div>
       <ProfileOptions

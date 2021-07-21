@@ -1,4 +1,5 @@
 import React from 'react';
+// import { capitalize } from '../../../util/Util';
 
 const FollowButton = ({following, toggleFollow, profileId}) => {
   let classList = following === true ? "following" : "follow";
