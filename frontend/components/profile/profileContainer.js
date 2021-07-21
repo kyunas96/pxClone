@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Profile from "./profile";
 import { getProfile } from "../../actions/profileActions";
-import * as FollowActions from "../../actions/followActions";
+import { toggleFollow } from '../../actions/followActions';
 
 // determine follow status here, this will allow the component to respond to
 // changes in follow status as they occur
@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchProfile: (userId) => dispatch(getProfile(userId)),
-  toggleFollow: (userId) => dispatch(toggleFollow(userId, userProfileId))
+  toggleFollow: (following, userId) => dispatch(toggleFollow(following, userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -1,47 +1,52 @@
-# class Api::FollowsController < ApplicationController 
+class Api::FollowsController < ApplicationController 
 
-#   def followers
-#     user = User.find_by(id: params[:user_id])
+  def followers
+    user = User.find_by(id: params[:user_id])
 
-#     @followers = user.followers
+    @followers = user.followers
 
-#     render :followers
-#   end
+    render :followers
+  end
 
-#   def followings
-#     user = User.find_by(id: params[:user_id])
+  def followings
+    user = User.find_by(id: params[:user_id])
 
-#     @followings = user.followings
+    @followings = user.followings
 
-#     render :followings
-#   end
+    render :followings
+  end
 
-#   def create
-#     followInfo = {
-#       follower_id: current_user.id, 
-#       followed_user_id: params[:followed_user_id]
-#     }
+  def create
+    p "current_user_id " + current_user.id.to_s
+    p "followed_user_id " + params[:followed_user_id].to_s
+    
 
-#     @follow = Follow.new(followInfo)
+    @follow = Follow.new(
+      follower_id: current_user.id, 
+      followed_user_id: params[:followed_user_id]
+    )
 
-#     if @follow.save
+    if @follow.save
+      render json: "created follow"
+    else
+      render json: "follow not created"
+    end
 
-#     else
+  end
 
-#     end
-#   end
+  def destroy
+    p "reached follow destroy"
 
-#   def destroy
-#     followInfo = {
-#       follower_id: current_user.id,
-#       followed_user_id: params[:followed_user_id]
-#     }
+    # followInfo = {
+    #   follower_id: current_user.id,
+    #   followed_user_id: params[:followed_user_id]
+    # }
 
-#     @follow = Follow.find_by(followInfo)
+    # @follow = Follow.find_by(followInfo)
 
-#     if @follow
-#       @follow.destroy
-#     end
-#   end
+    # if @follow
+    #   @follow.destroy
+    # end
+  end
 
-# end
+end

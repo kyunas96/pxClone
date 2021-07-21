@@ -227,12 +227,24 @@ var resetPostFormErrors = function resetPostFormErrors() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkIfCurrentUserFollows": () => (/* binding */ checkIfCurrentUserFollows)
+/* harmony export */   "toggleFollow": () => (/* binding */ toggleFollow)
 /* harmony export */ });
 /* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/FollowAPI */ "./frontend/util/FollowAPI.js");
+/* harmony import */ var _profileActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileActions */ "./frontend/actions/profileActions.js");
 
-var checkIfCurrentUserFollows = function checkIfCurrentUserFollows(userId) {
-  return {};
+
+var toggleFollow = function toggleFollow(following, profileId) {
+  return function (dispatch) {
+    if (following === true) {
+      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.deleteFollow(profileId).then(function (data) {
+        return dispatch((0,_profileActions__WEBPACK_IMPORTED_MODULE_1__.receiveProfile)(data));
+      });
+    } else {
+      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.createFollow(profileId).then(function (data) {
+        return dispatch((0,_profileActions__WEBPACK_IMPORTED_MODULE_1__.receiveProfile)(data));
+      });
+    }
+  };
 };
 
 /***/ }),
@@ -316,6 +328,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_PROFILE": () => (/* binding */ RECEIVE_PROFILE),
 /* harmony export */   "RESET_PROFILE": () => (/* binding */ RESET_PROFILE),
+/* harmony export */   "receiveProfile": () => (/* binding */ receiveProfile),
 /* harmony export */   "getProfile": () => (/* binding */ getProfile),
 /* harmony export */   "updateProfile": () => (/* binding */ updateProfile),
 /* harmony export */   "resetProfile": () => (/* binding */ resetProfile)
@@ -324,14 +337,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_PROFILE = 'RECEIVE_PROFILE';
 var RESET_PROFILE = 'RESET_PROFILE';
-
 var receiveProfile = function receiveProfile(profile) {
   return {
     type: RECEIVE_PROFILE,
     profile: profile
   };
 };
-
 var getProfile = function getProfile(userId) {
   return function (dispatch) {
     return _util_ProfileAPI__WEBPACK_IMPORTED_MODULE_0__.getProfile(userId).then(function (data) {
@@ -2020,6 +2031,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profileHeader_profile_banner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profileHeader/profile_banner */ "./frontend/components/profile/profileHeader/profile_banner.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2071,7 +2088,9 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_banner__WEBPACK_IMPORTED_MODULE_4__.default, {
         bannerImage: this.props.bannerImage
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_body__WEBPACK_IMPORTED_MODULE_1__.default, {
-        profile: this.props.profile.userInfo
+        profile: _objectSpread({
+          toggleFollow: this.props.toggleFollow
+        }, this.props.profile.userInfo)
       }));
     }
   }]);
@@ -2120,19 +2139,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchProfile: function fetchProfile(userId) {
       return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfile)(userId));
     },
-    toggleFollow: function (_toggleFollow) {
-      function toggleFollow(_x) {
-        return _toggleFollow.apply(this, arguments);
-      }
-
-      toggleFollow.toString = function () {
-        return _toggleFollow.toString();
-      };
-
-      return toggleFollow;
-    }(function (userId) {
-      return dispatch(toggleFollow(userId, userProfileId));
-    })
+    toggleFollow: function toggleFollow(following, userId) {
+      return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_3__.toggleFollow)(following, userId));
+    }
   };
 };
 
@@ -2465,19 +2474,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-var FollowButton = function FollowButton(props) {
-  var button;
-
-  if (props.following === true) {
-    button = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "follow-button follow"
-    });
-  } else {
-    button = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      className: "follow-button following"
-    });
-  }
-
+var FollowButton = function FollowButton(_ref) {
+  var following = _ref.following,
+      toggleFollow = _ref.toggleFollow,
+      profileId = _ref.profileId;
+  var classList = following === true ? "following" : "follow";
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "follow-button ".concat(classList),
+    onClick: function onClick() {
+      return toggleFollow(following, profileId);
+    }
+  });
   return button;
 };
 
@@ -2572,11 +2579,16 @@ var ProfileInfo = function ProfileInfo(_ref) {
   var city = _ref.city,
       country = _ref.country,
       following = _ref.following,
+      userId = _ref.userId,
       userName = _ref.userName,
       description = _ref.description,
+      toggleFollow = _ref.toggleFollow,
       socials = _ref.socials;
+  console.log("profileInfo", toggleFollow);
   var followButton = following === null ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default, {
-    following: following
+    following: following,
+    toggleFollow: toggleFollow,
+    profileId: userId
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-info"
@@ -2745,7 +2757,8 @@ var ProfileBody = function ProfileBody(props) {
         description = _props$profile.description,
         socials = _props$profile.socials,
         isCurrentUser = _props$profile.isCurrentUser,
-        userId = _props$profile.userId;
+        userId = _props$profile.userId,
+        toggleFollow = _props$profile.toggleFollow;
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2757,6 +2770,8 @@ var ProfileBody = function ProfileBody(props) {
     city: city,
     country: country,
     following: following,
+    toggleFollow: toggleFollow,
+    userId: userId,
     userName: userName,
     description: description,
     socials: socials

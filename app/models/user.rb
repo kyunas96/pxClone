@@ -67,4 +67,9 @@ class User < ApplicationRecord
     primary_key: :id,
     foreign_key: :poster_id,
     class_name: :Post
+
+  def feed 
+    following_ids = self.followings
+    Posts.where()
+  end
 end

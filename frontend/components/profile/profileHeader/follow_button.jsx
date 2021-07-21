@@ -1,22 +1,13 @@
 import React from 'react';
 
-const FollowButton = (props) => {
-
-
-  let button;
-  if (props.following === true){
-    button = (
-    <button className="follow-button follow">
-      
-    </button>
-    )
-  }else{
-    button = (
-    <button className="follow-button following">
-      
-    </button>
-    )
-  }
+const FollowButton = ({following, toggleFollow, profileId}) => {
+  let classList = following === true ? "following" : "follow";
+  return (
+    <button
+      className={`follow-button ${classList}`}
+      onClick={() => toggleFollow(following, profileId)}
+    ></button>
+  )
 
   return button;
 }

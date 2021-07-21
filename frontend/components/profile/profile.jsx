@@ -20,7 +20,7 @@ class Profile extends React.Component {
       <div className="user-profile">
         <ProfileBanner bannerImage={this.props.bannerImage} />
         <ProfileBody 
-          profile={this.props.profile.userInfo}
+          profile={{toggleFollow: this.props.toggleFollow, ...this.props.profile.userInfo}}
         />
         {/* <ProfileHeader
           profile={this.props.profile}

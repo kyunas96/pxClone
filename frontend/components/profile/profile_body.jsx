@@ -14,7 +14,9 @@ const ProfileBody = (props) => {
         description, 
         socials, 
         isCurrentUser, 
-        userId } = props.profile
+        userId,
+        toggleFollow  
+      } = props.profile
   }
 
   return (
@@ -27,6 +29,8 @@ const ProfileBody = (props) => {
         city={city}
         country={country}
         following={following}
+        toggleFollow={toggleFollow}
+        userId={userId}
         userName={userName}
         description={description}
         socials={socials}
