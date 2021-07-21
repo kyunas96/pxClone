@@ -2082,7 +2082,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "profile"
+        className: "user-profile"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profileHeaderContainer__WEBPACK_IMPORTED_MODULE_3__.default, null));
     }
   }]);
@@ -2628,17 +2628,19 @@ var ProfileHeader = function ProfileHeader(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-banner"
+    className: "profile-banner-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
     src: bannerImage
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-header-partition"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, {
     src: userPhoto
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileInfoContainer__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
     isCurrentUser: isCurrentUser,
     userId: userId
-  })));
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileHeader);

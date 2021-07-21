@@ -19,7 +19,7 @@ class Profile extends React.Component{
 
   render(){
     return (
-      <div className="profile">
+      <div className="user-profile">
         <ProfileHeaderContainer />
         {/* ProfileFeed */}
         {/* feed component will be rendered here as well */}
