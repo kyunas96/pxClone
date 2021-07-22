@@ -3578,10 +3578,17 @@ var deleteFollow = function deleteFollow(followedUserId) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "requestUsersPosts": () => (/* binding */ requestUsersPosts),
 /* harmony export */   "requestAllPosts": () => (/* binding */ requestAllPosts),
 /* harmony export */   "requestPost": () => (/* binding */ requestPost),
 /* harmony export */   "updatePost": () => (/* binding */ updatePost)
 /* harmony export */ });
+var requestUsersPosts = function requestUsersPosts(userId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/users/".concat(userId, "/posts")
+  });
+};
 var requestAllPosts = function requestAllPosts() {
   return $.ajax({
     method: 'GET',

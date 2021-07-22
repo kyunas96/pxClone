@@ -12,6 +12,16 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+  def get_user_posts
+    @user = User.find_by(id: params[:userId])
+
+      if @user
+        p @user.inspect
+      end
+
+      render json: {test: "test"}
+    end
+
   def create
     @user = User.new(user_params)
     @errors = []
