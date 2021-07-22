@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
     @user = User.find_by(id: params[:userId])
 
       if @user
-        @posts = @user.posts
+        @posts = @user.posts.order(:created_at)
 
         render '/api/posts/profile_posts'
       else

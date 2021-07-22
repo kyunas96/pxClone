@@ -3,7 +3,6 @@ import FollowButton from './follow_button';
 
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("buttonContainer", state)
   return {
     profileId: state.ui.profile.userId
   }

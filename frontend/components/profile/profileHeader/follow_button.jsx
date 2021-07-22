@@ -44,7 +44,6 @@ class FollowButton extends React.Component {
       nextProps.profileId !== this.props.profileId ||
       this.state.followStatus != nextState.followStatus
     ) {
-      console.log("bang");
       return true;
     } else {
       return false;
@@ -54,7 +53,6 @@ class FollowButton extends React.Component {
   render() {
     let classList = this.state.followStatus === true ? "following" : "follow";
     const profileId = this.props.profileId;
-    console.log("profileId", this.props);
 
     return (
       <button

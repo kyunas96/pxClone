@@ -12,3 +12,9 @@ export const updateProfile = (userId, profile) => (
     data: profile
   })
 )
+
+export const requestUsersPosts = (userId) =>
+  $.ajax({
+    method: "GET",
+    url: `/api/users/${userId}/posts`,
+  });

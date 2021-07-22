@@ -1,8 +1,6 @@
 import React from "react";
-import ProfileBody from './profile_body';
-import defaultUserImage from "../../images/user-circle-solid.svg";
 import ProfileHeaderContainer from "./profileHeader/profileHeaderContainer";
-import ProfileBanner from "./profileHeader/profile_banner";
+import ProfileFeedContainer from "./profile_feed_container";
 
 class Profile extends React.Component{
   constructor(props){
@@ -11,20 +9,22 @@ class Profile extends React.Component{
 
   componentDidMount(){
     this.props.fetchProfile(this.props.userId)
+    this.props.fetchProfilePosts(this.props.userId)
   }
 
   componentDidUpdate(){
     this.props.fetchProfile(this.props.userId)
+    this.props.fetchProfilePosts(this.props.userId);
   }
 
   render(){
     return (
       <div className="user-profile">
         <ProfileHeaderContainer />
-        {/* ProfileFeed */}
+        <ProfileFeedContainer userId={this.props.userId}/>
         {/* feed component will be rendered here as well */}
       </div>
-    )
+    );
   }
 }
 

@@ -1,7 +1,6 @@
 import { RECEIVE_FOLLOW } from "../actions/followActions";
 
 const followReducer = (state = null, action) => {
-  console.log("freducer", action)
   Object.freeze(state)
   switch(action.type){
     case RECEIVE_FOLLOW:

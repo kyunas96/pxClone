@@ -15,8 +15,6 @@ class Feed extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.posts !== undefined) {
-      console.log(nextProps)
-      console.log(nextState)
       return true
     } else {
       return false;

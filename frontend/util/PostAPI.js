@@ -1,10 +1,3 @@
-export const requestUsersPosts = userId => (
-  $.ajax({
-    method: 'GET',
-    url: `/api/users/${userId}/posts`
-  })
-)
-
 export const requestAllPosts = () => (
   $.ajax({
     method: 'GET',

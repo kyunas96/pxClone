@@ -1,7 +1,6 @@
 import { RECEIVE_POST, RECEIVE_POSTS, UPDATE_POST } from '../actions/postActions';
 
 const PostsReducer = (state = {}, action) => {
-  console.log(action.post)
   Object.freeze(state);
   switch(action.type){
     case RECEIVE_POST:
