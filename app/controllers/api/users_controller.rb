@@ -16,10 +16,13 @@ class Api::UsersController < ApplicationController
     @user = User.find_by(id: params[:userId])
 
       if @user
-        p @user.inspect
+        @posts = @user.posts
+
+        render '/api/posts/profile_posts'
+      else
+        render json: {error: "User does not exist"}
       end
 
-      render json: {test: "test"}
     end
 
   def create
