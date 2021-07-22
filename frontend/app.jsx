@@ -10,14 +10,13 @@ import PostShowContainer from "./components/posts/postShowContainer";
 import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
 
 const App = (props) => {
-  const loggedIn = store.getState().session.loggedIn;
-  console.log("loggedin:" + loggedIn);
+  console.log("loggedin:" + props.loggedIn);
   return (
     <div id="app">
       <HeaderContainer />
       <div id="body">
         <Switch>
-          <Route exact path="/" component={loggedIn ? FeedContainer : null} />
+          <Route exact path="/" component={props.loggedIn ? FeedContainer : null} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/signup" component={SignupContainer} />
           {/* <Route path='/feed' component={FeedContainer} /> */}
