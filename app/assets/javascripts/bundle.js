@@ -228,6 +228,7 @@ var resetPostFormErrors = function resetPostFormErrors() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_FOLLOW": () => (/* binding */ RECEIVE_FOLLOW),
+/* harmony export */   "getFollowStatus": () => (/* binding */ getFollowStatus),
 /* harmony export */   "toggleFollow": () => (/* binding */ toggleFollow)
 /* harmony export */ });
 /* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/FollowAPI */ "./frontend/util/FollowAPI.js");
@@ -241,6 +242,13 @@ var receiveFollow = function receiveFollow(follow) {
   };
 };
 
+var getFollowStatus = function getFollowStatus(userId) {
+  return function (dispatch) {
+    return _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.getFollowing(userId).then(function (data) {
+      return dispatch(receiveFollow(data));
+    });
+  };
+};
 var toggleFollow = function toggleFollow(following, profileId) {
   return function (dispatch) {
     if (following === true) {
@@ -2460,23 +2468,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/profileHeader/follow_button.jsx");
-/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/followActions */ "./frontend/actions/followActions.js");
-
 
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  console.log("buttonContainer", state);
   return {
-    following: state.ui.following,
     profileId: state.ui.profile.userId
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    toggleFollow: function toggleFollow(following, userId) {
-      return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.toggleFollow)(following, userId));
-    }
+    fetchFollow: function fetchFollow(userId) {
+      return dispatch(getFollowStatus(userId));
+    },
+    toggleFollow: function (_toggleFollow) {
+      function toggleFollow(_x, _x2) {
+        return _toggleFollow.apply(this, arguments);
+      }
+
+      toggleFollow.toString = function () {
+        return _toggleFollow.toString();
+      };
+
+      return toggleFollow;
+    }(function (following, userId) {
+      return dispatch(toggleFollow(following, userId));
+    })
   };
 };
 
@@ -2496,22 +2515,128 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
- // import { capitalize } from '../../../util/Util';
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/FollowAPI */ "./frontend/util/FollowAPI.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var FollowButton = function FollowButton(_ref) {
-  var following = _ref.following,
-      toggleFollow = _ref.toggleFollow,
-      profileId = _ref.profileId;
-  console.log("follow", following);
-  var classList = following === true ? "following" : "follow";
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    className: "follow-button ".concat(classList),
-    onClick: function onClick() {
-      return toggleFollow(following, profileId);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var FollowButton = /*#__PURE__*/function (_React$Component) {
+  _inherits(FollowButton, _React$Component);
+
+  var _super = _createSuper(FollowButton);
+
+  function FollowButton(props) {
+    var _this;
+
+    _classCallCheck(this, FollowButton);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      followStatus: null
+    };
+    _this.handleFollowUpdate = _this.handleFollowUpdate.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(FollowButton, [{
+    key: "handleFollowUpdate",
+    value: function handleFollowUpdate() {
+      var _this2 = this;
+
+      if (this.state.followStatus === false) {
+        (0,_util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.createFollow)(this.props.profileId).then(function (_ref) {
+          var following = _ref.following;
+          return _this2.setState({
+            followStatus: following
+          });
+        });
+      } else if (this.state.followStatus === true) {
+        (0,_util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.deleteFollow)(this.props.profileId).then(function (_ref2) {
+          var following = _ref2.following;
+          return _this2.setState({
+            followStatus: following
+          });
+        });
+      }
     }
-  });
-  return button;
-};
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this3 = this;
+
+      (0,_util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.getFollowing)(this.props.profileId).then(function (_ref3) {
+        var following = _ref3.following;
+
+        _this3.setState({
+          followStatus: following
+        });
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var _this4 = this;
+
+      (0,_util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.getFollowing)(this.props.profileId).then(function (_ref4) {
+        var following = _ref4.following;
+
+        _this4.setState({
+          followStatus: following
+        });
+      });
+    }
+  }, {
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      if (nextProps.profileId !== this.props.profileId || this.state.followStatus != nextState.followStatus) {
+        console.log("bang");
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this5 = this;
+
+      var classList = this.state.followStatus === true ? "following" : "follow";
+      var profileId = this.props.profileId;
+      console.log("profileId", this.props);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "follow-button ".concat(classList),
+        onClick: function onClick() {
+          return _this5.handleFollowUpdate();
+        }
+      });
+    }
+  }]);
+
+  return FollowButton;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FollowButton);
 
@@ -3012,14 +3137,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var followReducer = function followReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("freducer");
+  console.log("freducer", action);
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_FOLLOW:
-      return action.follow;
+      return action.follow.following;
 
     default:
       return state;
@@ -3391,25 +3516,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getFollowers": () => (/* binding */ getFollowers),
 /* harmony export */   "getFollowings": () => (/* binding */ getFollowings),
+/* harmony export */   "getFollowing": () => (/* binding */ getFollowing),
 /* harmony export */   "createFollow": () => (/* binding */ createFollow),
 /* harmony export */   "deleteFollow": () => (/* binding */ deleteFollow)
 /* harmony export */ });
-var getFollowers = function getFollowers(userId) {
+/* 
+  getFollowers and getFollowings do not need a url parameter since the backend
+  already knows who the current user and their id
+*/
+var getFollowers = function getFollowers() {
   return $.ajax({
     method: 'GET',
-    url: '/api/follows/followers',
+    url: '/api/followers/',
     data: {
       user_id: userId
     }
   });
 };
-var getFollowings = function getFollowings(userId) {
+var getFollowings = function getFollowings() {
   return $.ajax({
     method: 'GET',
-    url: '/api/follows/followings',
+    url: '/api/followings/',
     data: {
       user_id: userId
     }
+  });
+};
+var getFollowing = function getFollowing(followee_id) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/following/".concat(followee_id)
   });
 };
 var createFollow = function createFollow(followedUserId) {

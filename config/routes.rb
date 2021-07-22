@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     resources :profile, only: [:show, :update]
     resources :posts, only: [:index, :show, :create, :update, :destroy]
     # resources :follows, only: [:create, :destroy]
+    post '/followers' => 'followers#create'
+    get '/followers' => 'follows#followers'
+    get '/followings' => 'follows#followings'
+    get '/following/:followee_id' => 'follows#following'
+
     post '/follows' => 'follows#create'
     delete '/follows' => 'follows#destroy'
 

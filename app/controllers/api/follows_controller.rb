@@ -16,7 +16,29 @@ class Api::FollowsController < ApplicationController
     render :followings
   end
 
+  def following
+    current_user_id = current_user.id.to_s
+    @follow = Follow.find_by(
+      follower_id: current_user_id,
+      followed_user_id: params[:followee_id]
+    )
+
+    p "follow" + @follow.inspect
+
+    if @follow
+      p "following"
+      render json: { following: true }
+      return
+    else
+      p "not following"
+      render json: { following: false }
+      return
+    end
+
+  end
+
   def create
+    p "params" + params.inspect
     p "current_user_id " + current_user.id.to_s
     p "followed_user_id " + params[:followed_user_id].to_s
     
@@ -27,7 +49,7 @@ class Api::FollowsController < ApplicationController
     )
 
     if @follow.save
-      render json: {profile: {following: true}}
+      render json: { following: true }
     else
       render json: "follow not created"
     end
@@ -37,18 +59,16 @@ class Api::FollowsController < ApplicationController
   def destroy
     p "reached follow destroy"
 
-    # followInfo = {
-    #   follower_id: current_user.id,
-    #   followed_user_id: params[:followed_user_id]
-    # }
+    @follow = Follow.find_by({
+      follower_id: current_user.id,
+      followed_user_id: params[:followed_user_id]
+    })
 
-    # @follow = Follow.find_by(followInfo)
-
-    # if @follow
-    #   @follow.destroy
-    # end
-
-    render json: {profile: {following: "blah"}}
+    if @follow
+      if @follow.destroy
+        render json: { following: false }
+      end
+    end
   end
 
 end

@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import FollowButton from './follow_button';
-import { toggleFollow } from '../../../actions/followActions';
 
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("buttonContainer", state)
   return {
-    following: state.ui.following,
     profileId: state.ui.profile.userId
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchFollow: (userId) => dispatch(getFollowStatus(userId)),
     toggleFollow: (following, userId) => dispatch(toggleFollow(following, userId))
   }
 }

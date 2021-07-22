@@ -6,6 +6,11 @@ const receiveFollow = follow => ({
   follow
 })
 
+export const getFollowStatus = (userId) => (dispatch) => (
+  FollowAPI.getFollowing(userId)
+    .then((data) => dispatch(receiveFollow(data)))
+)
+
 
 export const toggleFollow = (following, profileId) => (dispatch) => {
   if (following === true) {

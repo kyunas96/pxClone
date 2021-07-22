@@ -1,16 +1,28 @@
-export const getFollowers = userId => (
+/* 
+  getFollowers and getFollowings do not need a url parameter since the backend
+  already knows who the current user and their id
+*/
+
+export const getFollowers = () => (
   $.ajax({
     method: 'GET',
-    url: '/api/follows/followers',
+    url: '/api/followers/',
     data: {user_id: userId}
   })
 )
 
-export const getFollowings = userId => (
+export const getFollowings = () => (
   $.ajax({
     method: 'GET',
-    url: '/api/follows/followings',
+    url: '/api/followings/',
     data: {user_id: userId}
+  })
+)
+
+export const getFollowing = (followee_id) => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/following/${followee_id}`,
   })
 )
 
