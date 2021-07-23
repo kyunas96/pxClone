@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router";
 import HeaderContainer from "./components/base/header_container";
+import SplashPage from "./components/splashPage";
 import LoginContainer from "./components/login_signup/login_form_container";
 import SignupContainer from "./components/login_signup/signup_form_container";
 import FeedContainer from "./components/feed/feedContainer";
@@ -16,7 +17,7 @@ const App = (props) => {
       <HeaderContainer />
       <div id="body">
         <Switch>
-          <Route exact path="/" component={props.loggedIn ? FeedContainer : null} />
+          <Route exact path="/" component={props.loggedIn ? FeedContainer : SplashPage} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/signup" component={SignupContainer} />
           {/* <Route path='/feed' component={FeedContainer} /> */}

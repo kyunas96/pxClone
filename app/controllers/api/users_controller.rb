@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
 
   def get_users_feed
-    @followed_users_id = Follow.where(follower: 1).map(&:followed_user_id)
+    @followed_users_id = Follow.where(follower: current_user.id).map(&:followed_user_id)
     @posts = Post.where(:poster_id => @followed_users_id).order(:created_at)
 
     render 'api/posts/index'

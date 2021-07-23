@@ -52,13 +52,15 @@ class ProfileFeed extends React.Component {
 
     return (
       <div className="profile-feed">
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid"
-          columnClassName="my-masonry-grid-column"
-        >
-          {images}
-        </Masonry>
+        <div className="masonry-container">
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid-column"
+          >
+            {images}
+          </Masonry>
+        </div>
       </div>
     );
   }

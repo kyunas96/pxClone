@@ -549,15 +549,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_base_header_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/base/header_container */ "./frontend/components/base/header_container.js");
-/* harmony import */ var _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/login_signup/login_form_container */ "./frontend/components/login_signup/login_form_container.js");
-/* harmony import */ var _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/login_signup/signup_form_container */ "./frontend/components/login_signup/signup_form_container.js");
-/* harmony import */ var _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/feed/feedContainer */ "./frontend/components/feed/feedContainer.js");
-/* harmony import */ var _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/profile/profileContainer */ "./frontend/components/profile/profileContainer.js");
-/* harmony import */ var _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/posts/createPostForm */ "./frontend/components/posts/createPostForm.jsx");
-/* harmony import */ var _components_posts_postShowContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/posts/postShowContainer */ "./frontend/components/posts/postShowContainer.js");
-/* harmony import */ var _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/profile/profileEdit/profile_edit_container */ "./frontend/components/profile/profileEdit/profile_edit_container.js");
+/* harmony import */ var _components_splashPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/splashPage */ "./frontend/components/splashPage.jsx");
+/* harmony import */ var _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/login_signup/login_form_container */ "./frontend/components/login_signup/login_form_container.js");
+/* harmony import */ var _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/login_signup/signup_form_container */ "./frontend/components/login_signup/signup_form_container.js");
+/* harmony import */ var _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/feed/feedContainer */ "./frontend/components/feed/feedContainer.js");
+/* harmony import */ var _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/profile/profileContainer */ "./frontend/components/profile/profileContainer.js");
+/* harmony import */ var _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/posts/createPostForm */ "./frontend/components/posts/createPostForm.jsx");
+/* harmony import */ var _components_posts_postShowContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/posts/postShowContainer */ "./frontend/components/posts/postShowContainer.js");
+/* harmony import */ var _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/profile/profileEdit/profile_edit_container */ "./frontend/components/profile/profileEdit/profile_edit_container.js");
+
 
 
 
@@ -575,29 +577,29 @@ var App = function App(props) {
     id: "app"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_base_header_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     exact: true,
     path: "/",
-    component: props.loggedIn ? _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_4__.default : null
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    component: props.loggedIn ? _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_5__.default : _components_splashPage__WEBPACK_IMPORTED_MODULE_2__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/login",
-    component: _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_2__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    component: _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_3__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/signup",
-    component: _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    component: _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_4__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/users/:userId/profile/edit",
-    component: _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_8__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    component: _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_9__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/users/:userId/profile",
-    component: _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_5__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    component: _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_6__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/post/create",
-    component: _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_6__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    component: _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_7__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/posts/:postId",
-    component: _components_posts_postShowContainer__WEBPACK_IMPORTED_MODULE_7__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_9__.Redirect, {
+    component: _components_posts_postShowContainer__WEBPACK_IMPORTED_MODULE_8__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Redirect, {
     to: "/"
   }))));
 };
@@ -3104,11 +3106,13 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-feed"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "masonry-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
         breakpointCols: breakpointColumnsObj,
         className: "my-masonry-grid",
         columnClassName: "my-masonry-grid-column"
-      }, images));
+      }, images)));
     }
   }]);
 
@@ -3154,6 +3158,39 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps)(_profile_feed__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/splashPage.jsx":
+/*!********************************************!*\
+  !*** ./frontend/components/splashPage.jsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var SplashPage = function SplashPage(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "splash-page"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "splash-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "splash-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Discover and share the world's best photos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/signup",
+    id: "signup-button"
+  }, "Sign up"))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SplashPage);
 
 /***/ }),
 
