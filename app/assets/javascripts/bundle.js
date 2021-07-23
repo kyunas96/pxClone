@@ -1201,6 +1201,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Image = function Image(props) {
+  console.log("image", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {

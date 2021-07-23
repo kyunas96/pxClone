@@ -1,19 +1,10 @@
 class Api::UsersController < ApplicationController
 
   def get_users_feed
-    @followed_users = Follow.where(follower: 1).map(&:followed_user_id)
-    @posts = Post.where(:poster_id => @followed_users)
+    @followed_users_id = Follow.where(follower: 1).map(&:followed_user_id)
+    @posts = Post.where(:poster_id => @followed_users_id).order(:created_at)
 
-    p "posts" + @posts.inspect
-    # @posts = []
-
-    # @followed_users.each do |user|
-    #   @posts << user.posts
-    # end
-
-    # p "posts" + @posts.inspect
-
-    render json: @posts
+    render 'api/posts/index'
   end
 
   def index
