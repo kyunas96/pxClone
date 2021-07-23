@@ -1008,7 +1008,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./image */ "./frontend/components/feed/image.jsx");
 /* harmony import */ var react_masonry_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-masonry-css */ "./node_modules/react-masonry-css/dist/react-masonry-css.module.js");
-/* harmony import */ var react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-infinite-scroll-component */ "./node_modules/react-infinite-scroll-component/dist/index.es.js");
+/* harmony import */ var _feedHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./feedHeader */ "./frontend/components/feed/feedHeader.jsx");
+/* harmony import */ var react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-infinite-scroll-component */ "./node_modules/react-infinite-scroll-component/dist/index.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1034,7 +1035,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // Feed should associate itself with the current user 
+
+ // Feed should associate itself with the current user
 
 var Feed = /*#__PURE__*/function (_React$Component) {
   _inherits(Feed, _React$Component);
@@ -1094,23 +1096,15 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      return (
-        /*#__PURE__*/
-        // <InfiniteScroll
-        //   dataLength={this.state.items.length}
-        //   next={this.fetchData}
-        //   hasMore={true}
-        //   loader={<h4>Loading...</h4>}
-        // >
-        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "feed-container"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
-          breakpointCols: breakpointColumnsObj,
-          className: "my-masonry-grid",
-          columnClassName: "my-masonry-grid-column"
-        }, images)) // </InfiniteScroll>
-
-      );
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "feed"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feedHeader__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "masonry-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
+        breakpointCols: breakpointColumnsObj,
+        className: "my-masonry-grid",
+        columnClassName: "my-masonry-grid-column"
+      }, images)));
     }
   }]);
 
@@ -1121,7 +1115,7 @@ var Feed = /*#__PURE__*/function (_React$Component) {
 //  -the length of the data
 //  -a way to grab the next elements
 //  -a boolean to indicate whether or not there are more items
-// if the feed component implements the infinite scroll component, does it need 
+// if the feed component implements the infinite scroll component, does it need
 // a component wrapper?
 // what is the relationship between an infinite scroll component and a redux store
 // 1. write the components to make sure they render correctly
@@ -1179,6 +1173,30 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_feed__WEBPACK_IMPORTED_MODULE_1__.default)); // when on the backend, a like will be created by grabbing the currentUser's id
 // and binding it the id of the post to create a new Like
+
+/***/ }),
+
+/***/ "./frontend/components/feed/feedHeader.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/feed/feedHeader.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var FeedBanner = function FeedBanner(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "feed-banner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Home Feed"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "See photos from people you follow"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FeedBanner);
 
 /***/ }),
 

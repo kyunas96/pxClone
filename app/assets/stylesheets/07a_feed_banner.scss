@@ -1,0 +1,19 @@
+.feed-banner{
+  margin: 0 3% 25px 3%;
+  height: 200px;
+  color: rgba(0, 0, 0, 0.8);
+  align-self: flex-start;
+
+
+  h1{
+    margin-bottom: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    font-weight: 600;
+    color: inherit;
+  }
+
+  h3{
+    color: rgba(0, 0, 0, 0.6)
+  }
+}
