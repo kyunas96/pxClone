@@ -279,7 +279,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "UPDATE_POST": () => (/* binding */ UPDATE_POST),
 /* harmony export */   "receivePost": () => (/* binding */ receivePost),
 /* harmony export */   "receivePosts": () => (/* binding */ receivePosts),
-/* harmony export */   "requestAllPosts": () => (/* binding */ requestAllPosts),
+/* harmony export */   "requestUsersFeed": () => (/* binding */ requestUsersFeed),
 /* harmony export */   "requestPost": () => (/* binding */ requestPost),
 /* harmony export */   "requestUpdatePost": () => (/* binding */ requestUpdatePost)
 /* harmony export */ });
@@ -308,9 +308,9 @@ var updatePost = function updatePost(post) {
   };
 };
 
-var requestAllPosts = function requestAllPosts() {
+var requestUsersFeed = function requestUsersFeed(userId) {
   return function (dispatch) {
-    return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestAllPosts().then(function (payload) {
+    return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestUsersFeed(userId).then(function (payload) {
       return dispatch(receivePosts(payload));
     });
   };
@@ -1050,7 +1050,7 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   _createClass(Feed, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.getPosts();
+      this.props.getFeedItems(this.props.userId);
     }
   }, {
     key: "shouldComponentUpdate",
@@ -1149,7 +1149,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  console.log("feedContinaer", state);
   return {
+    userId: state.session.currentUser.id,
     posts: state.entities.posts
   };
 };
@@ -1169,8 +1171,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     }(function (postId) {
       return dispatch(likePost(postId));
     }),
-    getPosts: function getPosts() {
-      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestAllPosts)());
+    getFeedItems: function getFeedItems(userId) {
+      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestUsersFeed)(userId));
     }
   };
 };
@@ -3675,14 +3677,14 @@ var deleteFollow = function deleteFollow(followedUserId) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "requestAllPosts": () => (/* binding */ requestAllPosts),
+/* harmony export */   "requestUsersFeed": () => (/* binding */ requestUsersFeed),
 /* harmony export */   "requestPost": () => (/* binding */ requestPost),
 /* harmony export */   "updatePost": () => (/* binding */ updatePost)
 /* harmony export */ });
-var requestAllPosts = function requestAllPosts() {
+var requestUsersFeed = function requestUsersFeed(userId) {
   return $.ajax({
     method: 'GET',
-    url: '/api/posts'
+    url: "/api/users/currentUser/feed"
   });
 };
 var requestPost = function requestPost(postId) {

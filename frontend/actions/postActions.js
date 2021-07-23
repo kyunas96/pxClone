@@ -19,8 +19,8 @@ const updatePost = post => ({
   post
 })
 
-export const requestAllPosts = () => dispatch => (
-  PostAPI.requestAllPosts()
+export const requestUsersFeed = (userId) => dispatch => (
+  PostAPI.requestUsersFeed(userId)
     .then(payload => dispatch(receivePosts(payload)))
 )
 

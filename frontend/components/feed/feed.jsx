@@ -10,7 +10,7 @@ class Feed extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getPosts()
+    this.props.getFeedItems(this.props.userId)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
