@@ -1,8 +1,8 @@
 import React from 'react';
-import ProfilePicture from "../profileHeader/profile_picture";
+import ProfileEditFormHeader from './profile_edit_form_header';
 import { CountryDropdown } from "react-country-region-selector";
 
-class ProfileEditForm extends React.Component{
+class ProfileEditFormContainer extends React.Component{
   constructor(props){
     super(props)
     this.state = {
@@ -19,8 +19,11 @@ class ProfileEditForm extends React.Component{
 
   render(){
     return (
-      <form className="profile-edit-form">
-        <ProfilePicture />
+      <form className="profile-edit-form-container">
+        <ProfileEditFormHeader 
+          // bannerImage={this.props.bannerImage}
+          // userPhoto={this.props.userPhoto}
+        />
         <div className="profile-edit-row">
           <div className="profile-edit-text">
             <label htmlFor="fname">First name</label>
@@ -74,4 +77,4 @@ class ProfileEditForm extends React.Component{
   }
 }
 
-export default ProfileEditForm;
+export default ProfileEditFormContainer;

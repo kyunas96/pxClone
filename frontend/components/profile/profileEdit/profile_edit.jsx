@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileEditHeader from "./profile_edit_header";
-import ProfileEditForm from "./profile_edit_form";
+import ProfileEditFormContainer from "./profile_edit_form_container";
 
 
 class ProfileEdit extends React.Component {
@@ -20,7 +20,7 @@ class ProfileEdit extends React.Component {
     return (
       <div className="profile-edit">
         <ProfileEditHeader userId={this.props.userId}/>
-        <ProfileEditForm />
+        <ProfileEditFormContainer />
       </div>
     );
   }

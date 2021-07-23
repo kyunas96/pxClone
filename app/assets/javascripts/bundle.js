@@ -2229,7 +2229,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profile_edit_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit_header */ "./frontend/components/profile/profileEdit/profile_edit_header.jsx");
-/* harmony import */ var _profile_edit_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_edit_form */ "./frontend/components/profile/profileEdit/profile_edit_form.jsx");
+/* harmony import */ var _profile_edit_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_edit_form_container */ "./frontend/components/profile/profileEdit/profile_edit_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2286,7 +2286,7 @@ var ProfileEdit = /*#__PURE__*/function (_React$Component) {
         className: "profile-edit"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_1__.default, {
         userId: this.props.userId
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form__WEBPACK_IMPORTED_MODULE_2__.default, null));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_container__WEBPACK_IMPORTED_MODULE_2__.default, null));
     }
   }]);
 
@@ -2337,10 +2337,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileEdit/profile_edit_form.jsx":
-/*!***********************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit_form.jsx ***!
-  \***********************************************************************/
+/***/ "./frontend/components/profile/profileEdit/profile_edit_form_container.jsx":
+/*!*********************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit_form_container.jsx ***!
+  \*********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2349,7 +2349,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _profileHeader_profile_picture__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../profileHeader/profile_picture */ "./frontend/components/profile/profileHeader/profile_picture.jsx");
+/* harmony import */ var _profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit_form_header */ "./frontend/components/profile/profileEdit/profile_edit_form_header.jsx");
 /* harmony import */ var react_country_region_selector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-country-region-selector */ "./node_modules/react-country-region-selector/dist/rcrs.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -2377,15 +2377,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileEditForm, _React$Component);
+var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProfileEditFormContainer, _React$Component);
 
-  var _super = _createSuper(ProfileEditForm);
+  var _super = _createSuper(ProfileEditFormContainer);
 
-  function ProfileEditForm(props) {
+  function ProfileEditFormContainer(props) {
     var _this;
 
-    _classCallCheck(this, ProfileEditForm);
+    _classCallCheck(this, ProfileEditFormContainer);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -2401,12 +2401,14 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(ProfileEditForm, [{
+  _createClass(ProfileEditFormContainer, [{
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        className: "profile-edit-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-edit-form-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__.default // bannerImage={this.props.bannerImage}
+      // userPhoto={this.props.userPhoto}
+      , null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
@@ -2483,10 +2485,20 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return ProfileEditForm;
+  return ProfileEditFormContainer;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditFormContainer);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/profile_edit_form_header.jsx":
+/*!******************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit_form_header.jsx ***!
+  \******************************************************************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/KRY/Documents/App Academy/pxClone/frontend/components/profile/profileEdit/profile_edit_form_header.jsx: Unexpected token (8:2)\n\n\u001b[0m \u001b[90m  6 |\u001b[39m     \u001b[33m<\u001b[39m\u001b[33mProfilePicture\u001b[39m\u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  7 |\u001b[39m     \u001b[33m<\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m   \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 |\u001b[39m )\u001b[0m\n\u001b[0m \u001b[90m 10 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m \u001b[33mProfileEditFormHeader\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:810:17)\n    at Object.raiseWithData (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:803:17)\n    at Object.raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:764:17)\n    at Object.unexpected (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:9980:16)\n    at Object.jsxParseIdentifier (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5073:12)\n    at Object.jsxParseNamespacedName (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5083:23)\n    at Object.jsxParseElementName (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5094:21)\n    at Object.jsxParseOpeningElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5181:22)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5214:33)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5230:32)");
 
 /***/ }),
 
