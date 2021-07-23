@@ -2508,11 +2508,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ProfileEditHeader = function ProfileEditHeader(props) {
+var ProfileEditHeader = function ProfileEditHeader(_ref) {
+  var userId = _ref.userId;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-edit-header-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    className: "back-button"
+    to: "/users/".concat(userId, "/profile"),
+    id: "back-button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: _arrowback_png__WEBPACK_IMPORTED_MODULE_1__.default
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
