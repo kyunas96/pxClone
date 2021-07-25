@@ -1,10 +1,11 @@
 import React from 'react';
-import ProfilePicture from "../profileHeader/profile_picture";
+import ProfileEditUserPhoto from './profileEditUserPhoto';
+import ProfileEditBanner from './profileEditBanner';
 
 const ProfileEditFormHeader = (props) => (
   <div className="profile-edit-form-header">
-    <ProfilePicture/>
-    <
+    <ProfileEditBanner bannerImage={props.bannerImage} />
+    <ProfileEditUserPhoto userPhoto={props.userPhoto} />
   </div>
 )
 

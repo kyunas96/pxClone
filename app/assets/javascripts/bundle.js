@@ -2216,10 +2216,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileEdit/profile_edit.jsx":
-/*!******************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit.jsx ***!
-  \******************************************************************/
+/***/ "./frontend/components/profile/profileEdit/profileEditBanner.jsx":
+/*!***********************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profileEditBanner.jsx ***!
+  \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2228,119 +2228,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _profile_edit_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit_header */ "./frontend/components/profile/profileEdit/profile_edit_header.jsx");
-/* harmony import */ var _profile_edit_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_edit_form_container */ "./frontend/components/profile/profileEdit/profile_edit_form_container.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+var ProfileEditBanner = function ProfileEditBanner(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-banner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: props.bannerImage
+  }));
+};
 
-
-
-var ProfileEdit = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileEdit, _React$Component);
-
-  var _super = _createSuper(ProfileEdit);
-
-  function ProfileEdit(props) {
-    _classCallCheck(this, ProfileEdit);
-
-    return _super.call(this, props);
-  }
-
-  _createClass(ProfileEdit, [{
-    key: "selectCountry",
-    value: function selectCountry(val) {
-      this.setState({
-        country: val
-      });
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.getUserProfile(this.props.userId);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "profile-edit"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_1__.default, {
-        userId: this.props.userId
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_container__WEBPACK_IMPORTED_MODULE_2__.default, null));
-    }
-  }]);
-
-  return ProfileEdit;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEdit);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditBanner);
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileEdit/profile_edit_container.js":
-/*!***************************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit_container.js ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _profile_edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit */ "./frontend/components/profile/profileEdit/profile_edit.jsx");
-/* harmony import */ var _actions_profileActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profileActions */ "./frontend/actions/profileActions.js");
-
-
-
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    userId: state.session.currentUser.id,
-    profile: state.ui.profile
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    getUserProfile: function getUserProfile(userId) {
-      return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfile)(userId));
-    },
-    updateUserProfile: function updateUserProfile(userId, data) {
-      return (0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.updateProfile)(userId, data);
-    }
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile_edit__WEBPACK_IMPORTED_MODULE_1__.default));
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileEdit/profile_edit_form_container.jsx":
-/*!*********************************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit_form_container.jsx ***!
-  \*********************************************************************************/
+/***/ "./frontend/components/profile/profileEdit/profileEditForm.jsx":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profileEditForm.jsx ***!
+  \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2398,6 +2303,7 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
       facebook: "",
       twitter: ""
     };
+    console.log("profileEdit props", _this.props);
     return _this;
   }
 
@@ -2405,10 +2311,11 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        className: "profile-edit-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__.default // bannerImage={this.props.bannerImage}
-      // userPhoto={this.props.userPhoto}
-      , null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-edit-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__.default, {
+        bannerImage: this.props.bannerImage,
+        userPhoto: this.props.userPhoto
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
@@ -2492,13 +2399,193 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx":
+/*!**************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var ProfileEditUserPhoto = function ProfileEditUserPhoto(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-picture"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-picture-buffer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: props.userPhoto
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditUserPhoto);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/profile_edit.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit.jsx ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _profile_edit_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit_header */ "./frontend/components/profile/profileEdit/profile_edit_header.jsx");
+/* harmony import */ var _profileEditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profileEditForm */ "./frontend/components/profile/profileEdit/profileEditForm.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var ProfileEdit = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProfileEdit, _React$Component);
+
+  var _super = _createSuper(ProfileEdit);
+
+  // as the root component for the form and the images, this component must have
+  // ways of taking in information from subcomponents to submit
+  function ProfileEdit(props) {
+    var _this;
+
+    _classCallCheck(this, ProfileEdit);
+
+    _this = _super.call(this, props);
+    _this.set;
+    return _this;
+  }
+
+  _createClass(ProfileEdit, [{
+    key: "selectCountry",
+    value: function selectCountry(val) {
+      this.setState({
+        country: val
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getUserProfile(this.props.userId);
+    }
+  }, {
+    key: "sendUpFormValues",
+    value: function sendUpFormValues(values) {}
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-edit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_1__.default, {
+        userId: this.props.userId
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditForm__WEBPACK_IMPORTED_MODULE_2__.default, null));
+    }
+  }]);
+
+  return ProfileEdit;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEdit);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/profile_edit_container.js":
+/*!***************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit_container.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _profile_edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit */ "./frontend/components/profile/profileEdit/profile_edit.jsx");
+/* harmony import */ var _actions_profileActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profileActions */ "./frontend/actions/profileActions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    userId: state.session.currentUser.id,
+    profile: state.ui.profile
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getUserProfile: function getUserProfile(userId) {
+      return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfile)(userId));
+    },
+    updateUserProfile: function updateUserProfile(userId, data) {
+      return (0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.updateProfile)(userId, data);
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile_edit__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profileEdit/profile_edit_form_header.jsx":
 /*!******************************************************************************!*\
   !*** ./frontend/components/profile/profileEdit/profile_edit_form_header.jsx ***!
   \******************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/KRY/Documents/App Academy/pxClone/frontend/components/profile/profileEdit/profile_edit_form_header.jsx: Unexpected token (8:2)\n\n\u001b[0m \u001b[90m  6 |\u001b[39m     \u001b[33m<\u001b[39m\u001b[33mProfilePicture\u001b[39m\u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  7 |\u001b[39m     \u001b[33m<\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  8 |\u001b[39m   \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 |\u001b[39m )\u001b[0m\n\u001b[0m \u001b[90m 10 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m \u001b[33mProfileEditFormHeader\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:810:17)\n    at Object.raiseWithData (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:803:17)\n    at Object.raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:764:17)\n    at Object.unexpected (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:9980:16)\n    at Object.jsxParseIdentifier (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5073:12)\n    at Object.jsxParseNamespacedName (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5083:23)\n    at Object.jsxParseElementName (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5094:21)\n    at Object.jsxParseOpeningElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5181:22)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5214:33)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5230:32)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _profileEditUserPhoto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileEditUserPhoto */ "./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx");
+/* harmony import */ var _profileEditBanner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profileEditBanner */ "./frontend/components/profile/profileEdit/profileEditBanner.jsx");
+
+
+
+
+var ProfileEditFormHeader = function ProfileEditFormHeader(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-edit-form-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditBanner__WEBPACK_IMPORTED_MODULE_2__.default, {
+    bannerImage: props.bannerImage
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditUserPhoto__WEBPACK_IMPORTED_MODULE_1__.default, {
+    userPhoto: props.userPhoto
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditFormHeader);
 
 /***/ }),
 

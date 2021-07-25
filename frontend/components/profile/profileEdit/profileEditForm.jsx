@@ -15,14 +15,15 @@ class ProfileEditFormContainer extends React.Component{
       facebook: "",
       twitter: "",
     };
+    console.log("profileEdit props", this.props)
   }
 
   render(){
     return (
-      <form className="profile-edit-form-container">
+      <form className="profile-edit-form">
         <ProfileEditFormHeader 
-          // bannerImage={this.props.bannerImage}
-          // userPhoto={this.props.userPhoto}
+          bannerImage={this.props.bannerImage}
+          userPhoto={this.props.userPhoto}
         />
         <div className="profile-edit-row">
           <div className="profile-edit-text">
