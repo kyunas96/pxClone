@@ -558,7 +558,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/profile/profileContainer */ "./frontend/components/profile/profileContainer.js");
 /* harmony import */ var _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/posts/createPostForm */ "./frontend/components/posts/createPostForm.jsx");
 /* harmony import */ var _components_posts_postShowContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/posts/postShowContainer */ "./frontend/components/posts/postShowContainer.js");
-/* harmony import */ var _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/profile/profileEdit/profile_edit_container */ "./frontend/components/profile/profileEdit/profile_edit_container.js");
+/* harmony import */ var _components_profile_profileEdit_profileEdit__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/profile/profileEdit/profileEdit */ "./frontend/components/profile/profileEdit/profileEdit.jsx");
 
 
 
@@ -589,7 +589,7 @@ var App = function App(props) {
     component: _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_4__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/users/:userId/profile/edit",
-    component: _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_9__.default
+    component: _components_profile_profileEdit_profileEdit__WEBPACK_IMPORTED_MODULE_9__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "/users/:userId/profile",
     component: _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_6__.default
@@ -2216,6 +2216,32 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/profileEdit/profileEdit.jsx":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profileEdit.jsx ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _profileEditContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileEditContainer */ "./frontend/components/profile/profileEdit/profileEditContainer.js");
+
+
+
+var ProfileEdit = function ProfileEdit(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-edit"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditContainer__WEBPACK_IMPORTED_MODULE_1__.default, null));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEdit);
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profileEdit/profileEditBanner.jsx":
 /*!***********************************************************************!*\
   !*** ./frontend/components/profile/profileEdit/profileEditBanner.jsx ***!
@@ -2228,17 +2254,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/griffith.jpg */ "./frontend/images/griffith.jpg");
+
 
 
 var ProfileEditBanner = function ProfileEditBanner(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-banner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: props.bannerImage
-  }));
+    src: _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_1__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "banner-image-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    id: "bannerImage",
+    type: "file",
+    onChange: function onChange(e) {
+      return props.action(e);
+    }
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditBanner);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/profileEditContainer.js":
+/*!*************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profileEditContainer.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_profileActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/profileActions */ "./frontend/actions/profileActions.js");
+/* harmony import */ var _profileEditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profileEditForm */ "./frontend/components/profile/profileEdit/profileEditForm.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    userId: state.session.currentUser.id,
+    profile: state.ui.profile
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    getProfile: function getProfile(userId) {
+      return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_1__.getProfile)(userId));
+    },
+    updateProfile: function updateProfile(profile) {
+      return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_1__.updateProfile)(profile));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profileEditForm__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -2254,9 +2330,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit_form_header */ "./frontend/components/profile/profileEdit/profile_edit_form_header.jsx");
+/* harmony import */ var _profileEditFormHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileEditFormHeader */ "./frontend/components/profile/profileEdit/profileEditFormHeader.jsx");
 /* harmony import */ var react_country_region_selector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-country-region-selector */ "./node_modules/react-country-region-selector/dist/rcrs.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2282,15 +2360,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileEditFormContainer, _React$Component);
+var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProfileEditForm, _React$Component);
 
-  var _super = _createSuper(ProfileEditFormContainer);
+  var _super = _createSuper(ProfileEditForm);
 
-  function ProfileEditFormContainer(props) {
+  function ProfileEditForm(props) {
     var _this;
 
-    _classCallCheck(this, ProfileEditFormContainer);
+    _classCallCheck(this, ProfileEditForm);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -2303,34 +2381,60 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
       facebook: "",
       twitter: ""
     };
-    console.log("profileEdit props", _this.props);
+    _this.setFormValue = _this.setFormValue.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(ProfileEditFormContainer, [{
+  _createClass(ProfileEditForm, [{
+    key: "selectCountry",
+    value: function selectCountry(val) {
+      this.setState({
+        country: val
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getProfile(this.props.userId);
+    }
+  }, {
+    key: "setFormValue",
+    value: function setFormValue(e) {
+      var key = e.target.id;
+      var value = e.target.value;
+      this.setState(_defineProperty({}, key, value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {}
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "profile-edit-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__.default, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditFormHeader__WEBPACK_IMPORTED_MODULE_1__.default, {
         bannerImage: this.props.bannerImage,
-        userPhoto: this.props.userPhoto
+        userPhoto: this.props.userPhoto,
+        passValue: this.setFormValue
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "fname"
+        htmlFor: "firstName"
       }, "First name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "fname",
-        type: "text"
+        id: "firstName",
+        type: "text",
+        onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "lname"
+        htmlFor: "lastName"
       }, "Last name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "lname",
-        type: "text"
+        id: "lastName",
+        type: "text",
+        onChange: this.setFormValue
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2339,7 +2443,8 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
         htmlFor: "city"
       }, "City"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "city",
-        type: "text"
+        type: "text",
+        onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -2357,7 +2462,8 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
       }, "Website"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "website",
         type: "text",
-        placeholder: "URL"
+        placeholder: "URL",
+        onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -2365,7 +2471,8 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
       }, "Instagram"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "instagram",
         type: "text",
-        placeholder: "Username"
+        placeholder: "Username",
+        onChange: this.setFormValue
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2375,7 +2482,8 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
       }, "Facebook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "facebook",
         type: "text",
-        placeholder: "Username"
+        placeholder: "Username",
+        onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -2383,7 +2491,8 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
       }, "Twitter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "twitter",
         type: "text",
-        placeholder: "Username"
+        placeholder: "Username",
+        onChange: this.setFormValue
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2392,175 +2501,17 @@ var ProfileEditFormContainer = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return ProfileEditFormContainer;
+  return ProfileEditForm;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditFormContainer);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditForm);
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx":
-/*!**************************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-var ProfileEditUserPhoto = function ProfileEditUserPhoto(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-picture"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-picture-buffer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: props.userPhoto
-  })));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditUserPhoto);
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileEdit/profile_edit.jsx":
-/*!******************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit.jsx ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _profile_edit_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit_header */ "./frontend/components/profile/profileEdit/profile_edit_header.jsx");
-/* harmony import */ var _profileEditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profileEditForm */ "./frontend/components/profile/profileEdit/profileEditForm.jsx");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-
-var ProfileEdit = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileEdit, _React$Component);
-
-  var _super = _createSuper(ProfileEdit);
-
-  // as the root component for the form and the images, this component must have
-  // ways of taking in information from subcomponents to submit
-  function ProfileEdit(props) {
-    var _this;
-
-    _classCallCheck(this, ProfileEdit);
-
-    _this = _super.call(this, props);
-    _this.set;
-    return _this;
-  }
-
-  _createClass(ProfileEdit, [{
-    key: "selectCountry",
-    value: function selectCountry(val) {
-      this.setState({
-        country: val
-      });
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.getUserProfile(this.props.userId);
-    }
-  }, {
-    key: "sendUpFormValues",
-    value: function sendUpFormValues(values) {}
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "profile-edit"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_1__.default, {
-        userId: this.props.userId
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditForm__WEBPACK_IMPORTED_MODULE_2__.default, null));
-    }
-  }]);
-
-  return ProfileEdit;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEdit);
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileEdit/profile_edit_container.js":
+/***/ "./frontend/components/profile/profileEdit/profileEditFormHeader.jsx":
 /*!***************************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit_container.js ***!
+  !*** ./frontend/components/profile/profileEdit/profileEditFormHeader.jsx ***!
   \***************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _profile_edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit */ "./frontend/components/profile/profileEdit/profile_edit.jsx");
-/* harmony import */ var _actions_profileActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profileActions */ "./frontend/actions/profileActions.js");
-
-
-
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    userId: state.session.currentUser.id,
-    profile: state.ui.profile
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    getUserProfile: function getUserProfile(userId) {
-      return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfile)(userId));
-    },
-    updateUserProfile: function updateUserProfile(userId, data) {
-      return (0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.updateProfile)(userId, data);
-    }
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile_edit__WEBPACK_IMPORTED_MODULE_1__.default));
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileEdit/profile_edit_form_header.jsx":
-/*!******************************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit_form_header.jsx ***!
-  \******************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2579,9 +2530,11 @@ var ProfileEditFormHeader = function ProfileEditFormHeader(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-edit-form-header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditBanner__WEBPACK_IMPORTED_MODULE_2__.default, {
-    bannerImage: props.bannerImage
+    bannerImage: props.bannerImage,
+    action: props.passImageValues
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditUserPhoto__WEBPACK_IMPORTED_MODULE_1__.default, {
-    userPhoto: props.userPhoto
+    userPhoto: props.userPhoto,
+    action: props.passImageValues
   }));
 };
 
@@ -2589,10 +2542,10 @@ var ProfileEditFormHeader = function ProfileEditFormHeader(props) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileEdit/profile_edit_header.jsx":
-/*!*************************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profile_edit_header.jsx ***!
-  \*************************************************************************/
+/***/ "./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx":
+/*!**************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx ***!
+  \**************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2601,27 +2554,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _arrowback_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./arrowback.png */ "./frontend/components/profile/profileEdit/arrowback.png");
+/* harmony import */ var _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/portrait.jpg */ "./frontend/images/portrait.jpg");
+/* harmony import */ var _camera_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./camera.png */ "./frontend/components/profile/profileEdit/camera.png");
 
 
 
 
-var ProfileEditHeader = function ProfileEditHeader(_ref) {
-  var userId = _ref.userId;
+var ProfileEditUserPhoto = function ProfileEditUserPhoto(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-edit-header-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/users/".concat(userId, "/profile"),
-    id: "back-button"
+    className: "profile-picture edit"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-picture-buffer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _arrowback_png__WEBPACK_IMPORTED_MODULE_1__.default
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-edit-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Edit Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null));
+    src: _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_1__.default
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "user-photo-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "userPhoto"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: _camera_png__WEBPACK_IMPORTED_MODULE_2__.default
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    id: "userPhoto",
+    type: "file",
+    onChange: function onChange(e) {
+      return props.action(e);
+    }
+  })));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditHeader);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditUserPhoto);
 
 /***/ }),
 
@@ -4017,10 +3978,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileEdit/arrowback.png":
-/*!***************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/arrowback.png ***!
-  \***************************************************************/
+/***/ "./frontend/components/profile/profileEdit/camera.png":
+/*!************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/camera.png ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4028,7 +3989,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "c4791f126f9b3b0f9568923cafb87b7f.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "299af894760cb776cac4537184600eb0.png");
 
 /***/ }),
 

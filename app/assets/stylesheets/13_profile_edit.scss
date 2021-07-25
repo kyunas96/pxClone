@@ -1,4 +1,4 @@
-.profile-edit{
+.profile-edit {
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -7,16 +7,83 @@
   align-items: center;
 }
 
-.profile-edit-form-container{
+.profile-edit-header-container {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 100px 50px 100px;
+  box-shadow: 1px 1px 3px 0.5px rgba(1, 1, 1, 0.2);
+
+  & div {
+    width: 33.3333%;
+  }
+}
+
+.profile-edit-form {
   width: 35%;
-  height: 90%;
+  // height: 90%;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 2px solid grey;
 }
 
-.profile-edit-row{
+.profile-edit-form-header {
+  width: 100%;
+  height: 22%;
+  margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  & input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+.profile-picture.edit {
+  & label {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background-color: white;
+    border: 0.5px solid rgba(1, 1, 1, 0.2);
+    -webkit-box-shadow: 6px 5px 11px 0px #000000;
+    box-shadow: 1px 1px 11px 0px #000000;
+    border-radius: 50px;
+    position: absolute;
+    right: 2px;
+    bottom: 5px;
+    z-index: 1;
+  }
+
+  & label img {
+    margin: 0 auto;
+    width: 60%;
+    height: 60%;
+  }
+}
+
+.profile-edit-row {
   width: 80%;
   height: 10%;
   margin-top: 25px;
@@ -25,23 +92,24 @@
   justify-content: space-between;
 }
 
-.profile-edit-text{
+.profile-edit-text {
   display: flex;
   flex-direction: column;
   width: 48%;
 
-  label{
+  label {
     margin-bottom: 5px;
   }
 
-  input, select{
+  input,
+  select {
     height: 100%;
     font-size: large;
     padding: 0 5%;
     border-radius: 8px;
     border-width: 1px;
 
-    &:focus{
+    &:focus {
       outline: none;
       border: 2.5px solid blue;
       border-radius: 8px;
@@ -49,7 +117,7 @@
   }
 }
 
-.profile-edit-buttons{
+.profile-edit-buttons {
   font-size: 16px;
   width: 50%;
   height: 10%;
@@ -61,7 +129,7 @@
   align-self: flex-end;
   margin-right: 50px;
 
-  & *{
+  & * {
     font-size: inherit;
     font-weight: bold;
     cursor: pointer;
@@ -69,7 +137,7 @@
   }
 }
 
-.profile-edit-save{
+.profile-edit-save {
   appearance: none;
   border: none;
   color: white;
@@ -79,36 +147,21 @@
   border-radius: 50px;
 }
 
-.profile-edit-header-container{
-  height: 10%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 100px 50px 100px;
-  box-shadow: 1px 1px 3px 0.5px rgba(1, 1, 1, 0.2);
-
-  & div{
-    width: 33.3333%;
-  }
-}
-
-.profile-edit-title{
+.profile-edit-title {
   text-align: center;
 }
 
-#back-button{
-    margin-left: 25px;
-    display: inline-block;
-    background-color: transparent;
-    border: none;
-    height: 45px;
-    width: 45px;
-    cursor: pointer;
+#back-button {
+  margin-left: 25px;
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
 
-    & img{
-      width: 100%;
-      height: 100%;
-    }
+  & img {
+    width: 100%;
+    height: 100%;
+  }
 }

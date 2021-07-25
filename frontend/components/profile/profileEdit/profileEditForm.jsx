@@ -1,10 +1,10 @@
 import React from 'react';
-import ProfileEditFormHeader from './profile_edit_form_header';
+import ProfileEditFormHeader from './profileEditFormHeader';
 import { CountryDropdown } from "react-country-region-selector";
 
-class ProfileEditFormContainer extends React.Component{
-  constructor(props){
-    super(props)
+class ProfileEditForm extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       firstName: "",
       lastName: "",
@@ -15,30 +15,58 @@ class ProfileEditFormContainer extends React.Component{
       facebook: "",
       twitter: "",
     };
-    console.log("profileEdit props", this.props)
+    this.setFormValue = this.setFormValue.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  render(){
+  selectCountry(val) {
+    this.setState({ country: val });
+  }
+
+  componentDidMount() {
+    this.props.getProfile(this.props.userId);
+  }
+
+  setFormValue(e) {
+    const key = e.target.id;
+    const value = e.target.value;
+    this.setState({ [key]: value });
+  }
+
+  handleSubmit() {
+
+  }
+
+  render() {
     return (
       <form className="profile-edit-form">
-        <ProfileEditFormHeader 
+        <ProfileEditFormHeader
           bannerImage={this.props.bannerImage}
           userPhoto={this.props.userPhoto}
+          passValue={this.setFormValue}
         />
         <div className="profile-edit-row">
           <div className="profile-edit-text">
-            <label htmlFor="fname">First name</label>
-            <input id="fname" type="text"></input>
+            <label htmlFor="firstName">First name</label>
+            <input
+              id="firstName"
+              type="text"
+              onChange={this.setFormValue}
+            ></input>
           </div>
           <div className="profile-edit-text">
-            <label htmlFor="lname">Last name</label>
-            <input id="lname" type="text"></input>
+            <label htmlFor="lastName">Last name</label>
+            <input
+              id="lastName"
+              type="text"
+              onChange={this.setFormValue}
+            ></input>
           </div>
         </div>
         <div className="profile-edit-row">
           <div className="profile-edit-text">
             <label htmlFor="city">City</label>
-            <input id="city" type="text"></input>
+            <input id="city" type="text" onChange={this.setFormValue}></input>
           </div>
           <div className="profile-edit-text">
             <label htmlFor="country">Country</label>
@@ -52,21 +80,41 @@ class ProfileEditFormContainer extends React.Component{
         <div className="profile-edit-row">
           <div className="profile-edit-text">
             <label htmlFor="website">Website</label>
-            <input id="website" type="text" placeholder="URL"></input>
+            <input
+              id="website"
+              type="text"
+              placeholder="URL"
+              onChange={this.setFormValue}
+            ></input>
           </div>
           <div className="profile-edit-text">
             <label htmlFor="instagram">Instagram</label>
-            <input id="instagram" type="text" placeholder="Username"></input>
+            <input
+              id="instagram"
+              type="text"
+              placeholder="Username"
+              onChange={this.setFormValue}
+            ></input>
           </div>
         </div>
         <div className="profile-edit-row">
           <div className="profile-edit-text">
             <label htmlFor="facebook">Facebook</label>
-            <input id="facebook" type="text" placeholder="Username"></input>
+            <input
+              id="facebook"
+              type="text"
+              placeholder="Username"
+              onChange={this.setFormValue}
+            ></input>
           </div>
           <div className="profile-edit-text">
             <label htmlFor="twitter">Twitter</label>
-            <input id="twitter" type="text" placeholder="Username"></input>
+            <input
+              id="twitter"
+              type="text"
+              placeholder="Username"
+              onChange={this.setFormValue}
+            ></input>
           </div>
         </div>
         <div className="profile-edit-buttons">
@@ -78,4 +126,4 @@ class ProfileEditFormContainer extends React.Component{
   }
 }
 
-export default ProfileEditFormContainer;
+export default ProfileEditForm;

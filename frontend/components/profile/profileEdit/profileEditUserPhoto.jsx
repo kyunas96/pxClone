@@ -1,9 +1,18 @@
 import React from "react";
+import userPhoto from '../../../images/portrait.jpg';
+import cameraIcon from './camera.png';
+
 
 const ProfileEditUserPhoto = (props) => (
-  <div className="profile-picture">
+  <div className="profile-picture edit">
     <div className="profile-picture-buffer">
-      <img src={props.userPhoto} />
+      <img src={userPhoto} />
+    </div>
+    <div className="user-photo-button">
+      <label htmlFor="userPhoto">
+        <img src={cameraIcon} />
+      </label>
+      <input id="userPhoto" type="file" onChange={(e) => props.action(e)} />
     </div>
   </div>
 );

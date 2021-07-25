@@ -8,7 +8,7 @@ import FeedContainer from "./components/feed/feedContainer";
 import ProfileContainer from "./components/profile/profileContainer";
 import CreatePostForm from "./components/posts/createPostForm";
 import PostShowContainer from "./components/posts/postShowContainer";
-import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
+import ProfileEdit from "./components/profile/profileEdit/profileEdit";
 
 const App = (props) => {
   console.log("loggedin:" + props.loggedIn);
@@ -23,7 +23,7 @@ const App = (props) => {
           {/* <Route path='/feed' component={FeedContainer} /> */}
           <Route
             path="/users/:userId/profile/edit"
-            component={ProfileEditContainer}
+            component={ProfileEdit}
           />
           <Route path="/users/:userId/profile" component={ProfileContainer} />
           <Route path="/post/create" component={CreatePostForm} />
