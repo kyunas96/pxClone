@@ -2255,23 +2255,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/griffith.jpg */ "./frontend/images/griffith.jpg");
+/* harmony import */ var _camera_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./camera.png */ "./frontend/components/profile/profileEdit/camera.png");
+
 
 
 
 var ProfileEditBanner = function ProfileEditBanner(props) {
+  var buttonActionTitle = props.bannerImage === null ? "Upload a " : "Change";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-banner"
+    className: "profile-banner edit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_1__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "banner-image-button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "bannerImage"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: _camera_png__WEBPACK_IMPORTED_MODULE_2__.default
+  }), "".concat(buttonActionTitle, " cover photo"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     id: "bannerImage",
     type: "file",
     onChange: function onChange(e) {
       return props.action(e);
     }
-  })));
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditBanner);
