@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileEditFormHeader from './profileEditFormHeader';
+import ProfileEditFormHeader from './profile_edit_form_header';
 import { CountryDropdown } from "react-country-region-selector";
 
 class ProfileEditForm extends React.Component {

@@ -1,8 +1,8 @@
 import React from 'react';
 import UserInfo from './userInfo';
-import Logo from './logo';
 import LoginSignupContainer from './loginSignup';
 import { Link } from 'react-router-dom';
+import Logo from './logo';
 
 
 function Header(props) {
@@ -20,7 +20,7 @@ function Header(props) {
   return (
     <div className='header'>
       <div className='splash-logo'>
-        <Link to='/' className=''>
+        <Link to='/' className='logo-link svg'>
           <Logo />
         </Link>
       </div>
