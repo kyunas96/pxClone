@@ -2255,21 +2255,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/griffith.jpg */ "./frontend/images/griffith.jpg");
-/* harmony import */ var _camera_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./camera.png */ "./frontend/components/profile/profileEdit/camera.png");
+/* harmony import */ var _camera_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./camera.svg */ "./frontend/components/profile/profileEdit/camera.svg");
+/* harmony import */ var _camera_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_camera_svg__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
 var ProfileEditBanner = function ProfileEditBanner(props) {
-  var buttonActionTitle = props.bannerImage === null ? "Upload a " : "Change";
+  console.log("profileEditbanner", props);
+  var buttonActionTitle = props.bannerImage === undefined ? "Upload a " : "Change";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-banner edit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_1__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "bannerImage"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _camera_png__WEBPACK_IMPORTED_MODULE_2__.default
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "camera-icon-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: (_camera_svg__WEBPACK_IMPORTED_MODULE_2___default())
   }), "".concat(buttonActionTitle, " cover photo"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     id: "bannerImage",
     type: "file",
@@ -41559,13 +41563,23 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/profileEdit/camera.svg":
+/*!************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/camera.svg ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "data:image/svg+xml,%3csvg height='512' width='512' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M457 101H356.812l-9.743-29.23A44.946 44.946 0 00304.377 41h-96.754a44.943 44.943 0 00-42.691 30.77L155.188 101H131V76c0-19.299-15.701-35-35-35H76c-19.299 0-35 15.701-35 35v26.812C17.432 109.02 0 130.51 0 156v260c0 30.327 24.673 55 55 55h402c30.327 0 55-24.673 55-55V156c0-30.327-24.673-55-55-55zM71 76c0-2.757 2.243-5 5-5h20c2.757 0 5 2.243 5 5v25H71zm411 340c0 13.785-11.215 25-25 25H55c-13.785 0-25-11.215-25-25V156c0-13.785 11.215-25 25-25h111a15 15 0 0014.23-10.257l13.162-39.486A14.983 14.983 0 01207.623 71h96.754a14.98 14.98 0 0114.23 10.256l13.162 39.487A15.002 15.002 0 00346 131h111c13.785 0 25 11.215 25 25z' /%3e %3ccircle cx='436' cy='176' r='15' /%3e %3cpath d='M106 161H76c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15s-6.716-15-15-15zM256 411c-74.439 0-135-60.561-135-135s60.561-135 135-135 135 60.561 135 135-60.561 135-135 135zm0-240c-57.897 0-105 47.103-105 105s47.103 105 105 105 105-47.103 105-105-47.103-105-105-105z' /%3e %3cpath d='M256 351c-41.355 0-75-33.645-75-75s33.645-75 75-75 75 33.645 75 75-33.645 75-75 75zm0-120c-24.813 0-45 20.187-45 45s20.187 45 45 45 45-20.187 45-45-20.187-45-45-45z' /%3e %3c/svg%3e"
+
+/***/ }),
+
 /***/ "./frontend/images/user-circle-solid.svg":
 /*!***********************************************!*\
   !*** ./frontend/images/user-circle-solid.svg ***!
   \***********************************************/
 /***/ ((module) => {
 
-module.exports = "data:image/svg+xml,%3csvg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='user-circle' class='svg-inline--fa fa-user-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3e %3cpath fill='currentColor' d='M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z'%3e%3c/path%3e %3c/svg%3e"
+module.exports = "data:image/svg+xml,%3csvg aria-hidden='true' data-prefix='fas' data-icon='user-circle' class='prefix__svg-inline--fa prefix__fa-user-circle prefix__fa-w-16' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3e%3cpath fill='currentColor' d='M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z'/%3e%3c/svg%3e"
 
 /***/ }),
 
@@ -41809,7 +41823,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.store = store;
   window.dispatch = store.dispatch;
   window.PostAPI = _util_PostAPI__WEBPACK_IMPORTED_MODULE_4__;
-  window.requestAllPosts = _actions_postActions__WEBPACK_IMPORTED_MODULE_5__.requestAllPosts;
   window.requestPost = _actions_postActions__WEBPACK_IMPORTED_MODULE_5__.requestPost;
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: store
