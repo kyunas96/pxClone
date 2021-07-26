@@ -2229,13 +2229,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profileEditContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileEditContainer */ "./frontend/components/profile/profileEdit/profileEditContainer.js");
+/* harmony import */ var _profile_edit_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_edit_header */ "./frontend/components/profile/profileEdit/profile_edit_header.jsx");
+
 
 
 
 var ProfileEdit = function ProfileEdit(props) {
+  var userId = props.match.params.userId;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-edit"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditContainer__WEBPACK_IMPORTED_MODULE_1__.default, null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_2__.default, {
+    userId: userId
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditContainer__WEBPACK_IMPORTED_MODULE_1__.default, null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEdit);
@@ -2592,6 +2597,42 @@ var ProfileEditUserPhoto = function ProfileEditUserPhoto(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditUserPhoto);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/profile_edit_header.jsx":
+/*!*************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit_header.jsx ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _arrowback_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./arrowback.png */ "./frontend/components/profile/profileEdit/arrowback.png");
+
+
+
+
+var ProfileEditHeader = function ProfileEditHeader(_ref) {
+  var userId = _ref.userId;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-edit-header-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "/users/".concat(userId, "/profile"),
+    id: "back-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: _arrowback_png__WEBPACK_IMPORTED_MODULE_1__.default
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-edit-title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Edit Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditHeader);
 
 /***/ }),
 
@@ -3984,6 +4025,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "8210970acff9062a268bb87466ab7f54.png");
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/arrowback.png":
+/*!***************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/arrowback.png ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "c4791f126f9b3b0f9568923cafb87b7f.png");
 
 /***/ }),
 

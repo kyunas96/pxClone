@@ -5,7 +5,6 @@
   top: 0;
   height: $header-height;
   width: 100%;
-  margin: 0 auto $header-height auto;
   padding: 5px 1% 0 1%;
   text-align: center;
   display: flex;
@@ -13,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   z-index: 3;
+  box-sizing: border-box;
   background-color: white;
 
   & *:last-child{
