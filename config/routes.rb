@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   namespace :api, default: { format: :json } do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:index, :show, :create, :update]
-    get '/users/currentUser/feed' => 'users#get_users_feed'
     get '/users/:userId/posts' => 'users#get_user_posts'
     resources :profile, only: [:show, :update]
-    resources :posts, only: [:show, :create, :update, :destroy]
+    resources :posts, only: [:index, :show, :create, :update, :destroy]
     # resources :follows, only: [:create, :destroy]
     post '/followers' => 'follows#create'
     get '/followers' => 'follows#followers'

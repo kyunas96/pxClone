@@ -1,7 +1,7 @@
-export const requestUsersFeed = (userId) => (
+export const requestUsersFeed = () => (
   $.ajax({
     method: 'GET',
-    url: `/api/users/currentUser/feed`
+    url: `/api/posts`
   })
 )
 

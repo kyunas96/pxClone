@@ -6043,9 +6043,9 @@ var updatePost = function updatePost(post) {
   };
 };
 
-var requestUsersFeed = function requestUsersFeed(userId) {
+var requestUsersFeed = function requestUsersFeed() {
   return function (dispatch) {
-    return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestUsersFeed(userId).then(function (payload) {
+    return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestUsersFeed().then(function (payload) {
       return dispatch(receivePosts(payload));
     });
   };
@@ -6880,7 +6880,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log("feedContinaer", state);
+  console.log("feedContainer", state);
   return {
     userId: state.session.currentUser.id,
     posts: state.entities.posts
@@ -8785,11 +8785,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileBanner = function ProfileBanner(props) {
+  console.log("banner", props);
+  var style = {
+    backgroundImage: "url(".concat(props.src, ")")
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-banner"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_1__.default
-  }));
+    className: "profile-banner",
+    style: style
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileBanner);
@@ -8825,11 +8828,9 @@ var ProfileHeader = function ProfileHeader(_ref) {
       userId = _ref.userId;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-banner-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
     src: bannerImage
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-header-partition"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture-info"
@@ -8990,13 +8991,13 @@ __webpack_require__.r(__webpack_exports__);
 var ProfilePicture = function ProfilePicture(props) {
   // component will check if a profilePicture is passed in through props and if not
   // the defaultProfilePicture will be used
-  // const imageUrl = props.profilePicture ? props.profilePicture : defaultProfilePicture;
+  var imageUrl = props.profilePicture ? props.profilePicture : (_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default());
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture-buffer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_2__.default
+    src: imageUrl
   })));
 };
 
@@ -9735,10 +9736,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "requestPost": () => (/* binding */ requestPost),
 /* harmony export */   "updatePost": () => (/* binding */ updatePost)
 /* harmony export */ });
-var requestUsersFeed = function requestUsersFeed(userId) {
+var requestUsersFeed = function requestUsersFeed() {
   return $.ajax({
     method: 'GET',
-    url: "/api/users/currentUser/feed"
+    url: "/api/posts"
   });
 };
 var requestPost = function requestPost(postId) {

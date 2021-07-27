@@ -55,7 +55,7 @@ class Api::ProfileController < ApplicationController
       :lastname,
       :city,
       :country,
-      :website,
+      :websiteURL,
       :instagram,
       :facebook,
       :twitter

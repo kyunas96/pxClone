@@ -3,7 +3,7 @@ import Feed from "./feed";
 import { requestUsersFeed } from "../../actions/postActions";
 
 const mapStateToProps = (state) => {
-  console.log("feedContinaer", state)
+  console.log("feedContainer", state)
   return {
     userId: state.session.currentUser.id,
     posts: state.entities.posts,

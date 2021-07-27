@@ -6,12 +6,12 @@ import ProfileOptions from "./profile_options";
 const ProfilePicture = (props) => {
   // component will check if a profilePicture is passed in through props and if not
   // the defaultProfilePicture will be used
-  // const imageUrl = props.profilePicture ? props.profilePicture : defaultProfilePicture;
+  const imageUrl = props.profilePicture ? props.profilePicture : defaultProfilePicture;
 
   return (
     <div className="profile-picture">
       <div className="profile-picture-buffer">
-        <img src={myProfilePicture} />
+        <img src={imageUrl} />
       </div>
     </div>
   );

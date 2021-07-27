@@ -1,10 +1,10 @@
-import React from 'react';
-import bannerImage from '../../../images/griffith.jpg';
+import React from "react";
+import bannerImage from "../../../images/griffith.jpg";
 
-const ProfileBanner = (props) => (
-  <div className="profile-banner">
-    <img src={bannerImage} />
-  </div>
-)
+const ProfileBanner = (props) => {
+  console.log("banner", props)
+  const style = { backgroundImage: `url(${props.src})` };
+  return <div className="profile-banner" style={style}></div>;
+};
 
 export default ProfileBanner;

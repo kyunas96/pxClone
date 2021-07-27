@@ -4,14 +4,15 @@
   width: 100vw;
   height: 90vh;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .profile-header {
   width: 100%;
-  height: 80%;
+  height: 75%;
+  margin-bottom: 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment:local;
 }
 
 .profile-header-partition {
@@ -79,25 +80,24 @@
   }
 }
 
-.profile-banner-container {
-  width: 100%;
-  height: 60%;
-}
-
 .profile-banner {
   width: 100%;
-  height: 100%;
+  height: 60%;
+  border-bottom: 1px solid black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 42%;
 
-  img[src]{
-    display: block;
-  }
+  // img[src]{
+  //   display: block;
+  // }
 
-  img {
-    display: none;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
+  // img {
+  //   display: none;
+  //   object-fit: cover;
+  //   width: 100%;
+  //   height: 100%;
+  // }
 }
 
 .profile-body {
