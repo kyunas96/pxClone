@@ -4,9 +4,9 @@ import cameraIcon from './camera.png';
 
 
 const ProfileEditUserPhoto = (props) => (
-  <div className="profile-picture edit">
+  <div className="profile-picture-edit">
     <div className="profile-picture-buffer">
-      <img src={userPhoto} />
+      <img src={props.userPhoto} />
     </div>
     <div className="user-photo-button">
       <label htmlFor="userPhoto">

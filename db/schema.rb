@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2021_06_08_182951) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
+    t.string "firstname"
+    t.string "lastname"
     t.string "country"
     t.string "city"
     t.string "websiteURL"

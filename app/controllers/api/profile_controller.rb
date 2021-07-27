@@ -26,15 +26,13 @@ class Api::ProfileController < ApplicationController
     end
   end
 
-  def update 
-    if current_user.id == params[:id].to_i
-      @user = User.find_by(id: params[:id])
-    else
-      
-    end
+  def update
+    p "params: " + update_params.inspect
 
-    p @user
+    render json: "Reached backend"
+  end
 
-    render json: "Reached profile update"
+  def update_params
+    params.require(:profile).permit(:userPhoto, :bannerImage, :info)
   end
 end

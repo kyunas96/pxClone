@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileEditFormContainer from "./profileEditContainer";
+import ProfileEditForm from "./profileEditForm";
 import ProfileEditHeader from "./profile_edit_header";
 
 const ProfileEdit = (props) => {
@@ -7,7 +7,7 @@ const ProfileEdit = (props) => {
   return (
     <div className="profile-edit">
       <ProfileEditHeader userId={userId}/>
-      <ProfileEditFormContainer />
+      <ProfileEditForm userId={userId}/>
     </div>
   );
 };

@@ -1,45 +1,100 @@
-import React from 'react';
-import ProfileEditFormHeader from './profile_edit_form_header';
+import React from "react";
+import ProfileEditFormHeader from "./profile_edit_form_header";
+import { getProfile, updateProfile } from "../../../util/ProfileAPI";
 import { CountryDropdown } from "react-country-region-selector";
+import { $dataMetaSchema } from "ajv";
 
 class ProfileEditForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      firstName: "",
-      lastName: "",
-      city: "",
-      country: "",
-      website: "",
-      instagram: "",
-      facebook: "",
-      twitter: "",
-    };
     this.setFormValue = this.setFormValue.bind(this);
+    this.selectCountry = this.selectCountry.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateFile = this.updateFile.bind(this);
+    this.state = {
+      country: "",
+    };
+    console.log("profileEditForm", this.props);
   }
 
   selectCountry(val) {
-    this.setState({ country: val });
+    this.setState({ country: val }, () => console.log(this.state));
   }
 
   componentDidMount() {
-    this.props.getProfile(this.props.userId);
+    getProfile(this.props.userId).then((data) => {
+      const { socials, ...rest } = data;
+      console.log("mount", rest);
+      this.setState({
+        ...rest,
+        socials,
+      });
+    });
   }
 
   setFormValue(e) {
-    const key = e.target.id;
-    const value = e.target.value;
-    this.setState({ [key]: value });
+    console.log(e);
+    if (e.target.type === "file") {
+      this.updateFile(e);
+    } else {
+      const key = e.target.id;
+      const value = e.target.value;
+      this.setState({ [key]: value }, () => console.log(this.state));
+    }
   }
 
-  handleSubmit() {
+  updateFile(e) {
+    const file = e.target.files[0];
+    const id = e.target.id;
+    console.log(file);
+    this.setState({ [id]: file });
+    // const fileReader = new FileReader();
+    // fileReader.onloadend = () => {
+    //   console.log(fileReader.result);
+    //   this.setState({ [id]: file}, () =>
+    //     console.log(this.state)
+    //   );
+    // };
+    // if (file) {
+    //   fileReader.readAsDataURL(file);
+    // }
+  }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const { userPhoto, bannerImage, socials, ...rest } = this.state;
+    console.log(userPhoto, bannerImage, socials, rest);
+    const formData = new FormData();
+    if (userPhoto !== null) {
+      console.log("not null");
+      formData.append("profile[userPhoto]", userPhoto);
+    }
+    if (bannerImage !== null) {
+      formData.append("profile[bannerImage]", bannerImage);
+    }
+    const updatedProfile = { ...socials, ...rest };
+    console.log(updatedProfile)
+    for(const [key, val] of Object.entries(updatedProfile)){
+      formData.append(`profile[info][${key}]`, val)
+    }
+    for (const [key, val] of formData.entries()) {
+      console.log(`${key}: ${val}`);
+    }
+
+    $.ajax({
+      method: "PATCH",
+      url: `/api/profile/${this.props.userId}`,
+      data: formData,
+      contentType: false,
+      processData: false,
+    }).then((response) => console.log(response));
   }
 
   render() {
+    console.log("renderProps", this.props);
+    console.log("renderState", this.state);
     return (
-      <form className="profile-edit-form">
+      <form className="profile-edit-form" onSubmit={this.handleSubmit}>
         <ProfileEditFormHeader
           bannerImage={this.props.bannerImage}
           userPhoto={this.props.userPhoto}
