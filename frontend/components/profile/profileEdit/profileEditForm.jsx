@@ -12,7 +12,13 @@ class ProfileEditForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.state = {
-      country: "",
+      profile: {
+        country: "",
+      },
+      previews: {
+        userPhoto: null,
+        bannerImage: null,
+      },
     };
     console.log("profileEditForm", this.props);
   }
@@ -23,12 +29,17 @@ class ProfileEditForm extends React.Component {
 
   componentDidMount() {
     getProfile(this.props.userId).then((data) => {
-      const { socials, ...rest } = data;
-      console.log("mount", rest);
-      this.setState({
-        ...rest,
-        socials,
-      });
+      const { bannerImage, userPhoto, ...rest } = data;
+      this.setState(
+        {
+          previews: {
+            userPhoto,
+            bannerImage
+          },
+          profile: rest
+        },
+        () => console.log("mounted", this.state)
+      );
     });
   }
 
@@ -39,7 +50,12 @@ class ProfileEditForm extends React.Component {
     } else {
       const key = e.target.id;
       const value = e.target.value;
-      this.setState({ [key]: value }, () => console.log(this.state));
+      this.setState(
+        (prevState) => {
+          return { profile: { ...prevState.profile, [key]: value } };
+        },
+        () => console.log(this.state)
+      );
     }
   }
 
@@ -47,35 +63,40 @@ class ProfileEditForm extends React.Component {
     const file = e.target.files[0];
     const id = e.target.id;
     console.log(file);
-    this.setState({ [id]: file });
-    // const fileReader = new FileReader();
-    // fileReader.onloadend = () => {
-    //   console.log(fileReader.result);
-    //   this.setState({ [id]: file}, () =>
-    //     console.log(this.state)
-    //   );
-    // };
-    // if (file) {
-    //   fileReader.readAsDataURL(file);
-    // }
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      console.log(fileReader.result);
+      this.setState(
+        (prevState) => {
+          const previews = prevState.previews;
+          return {
+            profile: { ...prevState.profile, [id]: file },
+            previews: Object.assign(previews, { [id]: fileReader.result }),
+          };
+        },
+        () => console.log("addedPhoto", this.state)
+      );
+    };
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { userPhoto, bannerImage, socials, ...rest } = this.state;
-    console.log(userPhoto, bannerImage, socials, rest);
+    const { userPhoto, bannerImage, ...rest } = this.state.profile;
     const formData = new FormData();
-    if (userPhoto !== null) {
+    if (userPhoto !== null && userPhoto !== undefined) {
       console.log("not null");
-      formData.append("profile[userPhoto]", userPhoto);
+      formData.append("profile[user_photo]", userPhoto);
     }
-    if (bannerImage !== null) {
-      formData.append("profile[bannerImage]", bannerImage);
+    if (bannerImage !== null && bannerImage !== undefined) {
+      formData.append("profile[banner_image]", bannerImage);
     }
-    const updatedProfile = { ...socials, ...rest };
-    console.log(updatedProfile)
-    for(const [key, val] of Object.entries(updatedProfile)){
-      formData.append(`profile[info][${key}]`, val)
+    for (const [key, val] of Object.entries(rest)) {
+      if (val !== null) {
+        formData.append(`profile[${key}]`, val);
+      }
     }
     for (const [key, val] of formData.entries()) {
       console.log(`${key}: ${val}`);
@@ -96,23 +117,23 @@ class ProfileEditForm extends React.Component {
     return (
       <form className="profile-edit-form" onSubmit={this.handleSubmit}>
         <ProfileEditFormHeader
-          bannerImage={this.props.bannerImage}
-          userPhoto={this.props.userPhoto}
+          bannerImage={this.state.previews.bannerImage}
+          userPhoto={this.state.previews.userPhoto}
           passValue={this.setFormValue}
         />
         <div className="profile-edit-row">
           <div className="profile-edit-text">
-            <label htmlFor="firstName">First name</label>
+            <label htmlFor="firstname">First name</label>
             <input
-              id="firstName"
+              id="firstname"
               type="text"
               onChange={this.setFormValue}
             ></input>
           </div>
           <div className="profile-edit-text">
-            <label htmlFor="lastName">Last name</label>
+            <label htmlFor="lastname">Last name</label>
             <input
-              id="lastName"
+              id="lastname"
               type="text"
               onChange={this.setFormValue}
             ></input>
@@ -127,16 +148,16 @@ class ProfileEditForm extends React.Component {
             <label htmlFor="country">Country</label>
             <CountryDropdown
               classes="profile-edit-country"
-              value={this.state.country}
+              value={this.state.profile.country}
               onChange={this.selectCountry}
             />
           </div>
         </div>
         <div className="profile-edit-row">
           <div className="profile-edit-text">
-            <label htmlFor="website">Website</label>
+            <label htmlFor="websiteURL">Website</label>
             <input
-              id="website"
+              id="websiteURL"
               type="text"
               placeholder="URL"
               onChange={this.setFormValue}

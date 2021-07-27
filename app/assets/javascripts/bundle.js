@@ -7969,8 +7969,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var BannerUploadButton = function BannerUploadButton(props) {
-  var buttonActionTitle = props.bannerImage === undefined ? "Upload a " : "Change";
+  console.log("bannerbutton", props);
+  var buttonActionTitle = props.bannerImage === null ? "Upload a " : "Change";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    className: "banner-upload-button",
     htmlFor: "bannerImage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "camera-icon-container"
@@ -8074,8 +8076,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ajv__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(ajv__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _excluded = ["socials"],
-    _excluded2 = ["userPhoto", "bannerImage", "socials"];
+var _excluded = ["bannerImage", "userPhoto"],
+    _excluded2 = ["userPhoto", "bannerImage"];
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -8143,7 +8145,13 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.updateFile = _this.updateFile.bind(_assertThisInitialized(_this));
     _this.state = {
-      country: ""
+      profile: {
+        country: ""
+      },
+      previews: {
+        userPhoto: null,
+        bannerImage: null
+      }
     };
     console.log("profileEditForm", _this.props);
     return _this;
@@ -8166,14 +8174,19 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       (0,_util_ProfileAPI__WEBPACK_IMPORTED_MODULE_2__.getProfile)(this.props.userId).then(function (data) {
-        var socials = data.socials,
+        var bannerImage = data.bannerImage,
+            userPhoto = data.userPhoto,
             rest = _objectWithoutProperties(data, _excluded);
 
-        console.log("mount", rest);
-
-        _this3.setState(_objectSpread(_objectSpread({}, rest), {}, {
-          socials: socials
-        }));
+        _this3.setState({
+          previews: {
+            userPhoto: userPhoto,
+            bannerImage: bannerImage
+          },
+          profile: rest
+        }, function () {
+          return console.log("mounted", _this3.state);
+        });
       });
     }
   }, {
@@ -8188,7 +8201,11 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       } else {
         var key = e.target.id;
         var value = e.target.value;
-        this.setState(_defineProperty({}, key, value), function () {
+        this.setState(function (prevState) {
+          return {
+            profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, key, value))
+          };
+        }, function () {
           return console.log(_this4.state);
         });
       }
@@ -8196,53 +8213,60 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateFile",
     value: function updateFile(e) {
+      var _this5 = this;
+
       var file = e.target.files[0];
       var id = e.target.id;
       console.log(file);
-      this.setState(_defineProperty({}, id, file)); // const fileReader = new FileReader();
-      // fileReader.onloadend = () => {
-      //   console.log(fileReader.result);
-      //   this.setState({ [id]: file}, () =>
-      //     console.log(this.state)
-      //   );
-      // };
-      // if (file) {
-      //   fileReader.readAsDataURL(file);
-      // }
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        console.log(fileReader.result);
+
+        _this5.setState(function (prevState) {
+          var previews = prevState.previews;
+          return {
+            profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, id, file)),
+            previews: Object.assign(previews, _defineProperty({}, id, fileReader.result))
+          };
+        }, function () {
+          return console.log("addedPhoto", _this5.state);
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
 
-      var _this$state = this.state,
-          userPhoto = _this$state.userPhoto,
-          bannerImage = _this$state.bannerImage,
-          socials = _this$state.socials,
-          rest = _objectWithoutProperties(_this$state, _excluded2);
+      var _this$state$profile = this.state.profile,
+          userPhoto = _this$state$profile.userPhoto,
+          bannerImage = _this$state$profile.bannerImage,
+          rest = _objectWithoutProperties(_this$state$profile, _excluded2);
 
-      console.log(userPhoto, bannerImage, socials, rest);
       var formData = new FormData();
 
-      if (userPhoto !== null) {
+      if (userPhoto !== null && userPhoto !== undefined) {
         console.log("not null");
-        formData.append("profile[userPhoto]", userPhoto);
+        formData.append("profile[user_photo]", userPhoto);
       }
 
-      if (bannerImage !== null) {
-        formData.append("profile[bannerImage]", bannerImage);
+      if (bannerImage !== null && bannerImage !== undefined) {
+        formData.append("profile[banner_image]", bannerImage);
       }
 
-      var updatedProfile = _objectSpread(_objectSpread({}, socials), rest);
-
-      console.log(updatedProfile);
-
-      for (var _i = 0, _Object$entries = Object.entries(updatedProfile); _i < _Object$entries.length; _i++) {
+      for (var _i = 0, _Object$entries = Object.entries(rest); _i < _Object$entries.length; _i++) {
         var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
             key = _Object$entries$_i[0],
             val = _Object$entries$_i[1];
 
-        formData.append("profile[info][".concat(key, "]"), val);
+        if (val !== null) {
+          formData.append("profile[".concat(key, "]"), val);
+        }
       }
 
       var _iterator = _createForOfIteratorHelper(formData.entries()),
@@ -8281,25 +8305,25 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         className: "profile-edit-form",
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__.default, {
-        bannerImage: this.props.bannerImage,
-        userPhoto: this.props.userPhoto,
+        bannerImage: this.state.previews.bannerImage,
+        userPhoto: this.state.previews.userPhoto,
         passValue: this.setFormValue
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "firstName"
+        htmlFor: "firstname"
       }, "First name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "firstName",
+        id: "firstname",
         type: "text",
         onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "lastName"
+        htmlFor: "lastname"
       }, "Last name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "lastName",
+        id: "lastname",
         type: "text",
         onChange: this.setFormValue
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -8318,16 +8342,16 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "country"
       }, "Country"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_country_region_selector__WEBPACK_IMPORTED_MODULE_3__.CountryDropdown, {
         classes: "profile-edit-country",
-        value: this.state.country,
+        value: this.state.profile.country,
         onChange: this.selectCountry
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-        htmlFor: "website"
+        htmlFor: "websiteURL"
       }, "Website"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        id: "website",
+        id: "websiteURL",
         type: "text",
         placeholder: "URL",
         onChange: this.setFormValue
@@ -8432,8 +8456,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profileEditUserPhoto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileEditUserPhoto */ "./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx");
-/* harmony import */ var _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../images/griffith.jpg */ "./frontend/images/griffith.jpg");
-/* harmony import */ var _profileEditBanner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profileEditBanner */ "./frontend/components/profile/profileEdit/profileEditBanner.jsx");
+/* harmony import */ var _bannerUploadButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bannerUploadButton */ "./frontend/components/profile/profileEdit/bannerUploadButton.jsx");
+/* harmony import */ var _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../images/griffith.jpg */ "./frontend/images/griffith.jpg");
+/* harmony import */ var _profileEditBanner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profileEditBanner */ "./frontend/components/profile/profileEdit/profileEditBanner.jsx");
+
 
 
 
@@ -8442,12 +8468,15 @@ __webpack_require__.r(__webpack_exports__);
 var ProfileEditFormHeader = function ProfileEditFormHeader(props) {
   console.log("profileEditFormHeader", props);
   var style = {
-    backgroundImage: "url(".concat(_images_griffith_jpg__WEBPACK_IMPORTED_MODULE_2__.default, ")")
+    backgroundImage: "url(".concat(props.bannerImage, ")")
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-edit-form-header",
     style: style
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditUserPhoto__WEBPACK_IMPORTED_MODULE_1__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_bannerUploadButton__WEBPACK_IMPORTED_MODULE_2__.default, {
+    bannerImage: props.bannerImage,
+    action: props.passValue
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditUserPhoto__WEBPACK_IMPORTED_MODULE_1__.default, {
     userPhoto: props.userPhoto,
     action: props.passValue
   }));

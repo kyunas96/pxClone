@@ -2,12 +2,13 @@ import React from "react";
 import cameraIcon from "./camera.svg";
 
 const BannerUploadButton = (props) => {
+  console.log("bannerbutton", props)
   const buttonActionTitle =
-    props.bannerImage === undefined ? "Upload a " : "Change";
+    props.bannerImage === null ? "Upload a " : "Change";
 
     return (
       <>
-        <label htmlFor="bannerImage">
+        <label className="banner-upload-button" htmlFor="bannerImage">
           <div className="camera-icon-container">
             <img src={cameraIcon} />
             {`${buttonActionTitle} cover photo`}

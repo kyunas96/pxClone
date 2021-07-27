@@ -6,12 +6,10 @@ json.following @following
 json.city @user.city
 json.country @user.country
 
-json.socials do
-  json.websiteURL @user.websiteURL
-  json.instagram @user.instagram
-  json.facebook @user.facebook
-  json.twitter @user.twitter
-end
+json.websiteURL @user.websiteURL
+json.instagram @user.instagram
+json.facebook @user.facebook
+json.twitter @user.twitter
 
 if @user.user_photo.attached?
   json.userPhoto url_for(@user.user_photo)
