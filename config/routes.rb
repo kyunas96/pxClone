@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     get '/users/:userId/posts' => 'users#get_user_posts'
     resources :profile, only: [:show, :update]
     resources :posts, only: [:index, :show, :create, :update, :destroy]
+
+    resources :likes, only: [:index, :show, :create, :destroy]
+
     # resources :follows, only: [:create, :destroy]
     post '/followers' => 'follows#create'
     get '/followers' => 'follows#followers'

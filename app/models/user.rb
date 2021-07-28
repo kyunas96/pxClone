@@ -68,4 +68,6 @@ class User < ApplicationRecord
     foreign_key: :poster_id,
     class_name: :Post
 
+  has_many :likes, dependent: :destroy
+
 end

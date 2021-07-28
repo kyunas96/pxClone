@@ -6801,17 +6801,6 @@ var Feed = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "fetchData",
-    value: function fetchData() {// const newItems = [
-      //   <Image post={{ url: 'assets/img1' }} />,
-      //   <Image post={{ url: 'assets/img2' }} />,
-      //   <Image post={{ url: 'assets/img3' }} />
-      // ]
-      // this.setState(prevState => ({
-      //   items: prevState.items.concat(newItems)
-      // }), console.log(this.state))
-    }
-  }, {
     key: "render",
     value: function render() {
       var breakpointColumnsObj = {
@@ -6820,7 +6809,6 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         700: 2,
         500: 1
       };
-      console.log(this.props);
       var images = [];
 
       if (this.props.posts !== null) {
@@ -6981,37 +6969,9 @@ var Image = function Image(props) {
 /*!*************************************************!*\
   !*** ./frontend/components/feed/imageHover.jsx ***!
   \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
- // props
-// 1. user pertaining to post
-// 2. the post id
-// 3. the profile image of the user that posted the
-//    the image
-
-var ImageHover = function ImageHover(props) {
-  // const likeImage = postId => {
-  // }
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "image-hover"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "image-hover-top"
-  }, props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "image-hover-bottom"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "hover-user"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, props.post.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "hover-interaction"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Like"))));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageHover);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/KRY/Documents/App Academy/pxClone/frontend/components/feed/imageHover.jsx: JSX attributes must only be assigned a non-empty expression. (32:28)\n\n\u001b[0m \u001b[90m 30 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 31 |\u001b[39m         \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"hover-interaction\"\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 |\u001b[39m           \u001b[33m<\u001b[39m\u001b[33mLikeButton\u001b[39m liked\u001b[33m=\u001b[39m{} \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 33 |\u001b[39m         \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 35 |\u001b[39m     \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n    at Object._raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:810:17)\n    at Object.raiseWithData (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:803:17)\n    at Object.raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:764:17)\n    at Object.jsxParseAttributeValue (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5120:16)\n    at Object.jsxParseAttribute (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5169:46)\n    at Object.jsxParseOpeningElementAfterName (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5189:28)\n    at Object.jsxParseOpeningElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5182:17)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5214:33)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5230:32)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5230:32)");
 
 /***/ }),
 

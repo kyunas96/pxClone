@@ -22,17 +22,6 @@ class Feed extends React.Component {
     }
   }
 
-  fetchData() {
-    // const newItems = [
-    //   <Image post={{ url: 'assets/img1' }} />,
-    //   <Image post={{ url: 'assets/img2' }} />,
-    //   <Image post={{ url: 'assets/img3' }} />
-    // ]
-    // this.setState(prevState => ({
-    //   items: prevState.items.concat(newItems)
-    // }), console.log(this.state))
-  }
-
   render() {
     const breakpointColumnsObj = {
       default: 4,
@@ -40,7 +29,6 @@ class Feed extends React.Component {
       700: 2,
       500: 1,
     };
-    console.log(this.props);
 
     let images = [];
 
