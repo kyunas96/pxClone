@@ -6969,9 +6969,81 @@ var Image = function Image(props) {
 /*!*************************************************!*\
   !*** ./frontend/components/feed/imageHover.jsx ***!
   \*************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/KRY/Documents/App Academy/pxClone/frontend/components/feed/imageHover.jsx: JSX attributes must only be assigned a non-empty expression. (32:28)\n\n\u001b[0m \u001b[90m 30 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 31 |\u001b[39m         \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"hover-interaction\"\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 32 |\u001b[39m           \u001b[33m<\u001b[39m\u001b[33mLikeButton\u001b[39m liked\u001b[33m=\u001b[39m{} \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 33 |\u001b[39m         \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 35 |\u001b[39m     \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n    at Object._raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:810:17)\n    at Object.raiseWithData (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:803:17)\n    at Object.raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:764:17)\n    at Object.jsxParseAttributeValue (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5120:16)\n    at Object.jsxParseAttribute (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5169:46)\n    at Object.jsxParseOpeningElementAfterName (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5189:28)\n    at Object.jsxParseOpeningElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5182:17)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5214:33)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5230:32)\n    at Object.jsxParseElementAt (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:5230:32)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _likeButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./likeButton */ "./frontend/components/feed/likeButton.jsx");
+
+
+ // props
+// 1. user pertaining to post
+// 2. the post id
+// 3. the profile image of the user that posted the
+//
+// to do:
+// 1. this component will need access to the post API in order to be able to
+// pass the liked image to the backend
+
+var ImageHover = function ImageHover(props) {
+  // const likeImage = postId => {
+  // }
+  var linkToUser = "users/".concat(props.posterId, "/profile");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover-top"
+  }, props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "image-hover-bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "hover-user"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "hover-interaction"
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageHover);
+
+/***/ }),
+
+/***/ "./frontend/components/feed/likeButton.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/feed/likeButton.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _liked_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./liked.svg */ "./frontend/components/feed/liked.svg");
+/* harmony import */ var _liked_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_liked_svg__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _unliked_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unliked.svg */ "./frontend/components/feed/unliked.svg");
+/* harmony import */ var _unliked_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_unliked_svg__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var LikeButton = function LikeButton(props) {
+  var postLike = function postLike(likedPostId) {};
+
+  var heartIcon = props.liked ? (_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (_unliked_svg__WEBPACK_IMPORTED_MODULE_2___default());
+  console.log("button"); // console.log(likeButton(0, 0, 0));
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "like-button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: heartIcon
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LikeButton);
 
 /***/ }),
 
@@ -47690,6 +47762,26 @@ if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ "./node_modules/scheduler/cjs/scheduler-tracing.development.js");
 }
 
+
+/***/ }),
+
+/***/ "./frontend/components/feed/liked.svg":
+/*!********************************************!*\
+  !*** ./frontend/components/feed/liked.svg ***!
+  \********************************************/
+/***/ ((module) => {
+
+module.exports = "data:image/svg+xml,%3csvg fill='rgb(220, 0, 0)' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3e %3cpath d='M376 30c-27.783 0-53.255 8.804-75.707 26.168-21.525 16.647-35.856 37.85-44.293 53.268-8.437-15.419-22.768-36.621-44.293-53.268C189.255 38.804 163.783 30 136 30 58.468 30 0 93.417 0 177.514c0 90.854 72.943 153.015 183.369 247.118 18.752 15.981 40.007 34.095 62.099 53.414C248.38 480.596 252.12 482 256 482s7.62-1.404 10.532-3.953c22.094-19.322 43.348-37.435 62.111-53.425C439.057 330.529 512 268.368 512 177.514 512 93.417 453.532 30 376 30z' /%3e %3c/svg%3e"
+
+/***/ }),
+
+/***/ "./frontend/components/feed/unliked.svg":
+/*!**********************************************!*\
+  !*** ./frontend/components/feed/unliked.svg ***!
+  \**********************************************/
+/***/ ((module) => {
+
+module.exports = "data:image/svg+xml,%3csvg fill='rgb(255, 255, 255)' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3e %3cpath stroke='white' stroke-width='5' d='M376 30c-27.783 0-53.255 8.804-75.707 26.168-21.525 16.647-35.856 37.85-44.293 53.268-8.437-15.419-22.768-36.621-44.293-53.268C189.255 38.804 163.783 30 136 30 58.468 30 0 93.417 0 177.514c0 90.854 72.943 153.015 183.369 247.118 18.752 15.981 40.007 34.095 62.099 53.414C248.38 480.596 252.12 482 256 482s7.62-1.404 10.532-3.953c22.094-19.322 43.348-37.435 62.111-53.425C439.057 330.529 512 268.368 512 177.514 512 93.417 453.532 30 376 30z' /%3e %3c/svg%3e"
 
 /***/ }),
 

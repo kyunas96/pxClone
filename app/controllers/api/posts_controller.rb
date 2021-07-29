@@ -3,6 +3,9 @@ class Api::PostsController < ApplicationController
   def index 
     @followed_users_id = Follow.where(follower: current_user.id).map(&:followed_user_id)
     @posts = Post.where(:poster_id => @followed_users_id).order(:created_at)
+    @liked_posts = Like.where(:user_id => current_user.id).map(&:post_id)
+
+    p "feed posts " + @liked_posts.inspect
 
     render 'api/posts/index'
   end

@@ -1,5 +1,6 @@
 import React from "react";
 import LikeButton from "./likeButton";
+import { Link } from "react-router-dom";
 
 // props
 // 1. user pertaining to post
@@ -16,20 +17,23 @@ const ImageHover = (props) => {
 
   // }
 
+  const linkToUser = `users/${props.posterId}/profile`;
+
   return (
     <div className="image-hover">
       <div className="image-hover-top">{props.post.title}</div>
       <div className="image-hover-bottom">
         <div className="hover-user">
-          <span>{props.post.username}</span>
           {/* <img>
             Will store the user image
             for the user that posted the image
             </img> */}
+          {/* <Link to={`users/${props.posterId}/profile`}>
+            {props.post.username}
+          </Link> */}
         </div>
-
         <div className="hover-interaction">
-          <LikeButton liked={} />
+          {/* <LikeButton liked={} /> */}
         </div>
       </div>
     </div>
