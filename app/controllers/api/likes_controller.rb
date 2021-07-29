@@ -10,19 +10,19 @@ class Api::LikesController < ApplicationController
   end
 
   def create
-    @like = Like.new(post_id: params[:post_id], user_id: current_user.id)
+    @like = Like.new(post_id: params[:id], user_id: current_user.id)
     if @like.save
-      render json: params[:post_id]
+      render json: params[:id]
     else
       render json: @like.errors.full_messages.join(', ')
     end
   end
 
   def destroy
-    @like = current_user.likes.find(params[:post_id])
+    @like = current_user.likes.find_by(post_id: params[:id])
 
     if @like.destroy
-      render json: params[:post_id]
+      render json: params[:id]
     else
       render json: @like.errors.full_messages.join(', ')
     end

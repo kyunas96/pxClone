@@ -2,16 +2,18 @@ import React from "react";
 import ImageHover from "./imageHover";
 import { Link } from "react-router-dom";
 
-const Image = (props) => {
-  console.log("image", props)
+const Image = ({ post }) => {
+  console.log("image", post);
   return (
     <div className="image-container">
-      <Link to={`/posts/${props.post.id}`}>
-        <img src={props.post.photoUrl}></img>
+      <Link to={`/posts/${post.id}`}>
+        <img src={post.photoUrl}></img>
         <ImageHover
-          post={{ title: props.post.title, username: props.post.poster }}
-        >
-        </ImageHover>
+          title={post.title}
+          username={post.poster}
+          postId={post.id}
+          liked={post.liked}
+        ></ImageHover>
         <div className="shadow"></div>
       </Link>
     </div>

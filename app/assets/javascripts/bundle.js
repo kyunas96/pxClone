@@ -6803,6 +6803,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-infinite-scroll-component */ "./node_modules/react-infinite-scroll-component/dist/index.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -6858,6 +6864,8 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var breakpointColumnsObj = {
         "default": 4,
         1100: 3,
@@ -6869,8 +6877,11 @@ var Feed = /*#__PURE__*/function (_React$Component) {
       if (this.props.posts !== null) {
         // console.log(JSON.stringify(this.props.posts))
         Object.values(this.props.posts).forEach(function (post, i) {
+          var liked = _this.props.likedPosts.has(post.id) ? true : false;
           images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-            post: post,
+            post: _objectSpread(_objectSpread({}, post), {}, {
+              liked: liked
+            }),
             key: i
           }));
         });
@@ -7004,19 +7015,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Image = function Image(props) {
-  console.log("image", props);
+var Image = function Image(_ref) {
+  var post = _ref.post;
+  console.log("image", post);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/posts/".concat(props.post.id)
+    to: "/posts/".concat(post.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: props.post.photoUrl
+    src: post.photoUrl
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_imageHover__WEBPACK_IMPORTED_MODULE_1__.default, {
-    post: {
-      title: props.post.title,
-      username: props.post.poster
-    }
+    title: post.title,
+    username: post.poster,
+    postId: post.id,
+    liked: post.liked
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "shadow"
   })));
@@ -7038,7 +7050,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _likeButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./likeButton */ "./frontend/components/feed/likeButton.jsx");
+/* harmony import */ var _likeButtonContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./likeButtonContainer */ "./frontend/components/feed/likeButtonContainer.js");
 
 
  // props
@@ -7050,21 +7062,29 @@ __webpack_require__.r(__webpack_exports__);
 // 1. this component will need access to the post API in order to be able to
 // pass the liked image to the backend
 
-var ImageHover = function ImageHover(props) {
+var ImageHover = function ImageHover(_ref) {
+  var title = _ref.title,
+      username = _ref.username,
+      postId = _ref.postId,
+      posterId = _ref.posterId,
+      liked = _ref.liked;
   // const likeImage = postId => {
   // }
-  var linkToUser = "users/".concat(props.posterId, "/profile");
+  var linkToUser = "users/".concat(posterId, "/profile");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-hover"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-hover-top"
-  }, props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-hover-bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "hover-user"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "hover-interaction"
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_likeButtonContainer__WEBPACK_IMPORTED_MODULE_1__.default, {
+    liked: liked,
+    postId: postId
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ImageHover);
@@ -7092,19 +7112,67 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LikeButton = function LikeButton(props) {
-  var postLike = function postLike(likedPostId) {};
-
+  console.log("likeButton", props);
   var heartIcon = props.liked ? (_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (_unliked_svg__WEBPACK_IMPORTED_MODULE_2___default());
+  var action = props.liked ? function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    props.removeLike(props.postId);
+  } : function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    props.addLike(props.postId);
+  };
   console.log("button"); // console.log(likeButton(0, 0, 0));
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "like-button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: heartIcon
+    src: heartIcon,
+    onClick: action
   }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LikeButton);
+
+/***/ }),
+
+/***/ "./frontend/components/feed/likeButtonContainer.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/feed/likeButtonContainer.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_likeActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/likeActions */ "./frontend/actions/likeActions.js");
+/* harmony import */ var _likeButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./likeButton */ "./frontend/components/feed/likeButton.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    liked: state.entities.likedPosts.has(ownProps.postId)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    addLike: function addLike(postId) {
+      return dispatch((0,_actions_likeActions__WEBPACK_IMPORTED_MODULE_1__.addLike)(postId));
+    },
+    removeLike: function removeLike(postId) {
+      return dispatch((0,_actions_likeActions__WEBPACK_IMPORTED_MODULE_1__.removeLike)(postId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_likeButton__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -9385,6 +9453,7 @@ __webpack_require__.r(__webpack_exports__);
 var LikesReducer = function LikesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Set();
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("likes reducer", action);
   var newState = new Set(state);
 
   switch (action.type) {
@@ -9395,15 +9464,15 @@ var LikesReducer = function LikesReducer() {
       return newState;
 
     case _actions_likeActions_js__WEBPACK_IMPORTED_MODULE_0__.ADD_LIKE:
-      if (!newState.has(action.like[0])) {
-        newState.add(action.like[0]);
+      if (!newState.has(action.like)) {
+        newState.add(action.like);
       }
 
       return newState;
 
     case _actions_likeActions_js__WEBPACK_IMPORTED_MODULE_0__.REMOVE_LIKE:
-      if (newState.has(action.like[0])) {
-        newState["delete"](action.like[0]);
+      if (newState.has(action.like)) {
+        newState["delete"](action.like);
       }
 
       return newState;
@@ -9890,7 +9959,10 @@ var fetchLikes = function fetchLikes() {
 var addLike = function addLike(postId) {
   return $.ajax({
     method: 'POST',
-    url: "/api/likes/".concat(postId)
+    url: '/api/likes/',
+    data: {
+      id: postId
+    }
   });
 };
 var deleteLike = function deleteLike(postId) {

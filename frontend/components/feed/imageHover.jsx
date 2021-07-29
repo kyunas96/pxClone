@@ -1,5 +1,5 @@
 import React from "react";
-import LikeButton from "./likeButton";
+import LikeButton from "./likeButtonContainer";
 import { Link } from "react-router-dom";
 
 // props
@@ -12,16 +12,16 @@ import { Link } from "react-router-dom";
 // 1. this component will need access to the post API in order to be able to
 // pass the liked image to the backend
 
-const ImageHover = (props) => {
+const ImageHover = ({title, username, postId, posterId, liked}) => {
   // const likeImage = postId => {
 
   // }
 
-  const linkToUser = `users/${props.posterId}/profile`;
+  const linkToUser = `users/${posterId}/profile`;
 
   return (
     <div className="image-hover">
-      <div className="image-hover-top">{props.post.title}</div>
+      <div className="image-hover-top">{title}</div>
       <div className="image-hover-bottom">
         <div className="hover-user">
           {/* <img>
@@ -33,7 +33,7 @@ const ImageHover = (props) => {
           </Link> */}
         </div>
         <div className="hover-interaction">
-          {/* <LikeButton liked={} /> */}
+          <LikeButton liked={liked} postId={postId} />
         </div>
       </div>
     </div>

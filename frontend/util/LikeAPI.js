@@ -8,7 +8,10 @@ export const fetchLikes = () => (
 export const addLike = (postId) => (
   $.ajax({
     method: 'POST',
-    url: `/api/likes/${postId}`
+    url: '/api/likes/',
+    data: {
+      id: postId
+    }
   })
 )
 
