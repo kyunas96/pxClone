@@ -1,23 +1,31 @@
 class Api::LikesController < ApplicationController
 
+  def index 
+    p "reached likes index"
+     @liked_posts = Like.where(:user_id => current_user.id).map(&:post_id)
+
+     p "liked posts" + @liked_posts.inspect
+
+    render json: @liked_posts
+  end
+
   def create
-    params[:like][:user_id] = current_user.id
-    @like = Like.new(like_params)
+    @like = Like.new(post_id: params[:post_id], user_id: current_user.id)
     if @like.save
-      flash[:success] = 'Thanks for liking!'
+      render json: params[:post_id]
     else
-      flash[:alert] = @like.errors.full_messages.join(', ')
+      render json: @like.errors.full_messages.join(', ')
     end
   end
 
   def destroy
-    @like = current_user.likes.find(params[:id])``
-    @like.destroy
-  end
+    @like = current_user.likes.find(params[:post_id])
 
-  protected
-  def like_params
-    params.require(:like).permit(:value, :user_id, :reference_id, :reference_type)
+    if @like.destroy
+      render json: params[:post_id]
+    else
+      render json: @like.errors.full_messages.join(', ')
+    end
   end
 
 end

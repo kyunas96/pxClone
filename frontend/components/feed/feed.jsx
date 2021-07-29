@@ -12,6 +12,7 @@ class Feed extends React.Component {
 
   componentDidMount() {
     this.props.getFeedItems(this.props.userId);
+    this.props.fetchLikedPosts()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
