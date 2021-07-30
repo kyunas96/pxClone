@@ -8057,6 +8057,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchProfile(this.props.userId);
       this.props.fetchProfilePosts(this.props.userId);
+      this.props.fetchLikedPosts();
     }
   }, {
     key: "componentDidUpdate",
@@ -8096,6 +8097,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
 /* harmony import */ var _actions_profileActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profileActions */ "./frontend/actions/profileActions.js");
+/* harmony import */ var _actions_likeActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/likeActions */ "./frontend/actions/likeActions.js");
+
 
 
 
@@ -8113,6 +8116,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchProfilePosts: function fetchProfilePosts(userId) {
       return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfilePosts)(userId));
+    },
+    fetchLikedPosts: function fetchLikedPosts() {
+      return dispatch((0,_actions_likeActions__WEBPACK_IMPORTED_MODULE_3__.fetchLikedPosts)());
     }
   };
 };
@@ -9276,10 +9282,11 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
         Object.values(this.props.posts).forEach(function (post, i) {
           var liked;
 
-          if (_this2.props.currentUser) {
+          if (_this2.props.currentUser === true) {
             liked = null;
           } else {
-            liked = post.liked;
+            liked = _this2.props.likedPosts.has(post.id) ? true : false;
+            console.log("liked", liked);
           }
 
           images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -9334,15 +9341,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: currentUser,
     userId: ownProps.userId,
-    posts: state.ui.profilePosts
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    fetchProfilePosts: function fetchProfilePosts(userId) {
-      return dispatch((0,_actions_profileActions__WEBPACK_IMPORTED_MODULE_2__.getProfilePosts)(userId));
-    }
+    posts: state.ui.profilePosts,
+    likedPosts: state.entities.likedPosts
   };
 };
 

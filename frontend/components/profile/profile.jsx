@@ -10,6 +10,7 @@ class Profile extends React.Component{
   componentDidMount(){
     this.props.fetchProfile(this.props.userId)
     this.props.fetchProfilePosts(this.props.userId)
+    this.props.fetchLikedPosts()
   }
 
   componentDidUpdate(){

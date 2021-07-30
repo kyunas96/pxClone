@@ -9,12 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     currentUser,
     userId: ownProps.userId,
     posts: state.ui.profilePosts,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchProfilePosts: (userId) => dispatch(getProfilePosts(userId)),
+    likedPosts: state.entities.likedPosts,
   };
 };
 
