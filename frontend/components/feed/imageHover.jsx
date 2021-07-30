@@ -2,10 +2,8 @@ import React from "react";
 import LikeButton from "./likeButtonContainer";
 import { Link } from "react-router-dom";
 
-const ImageHover = ({title, username, postId, posterId, liked}) => {
-  // const likeImage = postId => {
-
-  // }
+const ImageHover = ({ title, username, postId, posterId, liked }) => {
+  console.log("imageHover", posterId)
 
   const linkToUser = `users/${posterId}/profile`;
 
@@ -14,6 +12,7 @@ const ImageHover = ({title, username, postId, posterId, liked}) => {
       <div className="image-hover-top">{title}</div>
       <div className="image-hover-bottom">
         <div className="hover-user">
+          <Link to={`/users/${posterId}/profile`}>{username}</Link>
           {/* <img>
             Will store the user image
             for the user that posted the image

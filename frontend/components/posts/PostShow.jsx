@@ -1,4 +1,6 @@
 import React from "react";
+import PostShowInteractions from "./postShowInteractions";
+import { Link } from "react-router-dom";
 
 class PostShow extends React.Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class PostShow extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log("post show", this.props);
     const postItem = this.props.post ? this.props.post.title : null;
 
     if (this.props.post) {
@@ -50,8 +52,13 @@ class PostShow extends React.Component {
             <img src={this.props.post.photoUrl} />
           </div>
           <div className="post-show-description">
+            <PostShowInteractions />
             <h3>{this.props.post.title}</h3>
-            <h5>by {this.props.post.poster}</h5>
+            <h5>
+              by <Link to={`users/${this.props.post.poster}/profile`}>
+                {this.props.post.poster}
+              </Link>
+            </h5>
           </div>
         </div>
       );

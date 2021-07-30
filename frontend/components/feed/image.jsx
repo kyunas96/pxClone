@@ -11,6 +11,7 @@ const Image = ({ post }) => {
         <ImageHover
           title={post.title}
           username={post.poster}
+          posterId={post.posterId}
           postId={post.id}
           liked={post.liked}
         ></ImageHover>
