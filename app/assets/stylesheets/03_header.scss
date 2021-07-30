@@ -15,11 +15,11 @@
   box-sizing: border-box;
   background-color: white;
 
-  & *:first-child{
+  & > *:first-child{
     margin-left: 2.5%;
   }
 
-  & *:last-child{
+  & > *:last-child{
     margin-right: 2.5%;
   }
 }

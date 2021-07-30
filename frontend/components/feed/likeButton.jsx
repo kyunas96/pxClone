@@ -3,6 +3,9 @@ import LikedIcon from "./liked.svg";
 import UnlikedIcon from "./unliked.svg";
 
 const LikeButton = (props) => {
+  if(props.liked === null){
+    return null;
+  }
   console.log("likeButton", props);
   const heartIcon = props.liked ? LikedIcon : UnlikedIcon;
 

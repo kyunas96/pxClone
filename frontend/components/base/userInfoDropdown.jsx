@@ -1,13 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router";
 
 class UserInfoDropdown extends React.Component {
   constructor(props) {
     props;
     super(props);
+    this.logoutAction = this.logoutAction.bind(this);
+  }
+
+  logoutAction(e){
+    e.preventDefault();
+    this.props.logout()
   }
 
   render() {
+    if(!this.props.currentUser.id){
+      return <Redirect to="/" />
+    }
     return (
       <div className="user-info-drowpdown">
         <div onClick={this.props.toggleDropdown}>
@@ -15,7 +25,7 @@ class UserInfoDropdown extends React.Component {
             Profile
           </Link>
         </div>
-        <div onClick={this.props.logout}>Logout</div>
+        <div onClick={this.logoutAction}>Logout</div>
       </div>
     );
   }

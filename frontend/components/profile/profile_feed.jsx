@@ -33,7 +33,7 @@ class ProfileFeed extends React.Component {
   // }
 
   render() {
-    console.log("feedRender", this.props.posts);
+    console.log("feedRender", this.props);
     const breakpointColumnsObj = {
       default: 4,
       1100: 3,
@@ -46,7 +46,13 @@ class ProfileFeed extends React.Component {
     if (this.props.posts !== null) {
       // console.log(JSON.stringify(this.props.posts))
       Object.values(this.props.posts).forEach((post, i) => {
-        images.push(<Image post={post} key={i} />);
+        let liked;
+        if(this.props.currentUser){
+          liked = null;
+        }else{
+          liked = post.liked;
+        }
+        images.push(<Image post={{...post, liked}} key={i} like/>);
       });
     }
 

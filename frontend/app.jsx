@@ -26,6 +26,7 @@ const App = (props) => {
             component={ProfileEdit}
           />
           <Route path="/users/:userId/profile" component={ProfileContainer} />
+          
           <Route path="/post/create" component={CreatePostForm} />
           <Route path="/posts/:postId" component={PostShowContainer} />
           {/* <Route exact path='/' component={IndexComponent} /> */}

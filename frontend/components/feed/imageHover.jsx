@@ -2,16 +2,6 @@ import React from "react";
 import LikeButton from "./likeButtonContainer";
 import { Link } from "react-router-dom";
 
-// props
-// 1. user pertaining to post
-// 2. the post id
-// 3. the profile image of the user that posted the
-//
-
-// to do:
-// 1. this component will need access to the post API in order to be able to
-// pass the liked image to the backend
-
 const ImageHover = ({title, username, postId, posterId, liked}) => {
   // const likeImage = postId => {
 

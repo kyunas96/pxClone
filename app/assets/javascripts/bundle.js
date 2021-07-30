@@ -6723,7 +6723,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6749,29 +6750,46 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
   _inherits(UserInfoDropdown, _React$Component);
 
   var _super = _createSuper(UserInfoDropdown);
 
   function UserInfoDropdown(props) {
+    var _this;
+
     _classCallCheck(this, UserInfoDropdown);
 
     props;
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.logoutAction = _this.logoutAction.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(UserInfoDropdown, [{
+    key: "logoutAction",
+    value: function logoutAction(e) {
+      e.preventDefault();
+      this.props.logout();
+    }
+  }, {
     key: "render",
     value: function render() {
+      if (!this.props.currentUser.id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__.Redirect, {
+          to: "/"
+        });
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-info-drowpdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         onClick: this.props.toggleDropdown
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/users/".concat(this.props.currentUser.id, "/profile")
       }, "Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        onClick: this.props.logout
+        onClick: this.logoutAction
       }, "Logout"));
     }
   }]);
@@ -7053,14 +7071,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _likeButtonContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./likeButtonContainer */ "./frontend/components/feed/likeButtonContainer.js");
 
 
- // props
-// 1. user pertaining to post
-// 2. the post id
-// 3. the profile image of the user that posted the
-//
-// to do:
-// 1. this component will need access to the post API in order to be able to
-// pass the liked image to the backend
+
 
 var ImageHover = function ImageHover(_ref) {
   var title = _ref.title,
@@ -7112,6 +7123,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LikeButton = function LikeButton(props) {
+  if (props.liked === null) {
+    return null;
+  }
+
   console.log("likeButton", props);
   var heartIcon = props.liked ? (_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (_unliked_svg__WEBPACK_IMPORTED_MODULE_2___default());
   var action = props.liked ? function (e) {
@@ -7155,12 +7170,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    liked: state.entities.likedPosts.has(ownProps.postId)
-  };
-};
-
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     addLike: function addLike(postId) {
@@ -7172,7 +7181,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_likeButton__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(null, mapDispatchToProps)(_likeButton__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -9182,6 +9191,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_masonry_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-masonry-css */ "./node_modules/react-masonry-css/dist/react-masonry-css.module.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -9245,7 +9260,9 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
   _createClass(ProfileFeed, [{
     key: "render",
     value: function render() {
-      console.log("feedRender", this.props.posts);
+      var _this2 = this;
+
+      console.log("feedRender", this.props);
       var breakpointColumnsObj = {
         "default": 4,
         1100: 3,
@@ -9257,9 +9274,20 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
       if (this.props.posts !== null) {
         // console.log(JSON.stringify(this.props.posts))
         Object.values(this.props.posts).forEach(function (post, i) {
+          var liked;
+
+          if (_this2.props.currentUser) {
+            liked = null;
+          } else {
+            liked = post.liked;
+          }
+
           images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-            post: post,
-            key: i
+            post: _objectSpread(_objectSpread({}, post), {}, {
+              liked: liked
+            }),
+            key: i,
+            like: true
           }));
         });
       }
@@ -9302,8 +9330,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("params", state.ui.profilePosts);
+  var currentUser = state.session.currentUser.id === parseInt(ownProps.userId) ? true : false;
   return {
+    currentUser: currentUser,
     userId: ownProps.userId,
     posts: state.ui.profilePosts
   };
