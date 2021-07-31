@@ -6009,34 +6009,19 @@ var toggleFollow = function toggleFollow(following, profileId) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "RECEIVE_LIKES": () => (/* binding */ RECEIVE_LIKES),
-/* harmony export */   "ADD_LIKE": () => (/* binding */ ADD_LIKE),
-/* harmony export */   "REMOVE_LIKE": () => (/* binding */ REMOVE_LIKE),
-/* harmony export */   "fetchLikedPosts": () => (/* binding */ fetchLikedPosts),
+/* harmony export */   "UPDATE_LIKE": () => (/* binding */ UPDATE_LIKE),
 /* harmony export */   "addLike": () => (/* binding */ addLike),
 /* harmony export */   "removeLike": () => (/* binding */ removeLike)
 /* harmony export */ });
 /* harmony import */ var _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/LikeAPI */ "./frontend/util/LikeAPI.js");
 
-var RECEIVE_LIKES = "RECEIVE_LIKES";
-var ADD_LIKE = "ADD_LIKE";
-var REMOVE_LIKE = "REMOVE_LIKE";
-var fetchLikedPosts = function fetchLikedPosts() {
-  return function (dispatch) {
-    return _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__.fetchLikes().then(function (data) {
-      dispatch({
-        type: RECEIVE_LIKES,
-        likes: data
-      });
-    });
-  };
-};
+var UPDATE_LIKE = "UPDATE_LIKE";
 var addLike = function addLike(postId) {
   return function (dispatch) {
     return _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__.addLike(postId).then(function (data) {
       dispatch({
-        type: ADD_LIKE,
-        like: data
+        type: UPDATE_LIKE,
+        post: data
       });
     });
   };
@@ -6045,8 +6030,8 @@ var removeLike = function removeLike(postId) {
   return function (dispatch) {
     return _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__.deleteLike(postId).then(function (data) {
       dispatch({
-        type: REMOVE_LIKE,
-        like: data
+        type: UPDATE_LIKE,
+        post: data
       });
     });
   };
@@ -6821,12 +6806,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-infinite-scroll-component */ "./node_modules/react-infinite-scroll-component/dist/index.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -6868,7 +6847,6 @@ var Feed = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.getFeedItems(this.props.userId);
-      this.props.fetchLikedPosts();
     }
   }, {
     key: "shouldComponentUpdate",
@@ -6882,8 +6860,7 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
+      console.log("feedRender", this.props);
       var breakpointColumnsObj = {
         "default": 4,
         1100: 3,
@@ -6893,13 +6870,9 @@ var Feed = /*#__PURE__*/function (_React$Component) {
       var images = [];
 
       if (this.props.posts !== null) {
-        // console.log(JSON.stringify(this.props.posts))
         Object.values(this.props.posts).forEach(function (post, i) {
-          var liked = _this.props.likedPosts.has(post.id) ? true : false;
           images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-            post: _objectSpread(_objectSpread({}, post), {}, {
-              liked: liked
-            }),
+            post: post,
             key: i
           }));
         });
@@ -6954,12 +6927,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log("feedContainer", state);
-  return {
+  var ret = {
     userId: state.session.currentUser.id,
-    posts: state.entities.posts,
-    likedPosts: state.entities.likedPosts
+    posts: state.entities.posts
   };
+  console.log("feedContainer", ret);
+  return ret;
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -6979,9 +6952,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     }),
     getFeedItems: function getFeedItems(userId) {
       return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestUsersFeed)(userId));
-    },
-    fetchLikedPosts: function fetchLikedPosts() {
-      return dispatch((0,_actions_likeActions__WEBPACK_IMPORTED_MODULE_3__.fetchLikedPosts)());
     }
   };
 };
@@ -9323,15 +9293,7 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
       if (this.props.posts !== null) {
         // console.log(JSON.stringify(this.props.posts))
         Object.values(this.props.posts).forEach(function (post, i) {
-          var liked;
-
-          if (_this2.props.currentUser === true) {
-            liked = null;
-          } else {
-            liked = _this2.props.likedPosts.has(post.id) ? true : false;
-            console.log("liked", liked);
-          }
-
+          var liked = _this2.props.currentUser ? null : post.liked;
           images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
             post: _objectSpread(_objectSpread({}, post), {}, {
               liked: liked
@@ -9525,8 +9487,8 @@ __webpack_require__.r(__webpack_exports__);
 var LikesReducer = function LikesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Set();
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("likes reducer", action);
-  var newState = new Set(state);
+  console.log("likes reducer", action.likes);
+  var newState = new Set(Array.from(state));
 
   switch (action.type) {
     case _actions_likeActions_js__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_LIKES:
@@ -9534,20 +9496,16 @@ var LikesReducer = function LikesReducer() {
         return newState.add(like);
       });
       return newState;
-
-    case _actions_likeActions_js__WEBPACK_IMPORTED_MODULE_0__.ADD_LIKE:
-      if (!newState.has(action.like)) {
-        newState.add(action.like);
-      }
-
-      return newState;
-
-    case _actions_likeActions_js__WEBPACK_IMPORTED_MODULE_0__.REMOVE_LIKE:
-      if (newState.has(action.like)) {
-        newState["delete"](action.like);
-      }
-
-      return newState;
+    // case ADD_LIKE:
+    //   if (!newState.has(action.like)) {
+    //     newState.add(action.like);
+    //   }
+    //   return newState;
+    // case REMOVE_LIKE:
+    //   if (newState.has(action.like)) {
+    //     newState.delete(action.like);
+    //   }
+    //   return newState;
 
     default:
       return state;
@@ -9570,11 +9528,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
+/* harmony import */ var _actions_likeActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/likeActions */ "./frontend/actions/likeActions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -9594,6 +9554,12 @@ var PostsReducer = function PostsReducer() {
 
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.UPDATE_POST:
       return _objectSpread(_objectSpread({}, state), action.post);
+
+    case _actions_likeActions__WEBPACK_IMPORTED_MODULE_1__.UPDATE_LIKE:
+      var post = state[action.post.id];
+      post.liked = action.post.liked;
+      return _objectSpread(_objectSpread({}, state), post);
+      return {};
 
     default:
       return state;
@@ -9733,11 +9699,13 @@ __webpack_require__.r(__webpack_exports__);
 var sessionErrorsReducer = function sessionErrorsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("sessionErrorsReducer", action);
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
-      return action.payload.errors;
+      // return action.payload.errors;
+      return state;
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.RESET_SESSION_ERRORS:
       return {};
@@ -9766,8 +9734,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var checkActionForUser = function checkActionForUser(_ref) {
-  var payload = _ref.payload;
-  return payload.user.id !== null && payload.user.username.length > 0;
+  var currentUser = _ref.currentUser;
+  console.log("check for user", currentUser);
+  return currentUser.id !== null && currentUser.username.length > 0;
 };
 
 var nullUser = {
@@ -9782,11 +9751,8 @@ var sessionReducer = function sessionReducer() {
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
-      if (checkActionForUser(action)) {
-        return {
-          loggedIn: true,
-          currentUser: action.payload.user
-        };
+      if (checkActionForUser(action.user)) {
+        return action.user;
       } else {
         return nullUser;
       }
@@ -9916,17 +9882,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
   if (window.currentUser !== undefined) {
     return {
-      session: {
-        loggedIn: true,
-        currentUser: window.currentUser
-      }
+      loggedIn: true,
+      currentUser: window.currentUser
     };
   } else {
     return {
-      session: {
-        loggedIn: false,
-        currentUser: null
-      }
+      loggedIn: false,
+      currentUser: null
     };
   }
 });
@@ -50908,10 +50870,10 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root");
-  var localState = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)();
+  var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)();
   _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch({
     type: _actions_sessionActions__WEBPACK_IMPORTED_MODULE_7__.SESSION_LOGIN,
-    localState: localState
+    user: user
   });
   window.store = _store_store__WEBPACK_IMPORTED_MODULE_4__.store;
   window.dispatch = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch;

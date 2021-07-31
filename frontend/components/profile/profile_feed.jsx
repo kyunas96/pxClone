@@ -46,13 +46,7 @@ class ProfileFeed extends React.Component {
     if (this.props.posts !== null) {
       // console.log(JSON.stringify(this.props.posts))
       Object.values(this.props.posts).forEach((post, i) => {
-        let liked;
-        if(this.props.currentUser === true){
-          liked = null;
-        }else{
-          liked = this.props.likedPosts.has(post.id) ? true : false;
-          console.log("liked", liked)
-        }
+        const liked = this.props.currentUser ? null : post.liked;
         images.push(<Image post={{...post, liked}} key={i} like/>);
       });
     }

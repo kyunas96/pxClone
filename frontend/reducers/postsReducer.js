@@ -1,5 +1,5 @@
 import { RECEIVE_POST, RECEIVE_POSTS, UPDATE_POST } from '../actions/postActions';
-
+import { UPDATE_LIKE } from '../actions/likeActions';
 const PostsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type){
@@ -19,6 +19,17 @@ const PostsReducer = (state = {}, action) => {
         ...state,
         ...action.post
       }
+    case UPDATE_LIKE:
+      const post = state[action.post.id];
+      post.liked = action.post.liked
+      return {
+        ...state, 
+        ...post
+      }
+    return {
+
+    }
+
     default:
       return state;
   }

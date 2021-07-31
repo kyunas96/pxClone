@@ -12,7 +12,6 @@ class Feed extends React.Component {
 
   componentDidMount() {
     this.props.getFeedItems(this.props.userId);
-    this.props.fetchLikedPosts()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -24,6 +23,7 @@ class Feed extends React.Component {
   }
 
   render() {
+    console.log("feedRender", this.props)
     const breakpointColumnsObj = {
       default: 4,
       1100: 3,
@@ -34,10 +34,8 @@ class Feed extends React.Component {
     let images = [];
 
     if (this.props.posts !== null) {
-      // console.log(JSON.stringify(this.props.posts))
       Object.values(this.props.posts).forEach((post, i) => {
-        const liked = this.props.likedPosts.has(post.id) ? true : false;
-        images.push(<Image post={{...post, liked}} key={i} />);
+        images.push(<Image post={post} key={i} />);
       });
     }
 

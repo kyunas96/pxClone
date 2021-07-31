@@ -4,18 +4,18 @@ import { requestUsersFeed } from "../../actions/postActions";
 import { fetchLikedPosts } from "../../actions/likeActions";
 
 const mapStateToProps = (state) => {
-  console.log("feedContainer", state)
-  return {
+  const ret = {
     userId: state.session.currentUser.id,
-    posts: state.entities.posts,
-    likedPosts: state.entities.likedPosts
+    posts: state.entities.posts
   };
+  console.log("feedContainer", ret)
+  
+  return ret;
 };
 
 const mapDispatchToProps = (dispatch) => ({
   likePost: (postId) => dispatch(likePost(postId)),
-  getFeedItems: (userId) => dispatch(requestUsersFeed(userId)),
-  fetchLikedPosts: () => dispatch(fetchLikedPosts())
+  getFeedItems: (userId) => dispatch(requestUsersFeed(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);
