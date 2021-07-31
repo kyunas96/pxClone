@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PostShowNavigation from './postShowNavigation';
 
 /* 
 PostShowGallery:
@@ -11,16 +11,10 @@ PostShowGallery:
 
 const PostShowGallery = ({prevId, nextId, curImageURL}) => (
   <div className="post-show-gallery">
-    <div className="post-show-left">
-      <Link to={`post/${prevId}`}>
-        {/*image arrow left*/}
-      </Link>
-    </div>
-    <div className="post-show-right">
-      <Link to={`posts/${nextId}`}>
-        {/*image arrow right*/}
-      </Link>
-    </div>
+  <PostShowNavigation 
+    prevId={prevId}
+    nextId={nextId}
+  />
     <div className="post-show-image">
       <img src={curImageURL} />
     </div>

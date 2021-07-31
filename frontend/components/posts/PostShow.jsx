@@ -46,12 +46,11 @@ class PostShow extends React.Component {
     if (this.props.post) {
       return (
         <div className="post-show">
-          <div
-            className="post-show-gallery"
-            onClick={(e) => this.handleNavigation(e)}
-          >
-            <img src={this.props.post.photoUrl} />
-          </div>
+          <PostShowGallery 
+            prevId={this.props.prevPostId}
+            nextId={this.props.nextPostId}
+            curImageURL={this.props.post.photoUrl}
+          />
           <div className="post-show-description">
             <PostShowInteractions />
             <h3>{this.props.post.title}</h3>

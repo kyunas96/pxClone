@@ -7710,22 +7710,17 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       console.log("post show", this.props);
       var postItem = this.props.post ? this.props.post.title : null;
 
       if (this.props.post) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "post-show-gallery",
-          onClick: function onClick(e) {
-            return _this2.handleNavigation(e);
-          }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-          src: this.props.post.photoUrl
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowGallery__WEBPACK_IMPORTED_MODULE_2__.default, {
+          prevId: this.props.prevPostId,
+          nextId: this.props.nextPostId,
+          curImageURL: this.props.post.photoUrl
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show-description"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowInteractions__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, this.props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
           to: "users/".concat(this.props.post.poster, "/profile")
@@ -8002,7 +7997,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _postShowNavigation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postShowNavigation */ "./frontend/components/posts/postShowNavigation.jsx");
 
 
 /* 
@@ -8018,15 +8013,10 @@ var PostShowGallery = function PostShowGallery(_ref) {
       curImageURL = _ref.curImageURL;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-gallery"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "post-show-left"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "post/".concat(prevId)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "post-show-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    to: "posts/".concat(nextId)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowNavigation__WEBPACK_IMPORTED_MODULE_1__.default, {
+    prevId: prevId,
+    nextId: nextId
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-image"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: curImageURL
@@ -8065,6 +8055,76 @@ var PostShowInteractions = function PostShowInteractions(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowInteractions);
+
+/***/ }),
+
+/***/ "./frontend/components/posts/postShowNavTile.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/posts/postShowNavTile.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var PostShowNavTile = function PostShowNavTile(_ref) {
+  var link = _ref.link;
+  var style = link === undefined ? {
+    cursor: 'default'
+  } : null;
+  var checkedLink = link === undefined ? null : "/posts/".concat(link);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-nav-tile",
+    style: style
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    className: "post-show-nav-button",
+    style: style,
+    to: checkedLink
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowNavTile);
+
+/***/ }),
+
+/***/ "./frontend/components/posts/postShowNavigation.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/posts/postShowNavigation.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _postShowNavTile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postShowNavTile */ "./frontend/components/posts/postShowNavTile.jsx");
+
+
+
+
+var PostShowNavigation = function PostShowNavigation(_ref) {
+  var prevId = _ref.prevId,
+      nextId = _ref.nextId;
+  console.log("postShowNav", prevId, nextId);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-nav"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowNavTile__WEBPACK_IMPORTED_MODULE_1__.default, {
+    link: prevId
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowNavTile__WEBPACK_IMPORTED_MODULE_1__.default, {
+    link: nextId
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowNavigation);
 
 /***/ }),
 
