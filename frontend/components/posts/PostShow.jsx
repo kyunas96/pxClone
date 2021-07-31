@@ -1,5 +1,6 @@
 import React from "react";
 import PostShowInteractions from "./postShowInteractions";
+import PostShowGallery from "./postShowGallery";
 import { Link } from "react-router-dom";
 
 class PostShow extends React.Component {

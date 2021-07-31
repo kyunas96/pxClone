@@ -10,6 +10,7 @@ class Api::PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @liked = Like.where(user_id: current_user.id, post_id: params[:id])
 
     if @post 
       render :show

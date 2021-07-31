@@ -7630,7 +7630,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _postShowInteractions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postShowInteractions */ "./frontend/components/posts/postShowInteractions.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _postShowGallery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./postShowGallery */ "./frontend/components/posts/postShowGallery.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7652,6 +7653,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -7725,7 +7727,7 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
           src: this.props.post.photoUrl
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show-description"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowInteractions__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, this.props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowInteractions__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, this.props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
           to: "users/".concat(this.props.post.poster, "/profile")
         }, this.props.post.poster))));
       } else {
@@ -7952,19 +7954,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _PostShow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PostShow */ "./frontend/components/posts/PostShow.jsx");
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/postActions */ "./frontend/actions/postActions.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/Util */ "./frontend/util/Util.js");
 
 
 
 
 
 var mSTP = function mSTP(state, ownProps) {
-  var postId = ownProps.match.params.postId;
-  console.log("mapstate", _typeof(postId));
+  var postId = ownProps.match.params.postId; // do the logic here to get the prev and next image
+
+  console.log("currentPostId", postId);
+  console.log("postsContainer", state.entities.posts);
+  var postNavIndices = (0,_util_Util__WEBPACK_IMPORTED_MODULE_3__.getPostShowNavIndices)(parseInt(postId), state.entities.posts);
+  console.log("postNavIndices", postNavIndices);
   return {
     postId: postId,
-    post: state.entities.posts[postId],
-    liked: state.entities.likedPosts.has(parseInt(postId))
+    post: state.entities.posts[postId] // prevPostId: postNavIndices.prevPostId,
+    // nextPostId: postNavIndices.nextPostId
+
   };
 };
 
@@ -7980,6 +7987,53 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_PostShow__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/posts/postShowGallery.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/posts/postShowGallery.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+/* 
+PostShowGallery:
+1. split the container in two and have each half be a div that contains a Link
+  component to the previous and next image respectively
+2. 
+*/
+
+var PostShowGallery = function PostShowGallery(_ref) {
+  var prevId = _ref.prevId,
+      nextId = _ref.nextId,
+      curImageURL = _ref.curImageURL;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-gallery"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-left"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "post/".concat(prevId)
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "posts/".concat(nextId)
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-image"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: curImageURL
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowGallery);
 
 /***/ }),
 
@@ -9539,9 +9593,7 @@ var PostsReducer = function PostsReducer() {
 
   switch (action.type) {
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POST:
-      var newState = _objectSpread(_objectSpread({}, state), action.post);
-
-      return newState;
+      return _objectSpread(_objectSpread({}, state), action.post);
 
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POSTS:
       return _objectSpread(_objectSpread({}, state), action.posts);
@@ -9553,7 +9605,6 @@ var PostsReducer = function PostsReducer() {
       var post = state[action.post.id];
       post.liked = action.post.liked;
       return _objectSpread(_objectSpread({}, state), post);
-      return {};
 
     default:
       return state;
@@ -10184,7 +10235,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "isEmpty": () => (/* binding */ isEmpty),
 /* harmony export */   "capitalize": () => (/* binding */ capitalize),
-/* harmony export */   "formatLocation": () => (/* binding */ formatLocation)
+/* harmony export */   "formatLocation": () => (/* binding */ formatLocation),
+/* harmony export */   "getPostShowNavIndices": () => (/* binding */ getPostShowNavIndices)
 /* harmony export */ });
 var isEmpty = function isEmpty(object) {
   return Object.keys(object).length === 0;
@@ -10202,6 +10254,24 @@ var formatLocation = function formatLocation(city, country) {
   } else {
     return "";
   }
+};
+var getPostShowNavIndices = function getPostShowNavIndices(curPostId, posts) {
+  var postValues = Object.values(posts);
+  var curPostIndex;
+
+  for (var i = 0; i < postValues.length; i++) {
+    var temp = postValues[i];
+
+    if (temp.id === curPostId) {
+      curPostIndex = i;
+      break;
+    }
+  }
+
+  return {
+    prevPostId: postValues[curPostIndex - 1],
+    nextPostId: postValues[curPostIndex + 1]
+  };
 };
 
 /***/ }),
