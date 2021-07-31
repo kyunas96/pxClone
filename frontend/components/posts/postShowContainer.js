@@ -14,8 +14,8 @@ const mSTP = (state, ownProps) => {
   return {
     postId,
     post: state.entities.posts[postId],
-    // prevPostId: postNavIndices.prevPostId,
-    // nextPostId: postNavIndices.nextPostId
+    prevPostId: postNavIndices.prevPostId,
+    nextPostId: postNavIndices.nextPostId
   };
 };
 

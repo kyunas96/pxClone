@@ -7969,9 +7969,9 @@ var mSTP = function mSTP(state, ownProps) {
   console.log("postNavIndices", postNavIndices);
   return {
     postId: postId,
-    post: state.entities.posts[postId] // prevPostId: postNavIndices.prevPostId,
-    // nextPostId: postNavIndices.nextPostId
-
+    post: state.entities.posts[postId],
+    prevPostId: postNavIndices.prevPostId,
+    nextPostId: postNavIndices.nextPostId
   };
 };
 
@@ -10268,9 +10268,11 @@ var getPostShowNavIndices = function getPostShowNavIndices(curPostId, posts) {
     }
   }
 
+  var prevPosId = postValues[curPostIndex - 1];
+  var nextPosId = postValues[curPostIndex + 1];
   return {
-    prevPostId: postValues[curPostIndex - 1],
-    nextPostId: postValues[curPostIndex + 1]
+    prevPostId: prevPosId && prevPosId.id,
+    nextPostId: nextPosId && nextPosId.id
   };
 };
 

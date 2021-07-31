@@ -24,9 +24,12 @@ export const getPostShowNavIndices = (curPostId, posts) => {
       break;
     }
   }
+  const prevPosId = postValues[curPostIndex - 1];
+  const nextPosId = postValues[curPostIndex + 1];
+
 
   return {
-    prevPostId: postValues[curPostIndex - 1],
-    nextPostId: postValues[curPostIndex + 1],
+    prevPostId: prevPosId && prevPosId.id,
+    nextPostId: nextPosId && nextPosId.id
   };
 };
