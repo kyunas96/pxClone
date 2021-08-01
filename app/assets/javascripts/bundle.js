@@ -7629,9 +7629,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _postShowInteractions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postShowInteractions */ "./frontend/components/posts/postShowInteractions.jsx");
-/* harmony import */ var _postShowGallery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./postShowGallery */ "./frontend/components/posts/postShowGallery.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _postShowGallery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postShowGallery */ "./frontend/components/posts/postShowGallery.jsx");
+/* harmony import */ var _postShowLower__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./postShowLower */ "./frontend/components/posts/postShowLower.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7690,22 +7689,6 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
       } else {
         return false;
       }
-    } // e.clientX < e.target.clientWidth / 2
-
-  }, {
-    key: "handleNavigation",
-    value: function handleNavigation(e) {
-      console.log(e);
-
-      if (e.target.className == "post-show-gallery") {
-        if (e.clientX < e.target.clientWidth / 2) {
-          // functionality that will go back a post
-          console.log("left");
-        } else {
-          // functionality that will go ahead a post
-          console.log("right");
-        }
-      }
     }
   }, {
     key: "render",
@@ -7716,15 +7699,13 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
       if (this.props.post) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowGallery__WEBPACK_IMPORTED_MODULE_2__.default, {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowGallery__WEBPACK_IMPORTED_MODULE_1__.default, {
           prevId: this.props.prevPostId,
           nextId: this.props.nextPostId,
           curImageURL: this.props.post.photoUrl
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "post-show-description"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowInteractions__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, this.props.post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-          to: "users/".concat(this.props.post.poster, "/profile")
-        }, this.props.post.poster))));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowLower__WEBPACK_IMPORTED_MODULE_2__.default, {
+          postId: this.props.postId
+        }));
       } else {
         return null;
       }
@@ -7956,12 +7937,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state, ownProps) {
-  var postId = ownProps.match.params.postId; // do the logic here to get the prev and next image
-
-  console.log("currentPostId", postId);
-  console.log("postsContainer", state.entities.posts);
+  var postId = ownProps.match.params.postId;
   var postNavIndices = (0,_util_Util__WEBPACK_IMPORTED_MODULE_3__.getPostShowNavIndices)(parseInt(postId), state.entities.posts);
-  console.log("postNavIndices", postNavIndices);
   return {
     postId: postId,
     post: state.entities.posts[postId],
@@ -8027,6 +8004,56 @@ var PostShowGallery = function PostShowGallery(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/posts/postShowInfo.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/posts/postShowInfo.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+var PostShowInfo = function PostShowInfo(_ref) {
+  var userPicture = _ref.userPicture,
+      title = _ref.title,
+      user = _ref.user,
+      upload = _ref.upload,
+      description = _ref.description;
+  return (
+    /*#__PURE__*/
+
+    /*
+      Notes: 
+        • this component will need a container to have access to the dispatch
+          for like and follow functionality
+       Parts:
+        1. Profile Picture
+        2. Title
+        3. by `Username`
+        4. follow button
+        5. Upload date
+    */
+    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "post-show-info"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      to: "/users/".concat(user.id, "/profile")
+    }, user.username), " \u2022")))
+  );
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowInfo);
+
+/***/ }),
+
 /***/ "./frontend/components/posts/postShowInteractions.jsx":
 /*!************************************************************!*\
   !*** ./frontend/components/posts/postShowInteractions.jsx ***!
@@ -8055,6 +8082,66 @@ var PostShowInteractions = function PostShowInteractions(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowInteractions);
+
+/***/ }),
+
+/***/ "./frontend/components/posts/postShowLower.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/posts/postShowLower.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _postShowInfo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./postShowInfo */ "./frontend/components/posts/postShowInfo.jsx");
+/* harmony import */ var _postShowInteractions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./postShowInteractions */ "./frontend/components/posts/postShowInteractions.jsx");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var _state$entities$posts = state.entities.posts[ownProps.postId],
+      title = _state$entities$posts.title,
+      id = _state$entities$posts.id,
+      description = _state$entities$posts.description,
+      poster = _state$entities$posts.poster,
+      posterId = _state$entities$posts.posterId,
+      liked = _state$entities$posts.liked,
+      following = _state$entities$posts.following,
+      createdAt = _state$entities$posts.createdAt;
+  return {
+    post: {
+      title: title,
+      id: id,
+      description: description,
+      createdAt: createdAt,
+      liked: liked
+    },
+    user: {
+      poster: poster,
+      posterId: posterId,
+      following: following
+    }
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {};
+
+var PostShowLower = function PostShowLower(_ref) {
+  var post = _ref.post,
+      user = _ref.user;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-lower"
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, null)(PostShowLower));
 
 /***/ }),
 

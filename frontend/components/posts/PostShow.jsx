@@ -1,7 +1,7 @@
 import React from "react";
-import PostShowInteractions from "./postShowInteractions";
 import PostShowGallery from "./postShowGallery";
 import { Link } from "react-router-dom";
+import PostShowLower from "./postShowLower";
 
 class PostShow extends React.Component {
   constructor(props) {
@@ -24,21 +24,6 @@ class PostShow extends React.Component {
     }
   }
 
-  // e.clientX < e.target.clientWidth / 2
-
-  handleNavigation(e) {
-    console.log(e);
-    if (e.target.className == "post-show-gallery") {
-      if (e.clientX < e.target.clientWidth / 2) {
-        // functionality that will go back a post
-        console.log("left");
-      } else {
-        // functionality that will go ahead a post
-        console.log("right");
-      }
-    }
-  }
-
   render() {
     console.log("post show", this.props);
     const postItem = this.props.post ? this.props.post.title : null;
@@ -51,15 +36,8 @@ class PostShow extends React.Component {
             nextId={this.props.nextPostId}
             curImageURL={this.props.post.photoUrl}
           />
-          <div className="post-show-description">
-            <PostShowInteractions />
-            <h3>{this.props.post.title}</h3>
-            <h5>
-              by <Link to={`users/${this.props.post.poster}/profile`}>
-                {this.props.post.poster}
-              </Link>
-            </h5>
-          </div>
+          <PostShowLower postId={this.props.postId}/>
+          
         </div>
       );
     } else {

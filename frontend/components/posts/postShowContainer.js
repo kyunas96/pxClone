@@ -5,11 +5,7 @@ import { getPostShowNavIndices } from "../../util/Util";
 
 const mSTP = (state, ownProps) => {
   const postId = ownProps.match.params.postId;
-  // do the logic here to get the prev and next image
-  console.log("currentPostId", postId)
-  console.log("postsContainer", state.entities.posts)
   const postNavIndices = getPostShowNavIndices(parseInt(postId), state.entities.posts)
-  console.log("postNavIndices", postNavIndices);
 
   return {
     postId,
