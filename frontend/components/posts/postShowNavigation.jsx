@@ -7,8 +7,8 @@ const PostShowNavigation = ({ prevId, nextId }) => {
 
   return (
     <div className="post-show-nav">
-    <PostShowNavTile link={prevId} />
-    <PostShowNavTile link={nextId} />
+      <PostShowNavTile link={prevId} />
+      <PostShowNavTile link={nextId} />
     </div>
   );
 };
