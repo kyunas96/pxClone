@@ -2,6 +2,8 @@ class Api::ProfileController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
 
+    p "user show " + @user.user_photo.inspect
+
     if @user
       
       if current_user

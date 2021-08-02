@@ -6851,7 +6851,7 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "shouldComponentUpdate",
     value: function shouldComponentUpdate(nextProps, nextState) {
-      if (nextProps.posts !== undefined) {
+      if (nextProps.feedPosts !== undefined) {
         return true;
       } else {
         return false;
@@ -6869,8 +6869,8 @@ var Feed = /*#__PURE__*/function (_React$Component) {
       };
       var images = [];
 
-      if (this.props.posts !== null) {
-        Object.values(this.props.posts).forEach(function (post, i) {
+      if (this.props.feedPosts !== null) {
+        Object.values(this.props.feedPosts).forEach(function (post, i) {
           images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
             post: post,
             key: i
@@ -6921,15 +6921,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./feed */ "./frontend/components/feed/feed.jsx");
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/postActions */ "./frontend/actions/postActions.js");
 /* harmony import */ var _actions_likeActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/likeActions */ "./frontend/actions/likeActions.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var posts = state.entities.posts;
+  var followedUsers = Array.from(state.entities.followedUsers);
+  var feedPosts = {};
+
+  for (var _i = 0, _Object$entries = Object.entries(posts); _i < _Object$entries.length; _i++) {
+    var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        val = _Object$entries$_i[1];
+
+    if (followedUsers.includes(val.posterId)) {
+      feedPosts[key] = val;
+    }
+  }
+
+  console.log(feedPosts);
   var ret = {
     userId: state.session.currentUser.id,
-    posts: state.entities.posts
+    feedPosts: feedPosts
   };
   console.log("feedContainer", ret);
   return ret;
@@ -7005,7 +7032,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var Image = function Image(_ref) {
   var post = _ref.post;
-  console.log("image", post);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
@@ -7051,7 +7077,6 @@ var ImageHover = function ImageHover(_ref) {
       postId = _ref.postId,
       posterId = _ref.posterId,
       liked = _ref.liked;
-  console.log("imageHover", posterId);
   var linkToUser = "users/".concat(posterId, "/profile");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-hover"
@@ -7679,10 +7704,14 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
       this.props.requestPost(this.props.postId);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.props.requestPost(this.props.postId);
+    }
+  }, {
     key: "shouldComponentUpdate",
     value: function shouldComponentUpdate(nextProps, nextState) {
       if (this.props.postId !== nextProps.postId) {
-        this.props.requestPost(nextProps.postId);
         return true;
       } else if (nextProps.post !== this.props.post) {
         return true;
@@ -9107,6 +9136,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  console.log("profileheader", state);
   return {
     bannerImage: state.ui.profile.bannerImage,
     userPhoto: state.ui.profile.userPhoto,
@@ -9219,7 +9249,7 @@ var ProfileHeader = function ProfileHeader(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, {
-    src: userPhoto
+    userPhoto: userPhoto
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileInfoContainer__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
     isCurrentUser: isCurrentUser,
     userId: userId
@@ -9372,10 +9402,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ProfilePicture = function ProfilePicture(props) {
-  // component will check if a profilePicture is passed in through props and if not
-  // the defaultProfilePicture will be used
-  var imageUrl = props.profilePicture ? props.profilePicture : (_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default());
+var ProfilePicture = function ProfilePicture(_ref) {
+  var userPhoto = _ref.userPhoto;
+  var imageUrl = userPhoto ? userPhoto : (_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default());
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -9488,7 +9517,7 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
       if (this.props.posts !== null) {
         // console.log(JSON.stringify(this.props.posts))
         Object.values(this.props.posts).forEach(function (post, i) {
-          var liked = _this2.props.currentUser ? null : post.liked;
+          var liked = _this2.props.isCurrentUser ? null : post.liked;
           images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
             post: _objectSpread(_objectSpread({}, post), {}, {
               liked: liked
@@ -9537,9 +9566,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var currentUser = state.session.currentUser.id === parseInt(ownProps.userId) ? true : false;
+  var isCurrentUser = state.session.currentUser.id === parseInt(ownProps.userId) ? true : false;
   return {
-    currentUser: currentUser,
+    isCurrentUser: isCurrentUser,
     userId: ownProps.userId,
     posts: state.ui.profilePosts,
     likedPosts: state.entities.likedPosts
@@ -9594,16 +9623,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _postsReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./postsReducer */ "./frontend/reducers/postsReducer.js");
 /* harmony import */ var _usersReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./usersReducer */ "./frontend/reducers/usersReducer.js");
 /* harmony import */ var _likedPostsReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./likedPostsReducer */ "./frontend/reducers/likedPostsReducer.js");
+/* harmony import */ var _followedUsersReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./followedUsersReducer */ "./frontend/reducers/followedUsersReducer.js");
 
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   users: _usersReducer__WEBPACK_IMPORTED_MODULE_1__.default,
+  followedUsers: _followedUsersReducer__WEBPACK_IMPORTED_MODULE_3__.default,
   posts: _postsReducer__WEBPACK_IMPORTED_MODULE_0__.default,
   likedPosts: _likedPostsReducer__WEBPACK_IMPORTED_MODULE_2__.default
 });
@@ -9662,6 +9694,43 @@ var followReducer = function followReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (followReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/followedUsersReducer.js":
+/*!***************************************************!*\
+  !*** ./frontend/reducers/followedUsersReducer.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
+
+
+var FollowedUsersReducer = function FollowedUsersReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Set();
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("followedUsers", action);
+
+  switch (action.type) {
+    case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POSTS:
+      var newState = new Set();
+      var posts = Object.values(action.posts);
+      posts.forEach(function (post) {
+        return newState.add(post.posterId);
+      });
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FollowedUsersReducer);
 
 /***/ }),
 
@@ -9923,12 +9992,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-var checkActionForUser = function checkActionForUser(_ref) {
-  var currentUser = _ref.currentUser;
-  console.log("check for user", currentUser);
-  return currentUser.id !== null && currentUser.username.length > 0;
+
+var checkActionForUser = function checkActionForUser(user) {
+  return user.id !== null && user.username.length > 0;
 };
 
 var nullUser = {
@@ -9943,8 +10016,11 @@ var sessionReducer = function sessionReducer() {
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
-      if (checkActionForUser(action.user)) {
-        return action.user;
+      if (checkActionForUser(action.payload.user)) {
+        return {
+          currentUser: _objectSpread({}, action.payload.user),
+          loggedIn: true
+        };
       } else {
         return nullUser;
       }
@@ -51083,15 +51159,12 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root");
-  var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)();
-  _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch({
-    type: _actions_sessionActions__WEBPACK_IMPORTED_MODULE_7__.SESSION_LOGIN,
-    user: user
-  });
+  var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)(); // store.dispatch({type: SESSION_LOGIN, user})
+
   window.store = _store_store__WEBPACK_IMPORTED_MODULE_4__.store;
-  window.dispatch = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch;
-  window.PostAPI = _util_PostAPI__WEBPACK_IMPORTED_MODULE_5__;
-  window.requestPost = _actions_postActions__WEBPACK_IMPORTED_MODULE_6__.requestPost;
+  window.dispatch = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch; // window.PostAPI = PostAPI;
+  // window.requestPost = requestPost;
+
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: _store_store__WEBPACK_IMPORTED_MODULE_4__.store
   }), root);

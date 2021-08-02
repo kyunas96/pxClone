@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import ProfileHeader from "./profile_header";
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("profileheader", state)
   return {
     bannerImage: state.ui.profile.bannerImage,
     userPhoto: state.ui.profile.userPhoto,

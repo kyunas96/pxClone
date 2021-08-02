@@ -3,7 +3,6 @@ import LikeButton from "./likeButtonContainer";
 import { Link } from "react-router-dom";
 
 const ImageHover = ({ title, username, postId, posterId, liked }) => {
-  console.log("imageHover", posterId)
 
   const linkToUser = `users/${posterId}/profile`;
 

@@ -13,7 +13,7 @@ const ProfileHeader = ({ bannerImage, userPhoto, isCurrentUser, userId }) => {
       <div className="profile-header-partition">
         <div></div>
         <div className="profile-picture-info">
-          <ProfilePicture src={userPhoto} />
+          <ProfilePicture userPhoto={userPhoto} />
           <ProfileInfoContainer />
         </div>
         <div>

@@ -3,7 +3,6 @@ import ImageHover from "./imageHover";
 import { Link } from "react-router-dom";
 
 const Image = ({ post }) => {
-  console.log("image", post);
   return (
     <div className="image-container">
       <Link to={`/posts/${post.id}`}>

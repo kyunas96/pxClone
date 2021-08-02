@@ -59,7 +59,7 @@ kevinBanner = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-ima
 danielProfile = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/daniel2.jpeg")
 danielBanner = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/sd.jpeg")
 
-gabbyProfile = open("https://s3.console.aws.amazon.com/s3/object/pxclone-seeds?region=us-west-1&prefix=pxclone-images-compressed/gabs.JPG")
+gabbyProfile = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/gabs.JPG")
 gabbyBanner = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-images-compressed/davis2.jpeg")
 
 

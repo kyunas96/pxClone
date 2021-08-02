@@ -15,7 +15,7 @@ class Feed extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.posts !== undefined) {
+    if (nextProps.feedPosts !== undefined) {
       return true;
     } else {
       return false;
@@ -33,8 +33,8 @@ class Feed extends React.Component {
 
     let images = [];
 
-    if (this.props.posts !== null) {
-      Object.values(this.props.posts).forEach((post, i) => {
+    if (this.props.feedPosts !== null) {
+      Object.values(this.props.feedPosts).forEach((post, i) => {
         images.push(<Image post={post} key={i} />);
       });
     }

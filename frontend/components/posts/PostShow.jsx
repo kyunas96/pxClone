@@ -13,9 +13,12 @@ class PostShow extends React.Component {
     this.props.requestPost(this.props.postId);
   }
 
+  componentDidUpdate(){
+    this.props.requestPost(this.props.postId);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.postId !== nextProps.postId) {
-      this.props.requestPost(nextProps.postId);
       return true;
     } else if (nextProps.post !== this.props.post) {
       return true;

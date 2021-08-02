@@ -3,10 +3,8 @@ import defaultProfilePicture from "../../../images/user-circle-solid.svg";
 import myProfilePicture from "../../../images/portrait.jpg";
 import ProfileOptions from "./profile_options";
 
-const ProfilePicture = (props) => {
-  // component will check if a profilePicture is passed in through props and if not
-  // the defaultProfilePicture will be used
-  const imageUrl = props.profilePicture ? props.profilePicture : defaultProfilePicture;
+const ProfilePicture = ({userPhoto}) => {
+  const imageUrl = userPhoto ? userPhoto : defaultProfilePicture;
 
   return (
     <div className="profile-picture">
