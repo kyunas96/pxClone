@@ -5953,53 +5953,6 @@ var resetPostFormErrors = function resetPostFormErrors() {
 
 /***/ }),
 
-/***/ "./frontend/actions/followActions.js":
-/*!*******************************************!*\
-  !*** ./frontend/actions/followActions.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "RECEIVE_FOLLOW": () => (/* binding */ RECEIVE_FOLLOW),
-/* harmony export */   "getFollowStatus": () => (/* binding */ getFollowStatus),
-/* harmony export */   "toggleFollow": () => (/* binding */ toggleFollow)
-/* harmony export */ });
-/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/FollowAPI */ "./frontend/util/FollowAPI.js");
-
-var RECEIVE_FOLLOW = 'RECEIVE_FOLLOW';
-
-var receiveFollow = function receiveFollow(follow) {
-  return {
-    type: RECEIVE_FOLLOW,
-    follow: follow
-  };
-};
-
-var getFollowStatus = function getFollowStatus(userId) {
-  return function (dispatch) {
-    return _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.getFollowing(userId).then(function (data) {
-      return dispatch(receiveFollow(data));
-    });
-  };
-};
-var toggleFollow = function toggleFollow(following, profileId) {
-  return function (dispatch) {
-    if (following === true) {
-      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.deleteFollow(profileId).then(function (data) {
-        return dispatch(receiveFollow(data));
-      });
-    } else {
-      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.createFollow(profileId).then(function (data) {
-        return dispatch(receiveFollow(data));
-      });
-    }
-  };
-};
-
-/***/ }),
-
 /***/ "./frontend/actions/likeActions.js":
 /*!*****************************************!*\
   !*** ./frontend/actions/likeActions.js ***!
@@ -6085,6 +6038,8 @@ var updatePost = function updatePost(post) {
 var requestUsersFeed = function requestUsersFeed() {
   return function (dispatch) {
     return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestUsersFeed().then(function (payload) {
+      return console.log("payload", payload);
+    }).then(function (payload) {
       return dispatch(receivePosts(payload));
     });
   };
@@ -6250,6 +6205,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_USERS": () => (/* binding */ RECEIVE_USERS),
 /* harmony export */   "RECEIVE_USER": () => (/* binding */ RECEIVE_USER),
+/* harmony export */   "UPDATE_USER": () => (/* binding */ UPDATE_USER),
 /* harmony export */   "requestUsers": () => (/* binding */ requestUsers),
 /* harmony export */   "requestUser": () => (/* binding */ requestUser),
 /* harmony export */   "createUser": () => (/* binding */ createUser),
@@ -6261,6 +6217,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_USERS = 'RECEIVE_USERS';
 var RECEIVE_USER = 'RECEIVE_USER';
+var UPDATE_USER = "UPDATE_USER";
 
 var receiveUsers = function receiveUsers(payload) {
   return {
@@ -6867,16 +6824,11 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         700: 2,
         500: 1
       };
-      var images = [];
-
-      if (this.props.feedPosts !== null) {
-        Object.values(this.props.feedPosts).forEach(function (post, i) {
-          images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-            post: post,
-            key: i
-          }));
-        });
-      }
+      var images = []; // if (this.props.feedPosts !== null) {
+      //   Object.values(this.props.feedPosts).forEach((post, i) => {
+      //     images.push(<Image post={post} key={i} />);
+      //   });
+      // }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "feed"
@@ -6921,42 +6873,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./feed */ "./frontend/components/feed/feed.jsx");
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/postActions */ "./frontend/actions/postActions.js");
 /* harmony import */ var _actions_likeActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/likeActions */ "./frontend/actions/likeActions.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var posts = state.entities.posts;
-  var followedUsers = Array.from(state.entities.followedUsers);
-  var feedPosts = {};
+  console.log("feedContainer", state);
+  var posts = state.entities.posts.posts;
+  var followedUsers = state.entities.users.followedUsers; // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
+  // format from the users slice of state
+  // const feedPosts = {};
+  // for(const [key, val] of Object.entries(posts)){
+  //   if(followedUsers.includes(val.posterId)){
+  //     feedPosts[key] = val;
+  //   }
+  // }
 
-  for (var _i = 0, _Object$entries = Object.entries(posts); _i < _Object$entries.length; _i++) {
-    var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-        key = _Object$entries$_i[0],
-        val = _Object$entries$_i[1];
-
-    if (followedUsers.includes(val.posterId)) {
-      feedPosts[key] = val;
-    }
-  }
-
-  console.log(feedPosts);
   var ret = {
-    userId: state.session.currentUser.id,
-    feedPosts: feedPosts
+    userId: state.session.currentUser.id
   };
   console.log("feedContainer", ret);
   return ret;
@@ -7704,22 +7639,6 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
       this.props.requestPost(this.props.postId);
     }
   }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.props.requestPost(this.props.postId);
-    }
-  }, {
-    key: "shouldComponentUpdate",
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      if (this.props.postId !== nextProps.postId) {
-        return true;
-      } else if (nextProps.post !== this.props.post) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       console.log("post show", this.props);
@@ -7991,6 +7910,72 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/posts/postShowFollowButton.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/posts/postShowFollowButton.jsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/FollowAPI */ "./frontend/util/FollowAPI.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var PostShowFollowButton = function PostShowFollowButton(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.following),
+      _useState2 = _slicedToArray(_useState, 2),
+      isFollowing = _useState2[0],
+      setFollowing = _useState2[1];
+
+  console.log("postShowFollowButton", props);
+  var action = props.following ? function () {
+    return (0,_util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.deleteFollow)(props.posterId).then(function (_ref) {
+      var following = _ref.following;
+      return setFollowing({
+        following: following
+      });
+    });
+  } : function () {
+    return (0,_util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.createFollow)(props.posterId).then(function (_ref2) {
+      var following = _ref2.following;
+      return setFollowing({
+        following: following
+      });
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    className: "follow",
+    htmlFor: "post-show-follow"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    id: "post-show-follow",
+    type: "button",
+    onClick: action
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowFollowButton);
+
+/***/ }),
+
 /***/ "./frontend/components/posts/postShowGallery.jsx":
 /*!*******************************************************!*\
   !*** ./frontend/components/posts/postShowGallery.jsx ***!
@@ -8046,17 +8031,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./postShowFollowButton */ "./frontend/components/posts/postShowFollowButton.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
 
 var PostShowInfo = function PostShowInfo(_ref) {
-  var userPicture = _ref.userPicture,
-      title = _ref.title,
-      user = _ref.user,
-      upload = _ref.upload,
-      description = _ref.description;
+  var user = _ref.user,
+      post = _ref.post;
   return (
     /*#__PURE__*/
 
@@ -8073,9 +8057,18 @@ var PostShowInfo = function PostShowInfo(_ref) {
     */
     react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "post-show-info"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-      to: "/users/".concat(user.id, "/profile")
-    }, user.username), " \u2022")))
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "post-show-poster-picture"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "post-show-poster-info"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+      id: "post-show-links"
+    }, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+      to: "/users/".concat(user.posterId, "/profile")
+    }, user.poster), " \u2022", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__.default, {
+      following: user.following,
+      posterId: user.posterId
+    }))))
   );
 };
 
@@ -8165,9 +8158,16 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {};
 var PostShowLower = function PostShowLower(_ref) {
   var post = _ref.post,
       user = _ref.user;
+  console.log("postShowlower", post, user);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-lower"
-  });
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowInteractions__WEBPACK_IMPORTED_MODULE_3__.default, {
+    liked: post.liked,
+    postId: post.id
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowInfo__WEBPACK_IMPORTED_MODULE_2__.default, {
+    user: user,
+    post: post
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, null)(PostShowLower));
@@ -9623,21 +9623,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _postsReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./postsReducer */ "./frontend/reducers/postsReducer.js");
 /* harmony import */ var _usersReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./usersReducer */ "./frontend/reducers/usersReducer.js");
-/* harmony import */ var _likedPostsReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./likedPostsReducer */ "./frontend/reducers/likedPostsReducer.js");
-/* harmony import */ var _followedUsersReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./followedUsersReducer */ "./frontend/reducers/followedUsersReducer.js");
 
 
 
-
-
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
   users: _usersReducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  followedUsers: _followedUsersReducer__WEBPACK_IMPORTED_MODULE_3__.default,
-  posts: _postsReducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  likedPosts: _likedPostsReducer__WEBPACK_IMPORTED_MODULE_2__.default
+  posts: _postsReducer__WEBPACK_IMPORTED_MODULE_0__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -9665,121 +9659,6 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
 
 /***/ }),
 
-/***/ "./frontend/reducers/followReducer.js":
-/*!********************************************!*\
-  !*** ./frontend/reducers/followReducer.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/followActions */ "./frontend/actions/followActions.js");
-
-
-var followReducer = function followReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-
-  switch (action.type) {
-    case _actions_followActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_FOLLOW:
-      return action.follow.following;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (followReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/followedUsersReducer.js":
-/*!***************************************************!*\
-  !*** ./frontend/reducers/followedUsersReducer.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
-
-
-var FollowedUsersReducer = function FollowedUsersReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Set();
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("followedUsers", action);
-
-  switch (action.type) {
-    case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POSTS:
-      var newState = new Set();
-      var posts = Object.values(action.posts);
-      posts.forEach(function (post) {
-        return newState.add(post.posterId);
-      });
-      return newState;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FollowedUsersReducer);
-
-/***/ }),
-
-/***/ "./frontend/reducers/likedPostsReducer.js":
-/*!************************************************!*\
-  !*** ./frontend/reducers/likedPostsReducer.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _actions_likeActions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/likeActions.js */ "./frontend/actions/likeActions.js");
-
-
-var LikesReducer = function LikesReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : new Set();
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("likes reducer", action.likes);
-  var newState = new Set(Array.from(state));
-
-  switch (action.type) {
-    case _actions_likeActions_js__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_LIKES:
-      action.likes.forEach(function (like) {
-        return newState.add(like);
-      });
-      return newState;
-    // case ADD_LIKE:
-    //   if (!newState.has(action.like)) {
-    //     newState.add(action.like);
-    //   }
-    //   return newState;
-    // case REMOVE_LIKE:
-    //   if (newState.has(action.like)) {
-    //     newState.delete(action.like);
-    //   }
-    //   return newState;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LikesReducer);
-
-/***/ }),
-
 /***/ "./frontend/reducers/postsReducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/postsReducer.js ***!
@@ -9801,10 +9680,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+var defaultState = {
+  posts: {},
+  likedPosts: []
+};
 
 var PostsReducer = function PostsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("PostsReducer", action);
   Object.freeze(state);
 
   switch (action.type) {
@@ -9930,7 +9814,7 @@ __webpack_require__.r(__webpack_exports__);
 var persistConfig = {
   key: "root",
   storage: redux_persist_lib_storage__WEBPACK_IMPORTED_MODULE_1__.default,
-  whitelist: ["entities", "session"]
+  whitelist: ["entities", "session", "ui"]
 };
 var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_6__.combineReducers)({
   entities: _entitiesReducer__WEBPACK_IMPORTED_MODULE_2__.default,
@@ -10048,18 +9932,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _profileReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./profileReducer */ "./frontend/reducers/profileReducer.js");
 /* harmony import */ var _profilePostsReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profilePostsReducer */ "./frontend/reducers/profilePostsReducer.js");
-/* harmony import */ var _followReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./followReducer */ "./frontend/reducers/followReducer.js");
 
 
 
-
-var uiReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+var uiReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
   profile: _profileReducer__WEBPACK_IMPORTED_MODULE_0__.default,
-  profilePosts: _profilePostsReducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  following: _followReducer__WEBPACK_IMPORTED_MODULE_2__.default
+  profilePosts: _profilePostsReducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (uiReducer);
 
@@ -10077,7 +9958,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/userActions */ "./frontend/actions/userActions.js");
+/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
 
+
+var defaultState = {
+  users: {},
+  followedUser: []
+};
 
 var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -10089,7 +9976,14 @@ var usersReducer = function usersReducer() {
     case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER:
       newState[action.payload.user.id] = action.payload.user;
       return newState;
+    // this case will be called when the posts for a user's feed are retrieved
+    // and with them the ids of the users that are being followed by the 
+    // current user
 
+    case _actions_postActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_POSTS: // this case will called when a userProfile is grabbed or when the follow
+    // status of a user changes
+
+    case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.UPDATE_USER:
     default:
       return state;
   }

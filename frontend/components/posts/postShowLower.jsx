@@ -4,36 +4,46 @@ import PostShowInfo from "./postShowInfo";
 import PostShowInteractions from "./postShowInteractions";
 
 const mapStateToProps = (state, ownProps) => {
-  const { title, id, description, poster, posterId, liked, following, createdAt } =
-    state.entities.posts[ownProps.postId];
+  const {
+    title,
+    id,
+    description,
+    poster,
+    posterId,
+    liked,
+    following,
+    createdAt,
+  } = state.entities.posts[ownProps.postId];
+
   return {
     post: {
       title,
       id,
       description,
       createdAt,
-      liked
+      liked,
     },
     user: {
       poster,
       posterId,
-      following
+      following,
     },
   };
 };
 
 const mapDispatchToProps = (dispatch) => {};
 
-const PostShowLower = ({post, user}) => (
-  <div className="post-show-lower">
-    {/* <PostShowInteractions liked={post.liked} postId={post.id} />
+const PostShowLower = ({ post, user }) => {
+  console.log("postShowlower", post, user)
+  return (
+    <div className="post-show-lower">
+      <PostShowInteractions liked={post.liked} postId={post.id} />
     <PostShowInfo
-      title={post.title}
-      poster={user.poster}
-      posterId={user.posterId}
-      following={user.following}
-    /> */}
-  </div>
-);
+      user={user}
+      post={post}
+    />
+    </div>
+  );
+};
 
 export default connect(mapStateToProps, null)(PostShowLower);

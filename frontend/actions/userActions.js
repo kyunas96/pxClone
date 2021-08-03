@@ -3,6 +3,7 @@ import { sessionLogin } from './sessionActions';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_USER = 'RECEIVE_USER';
+export const UPDATE_USER = "UPDATE_USER";
 
 const receiveUsers = payload => ({
   type: RECEIVE_USERS,

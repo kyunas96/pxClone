@@ -1,8 +1,16 @@
 import * as FollowAPI from "../util/FollowAPI";
 export const RECEIVE_FOLLOW = 'RECEIVE_FOLLOW';
+export const UPDATE_FOLLOW = 'UPDATE_FOLLOW';
+
+
 
 const receiveFollow = follow => ({
   type: RECEIVE_FOLLOW,
+  follow
+})
+
+const updateFollow = follow => ({
+  type: UPDATE_FOLLOW,
   follow
 })
 

@@ -4,18 +4,20 @@ import { requestUsersFeed } from "../../actions/postActions";
 import { fetchLikedPosts } from "../../actions/likeActions";
 
 const mapStateToProps = (state) => {
-  const posts = state.entities.posts;
-  const followedUsers = Array.from(state.entities.followedUsers);
-  const feedPosts = {};
-  for(const [key, val] of Object.entries(posts)){
-    if(followedUsers.includes(val.posterId)){
-      feedPosts[key] = val;
-    }
-  }
-  console.log(feedPosts)
+  console.log("feedContainer", state);
+  const posts = state.entities.posts.posts;
+  const followedUsers = state.entities.users.followedUsers;
+  // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
+  // format from the users slice of state
+
+  // const feedPosts = {};
+  // for(const [key, val] of Object.entries(posts)){
+  //   if(followedUsers.includes(val.posterId)){
+  //     feedPosts[key] = val;
+  //   }
+  // }
   const ret = {
     userId: state.session.currentUser.id,
-    feedPosts
   };
   console.log("feedContainer", ret)
   

@@ -49,7 +49,7 @@ class Api::FollowsController < ApplicationController
     )
 
     if @follow.save
-      render json: { following: true }
+      render json: { following: true, userId: params[:followed_user_id] }
     else
       render json: "follow not created"
     end
@@ -66,7 +66,7 @@ class Api::FollowsController < ApplicationController
 
     if @follow
       if @follow.destroy
-        render json: { following: false }
+        render json: { following: false, userId: params[:followed_user_id] }
       end
     end
   end

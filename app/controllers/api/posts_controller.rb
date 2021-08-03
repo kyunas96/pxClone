@@ -3,9 +3,7 @@ class Api::PostsController < ApplicationController
   def index 
     @followed_users_id = Follow.where(follower: current_user.id).map(&:followed_user_id)
     @liked_posts = Like.where(user_id: current_user.id).map(&:post_id)
-    if !@followed_users_id.empty?
-      @posts = Post.where(:poster_id => @followed_users_id).order(:created_at)
-    end
+    @posts = Post.where(:poster_id => @followed_users_id).order(:created_at)
 
     render 'api/posts/index'
   end

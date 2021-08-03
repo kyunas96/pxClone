@@ -21,6 +21,7 @@ const updatePost = post => ({
 
 export const requestUsersFeed = () => dispatch => (
   PostAPI.requestUsersFeed()
+    .then(payload => console.log("payload", payload))
     .then(payload => dispatch(receivePosts(payload)))
 )
 
