@@ -10,16 +10,17 @@ const mapStateToProps = (state) => {
   // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
   // format from the users slice of state
 
-  // const feedPosts = {};
-  // for(const [key, val] of Object.entries(posts)){
-  //   if(followedUsers.includes(val.posterId)){
-  //     feedPosts[key] = val;
-  //   }
-  // }
+  const feedPosts = {};
+  for(const [key, val] of Object.entries(posts)){
+    if(followedUsers.includes(val.posterId)){
+      feedPosts[key] = val;
+    }
+  }
   const ret = {
     userId: state.session.currentUser.id,
+    feedPosts
   };
-  console.log("feedContainer", ret)
+  // console.log("feedContainer", ret)
   
   return ret;
 };

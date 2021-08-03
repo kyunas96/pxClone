@@ -5962,18 +5962,20 @@ var resetPostFormErrors = function resetPostFormErrors() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "UPDATE_LIKE": () => (/* binding */ UPDATE_LIKE),
+/* harmony export */   "ADD_LIKE": () => (/* binding */ ADD_LIKE),
+/* harmony export */   "REMOVE_LIKE": () => (/* binding */ REMOVE_LIKE),
 /* harmony export */   "addLike": () => (/* binding */ addLike),
 /* harmony export */   "removeLike": () => (/* binding */ removeLike)
 /* harmony export */ });
 /* harmony import */ var _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/LikeAPI */ "./frontend/util/LikeAPI.js");
 
-var UPDATE_LIKE = "UPDATE_LIKE";
+var ADD_LIKE = "ADD_LIKE";
+var REMOVE_LIKE = "REMOVE_LIKE";
 var addLike = function addLike(postId) {
   return function (dispatch) {
     return _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__.addLike(postId).then(function (data) {
       dispatch({
-        type: UPDATE_LIKE,
+        type: ADD_LIKE,
         post: data
       });
     });
@@ -5983,7 +5985,7 @@ var removeLike = function removeLike(postId) {
   return function (dispatch) {
     return _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__.deleteLike(postId).then(function (data) {
       dispatch({
-        type: UPDATE_LIKE,
+        type: REMOVE_LIKE,
         post: data
       });
     });
@@ -6021,10 +6023,10 @@ var receivePost = function receivePost(post) {
     post: post
   };
 };
-var receivePosts = function receivePosts(posts) {
+var receivePosts = function receivePosts(payload) {
   return {
     type: RECEIVE_POSTS,
-    posts: posts
+    payload: payload
   };
 };
 
@@ -6038,8 +6040,6 @@ var updatePost = function updatePost(post) {
 var requestUsersFeed = function requestUsersFeed() {
   return function (dispatch) {
     return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestUsersFeed().then(function (payload) {
-      return console.log("payload", payload);
-    }).then(function (payload) {
       return dispatch(receivePosts(payload));
     });
   };
@@ -6205,6 +6205,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_USERS": () => (/* binding */ RECEIVE_USERS),
 /* harmony export */   "RECEIVE_USER": () => (/* binding */ RECEIVE_USER),
+/* harmony export */   "FOLLOW_USER": () => (/* binding */ FOLLOW_USER),
+/* harmony export */   "UNFOLLOW_USER": () => (/* binding */ UNFOLLOW_USER),
 /* harmony export */   "UPDATE_USER": () => (/* binding */ UPDATE_USER),
 /* harmony export */   "requestUsers": () => (/* binding */ requestUsers),
 /* harmony export */   "requestUser": () => (/* binding */ requestUser),
@@ -6217,6 +6219,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_USERS = 'RECEIVE_USERS';
 var RECEIVE_USER = 'RECEIVE_USER';
+var FOLLOW_USER = "FOLLOW_USER";
+var UNFOLLOW_USER = "UNFOLLOW_USER";
 var UPDATE_USER = "UPDATE_USER";
 
 var receiveUsers = function receiveUsers(payload) {
@@ -6824,11 +6828,16 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         700: 2,
         500: 1
       };
-      var images = []; // if (this.props.feedPosts !== null) {
-      //   Object.values(this.props.feedPosts).forEach((post, i) => {
-      //     images.push(<Image post={post} key={i} />);
-      //   });
-      // }
+      var images = [];
+
+      if (this.props.feedPosts !== null) {
+        Object.values(this.props.feedPosts).forEach(function (post, i) {
+          images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_image__WEBPACK_IMPORTED_MODULE_1__.default, {
+            post: post,
+            key: i
+          }));
+        });
+      }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "feed"
@@ -6873,6 +6882,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./feed */ "./frontend/components/feed/feed.jsx");
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/postActions */ "./frontend/actions/postActions.js");
 /* harmony import */ var _actions_likeActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/likeActions */ "./frontend/actions/likeActions.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6883,17 +6904,24 @@ var mapStateToProps = function mapStateToProps(state) {
   var posts = state.entities.posts.posts;
   var followedUsers = state.entities.users.followedUsers; // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
   // format from the users slice of state
-  // const feedPosts = {};
-  // for(const [key, val] of Object.entries(posts)){
-  //   if(followedUsers.includes(val.posterId)){
-  //     feedPosts[key] = val;
-  //   }
-  // }
+
+  var feedPosts = {};
+
+  for (var _i = 0, _Object$entries = Object.entries(posts); _i < _Object$entries.length; _i++) {
+    var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        val = _Object$entries$_i[1];
+
+    if (followedUsers.includes(val.posterId)) {
+      feedPosts[key] = val;
+    }
+  }
 
   var ret = {
-    userId: state.session.currentUser.id
-  };
-  console.log("feedContainer", ret);
+    userId: state.session.currentUser.id,
+    feedPosts: feedPosts
+  }; // console.log("feedContainer", ret)
+
   return ret;
 };
 
@@ -9690,21 +9718,51 @@ var PostsReducer = function PostsReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   console.log("PostsReducer", action);
   Object.freeze(state);
+  var newState = Object.assign({}, state);
+  var curPost;
 
   switch (action.type) {
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POST:
       return _objectSpread(_objectSpread({}, state), action.post);
 
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POSTS:
-      return _objectSpread(_objectSpread({}, state), action.posts);
+      return {
+        posts: _objectSpread(_objectSpread({}, state.posts), action.payload.posts),
+        likedPosts: state.likedPosts
+      };
 
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.UPDATE_POST:
       return _objectSpread(_objectSpread({}, state), action.post);
 
-    case _actions_likeActions__WEBPACK_IMPORTED_MODULE_1__.UPDATE_LIKE:
-      var post = state[action.post.id];
-      post.liked = action.post.liked;
-      return _objectSpread(_objectSpread({}, state), post);
+    case _actions_likeActions__WEBPACK_IMPORTED_MODULE_1__.ADD_LIKE:
+      curPost = state.posts[action.post.id];
+      curPost.liked = true;
+      !newState.likedPosts.includes(action.post.id) && newState.likedPosts.push(action.post.id);
+      return {
+        posts: _objectSpread(_objectSpread({}, newState.posts), {}, {
+          curPost: curPost
+        }),
+        likedPosts: newState.likedPosts
+      };
+
+    case _actions_likeActions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_LIKE:
+      curPost = state.posts[action.post.id];
+      curPost.liked = false;
+      var likes = [];
+
+      if (newState.likedPosts.includes(action.post.id)) {
+        var likeIndex = newState.likedPosts.indexOf(action.post.id);
+        var left = newState.likedPosts.splice(0, likeIndex);
+        var right = newState.likedPosts.splice(likeIndex + 1);
+        likes = left.concat(right);
+      }
+
+      return {
+        posts: _objectSpread(_objectSpread({}, newState.posts), {}, {
+          curPost: curPost
+        }),
+        likedPosts: likes
+      };
 
     default:
       return state;
@@ -9959,11 +10017,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/userActions */ "./frontend/actions/userActions.js");
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var defaultState = {
   users: {},
-  followedUser: []
+  followedUsers: []
 };
 
 var usersReducer = function usersReducer() {
@@ -9980,10 +10044,16 @@ var usersReducer = function usersReducer() {
     // and with them the ids of the users that are being followed by the 
     // current user
 
-    case _actions_postActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_POSTS: // this case will called when a userProfile is grabbed or when the follow
+    case _actions_postActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_POSTS:
+      return {
+        users: _objectSpread({}, state.users),
+        followedUsers: action.payload.followedUsers
+      };
+    // this case will called when a userProfile is grabbed or when the follow
     // status of a user changes
 
     case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.UPDATE_USER:
+    case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.FOLLOW_USER:
     default:
       return state;
   }

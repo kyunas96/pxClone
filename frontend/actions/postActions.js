@@ -9,9 +9,9 @@ export const receivePost = post => ({
   post
 })
 
-export const receivePosts = posts => ({
+export const receivePosts = payload => ({
   type: RECEIVE_POSTS,
-  posts
+  payload
 })
 
 const updatePost = post => ({
@@ -21,7 +21,6 @@ const updatePost = post => ({
 
 export const requestUsersFeed = () => dispatch => (
   PostAPI.requestUsersFeed()
-    .then(payload => console.log("payload", payload))
     .then(payload => dispatch(receivePosts(payload)))
 )
 

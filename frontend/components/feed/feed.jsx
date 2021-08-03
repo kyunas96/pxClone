@@ -33,11 +33,11 @@ class Feed extends React.Component {
 
     let images = [];
 
-    // if (this.props.feedPosts !== null) {
-    //   Object.values(this.props.feedPosts).forEach((post, i) => {
-    //     images.push(<Image post={post} key={i} />);
-    //   });
-    // }
+    if (this.props.feedPosts !== null) {
+      Object.values(this.props.feedPosts).forEach((post, i) => {
+        images.push(<Image post={post} key={i} />);
+      });
+    }
 
     return (
       <div className="feed">
