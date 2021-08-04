@@ -8,20 +8,18 @@ class Profile extends React.Component{
   }
 
   componentDidMount(){
-    this.props.fetchProfile(this.props.userId)
-    this.props.fetchProfilePosts(this.props.userId)
+    this.props.fetchUser(this.props.userId)
   }
 
   componentDidUpdate(){
-    this.props.fetchProfile(this.props.userId)
-    this.props.fetchProfilePosts(this.props.userId);
+    this.props.fetchUser(this.props.userId)
   }
 
   render(){
     return (
       <div className="user-profile">
-        <ProfileHeaderContainer />
-        <ProfileFeedContainer userId={this.props.userId}/>
+        {/* <ProfileHeaderContainer /> */}
+        {/* <ProfileFeedContainer userId={this.props.userId}/> */}
         {/* feed component will be rendered here as well */}
       </div>
     );

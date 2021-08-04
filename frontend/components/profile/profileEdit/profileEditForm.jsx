@@ -1,8 +1,7 @@
 import React from "react";
 import ProfileEditFormHeader from "./profile_edit_form_header";
-import { getProfile, updateProfile } from "../../../util/ProfileAPI";
+import { getUser, updateUser } from '../../../actions/userActions';
 import { CountryDropdown } from "react-country-region-selector";
-import { $dataMetaSchema } from "ajv";
 
 class ProfileEditForm extends React.Component {
   constructor(props) {

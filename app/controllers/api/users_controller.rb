@@ -8,8 +8,24 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    # when a user is grabbed to display their profile, the response will contain
+    # the user's information, the posts, and the indices of the posts
+    # passing the indices of the posts to the front end allows the profile to be 
+    # rerendered by grabbing the indices of the posts from state
+    if @user
+      @posts = @user.posts.order(:created_at)
+      @postIndices = @posts.pluck(:id)
+      render :show
+      return
+    else
+      render json: { error: "User does not exist"}
+      return
+    end
 
-    render :show
+    p "user show"
+    p "@user " + @user.inspect
+    p "@posts " + @posts.inspect
+    p "@postIndices " + @postIndices.inspect
   end
 
   def get_user_posts

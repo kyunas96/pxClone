@@ -9,40 +9,12 @@ import {
 class FollowButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      followStatus: null,
-    };
-    this.handleFollowUpdate = this.handleFollowUpdate.bind(this);
-  }
-
-  handleFollowUpdate() {
-    if (this.state.followStatus === false) {
-      createFollow(this.props.profileId).then(({ following }) =>
-        this.setState({ followStatus: following })
-      );
-    } else if (this.state.followStatus === true) {
-      deleteFollow(this.props.profileId).then(({ following }) =>
-        this.setState({ followStatus: following })
-      );
-    }
-  }
-
-  componentDidMount() {
-    getFollowing(this.props.profileId).then(({ following }) => {
-      this.setState({ followStatus: following });
-    });
-  }
-
-  componentDidUpdate() {
-    getFollowing(this.props.profileId).then(({ following }) => {
-      this.setState({ followStatus: following });
-    });
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (
-      nextProps.profileId !== this.props.profileId ||
-      this.state.followStatus != nextState.followStatus
+      this.props.profileId !== nextProps.profileId ||
+      this.props.following !== nextState.following
     ) {
       return true;
     } else {
@@ -51,13 +23,16 @@ class FollowButton extends React.Component {
   }
 
   render() {
-    let classList = this.state.followStatus === true ? "following" : "follow";
+    let classList = this.props.following === true ? "following" : "follow";
     const profileId = this.props.profileId;
+    const action = this.props.following
+      ? this.props.removeFollow
+      : this.props.addFollow;
 
     return (
       <button
         className={`follow-button ${classList}`}
-        onClick={() => this.handleFollowUpdate()}
+        onClick={() => action(this.props.profileId)}
       ></button>
     );
   }

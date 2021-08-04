@@ -3,6 +3,8 @@ import {
   RECEIVE_POSTS,
   UPDATE_POST,
 } from "../actions/postActions";
+
+import { RECEIVE_USER } from "../actions/userActions";
 import { ADD_LIKE, REMOVE_LIKE } from "../actions/likeActions";
 
 const defaultState = {
@@ -30,12 +32,14 @@ const PostsReducer = (state = defaultState, action) => {
         },
         likedPosts: state.likedPosts,
       };
-    case UPDATE_POST:
-      return {
-        ...state,
-        ...action.post,
-      };
-
+    case RECEIVE_USER:
+        return {
+          posts: {
+            ...state.posts,
+            ...action.payload.posts
+          },
+          likedPosts: state.likedPosts
+        }
     case ADD_LIKE:
       curPost = state.posts[action.post.id];
       curPost.liked = true;

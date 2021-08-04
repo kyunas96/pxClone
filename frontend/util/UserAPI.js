@@ -1,29 +1,25 @@
-export const requestUsers = () => (
-  $.ajax({
-    method: 'GET',
-    url: '/api/users/'
-  })
-)
-
-export const requestUser = userId => (
-  $.ajax({
-    method: 'GET',
-    url: `/api/users/${userId}`
-  })
-)
-
-export const createUser = user => (
+export const createUser = (user) => (
   $.ajax({
     method: 'POST',
-    url: 'api/users',
-    data: { user }
+    url: 'api/users/'
   })
 )
 
-export const updateUser = user => (
+export const requestUser = (userId) =>
   $.ajax({
-    method: 'PATCH',
-    url: `/api/users/${user.id}`,
-    data: { user }
-  })
-)
+    method: "GET",
+    url: `api/users/${userId}`,
+  });
+
+export const updateUser = (userId, profile) =>
+  $.ajax({
+    method: "PATCH",
+    url: `api/users/${userId}`,
+    data: profile,
+  });
+
+export const requestUsersPosts = (userId) =>
+  $.ajax({
+    method: "GET",
+    url: `/api/users/${userId}/posts`,
+  });

@@ -1,7 +1,8 @@
 import * as FollowAPI from "../util/FollowAPI";
 export const RECEIVE_FOLLOW = 'RECEIVE_FOLLOW';
+export const ADD_FOLLOW = "ADD_FOLLOW";
+export const REMOVE_FOLLOW = "REMOVE_FOLLOW";
 export const UPDATE_FOLLOW = 'UPDATE_FOLLOW';
-
 
 
 const receiveFollow = follow => ({
@@ -9,25 +10,26 @@ const receiveFollow = follow => ({
   follow
 })
 
-const updateFollow = follow => ({
-  type: UPDATE_FOLLOW,
-  follow
-})
+export const addFollow = (profileId) => (dispatch) => {
+  FollowAPI.createFollow(profileId).then((data) => {
+    dispatch({
+      type: ADD_FOLLOW,
+      data
+    })
+  });
+}
+
+export const removeFollow = (profileId) => (dispatch) => {
+  FollowAPI.deleteFollow(profileId).then((data) => {
+    dispatch({
+      type: REMOVE_FOLLOW,
+      data
+    })
+  });
+}
+
 
 export const getFollowStatus = (userId) => (dispatch) => (
   FollowAPI.getFollowing(userId)
     .then((data) => dispatch(receiveFollow(data)))
 )
-
-
-export const toggleFollow = (following, profileId) => (dispatch) => {
-  if (following === true) {
-    FollowAPI.deleteFollow(profileId).then((data) =>
-      dispatch(receiveFollow(data))
-    );
-  } else {
-    FollowAPI.createFollow(profileId).then((data) =>
-      dispatch(receiveFollow(data))
-    );
-  }
-};

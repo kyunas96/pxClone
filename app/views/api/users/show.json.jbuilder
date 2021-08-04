@@ -1,7 +1,20 @@
 json.user do
-  json.extract! @user, :id, :username
-end
+  json.extract! @user, 
+  :id, 
+  :username, 
+  :description,
+  :email, 
+  :country, 
+  :city, 
+  :websiteURL, 
+  :instagram,
+  :facebook,
+  :twitter
 
-json.set! :errors do
-  json.array! @errors
-end 
+  json.userPosts @postIndices
+end
+json.posts @posts
+
+# json.set! :errors do
+#   json.array! @errors
+# end 
