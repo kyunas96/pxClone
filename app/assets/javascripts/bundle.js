@@ -2578,7 +2578,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-profile"
-      });
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profileHeaderContainer__WEBPACK_IMPORTED_MODULE_1__.default, {
+        userId: this.props.userId
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_feed_container__WEBPACK_IMPORTED_MODULE_2__.default, {
+        userId: this.props.userId
+      }));
     }
   }]);
 
@@ -2609,7 +2613,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    userId: ownProps.match.params.userId
+    userId: parseInt(ownProps.match.params.userId)
   };
 };
 
@@ -2617,8 +2621,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchUser: function fetchUser(userId) {
       return dispatch((0,_actions_userActions__WEBPACK_IMPORTED_MODULE_2__.requestUser)(userId));
-    } // fetchProfilePosts: (userId) => dispatch(getProfilePosts(userId)),
-
+    }
   };
 };
 
@@ -3213,10 +3216,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var following = state.entities.users.followedUsers.includes(state.ui.profile.userId);
+  var following = state.entities.users.followedUsers.includes(state.ui.currentProfileId);
   return {
     following: following,
-    profileId: state.ui.profile.userId
+    profileId: state.ui.currentProfileId
   };
 };
 
@@ -3292,7 +3295,7 @@ var FollowButton = /*#__PURE__*/function (_React$Component) {
   _createClass(FollowButton, [{
     key: "shouldComponentUpdate",
     value: function shouldComponentUpdate(nextProps, nextState) {
-      if (this.props.profileId !== nextProps.profileId || this.props.following !== nextState.following) {
+      if (this.props.profileId !== nextProps.profileId || this.props.following !== nextProps.following) {
         return true;
       } else {
         return false;
@@ -3303,6 +3306,7 @@ var FollowButton = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      console.log("followButton", this.props);
       var classList = this.props.following === true ? "following" : "follow";
       var profileId = this.props.profileId;
       var action = this.props.following ? this.props.removeFollow : this.props.addFollow;
@@ -3339,12 +3343,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("profileheader", state);
+  console.log("profileheader", state.entities.users.users[ownProps.userId]);
+  var user = state.entities.users.users[ownProps.userId];
+  var bannerImage = null;
+  var userPhoto = null;
+
+  if (user !== undefined) {
+    bannerImage = user.bannerImage;
+    userPhoto = user.userPhoto;
+  }
+
+  var isCurrentUser = ownProps.userId === state.session.currentUser.id;
   return {
-    bannerImage: state.ui.profile.bannerImage,
-    userPhoto: state.ui.profile.userPhoto,
-    isCurrentUser: state.ui.profile.isCurrentUser,
-    userId: state.ui.profile.userId
+    isCurrentUser: isCurrentUser,
+    bannerImage: bannerImage,
+    userPhoto: userPhoto,
+    id: ownProps.userId
   };
 };
 
@@ -3369,19 +3383,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var renderFollow = state.session.loggedIn && !state.ui.profile.isCurrentUser;
+  var isCurrentUser = state.ui.currentProfileId === state.session.currentUser.id;
+  var renderFollow = state.session.loggedIn && !isCurrentUser;
+  var user = state.entities.users.users[ownProps.userId];
+  var username = null;
+  var city = null;
+  var country = null;
+  var description = null;
+
+  if (user !== undefined) {
+    username = user.username;
+    city = user.city;
+    country = user.country;
+    description = user.description;
+  }
+
   return {
     renderFollow: renderFollow,
-    userName: state.ui.profile.userName,
-    city: state.ui.profile.city,
-    country: state.ui.profile.country,
-    description: state.ui.profile.description
+    username: username,
+    city: city,
+    country: country,
+    description: description
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {};
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profile_info__WEBPACK_IMPORTED_MODULE_1__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, null)(_profile_info__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 
@@ -3442,7 +3470,7 @@ var ProfileHeader = function ProfileHeader(_ref) {
   var bannerImage = _ref.bannerImage,
       userPhoto = _ref.userPhoto,
       isCurrentUser = _ref.isCurrentUser,
-      userId = _ref.userId;
+      id = _ref.id;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_banner__WEBPACK_IMPORTED_MODULE_2__.default, {
@@ -3453,9 +3481,11 @@ var ProfileHeader = function ProfileHeader(_ref) {
     className: "profile-picture-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_picture__WEBPACK_IMPORTED_MODULE_1__.default, {
     userPhoto: userPhoto
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileInfoContainer__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileInfoContainer__WEBPACK_IMPORTED_MODULE_3__.default, {
+    userId: id
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_options__WEBPACK_IMPORTED_MODULE_4__.default, {
     isCurrentUser: isCurrentUser,
-    userId: userId
+    userId: id
   }))));
 };
 
@@ -3681,7 +3711,6 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       posts: _this.props.posts
     };
-    console.log("initialProps", _this.props.posts.keys);
     return _this;
   } // componentDidMount() {
   //   this.props.fetchProfilePosts(this.props.userId);
@@ -3715,22 +3744,19 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
         700: 2,
         500: 1
       };
-      var images = [];
+      var images = []; // console.log(JSON.stringify(this.props.posts))
 
-      if (this.props.posts !== null) {
-        // console.log(JSON.stringify(this.props.posts))
-        Object.values(this.props.posts).forEach(function (post, i) {
-          var liked = _this2.props.isCurrentUser ? null : post.liked;
-          images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-            post: _objectSpread(_objectSpread({}, post), {}, {
-              liked: liked
-            }),
-            key: i,
-            like: true
-          }));
-        });
-      }
-
+      Object.values(this.props.posts).forEach(function (post, i) {
+        var liked = _this2.props.isCurrentUser ? null : _this2.props.likedPosts.includes(post.id);
+        images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
+          post: _objectSpread(_objectSpread({}, post), {}, {
+            liked: liked
+          }),
+          key: i,
+          like: true
+        }));
+      });
+      console.log("images", images);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-feed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3767,12 +3793,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var isCurrentUser = state.session.currentUser.id === parseInt(ownProps.userId) ? true : false;
+  var isCurrentUser = state.session.currentUser.id === ownProps.userId;
+  var posts = Object.values(state.entities.posts.posts);
+  console.log("profile feed map", posts);
+  posts = posts.filter(function (post) {
+    return post.poster_id === ownProps.userId;
+  });
+  var likedPosts = state.entities.posts.likedPosts;
   return {
     isCurrentUser: isCurrentUser,
     userId: ownProps.userId,
-    posts: state.ui.profilePosts,
-    likedPosts: state.entities.likedPosts
+    posts: posts,
+    likedPosts: likedPosts
   };
 };
 
@@ -3913,8 +3945,7 @@ var PostsReducer = function PostsReducer() {
       };
 
     case _actions_likeActions__WEBPACK_IMPORTED_MODULE_2__.ADD_LIKE:
-      curPost = state.posts[action.post.id];
-      curPost.liked = true;
+      newState.posts[action.post.id] = true;
       !newState.likedPosts.includes(action.post.id) && newState.likedPosts.push(action.post.id);
       return {
         posts: _objectSpread(_objectSpread({}, newState.posts), {}, {
@@ -3930,8 +3961,8 @@ var PostsReducer = function PostsReducer() {
 
       if (newState.likedPosts.includes(action.post.id)) {
         var likeIndex = newState.likedPosts.indexOf(action.post.id);
-        var left = newState.likedPosts.splice(0, likeIndex);
-        var right = newState.likedPosts.splice(likeIndex + 1);
+        var left = newState.likedPosts.slice(0, likeIndex);
+        var right = newState.likedPosts.slice(likeIndex + 1);
         likes = left.concat(right);
       }
 
@@ -3962,12 +3993,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_persist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-persist */ "./node_modules/redux-persist/es/index.js");
 /* harmony import */ var redux_persist_lib_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-persist/lib/storage */ "./node_modules/redux-persist/lib/storage/index.js");
 /* harmony import */ var _entitiesReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entitiesReducer */ "./frontend/reducers/entitiesReducer.js");
 /* harmony import */ var _errorsReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errorsReducer */ "./frontend/reducers/errorsReducer.js");
 /* harmony import */ var _sessionReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sessionReducer */ "./frontend/reducers/sessionReducer.js");
+/* harmony import */ var _uiReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./uiReducer */ "./frontend/reducers/uiReducer.js");
+
 
 
 
@@ -3979,10 +4012,11 @@ var persistConfig = {
   storage: redux_persist_lib_storage__WEBPACK_IMPORTED_MODULE_1__.default,
   whitelist: ["entities", "session", "ui"]
 };
-var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_5__.combineReducers)({
+var rootReducer = (0,redux__WEBPACK_IMPORTED_MODULE_6__.combineReducers)({
   entities: _entitiesReducer__WEBPACK_IMPORTED_MODULE_2__.default,
   errors: _errorsReducer__WEBPACK_IMPORTED_MODULE_3__.default,
-  session: _sessionReducer__WEBPACK_IMPORTED_MODULE_4__.default
+  session: _sessionReducer__WEBPACK_IMPORTED_MODULE_4__.default,
+  ui: _uiReducer__WEBPACK_IMPORTED_MODULE_5__.default
 });
 var persistedReducer = (0,redux_persist__WEBPACK_IMPORTED_MODULE_0__.persistReducer)(persistConfig, rootReducer);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (persistedReducer);
@@ -4083,6 +4117,40 @@ var sessionReducer = function sessionReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/uiReducer.js":
+/*!****************************************!*\
+  !*** ./frontend/reducers/uiReducer.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/userActions */ "./frontend/actions/userActions.js");
+
+
+var UIReducer = function UIReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER:
+      return {
+        currentProfileId: action.payload.user.id
+      };
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UIReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/usersReducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/usersReducer.js ***!
@@ -4139,9 +4207,22 @@ var usersReducer = function usersReducer() {
       return newState;
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.ADD_FOLLOW:
-      newState.users;
+      newState.users[action.data.userId].following = true;
+      !newState.followedUsers.includes(action.data.userId) && newState.followedUsers.push(action.data.userId);
+      return newState;
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.REMOVE_FOLLOW:
+      newState.users[action.data.userId].following = false;
+      var follows = [];
+      var likeIndex = newState.followedUsers.indexOf(action.data.userId);
+      var left = newState.followedUsers.slice(0, likeIndex);
+      var right = newState.followedUsers.slice(likeIndex + 1);
+      follows = left.concat(right);
+      return {
+        users: _objectSpread({}, newState.users),
+        followedUsers: follows
+      };
+
     default:
       return state;
   }

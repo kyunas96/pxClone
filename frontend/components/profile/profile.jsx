@@ -18,8 +18,8 @@ class Profile extends React.Component{
   render(){
     return (
       <div className="user-profile">
-        {/* <ProfileHeaderContainer /> */}
-        {/* <ProfileFeedContainer userId={this.props.userId}/> */}
+        <ProfileHeaderContainer userId={this.props.userId}/>
+        <ProfileFeedContainer userId={this.props.userId}/>
         {/* feed component will be rendered here as well */}
       </div>
     );

@@ -14,7 +14,7 @@ class FollowButton extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (
       this.props.profileId !== nextProps.profileId ||
-      this.props.following !== nextState.following
+      this.props.following !== nextProps.following
     ) {
       return true;
     } else {
@@ -23,6 +23,7 @@ class FollowButton extends React.Component {
   }
 
   render() {
+    console.log("followButton", this.props)
     let classList = this.props.following === true ? "following" : "follow";
     const profileId = this.props.profileId;
     const action = this.props.following

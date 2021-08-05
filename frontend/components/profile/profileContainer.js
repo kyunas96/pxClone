@@ -3,12 +3,11 @@ import Profile from "./profile";
 import { requestUser } from '../../actions/userActions';
 
 const mapStateToProps = (state, ownProps) => ({
-  userId: ownProps.match.params.userId
+  userId: parseInt(ownProps.match.params.userId)
 })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: (userId) => dispatch(requestUser(userId))
-  // fetchProfilePosts: (userId) => dispatch(getProfilePosts(userId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

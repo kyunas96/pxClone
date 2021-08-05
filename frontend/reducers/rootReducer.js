@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import entitiesReducer from './entitiesReducer';
 import errorsReducer from './errorsReducer';
 import sessionReducer from './sessionReducer';
+import UIReducer from './uiReducer';
 
 const persistConfig = {
   key: "root",
@@ -14,7 +15,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   entities: entitiesReducer,
   errors: errorsReducer,
-  session: sessionReducer
+  session: sessionReducer,
+  ui: UIReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

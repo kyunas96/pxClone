@@ -8,7 +8,6 @@ class ProfileFeed extends React.Component {
     this.state = {
       posts: this.props.posts,
     };
-    console.log("initialProps", this.props.posts.keys);
   }
 
   // componentDidMount() {
@@ -43,13 +42,15 @@ class ProfileFeed extends React.Component {
 
     let images = [];
 
-    if (this.props.posts !== null) {
-      // console.log(JSON.stringify(this.props.posts))
-      Object.values(this.props.posts).forEach((post, i) => {
-        const liked = this.props.isCurrentUser ? null : post.liked;
-        images.push(<Image post={{...post, liked}} key={i} like/>);
-      });
-    }
+    // console.log(JSON.stringify(this.props.posts))
+    Object.values(this.props.posts).forEach((post, i) => {
+      const liked = this.props.isCurrentUser
+        ? null
+        : this.props.likedPosts.includes(post.id);
+      images.push(<Image post={{ ...post, liked }} key={i} like />);
+    });
+
+    console.log("images", images)
 
     return (
       <div className="profile-feed">

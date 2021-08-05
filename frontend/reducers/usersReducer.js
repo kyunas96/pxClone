@@ -38,10 +38,23 @@ const usersReducer = (state = {}, action) => {
       newState.users[action.payload.user.id] = action.payload.user;
       return newState;
     case ADD_FOLLOW:
-      newState.users
-      
+      newState.users[action.data.userId].following = true;
+      !newState.followedUsers.includes(action.data.userId) &&
+        newState.followedUsers.push(action.data.userId);
+      return newState;
     case REMOVE_FOLLOW:
-
+      newState.users[action.data.userId].following = false;
+      let follows = [];
+      const likeIndex = newState.followedUsers.indexOf(action.data.userId);
+      const left = newState.followedUsers.slice(0, likeIndex);
+      const right = newState.followedUsers.slice(likeIndex + 1);
+      follows = left.concat(right);
+      return {
+        users: {
+          ...newState.users
+        },
+        followedUsers: follows
+      }
     default:
       return state;
   }

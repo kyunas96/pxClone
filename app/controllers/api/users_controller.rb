@@ -15,17 +15,19 @@ class Api::UsersController < ApplicationController
     if @user
       @posts = @user.posts.order(:created_at)
       @postIndices = @posts.pluck(:id)
+
+      p "user show"
+      p "@user " + @user.user_photo.inspect
+      p "@posts " + @posts.inspect
+      p "@postIndices " + @postIndices.inspect
+
       render :show
+
       return
     else
       render json: { error: "User does not exist"}
       return
     end
-
-    p "user show"
-    p "@user " + @user.inspect
-    p "@posts " + @posts.inspect
-    p "@postIndices " + @postIndices.inspect
   end
 
   def get_user_posts

@@ -4,7 +4,7 @@ import ProfileBanner from "./profile_banner";
 import ProfileInfoContainer from "./profileInfoContainer";
 import ProfileOptions from "./profile_options";
 
-const ProfileHeader = ({ bannerImage, userPhoto, isCurrentUser, userId }) => {
+const ProfileHeader = ({ bannerImage, userPhoto, isCurrentUser, id }) => {
   return (
     <div className="profile-header">
       {/* <div className="profile-banner-container"> */}
@@ -14,10 +14,10 @@ const ProfileHeader = ({ bannerImage, userPhoto, isCurrentUser, userId }) => {
         <div></div>
         <div className="profile-picture-info">
           <ProfilePicture userPhoto={userPhoto} />
-          <ProfileInfoContainer />
+          <ProfileInfoContainer userId={id}/>
         </div>
         <div>
-          <ProfileOptions isCurrentUser={isCurrentUser} userId={userId} />
+          <ProfileOptions isCurrentUser={isCurrentUser} userId={id} />
         </div>
       </div>
     </div>

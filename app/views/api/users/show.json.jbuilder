@@ -11,9 +11,19 @@ json.user do
   :facebook,
   :twitter
 
+  json.bannerImage url_for(@user.banner_image)
+  json.userPhoto url_for(@user.user_photo)
   json.userPosts @postIndices
 end
-json.posts @posts
+
+json.posts do
+   @posts.each do |post|
+    json.set! post.id do
+      json.extract! post, :id, :title, :poster_id, :description, :created_at
+      json.photoUrl url_for(post.photo)
+    end
+  end
+end
 
 # json.set! :errors do
 #   json.array! @errors
