@@ -28,7 +28,6 @@ const PostShowInfo = ({ user, post }) => (
       <h3 id="post-show-links">
         by <Link to={`/users/${user.posterId}/profile`}>{user.poster}</Link> •{" "}
         <PostShowFollowButton
-          following={user.following}
           posterId={user.posterId}
         />
       </h3>

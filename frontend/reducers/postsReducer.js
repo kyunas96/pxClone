@@ -13,7 +13,6 @@ const defaultState = {
 };
 
 const PostsReducer = (state = defaultState, action) => {
-  console.log("PostsReducer", action);
   Object.freeze(state);
   let newState = Object.assign({}, state);
   let curPost;
@@ -21,8 +20,11 @@ const PostsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case RECEIVE_POST:
       return {
-        ...state,
-        ...action.post,
+        posts: {
+          ...state.posts,
+          ...action.post,
+        },
+        likedPosts: state.likedPosts
       };
     case RECEIVE_POSTS:
       return {
@@ -30,16 +32,16 @@ const PostsReducer = (state = defaultState, action) => {
           ...state.posts,
           ...action.payload.posts,
         },
-        likedPosts: state.likedPosts,
+        likedPosts: action.payload.likedPosts,
       };
     case RECEIVE_USER:
-        return {
-          posts: {
-            ...state.posts,
-            ...action.payload.posts
-          },
-          likedPosts: state.likedPosts
-        }
+      return {
+        posts: {
+          ...state.posts,
+          ...action.payload.posts,
+        },
+        likedPosts: state.likedPosts,
+      };
     case ADD_LIKE:
       newState.posts[action.post.id].liked = true;
       !newState.likedPosts.includes(action.post.id) &&
@@ -61,10 +63,10 @@ const PostsReducer = (state = defaultState, action) => {
       }
       return {
         posts: {
-          ...newState.posts
+          ...newState.posts,
         },
-        likedPosts: likes
-      }
+        likedPosts: likes,
+      };
 
     default:
       return state;

@@ -1,13 +1,13 @@
 import React from "react";
 import LikedIcon from "./liked.svg";
-import UnlikedIcon from "./unliked.svg";
+import UnlikedWhite from "../feed/unliked-white.svg";
 
 const LikeButton = (props) => {
   console.log("likebutton", props)
   if (props.liked === null) {
     return null;
   }
-  const heartIcon = props.liked ? LikedIcon : UnlikedIcon;
+  const heartIcon = props.liked ? LikedIcon : UnlikedWhite;
 
   const action = props.liked
     ? (e) => {
@@ -22,7 +22,7 @@ const LikeButton = (props) => {
     }
 
   return (
-    <div className="like-button">
+    <div className="like-button white">
       <img src={heartIcon} onClick={(e) => action(e)} />
     </div>
   );

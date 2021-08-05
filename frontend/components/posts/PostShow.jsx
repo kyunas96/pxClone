@@ -13,6 +13,10 @@ class PostShow extends React.Component {
     this.props.requestPost(this.props.postId);
   }
 
+  // componentDidUpdate(){
+  //   this.props.requestPost(this.props.postId);
+  // }
+
   render() {
     console.log("post show", this.props);
     const postItem = this.props.post ? this.props.post.title : null;

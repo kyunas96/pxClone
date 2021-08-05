@@ -1,42 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { render } from "react-dom";
-import {
-  getFollowing,
-  createFollow,
-  deleteFollow,
-} from "../../../util/FollowAPI";
 
-class FollowButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const FollowButton = (props) => {
+  console.log("followButton", props);
+  let classList = props.following === true ? "following" : "follow";
+  const profileId = props.profileId;
+  const action = props.following
+    ? props.removeFollow
+    : props.addFollow;
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (
-      this.props.profileId !== nextProps.profileId ||
-      this.props.following !== nextProps.following
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  render() {
-    console.log("followButton", this.props)
-    let classList = this.props.following === true ? "following" : "follow";
-    const profileId = this.props.profileId;
-    const action = this.props.following
-      ? this.props.removeFollow
-      : this.props.addFollow;
-
-    return (
-      <button
-        className={`follow-button ${classList}`}
-        onClick={() => action(this.props.profileId)}
-      ></button>
-    );
-  }
-}
+  return (
+    <button
+      className={`follow-button ${classList}`}
+      onClick={() => action(props.profileId)}
+    ></button>
+  );
+};
 
 export default FollowButton;

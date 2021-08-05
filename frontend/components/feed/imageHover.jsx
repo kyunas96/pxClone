@@ -21,7 +21,7 @@ const ImageHover = ({ title, username, postId, posterId, liked }) => {
             Will store the user image
             for the user that posted the image
             </img> */}
-          <button onClick={e => handleClick(e)}>{username}</button>
+          <div onClick={e => handleClick(e)}>{username}</div>
         </div>
         <div className="hover-interaction">
           <LikeButton liked={liked} postId={postId} />

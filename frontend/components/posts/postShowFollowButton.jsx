@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { createFollow, deleteFollow } from "../../util/FollowAPI";
+import { addFollow, removeFollow } from '../../actions/followActions';
+
+
+
+const mapStateToProps = (state, ownProps) => {
+  const following = state.entities.users.followedUsers.includes(ownProps.posterId)
+  return {
+    following
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addFollow: (userId) => dispatch(addFollow(userId)),
+    removeFollow: (userId) => dispatch(removeFollow(userId))
+  }
+}
 
 const PostShowFollowButton = (props) => {
-  const [isFollowing, setFollowing] = useState(props.following);
   console.log("postShowFollowButton", props);
   const action = props.following
     ? () => deleteFollow(props.posterId).then(({ following }) =>

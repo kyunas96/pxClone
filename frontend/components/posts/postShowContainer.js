@@ -5,11 +5,12 @@ import { getPostShowNavIndices } from "../../util/Util";
 
 const mSTP = (state, ownProps) => {
   const postId = ownProps.match.params.postId;
-  const postNavIndices = getPostShowNavIndices(parseInt(postId), state.entities.posts)
+  const posts = state.entities.posts.posts
+  const postNavIndices = getPostShowNavIndices(parseInt(postId), posts)
 
   return {
     postId,
-    post: state.entities.posts[postId],
+    post: state.entities.posts.posts[postId],
     prevPostId: postNavIndices.prevPostId,
     nextPostId: postNavIndices.nextPostId
   };

@@ -1,4 +1,4 @@
-@import './00_variables.scss';
+@import "./00_variables.scss";
 
 .post-show {
   width: 100%;
@@ -8,29 +8,44 @@
   justify-content: flex-start;
   align-items: center;
 
-  img {
+  & > img {
     // width: 100%;
     height: 100%;
     object-fit: contain;
   }
 
-  .post-show-description{
+  .post-show-lower {
+    width: 100%;
+    // padding: 0 5%;
+    background-color: $gray;
+  }
+
+  .post-show-card{
+    background-color: white;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 10px 25px 0 25px;
+  }
+
+  .post-show-description {
     padding: 25px;
     width: 90%;
 
-    h3{
+    h3 {
       font-size: 20px;
       font-weight: 400;
       margin-bottom: 10px;
     }
 
-    a{
+    a {
       color: $black;
     }
   }
 }
 
-.post-show-gallery{
+.post-show-gallery {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -39,7 +54,7 @@
   height: 80%;
 }
 
-.post-show-image{
+.post-show-image {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -48,7 +63,7 @@
   margin: auto;
   text-align: center;
 
-  img{
+  img {
     display: block;
     margin: 0 auto;
     height: 100%;
@@ -58,14 +73,14 @@
   }
 }
 
-.post-show-nav{
+.post-show-nav {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
 }
 
-.post-show-nav-tile{
+.post-show-nav-tile {
   height: 100%;
   width: 50%;
   background-color: grey;
@@ -76,18 +91,16 @@
   }
 }
 
-.post-show-nav-button{
+.post-show-nav-button {
   display: inline-block;
   width: 100%;
   height: 100%;
 }
 
-.post-show-lower{
-  width: 100%;
-  padding: 0 5%;
+.post-show-lower {
 }
 
-.post-show-poster-info{
+.post-show-poster-info {
   width: 25%;
   height: 80px;
   display: flex;
@@ -95,31 +108,33 @@
   justify-content: space-around;
 }
 
-#post-show-links{
+.post-show-interactions {
+}
+
+#post-show-links {
   display: inline-block;
   width: 200px;
 }
 
-#post-show-follow{
+#post-show-follow {
   display: none;
 }
 
-label.following{
-  &::after{
+label.following {
+  &::after {
     content: "Following";
   }
 
-  &:hover &::after{
+  &:hover &::after {
     content: "Unfollow";
   }
 }
 
-label.folllow{
-  &:after{
+label.folllow {
+  &:after {
     content: "Follow";
   }
 
-  &:hover{
-
+  &:hover {
   }
 }

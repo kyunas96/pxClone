@@ -1,9 +1,9 @@
 import React from 'react';
-import LikeButton from '../feed/likeButtonContainer';
+import PostShowLike from './postShowLikeContainer';
 
-const PostShowInteractions = ({liked, postId}) => (
+const PostShowInteractions = ({postId}) => (
   <div className="post-show-interactions">
-    <LikeButton liked={liked} postId={postId}/>
+    <PostShowLike postId={postId} />
   </div>
 )
 

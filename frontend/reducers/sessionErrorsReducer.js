@@ -1,7 +1,6 @@
 import { SESSION_LOGIN, RESET_SESSION_ERRORS } from "../actions/sessionActions";
 
 const sessionErrorsReducer = (state = {}, action) => {
-  console.log("sessionErrorsReducer", action)
   Object.freeze(state);
   switch (action.type) {
     case SESSION_LOGIN:
