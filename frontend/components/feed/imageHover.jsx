@@ -1,24 +1,27 @@
 import React from "react";
 import LikeButton from "./likeButtonContainer";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const ImageHover = ({ title, username, postId, posterId, liked }) => {
-
+  let history = useHistory();
   const linkToUser = `users/${posterId}/profile`;
+
+  const handleClick = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    history.push(linkToUser);
+  }
 
   return (
     <div className="image-hover">
       <div className="image-hover-top">{title}</div>
       <div className="image-hover-bottom">
         <div className="hover-user">
-          <Link to={`/users/${posterId}/profile`}>{username}</Link>
           {/* <img>
             Will store the user image
             for the user that posted the image
             </img> */}
-          {/* <Link to={`users/${props.posterId}/profile`}>
-            {props.post.username}
-          </Link> */}
+          <button onClick={e => handleClick(e)}>{username}</button>
         </div>
         <div className="hover-interaction">
           <LikeButton liked={liked} postId={postId} />

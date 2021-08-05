@@ -1269,7 +1269,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _likeButtonContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./likeButtonContainer */ "./frontend/components/feed/likeButtonContainer.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 
 
 
@@ -1280,7 +1280,15 @@ var ImageHover = function ImageHover(_ref) {
       postId = _ref.postId,
       posterId = _ref.posterId,
       liked = _ref.liked;
+  var history = (0,react_router__WEBPACK_IMPORTED_MODULE_2__.useHistory)();
   var linkToUser = "users/".concat(posterId, "/profile");
+
+  var handleClick = function handleClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    history.push(linkToUser);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "image-hover"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1289,8 +1297,10 @@ var ImageHover = function ImageHover(_ref) {
     className: "image-hover-bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "hover-user"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: "/users/".concat(posterId, "/profile")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick(e) {
+      return handleClick(e);
+    }
   }, username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "hover-interaction"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_likeButtonContainer__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -1324,11 +1334,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LikeButton = function LikeButton(props) {
+  console.log("likebutton", props);
+
   if (props.liked === null) {
     return null;
   }
 
-  console.log("likeButton", props);
   var heartIcon = props.liked ? (_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (_unliked_svg__WEBPACK_IMPORTED_MODULE_2___default());
   var action = props.liked ? function (e) {
     e.preventDefault();
@@ -1339,13 +1350,13 @@ var LikeButton = function LikeButton(props) {
     e.stopPropagation();
     props.addLike(props.postId);
   };
-  console.log("button"); // console.log(likeButton(0, 0, 0));
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "like-button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: heartIcon,
-    onClick: action
+    onClick: function onClick(e) {
+      return action(e);
+    }
   }));
 };
 
@@ -1371,6 +1382,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var liked = state.entities.posts.likedPosts.includes(ownProps.postId);
+  return {
+    liked: liked
+  };
+};
+
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     addLike: function addLike(postId) {
@@ -1382,7 +1400,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(null, mapDispatchToProps)(_likeButton__WEBPACK_IMPORTED_MODULE_2__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_likeButton__WEBPACK_IMPORTED_MODULE_2__.default));
 
 /***/ }),
 
@@ -3793,12 +3811,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  console.log("profileFeed", ownProps);
   var isCurrentUser = state.session.currentUser.id === ownProps.userId;
   var posts = Object.values(state.entities.posts.posts);
-  console.log("profile feed map", posts);
   posts = posts.filter(function (post) {
     return post.poster_id === ownProps.userId;
   });
+  console.log("profile feed map", posts);
   var likedPosts = state.entities.posts.likedPosts;
   return {
     isCurrentUser: isCurrentUser,
@@ -3945,18 +3964,15 @@ var PostsReducer = function PostsReducer() {
       };
 
     case _actions_likeActions__WEBPACK_IMPORTED_MODULE_2__.ADD_LIKE:
-      newState.posts[action.post.id] = true;
+      newState.posts[action.post.id].liked = true;
       !newState.likedPosts.includes(action.post.id) && newState.likedPosts.push(action.post.id);
       return {
-        posts: _objectSpread(_objectSpread({}, newState.posts), {}, {
-          curPost: curPost
-        }),
+        posts: _objectSpread({}, newState.posts),
         likedPosts: newState.likedPosts
       };
 
     case _actions_likeActions__WEBPACK_IMPORTED_MODULE_2__.REMOVE_LIKE:
-      curPost = state.posts[action.post.id];
-      curPost.liked = false;
+      newState.posts[action.post.id].liked = false;
       var likes = [];
 
       if (newState.likedPosts.includes(action.post.id)) {
@@ -3967,9 +3983,7 @@ var PostsReducer = function PostsReducer() {
       }
 
       return {
-        posts: _objectSpread(_objectSpread({}, newState.posts), {}, {
-          curPost: curPost
-        }),
+        posts: _objectSpread({}, newState.posts),
         likedPosts: likes
       };
 

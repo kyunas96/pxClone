@@ -41,19 +41,17 @@ const PostsReducer = (state = defaultState, action) => {
           likedPosts: state.likedPosts
         }
     case ADD_LIKE:
-      newState.posts[action.post.id] = true;
+      newState.posts[action.post.id].liked = true;
       !newState.likedPosts.includes(action.post.id) &&
         newState.likedPosts.push(action.post.id);
       return {
         posts: {
           ...newState.posts,
-          curPost,
         },
         likedPosts: newState.likedPosts,
       };
     case REMOVE_LIKE:
-      curPost = state.posts[action.post.id];
-      curPost.liked = false;
+      newState.posts[action.post.id].liked = false;
       let likes = [];
       if (newState.likedPosts.includes(action.post.id)) {
         const likeIndex = newState.likedPosts.indexOf(action.post.id);
@@ -63,8 +61,7 @@ const PostsReducer = (state = defaultState, action) => {
       }
       return {
         posts: {
-          ...newState.posts,
-          curPost
+          ...newState.posts
         },
         likedPosts: likes
       }
