@@ -9,9 +9,10 @@ PostShowGallery:
 */
 
 
-const PostShowGallery = ({prevId, nextId, curImageURL}) => (
+const PostShowGallery = ({prevId, nextId, curImageURL, userId}) => (
   <div className="post-show-gallery">
   <PostShowNavigation 
+    userId={userId}
     prevId={prevId}
     nextId={nextId}
   />

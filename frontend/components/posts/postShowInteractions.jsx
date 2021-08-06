@@ -1,9 +1,9 @@
 import React from 'react';
 import PostShowLike from './postShowLikeContainer';
 
-const PostShowInteractions = ({postId}) => (
+const PostShowInteractions = ({postId, belongsToUser}) => (
   <div className="post-show-interactions">
-    <PostShowLike postId={postId} />
+    {!belongsToUser && <PostShowLike postId={postId} />}
   </div>
 )
 

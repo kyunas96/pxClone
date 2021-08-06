@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import PostShowFollowButton from "./postShowFollowButton";
 import { Link } from "react-router-dom";
 
-const PostShowInfo = ({ user, post }) => (
+const PostShowInfo = ({ user, post }) => {
+  console.log("info", user);
   /*
     Notes: 
       • this component will need a container to have access to the dispatch
@@ -16,7 +17,7 @@ const PostShowInfo = ({ user, post }) => (
       4. follow button
       5. Upload date
   */
-
+  return (
   <div className="post-show-info">
     {/* {profile picture} */}
     <div className="post-show-poster-picture">
@@ -33,6 +34,7 @@ const PostShowInfo = ({ user, post }) => (
       </h3>
     </div>
   </div>
-);
+  )
+};
 
 export default PostShowInfo;

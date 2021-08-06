@@ -13,9 +13,17 @@ class PostShow extends React.Component {
     this.props.requestPost(this.props.postId);
   }
 
-  // componentDidUpdate(){
-  //   this.props.requestPost(this.props.postId);
-  // }
+  componentDidUpdate() {
+    this.props.requestPost(this.props.postId);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.postId !== this.props.postId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   render() {
     console.log("post show", this.props);
@@ -24,13 +32,13 @@ class PostShow extends React.Component {
     if (this.props.post) {
       return (
         <div className="post-show">
-          <PostShowGallery 
+          <PostShowGallery
+            userId={this.props.userId}
             prevId={this.props.prevPostId}
             nextId={this.props.nextPostId}
             curImageURL={this.props.post.photoUrl}
           />
-          <PostShowLower postId={this.props.postId}/>
-          
+          <PostShowLower postId={this.props.postId} />
         </div>
       );
     } else {

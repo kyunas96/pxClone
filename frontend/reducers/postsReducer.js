@@ -19,6 +19,8 @@ const PostsReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_POST:
+      console.log("postsReducer", action)
+      
       return {
         posts: {
           ...state.posts,

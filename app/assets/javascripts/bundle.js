@@ -524,7 +524,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_base_header_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/base/header_container */ "./frontend/components/base/header_container.js");
 /* harmony import */ var _components_splashPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/splashPage */ "./frontend/components/splashPage.jsx");
 /* harmony import */ var _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/login_signup/login_form_container */ "./frontend/components/login_signup/login_form_container.js");
@@ -534,9 +534,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/posts/createPostForm */ "./frontend/components/posts/createPostForm.jsx");
 /* harmony import */ var _components_posts_feedShowContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/posts/feedShowContainer */ "./frontend/components/posts/feedShowContainer.js");
 /* harmony import */ var _components_posts_profileShowContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/posts/profileShowContainer */ "./frontend/components/posts/profileShowContainer.js");
-/* harmony import */ var _components_posts_postShowContainer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/posts/postShowContainer */ "./frontend/components/posts/postShowContainer.js");
-/* harmony import */ var _components_profile_profileEdit_profileEdit__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/profile/profileEdit/profileEdit */ "./frontend/components/profile/profileEdit/profileEdit.jsx");
-
+/* harmony import */ var _components_profile_profileEdit_profileEdit__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/profile/profileEdit/profileEdit */ "./frontend/components/profile/profileEdit/profileEdit.jsx");
 
 
 
@@ -556,32 +554,32 @@ var App = function App(props) {
     id: "app"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_base_header_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "body"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     exact: true,
     path: "/",
     component: props.loggedIn ? _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_5__.default : _components_splashPage__WEBPACK_IMPORTED_MODULE_2__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/login",
     component: _components_login_signup_login_form_container__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/signup",
     component: _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_4__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/users/:userId/profile/edit",
-    component: _components_profile_profileEdit_profileEdit__WEBPACK_IMPORTED_MODULE_11__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Route, {
+    component: _components_profile_profileEdit_profileEdit__WEBPACK_IMPORTED_MODULE_10__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/users/:userId/profile",
     component: _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_6__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/users/:userId/posts/:postId",
     component: _components_posts_profileShowContainer__WEBPACK_IMPORTED_MODULE_9__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/post/create",
     component: _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_7__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/posts/:postId",
     component: _components_posts_feedShowContainer__WEBPACK_IMPORTED_MODULE_8__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_12__.Redirect, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Redirect, {
     to: "/"
   }))));
 };
@@ -1409,7 +1407,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var liked = state.entities.posts.likedPosts.includes(ownProps.postId);
+  var isCurrentUser = ownProps.liked === null;
+  var liked = null;
+
+  if (!isCurrentUser) {
+    liked = state.entities.posts.likedPosts.includes(ownProps.postId);
+  }
+
   return {
     liked: liked
   };
@@ -1949,10 +1953,21 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.requestPost(this.props.postId);
-    } // componentDidUpdate(){
-    //   this.props.requestPost(this.props.postId);
-    // }
-
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.props.requestPost(this.props.postId);
+    }
+  }, {
+    key: "shouldComponentUpdate",
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      if (nextProps.postId !== this.props.postId) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }, {
     key: "render",
     value: function render() {
@@ -1963,6 +1978,7 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "post-show"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowGallery__WEBPACK_IMPORTED_MODULE_1__.default, {
+          userId: this.props.userId,
           prevId: this.props.prevPostId,
           nextId: this.props.nextPostId,
           curImageURL: this.props.post.photoUrl
@@ -2164,14 +2180,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _PostShow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PostShow */ "./frontend/components/posts/PostShow.jsx");
+/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/postActions */ "./frontend/actions/postActions.js");
+/* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/Util */ "./frontend/util/Util.js");
 
 
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {};
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {};
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps)(_PostShow__WEBPACK_IMPORTED_MODULE_1__.default));
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var postId = parseInt(ownProps.match.params.postId);
+  var posts = Object.values(state.entities.posts.posts);
+  var followedUsers = state.entities.users.followedUsers;
+  var followedPosts = posts.filter(function (post) {
+    return followedUsers.includes(post.posterId);
+  });
+  console.log("followedPosts", followedPosts);
+  var postNavIndices = (0,_util_Util__WEBPACK_IMPORTED_MODULE_3__.getPostShowNavIndices)(postId, followedPosts);
+  return {
+    postId: postId,
+    post: state.entities.posts.posts[postId],
+    prevPostId: postNavIndices.prevPostId,
+    nextPostId: postNavIndices.nextPostId
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    requestPost: function requestPost(postId) {
+      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestPost)(postId));
+    },
+    requestUpdatePost: function requestUpdatePost(post) {
+      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestUpdatePost)(post));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_PostShow__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 
@@ -2224,6 +2268,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var postId = parseInt(ownProps.postId);
+  var currentUserId = state.session.currentUser.id;
+  var currentUserPosts = state.entities.users.users[currentUserId].userPosts;
+  var belongsToUser = currentUserPosts.includes(postId);
   var _state$entities$posts = state.entities.posts.posts[ownProps.postId],
       title = _state$entities$posts.title,
       id = _state$entities$posts.id,
@@ -2239,7 +2287,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       id: id,
       description: description,
       createdAt: createdAt,
-      liked: liked
+      liked: liked,
+      belongsToUser: belongsToUser
     },
     user: {
       poster: poster,
@@ -2257,6 +2306,7 @@ var PostShowCard = function PostShowCard(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowInteractions__WEBPACK_IMPORTED_MODULE_3__.default, {
+    belongsToUser: post.belongsToUser,
     postId: post.id
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowInfo__WEBPACK_IMPORTED_MODULE_2__.default, {
     user: user,
@@ -2265,53 +2315,6 @@ var PostShowCard = function PostShowCard(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, null)(PostShowCard));
-
-/***/ }),
-
-/***/ "./frontend/components/posts/postShowContainer.js":
-/*!********************************************************!*\
-  !*** ./frontend/components/posts/postShowContainer.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _PostShow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PostShow */ "./frontend/components/posts/PostShow.jsx");
-/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/postActions */ "./frontend/actions/postActions.js");
-/* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/Util */ "./frontend/util/Util.js");
-
-
-
-
-
-var mSTP = function mSTP(state, ownProps) {
-  var postId = ownProps.match.params.postId;
-  var posts = state.entities.posts.posts;
-  var postNavIndices = (0,_util_Util__WEBPACK_IMPORTED_MODULE_3__.getPostShowNavIndices)(parseInt(postId), posts);
-  return {
-    postId: postId,
-    post: state.entities.posts.posts[postId],
-    prevPostId: postNavIndices.prevPostId,
-    nextPostId: postNavIndices.nextPostId
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    requestPost: function requestPost(postId) {
-      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestPost)(postId));
-    },
-    requestUpdatePost: function requestUpdatePost(post) {
-      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestUpdatePost)(post));
-    }
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_PostShow__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 
@@ -2407,10 +2410,12 @@ PostShowGallery:
 var PostShowGallery = function PostShowGallery(_ref) {
   var prevId = _ref.prevId,
       nextId = _ref.nextId,
-      curImageURL = _ref.curImageURL;
+      curImageURL = _ref.curImageURL,
+      userId = _ref.userId;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-gallery"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowNavigation__WEBPACK_IMPORTED_MODULE_1__.default, {
+    userId: userId,
     prevId: prevId,
     nextId: nextId
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2447,34 +2452,32 @@ __webpack_require__.r(__webpack_exports__);
 var PostShowInfo = function PostShowInfo(_ref) {
   var user = _ref.user,
       post = _ref.post;
-  return (
-    /*#__PURE__*/
+  console.log("info", user);
+  /*
+    Notes: 
+      • this component will need a container to have access to the dispatch
+        for like and follow functionality
+     Parts:
+      1. Profile Picture
+      2. Title
+      3. by `Username`
+      4. follow button
+      5. Upload date
+  */
 
-    /*
-      Notes: 
-        • this component will need a container to have access to the dispatch
-          for like and follow functionality
-       Parts:
-        1. Profile Picture
-        2. Title
-        3. by `Username`
-        4. follow button
-        5. Upload date
-    */
-    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "post-show-info"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "post-show-poster-picture"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "post-show-poster-info"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
-      id: "post-show-links"
-    }, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-      to: "/users/".concat(user.posterId, "/profile")
-    }, user.poster), " \u2022", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__.default, {
-      posterId: user.posterId
-    }))))
-  );
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-poster-picture"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-poster-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    id: "post-show-links"
+  }, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/users/".concat(user.posterId, "/profile")
+  }, user.poster), " \u2022", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__.default, {
+    posterId: user.posterId
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowInfo);
@@ -2498,10 +2501,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PostShowInteractions = function PostShowInteractions(_ref) {
-  var postId = _ref.postId;
+  var postId = _ref.postId,
+      belongsToUser = _ref.belongsToUser;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-interactions"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowLikeContainer__WEBPACK_IMPORTED_MODULE_1__.default, {
+  }, !belongsToUser && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowLikeContainer__WEBPACK_IMPORTED_MODULE_1__.default, {
     postId: postId
   }));
 };
@@ -2649,11 +2653,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PostShowNavTile = function PostShowNavTile(_ref) {
-  var link = _ref.link;
+  var link = _ref.link,
+      userId = _ref.userId;
   var style = link === undefined ? {
     cursor: 'default'
   } : null;
-  var checkedLink = link === undefined ? null : "/posts/".concat(link);
+  var checkedLink = null;
+
+  if (link !== undefined && userId !== undefined) {
+    checkedLink = "/users/".concat(userId, "/posts/").concat(link);
+  } else if (link !== undefined) {
+    checkedLink = "/posts/".concat(link);
+  } // let checkedLink = (link === undefined) ? null : `/posts/${link}`;
+
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-nav-tile",
     style: style
@@ -2687,13 +2700,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var PostShowNavigation = function PostShowNavigation(_ref) {
   var prevId = _ref.prevId,
-      nextId = _ref.nextId;
+      nextId = _ref.nextId,
+      userId = _ref.userId;
   console.log("postShowNav", prevId, nextId);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-nav"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowNavTile__WEBPACK_IMPORTED_MODULE_1__.default, {
+    userId: userId,
     link: prevId
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowNavTile__WEBPACK_IMPORTED_MODULE_1__.default, {
+    userId: userId,
     link: nextId
   }));
 };
@@ -2715,14 +2731,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _PostShow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PostShow */ "./frontend/components/posts/PostShow.jsx");
+/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/postActions */ "./frontend/actions/postActions.js");
 
 
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {};
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {};
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var userId = parseInt(ownProps.match.params.userId);
+  var postId = parseInt(ownProps.match.params.postId);
+  var usersPosts = state.entities.users.users[userId].userPosts;
+  var curPostIdx = usersPosts.indexOf(postId);
+  var prevPostId = usersPosts[curPostIdx - 1];
+  var nextPostId = usersPosts[curPostIdx + 1];
+  return {
+    post: state.entities.posts.posts[postId],
+    userId: userId,
+    postId: postId,
+    prevPostId: prevPostId,
+    nextPostId: nextPostId
+  };
+};
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps)(_PostShow__WEBPACK_IMPORTED_MODULE_1__.default));
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    requestPost: function requestPost(postId) {
+      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestPost)(postId));
+    },
+    requestUpdatePost: function requestUpdatePost(post) {
+      return dispatch((0,_actions_postActions__WEBPACK_IMPORTED_MODULE_2__.requestUpdatePost)(post));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_PostShow__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 
@@ -3954,7 +3995,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("profileFeed", ownProps);
+  console.log("profileFeed", state);
   var isCurrentUser = state.session.currentUser.id === ownProps.userId;
   var posts = Object.values(state.entities.posts.posts);
   posts = posts.filter(function (post) {
@@ -4091,6 +4132,7 @@ var PostsReducer = function PostsReducer() {
 
   switch (action.type) {
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POST:
+      console.log("postsReducer", action);
       return {
         posts: _objectSpread(_objectSpread({}, state.posts), action.post),
         likedPosts: state.likedPosts
@@ -4729,11 +4771,10 @@ var formatLocation = function formatLocation(city, country) {
   }
 };
 var getPostShowNavIndices = function getPostShowNavIndices(curPostId, posts) {
-  var postValues = Object.values(posts);
   var curPostIndex;
 
-  for (var i = 0; i < postValues.length; i++) {
-    var temp = postValues[i];
+  for (var i = 0; i < posts.length; i++) {
+    var temp = posts[i];
 
     if (temp.id === curPostId) {
       curPostIndex = i;
@@ -4741,8 +4782,8 @@ var getPostShowNavIndices = function getPostShowNavIndices(curPostId, posts) {
     }
   }
 
-  var prevPosId = postValues[curPostIndex - 1];
-  var nextPosId = postValues[curPostIndex + 1];
+  var prevPosId = posts[curPostIndex - 1];
+  var nextPosId = posts[curPostIndex + 1];
   return {
     prevPostId: prevPosId && prevPosId.id,
     nextPostId: nextPosId && nextPosId.id

@@ -9,7 +9,6 @@ import ProfileContainer from "./components/profile/profileContainer";
 import CreatePostForm from "./components/posts/createPostForm";
 import FeedShowContainer from './components/posts/feedShowContainer';
 import ProfileShowContainer from './components/posts/profileShowContainer';
-import PostShowContainer from "./components/posts/postShowContainer";
 import ProfileEdit from "./components/profile/profileEdit/profileEdit";
 
 const App = (props) => {

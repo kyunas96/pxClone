@@ -15,17 +15,16 @@ export const formatLocation = (city, country) => {
 };
 
 export const getPostShowNavIndices = (curPostId, posts) => {
-  const postValues = Object.values(posts);
   let curPostIndex;
-  for(let i = 0; i < postValues.length; i++){
-    const temp = postValues[i];
+  for(let i = 0; i < posts.length; i++){
+    const temp = posts[i];
     if ((temp.id === curPostId)) {
       curPostIndex = i;
       break;
     }
   }
-  const prevPosId = postValues[curPostIndex - 1];
-  const nextPosId = postValues[curPostIndex + 1];
+  const prevPosId = posts[curPostIndex - 1];
+  const nextPosId = posts[curPostIndex + 1];
 
 
   return {

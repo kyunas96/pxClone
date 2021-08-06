@@ -1,9 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PostShowNavTile = ({ link }) => {
+const PostShowNavTile = ({ link, userId }) => {
   let style = (link === undefined) ? { cursor: 'default' } : null;
-  let checkedLink = (link === undefined) ? null : `/posts/${link}`;
+  let checkedLink = null;
+
+  if(link !== undefined && userId !== undefined){
+    checkedLink = `/users/${userId}/posts/${link}`;
+  }else if(link !== undefined){
+    checkedLink = `/posts/${link}`;
+  }
+
+
+  // let checkedLink = (link === undefined) ? null : `/posts/${link}`;
 
   return (
     <div className="post-show-nav-tile" style={style}>

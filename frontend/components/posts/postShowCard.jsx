@@ -4,6 +4,11 @@ import PostShowInfo from "./postShowInfo";
 import PostShowInteractions from "./postShowInteractions";
 
 const mapStateToProps = (state, ownProps) => {
+  const postId = parseInt(ownProps.postId);
+  const currentUserId = state.session.currentUser.id;
+  const currentUserPosts = state.entities.users.users[currentUserId].userPosts;
+  const belongsToUser = currentUserPosts.includes(postId);
+
   const {
     title,
     id,
@@ -22,6 +27,7 @@ const mapStateToProps = (state, ownProps) => {
       description,
       createdAt,
       liked,
+      belongsToUser
     },
     user: {
       poster,
@@ -36,7 +42,7 @@ const mapDispatchToProps = (dispatch) => {};
 const PostShowCard = ({ post, user }) => {
   return (
     <div className="post-show-card">
-      <PostShowInteractions postId={post.id} />
+      <PostShowInteractions belongsToUser={post.belongsToUser} postId={post.id} />
       <PostShowInfo user={user} post={post} />
     </div>
   );

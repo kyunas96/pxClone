@@ -3,7 +3,11 @@ import { addLike, removeLike } from "../../actions/likeActions";
 import LikeButton from "./likeButton";
 
 const mapStateToProps = (state, ownProps) => {
-  const liked = state.entities.posts.likedPosts.includes(ownProps.postId);
+  const isCurrentUser = ownProps.liked === null;
+  let liked = null;
+  if (!isCurrentUser) {
+    liked = state.entities.posts.likedPosts.includes(ownProps.postId);
+  }
   return {
     liked,
   };
