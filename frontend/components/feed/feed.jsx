@@ -35,7 +35,7 @@ class Feed extends React.Component {
 
     if (this.props.feedPosts !== null) {
       Object.values(this.props.feedPosts).forEach((post, i) => {
-        images.push(<Image post={post} key={i} />);
+        images.push(<Image post={{...post, isProfile: false}} key={i} />);
       });
     }
 

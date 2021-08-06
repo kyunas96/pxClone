@@ -47,7 +47,7 @@ class ProfileFeed extends React.Component {
       const liked = this.props.isCurrentUser
         ? null
         : this.props.likedPosts.includes(post.id);
-      images.push(<Image post={{ ...post, liked }} key={i} like />);
+      images.push(<Image post={{ ...post, liked, isProfile: true}} key={i} like />);
     });
 
     console.log("images", images)

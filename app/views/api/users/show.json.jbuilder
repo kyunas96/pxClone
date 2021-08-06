@@ -19,7 +19,8 @@ end
 json.posts do
    @posts.each do |post|
     json.set! post.id do
-      json.extract! post, :id, :title, :poster_id, :description, :created_at
+      json.extract! post, :id, :title, :description, :created_at
+      json.posterId post.poster_id
       json.photoUrl url_for(post.photo)
     end
   end

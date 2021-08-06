@@ -4,7 +4,8 @@ import { useHistory } from "react-router";
 
 const Image = ({ post }) => {
   let history = useHistory();
-  let postLink = `/posts/${post.id}`;
+  console.log("image", post)
+  let postLink = post.isProfile ? `/users/${post.posterId}/posts/${post.id}` :`/posts/${post.id}`
 
   const handleClick = (e) => {
     e.preventDefault();

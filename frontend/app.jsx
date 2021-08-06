@@ -7,6 +7,8 @@ import SignupContainer from "./components/login_signup/signup_form_container";
 import FeedContainer from "./components/feed/feedContainer";
 import ProfileContainer from "./components/profile/profileContainer";
 import CreatePostForm from "./components/posts/createPostForm";
+import FeedShowContainer from './components/posts/feedShowContainer';
+import ProfileShowContainer from './components/posts/profileShowContainer';
 import PostShowContainer from "./components/posts/postShowContainer";
 import ProfileEdit from "./components/profile/profileEdit/profileEdit";
 
@@ -26,9 +28,10 @@ const App = (props) => {
             component={ProfileEdit}
           />
           <Route path="/users/:userId/profile" component={ProfileContainer} />
+          <Route path="/users/:userId/posts/:postId" component={ProfileShowContainer} />
           
           <Route path="/post/create" component={CreatePostForm} />
-          <Route path="/posts/:postId" component={PostShowContainer} />
+          <Route path="/posts/:postId" component={FeedShowContainer} />
           {/* <Route exact path='/' component={IndexComponent} /> */}
           <Redirect to="/" />
         </Switch>
