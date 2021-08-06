@@ -2,19 +2,18 @@ class Api::SessionsController < ApplicationController
 
   def create
     @user = User.find_by(username: params[:username])
-    @errors = []
+
+    if !@user 
+      render json: { errors: "User does not exist" } 
+      return 
+    end
 
     if @user && @user.is_password?(params[:password])
       login(@user)
       render :create
       return
     else
-      @errors = ["Invalid username or password"]
-      @user = {
-        id: "",
-        username: ""
-      }
-      render :create
+      render json: { errors: "Invalid user and password combination" }
       return
     end
     

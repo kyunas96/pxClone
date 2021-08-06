@@ -7,11 +7,7 @@ const FormErrors = props => {
   } else {
     return (
       <div className='session-form-errors'>
-        <ul>
-          {props.errors.map((error, i) => (
-            <li key={`${i}`}>{error}</li>
-          ))}
-        </ul>
+        <span>{props.errors}</span>
       </div>
     )
   }

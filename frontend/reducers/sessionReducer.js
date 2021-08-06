@@ -13,7 +13,7 @@ const sessionReducer = (state = nullUser, action) => {
   Object.freeze(state);
   switch (action.type) {
     case SESSION_LOGIN:
-      if (checkActionForUser(action.payload.user)) {
+      if (action.payload.errors === undefined) {
         return {
           currentUser: { ...action.payload.user},
           loggedIn: true

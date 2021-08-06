@@ -8,6 +8,7 @@ import {
 
 import { RECEIVE_POSTS } from "../actions/postActions";
 import { ADD_FOLLOW, REMOVE_FOLLOW } from "../actions/followActions";
+import { SESSION_LOGOUT } from "../actions/sessionActions";
 
 const defaultState = {
   users: {},
@@ -50,10 +51,12 @@ const usersReducer = (state = {}, action) => {
       follows = left.concat(right);
       return {
         users: {
-          ...newState.users
+          ...newState.users,
         },
-        followedUsers: follows
-      }
+        followedUsers: follows,
+      };
+    case SESSION_LOGOUT:
+      return defaultState;
     default:
       return state;
   }

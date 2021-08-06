@@ -6,6 +6,7 @@ import {
 
 import { RECEIVE_USER } from "../actions/userActions";
 import { ADD_LIKE, REMOVE_LIKE } from "../actions/likeActions";
+import { SESSION_LOGOUT } from "../actions/sessionActions";
 
 const defaultState = {
   posts: {},
@@ -19,14 +20,14 @@ const PostsReducer = (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_POST:
-      console.log("postsReducer", action)
-      
+      console.log("postsReducer", action);
+
       return {
         posts: {
           ...state.posts,
           ...action.post,
         },
-        likedPosts: state.likedPosts
+        likedPosts: state.likedPosts,
       };
     case RECEIVE_POSTS:
       return {
@@ -69,7 +70,8 @@ const PostsReducer = (state = defaultState, action) => {
         },
         likedPosts: likes,
       };
-
+    case SESSION_LOGOUT:
+      return defaultState;
     default:
       return state;
   }

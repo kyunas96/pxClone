@@ -400,17 +400,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SESSION_LOGIN": () => (/* binding */ SESSION_LOGIN),
 /* harmony export */   "SESSION_LOGOUT": () => (/* binding */ SESSION_LOGOUT),
 /* harmony export */   "RESET_SESSION_ERRORS": () => (/* binding */ RESET_SESSION_ERRORS),
+/* harmony export */   "RECEIVE_SESSION_ERRORS": () => (/* binding */ RECEIVE_SESSION_ERRORS),
 /* harmony export */   "sessionLogin": () => (/* binding */ sessionLogin),
 /* harmony export */   "sessionLogout": () => (/* binding */ sessionLogout),
 /* harmony export */   "resetSessionErrors": () => (/* binding */ resetSessionErrors),
+/* harmony export */   "receiveSessionErrors": () => (/* binding */ receiveSessionErrors),
 /* harmony export */   "requestLogin": () => (/* binding */ requestLogin),
 /* harmony export */   "requestLogout": () => (/* binding */ requestLogout)
 /* harmony export */ });
 /* harmony import */ var _util_SessionAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/SessionAPI */ "./frontend/util/SessionAPI.js");
 
-var SESSION_LOGIN = 'SESSION_LOGIN';
-var SESSION_LOGOUT = 'SESSION_LOGOUT';
-var RESET_SESSION_ERRORS = 'RESET_SESSION_ERRORS';
+var SESSION_LOGIN = "SESSION_LOGIN";
+var SESSION_LOGOUT = "SESSION_LOGOUT";
+var RESET_SESSION_ERRORS = "RESET_SESSION_ERRORS";
+var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 var sessionLogin = function sessionLogin(payload) {
   return {
     type: SESSION_LOGIN,
@@ -425,6 +428,12 @@ var sessionLogout = function sessionLogout() {
 var resetSessionErrors = function resetSessionErrors() {
   return {
     type: RESET_SESSION_ERRORS
+  };
+};
+var receiveSessionErrors = function receiveSessionErrors(errors) {
+  return {
+    type: RECEIVE_SESSION_ERRORS,
+    errors: errors
   };
 };
 var requestLogin = function requestLogin(session) {
@@ -1456,11 +1465,7 @@ var FormErrors = function FormErrors(props) {
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "session-form-errors"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, props.errors.map(function (error, i) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-        key: "".concat(i)
-      }, error);
-    })));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, props.errors));
   }
 };
 
@@ -1655,6 +1660,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         });
       }
 
+      console.log("signin", this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "session-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -4109,11 +4115,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
 /* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/userActions */ "./frontend/actions/userActions.js");
 /* harmony import */ var _actions_likeActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/likeActions */ "./frontend/actions/likeActions.js");
+/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -4173,6 +4181,9 @@ var PostsReducer = function PostsReducer() {
         posts: _objectSpread({}, newState.posts),
         likedPosts: likes
       };
+
+    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGOUT:
+      return defaultState;
 
     default:
       return state;
@@ -4241,11 +4252,15 @@ __webpack_require__.r(__webpack_exports__);
 var sessionErrorsReducer = function sessionErrorsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("sessionErrors", action);
   Object.freeze(state);
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
-      // return action.payload.errors;
+      if (action.payload.errors) {
+        return action.payload.errors;
+      }
+
       return state;
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.RESET_SESSION_ERRORS:
@@ -4296,7 +4311,7 @@ var sessionReducer = function sessionReducer() {
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
-      if (checkActionForUser(action.payload.user)) {
+      if (action.payload.errors === undefined) {
         return {
           currentUser: _objectSpread({}, action.payload.user),
           loggedIn: true
@@ -4329,6 +4344,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/userActions */ "./frontend/actions/userActions.js");
+/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+
 
 
 var UIReducer = function UIReducer() {
@@ -4341,6 +4358,9 @@ var UIReducer = function UIReducer() {
       return {
         currentProfileId: action.payload.user.id
       };
+
+    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_1__.SESSION_LOGOUT:
+      return {};
 
     default:
       return state;
@@ -4365,11 +4385,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/userActions */ "./frontend/actions/userActions.js");
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
 /* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/followActions */ "./frontend/actions/followActions.js");
+/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -4421,6 +4443,9 @@ var usersReducer = function usersReducer() {
         users: _objectSpread({}, newState.users),
         followedUsers: follows
       };
+
+    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGOUT:
+      return defaultState;
 
     default:
       return state;
