@@ -6,7 +6,7 @@ import {
 
 import { RECEIVE_USER } from "../actions/userActions";
 import { ADD_LIKE, REMOVE_LIKE } from "../actions/likeActions";
-import { SESSION_LOGOUT } from "../actions/sessionActions";
+import { SESSION_LOGIN, SESSION_LOGOUT } from "../actions/sessionActions";
 
 const defaultState = {
   posts: {},
@@ -70,6 +70,14 @@ const PostsReducer = (state = defaultState, action) => {
         },
         likedPosts: likes,
       };
+    case SESSION_LOGIN:
+      return {
+        posts: {
+          ...newState.posts,
+          ...action.payload.posts
+        },
+        likedPosts: newState.likedPosts
+      }
     case SESSION_LOGOUT:
       return defaultState;
     default:

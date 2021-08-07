@@ -4,10 +4,11 @@ import ProfileEditHeader from "./profile_edit_header";
 
 const ProfileEdit = (props) => {
   const userId = props.match.params.userId
+  console.log("profileEdit", props)
   return (
     <div className="profile-edit">
       <ProfileEditHeader userId={userId}/>
-      <ProfileEditForm userId={userId}/>
+      <ProfileEditForm user={props.user}/>
     </div>
   );
 };

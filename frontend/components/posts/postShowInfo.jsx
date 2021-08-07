@@ -17,24 +17,26 @@ const PostShowInfo = ({ user, post }) => {
       4. follow button
       5. Upload date
   */
+
+  const followButtonSpacing = post.belongsToUser ? null : " • ";
+  const followButton = post.belongsToUser ? null : (
+    <PostShowFollowButton posterId={user.posterId} />
+  );
+
   return (
-  <div className="post-show-info">
-    {/* {profile picture} */}
-    <div className="post-show-poster-picture">
+    <div className="post-show-info">
+      {/* {profile picture} */}
+      <div className="post-show-poster-picture"></div>
 
+      <div className="post-show-poster-info">
+        <h3>{post.title}</h3>
+        <h3 id="post-show-links">
+          by <Link to={`/users/${user.posterId}/profile`}>{user.poster}</Link>{followButtonSpacing}
+          {followButton}
+        </h3>
+      </div>
     </div>
-
-    <div className="post-show-poster-info">
-      <h3>{post.title}</h3>
-      <h3 id="post-show-links">
-        by <Link to={`/users/${user.posterId}/profile`}>{user.poster}</Link> •{" "}
-        <PostShowFollowButton
-          posterId={user.posterId}
-        />
-      </h3>
-    </div>
-  </div>
-  )
+  );
 };
 
 export default PostShowInfo;

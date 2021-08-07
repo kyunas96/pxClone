@@ -543,7 +543,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_posts_createPostForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/posts/createPostForm */ "./frontend/components/posts/createPostForm.jsx");
 /* harmony import */ var _components_posts_feedShowContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/posts/feedShowContainer */ "./frontend/components/posts/feedShowContainer.js");
 /* harmony import */ var _components_posts_profileShowContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/posts/profileShowContainer */ "./frontend/components/posts/profileShowContainer.js");
-/* harmony import */ var _components_profile_profileEdit_profileEdit__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/profile/profileEdit/profileEdit */ "./frontend/components/profile/profileEdit/profileEdit.jsx");
+/* harmony import */ var _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/profile/profileEdit/profile_edit_container */ "./frontend/components/profile/profileEdit/profile_edit_container.js");
 
 
 
@@ -575,7 +575,7 @@ var App = function App(props) {
     component: _components_login_signup_signup_form_container__WEBPACK_IMPORTED_MODULE_4__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/users/:userId/profile/edit",
-    component: _components_profile_profileEdit_profileEdit__WEBPACK_IMPORTED_MODULE_10__.default
+    component: _components_profile_profileEdit_profile_edit_container__WEBPACK_IMPORTED_MODULE_10__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_11__.Route, {
     path: "/users/:userId/profile",
     component: _components_profile_profileContainer__WEBPACK_IMPORTED_MODULE_6__.default
@@ -2469,6 +2469,10 @@ var PostShowInfo = function PostShowInfo(_ref) {
       5. Upload date
   */
 
+  var followButtonSpacing = post.belongsToUser ? null : " • ";
+  var followButton = post.belongsToUser ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__.default, {
+    posterId: user.posterId
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2479,9 +2483,7 @@ var PostShowInfo = function PostShowInfo(_ref) {
     id: "post-show-links"
   }, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/users/".concat(user.posterId, "/profile")
-  }, user.poster), " \u2022", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__.default, {
-    posterId: user.posterId
-  }))));
+  }, user.poster), followButtonSpacing, followButton)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowInfo);
@@ -2948,12 +2950,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProfileEdit = function ProfileEdit(props) {
   var userId = props.match.params.userId;
+  console.log("profileEdit", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-edit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_2__.default, {
     userId: userId
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditForm__WEBPACK_IMPORTED_MODULE_1__.default, {
-    userId: userId
+    user: props.user
   }));
 };
 
@@ -3011,8 +3014,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_country_region_selector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-country-region-selector */ "./node_modules/react-country-region-selector/dist/rcrs.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var _excluded = ["bannerImage", "userPhoto"],
-    _excluded2 = ["userPhoto", "bannerImage"];
+var _excluded = ["userPhoto", "bannerImage"];
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -3028,15 +3030,15 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3079,12 +3081,10 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.updateFile = _this.updateFile.bind(_assertThisInitialized(_this));
     _this.state = {
-      profile: {
-        country: ""
-      },
+      profile: _objectSpread({}, _this.props.user),
       previews: {
-        userPhoto: null,
-        bannerImage: null
+        userPhoto: _this.props.user.userPhoto || null,
+        bannerImage: _this.props.user.bannerImage || null
       }
     };
     console.log("profileEditForm", _this.props);
@@ -3103,30 +3103,9 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this3 = this;
-
-      getProfile(this.props.userId).then(function (data) {
-        var bannerImage = data.bannerImage,
-            userPhoto = data.userPhoto,
-            rest = _objectWithoutProperties(data, _excluded);
-
-        _this3.setState({
-          previews: {
-            userPhoto: userPhoto,
-            bannerImage: bannerImage
-          },
-          profile: rest
-        }, function () {
-          return console.log("mounted", _this3.state);
-        });
-      });
-    }
-  }, {
     key: "setFormValue",
     value: function setFormValue(e) {
-      var _this4 = this;
+      var _this3 = this;
 
       console.log(e);
 
@@ -3140,14 +3119,14 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
             profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, key, value))
           };
         }, function () {
-          return console.log(_this4.state);
+          return console.log(_this3.state);
         });
       }
     }
   }, {
     key: "updateFile",
     value: function updateFile(e) {
-      var _this5 = this;
+      var _this4 = this;
 
       var file = e.target.files[0];
       var id = e.target.id;
@@ -3157,14 +3136,14 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       fileReader.onloadend = function () {
         console.log(fileReader.result);
 
-        _this5.setState(function (prevState) {
+        _this4.setState(function (prevState) {
           var previews = prevState.previews;
           return {
             profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, id, file)),
             previews: Object.assign(previews, _defineProperty({}, id, fileReader.result))
           };
         }, function () {
-          return console.log("addedPhoto", _this5.state);
+          return console.log("addedPhoto", _this4.state);
         });
       };
 
@@ -3180,7 +3159,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       var _this$state$profile = this.state.profile,
           userPhoto = _this$state$profile.userPhoto,
           bannerImage = _this$state$profile.bannerImage,
-          rest = _objectWithoutProperties(_this$state$profile, _excluded2);
+          rest = _objectWithoutProperties(_this$state$profile, _excluded);
 
       var formData = new FormData();
 
@@ -3250,6 +3229,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "firstname"
       }, "First name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "firstname",
+        value: this.state.profile.firstname || "",
         type: "text",
         onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3258,6 +3238,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "lastname"
       }, "Last name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "lastname",
+        value: this.state.profile.lastname || "",
         type: "text",
         onChange: this.setFormValue
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3269,6 +3250,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       }, "City"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "city",
         type: "text",
+        value: this.state.profile.city || "",
         onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
@@ -3286,6 +3268,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "websiteURL"
       }, "Website"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "websiteURL",
+        value: this.state.profile.websiteURL || "",
         type: "text",
         placeholder: "URL",
         onChange: this.setFormValue
@@ -3296,6 +3279,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       }, "Instagram"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "instagram",
         type: "text",
+        value: this.state.profile.instagram || "",
         placeholder: "Username",
         onChange: this.setFormValue
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3307,6 +3291,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       }, "Facebook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "facebook",
         type: "text",
+        value: this.state.profile.facebook || "",
         placeholder: "Username",
         onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3316,6 +3301,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       }, "Twitter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "twitter",
         type: "text",
+        value: this.state.profile.twitter || "",
         placeholder: "Username",
         onChange: this.setFormValue
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3374,6 +3360,45 @@ var ProfileEditUserPhoto = function ProfileEditUserPhoto(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditUserPhoto);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileEdit/profile_edit_container.js":
+/*!***************************************************************************!*\
+  !*** ./frontend/components/profile/profileEdit/profile_edit_container.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _profileEdit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileEdit */ "./frontend/components/profile/profileEdit/profileEdit.jsx");
+/* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/userActions */ "./frontend/actions/userActions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    user: state.entities.users.users[state.session.currentUser.id]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    requestUser: function requestUser(userId) {
+      return dispatch((0,_actions_userActions__WEBPACK_IMPORTED_MODULE_2__.requestUser)(userId));
+    },
+    updateUser: function updateUser(userId, data) {
+      return (0,_actions_userActions__WEBPACK_IMPORTED_MODULE_2__.updateUser)(userId, data);
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_profileEdit__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 
@@ -4189,6 +4214,12 @@ var PostsReducer = function PostsReducer() {
         likedPosts: likes
       };
 
+    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGIN:
+      return {
+        posts: _objectSpread(_objectSpread({}, newState.posts), action.payload.posts),
+        likedPosts: newState.likedPosts
+      };
+
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGOUT:
       return defaultState;
 
@@ -4418,17 +4449,17 @@ var usersReducer = function usersReducer() {
 
   switch (action.type) {
     case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER:
-      newState.users[action.payload.user.id] = action.payload.user;
+      var currentUser = newState.users[action.payload.user.id] || {};
+      var receivedUser = Object.assign(currentUser, action.payload.user);
+      newState.users[action.payload.user.id] = receivedUser;
       return newState;
     // this case will be called when the posts for a user's feed are retrieved
     // and with them the ids of the users that are being followed by the
     // current user
 
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_POSTS:
-      return {
-        users: _objectSpread({}, state.users),
-        followedUsers: action.payload.followedUsers
-      };
+      newState.followedUsers = action.payload.followedUsers;
+      return newState;
     // this case will called when a userProfile is grabbed or when the follow
     // status of a user changes
 

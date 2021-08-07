@@ -1,18 +1,17 @@
 import { connect } from 'react-redux';
-import ProfileEdit from './profile_edit';
-import { getProfile, updateProfile } from '../../../actions/profileActions';
+import ProfileEdit from './profileEdit';
+import { requestUser, updateUser } from '../../../actions/userActions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    userId: state.session.currentUser.id,
-    profile: state.ui.profile
+    user: state.entities.users.users[state.session.currentUser.id]
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUserProfile: (userId) => dispatch(getProfile(userId)),
-    updateUserProfile: (userId, data) => updateProfile(userId, data)
+    requestUser: (userId) => dispatch(requestUser(userId)),
+    updateUser: (userId, data) => updateUser(userId, data)
   }
 }
 
