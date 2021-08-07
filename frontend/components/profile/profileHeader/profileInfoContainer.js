@@ -9,19 +9,27 @@ const mapStateToProps = (state, ownProps) => {
   let city = null;
   let country = null;
   let description = null;
+  let socials = {};
   
   if(user !== undefined){
     username = user.username;
     city = user.city;
     country = user.country;
     description = user.description;
+    socials = {
+      facebook: user.facebook,
+      websiteURL: user.websiteURL,
+      twitter: user.twitter,
+      instagram: user.instagram
+    }
   }
   return {
     renderFollow,
     username,
     city,
     country,
-    description
+    description,
+    socials
   };
 }
 

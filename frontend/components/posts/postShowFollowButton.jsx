@@ -6,6 +6,7 @@ import { addFollow, removeFollow } from '../../actions/followActions';
 
 const mapStateToProps = (state, ownProps) => {
   const following = state.entities.users.followedUsers.includes(ownProps.posterId)
+  console.log("following", following)
   return {
     following
   }
@@ -18,22 +19,29 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+
+/* FIX THIS, THE ACTION DOES NOT WORK PROPERLY RIGHT NOW*/
+
 const PostShowFollowButton = (props) => {
-  console.log("postShowFollowButton", props);
-  const action = props.following
-    ? () => deleteFollow(props.posterId).then(({ following }) =>
-        setFollowing({ following })
-      )
-    : () => createFollow(props.posterId).then(({ following }) =>
-        setFollowing({ following })
-      );
+  const classList = props.following ? "following" : "follow";
+  const action = props.following ? 
+    e => {
+      e.preventDefault();
+      e.stopPropagation();
+      props.removeFollow(props.posterId);
+    } :
+    e => {
+      e.preventDefault();
+      e.stopPropagation();
+      props.addFollow(props.posterId);
+    }
 
   return (
     <>
-      <label className={"follow"} htmlFor="post-show-follow"></label>
+      <label className={classList} htmlFor="post-show-follow"></label>
       <input id="post-show-follow" type="button" onClick={action}/>
     </>
   );
 };
 
-export default PostShowFollowButton;
+export default connect(mapStateToProps, mapDispatchToProps)(PostShowFollowButton);

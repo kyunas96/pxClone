@@ -8,7 +8,7 @@ import {
 
 import { RECEIVE_POSTS } from "../actions/postActions";
 import { ADD_FOLLOW, REMOVE_FOLLOW } from "../actions/followActions";
-import { SESSION_LOGOUT } from "../actions/sessionActions";
+import { SESSION_LOGIN, SESSION_LOGOUT } from "../actions/sessionActions";
 
 const defaultState = {
   users: {},
@@ -16,6 +16,7 @@ const defaultState = {
 };
 
 const usersReducer = (state = {}, action) => {
+  console.log("usersReducer", action);
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {
@@ -55,6 +56,14 @@ const usersReducer = (state = {}, action) => {
         },
         followedUsers: follows,
       };
+    case SESSION_LOGIN:
+      newState.users[action.payload.user.id] = action.payload.user;
+      return {
+        users: {
+          ...newState.users
+        },
+        followedUsers: newState.followedUsers
+      }
     case SESSION_LOGOUT:
       return defaultState;
     default:

@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   const postId = parseInt(ownProps.postId);
   const currentUserId = state.session.currentUser.id;
   const currentUserPosts = state.entities.users.users[currentUserId].userPosts;
+  console.log("currentUserPosts", currentUserPosts)
   const belongsToUser = currentUserPosts.includes(postId);
 
   const {

@@ -2277,6 +2277,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var postId = parseInt(ownProps.postId);
   var currentUserId = state.session.currentUser.id;
   var currentUserPosts = state.entities.users.users[currentUserId].userPosts;
+  console.log("currentUserPosts", currentUserPosts);
   var belongsToUser = currentUserPosts.includes(postId);
   var _state$entities$posts = state.entities.posts.posts[ownProps.postId],
       title = _state$entities$posts.title,
@@ -2344,6 +2345,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var following = state.entities.users.followedUsers.includes(ownProps.posterId);
+  console.log("following", following);
   return {
     following: following
   };
@@ -2359,26 +2361,22 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     }
   };
 };
+/* FIX THIS, THE ACTION DOES NOT WORK PROPERLY RIGHT NOW*/
+
 
 var PostShowFollowButton = function PostShowFollowButton(props) {
-  console.log("postShowFollowButton", props);
-  var action = props.following ? function () {
-    return deleteFollow(props.posterId).then(function (_ref) {
-      var following = _ref.following;
-      return setFollowing({
-        following: following
-      });
-    });
-  } : function () {
-    return createFollow(props.posterId).then(function (_ref2) {
-      var following = _ref2.following;
-      return setFollowing({
-        following: following
-      });
-    });
+  var classList = props.following ? "following" : "follow";
+  var action = props.following ? function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    props.removeFollow(props.posterId);
+  } : function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    props.addFollow(props.posterId);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "follow",
+    className: classList,
     htmlFor: "post-show-follow"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     id: "post-show-follow",
@@ -2387,7 +2385,7 @@ var PostShowFollowButton = function PostShowFollowButton(props) {
   }));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostShowFollowButton);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(PostShowFollowButton));
 
 /***/ }),
 
@@ -3597,12 +3595,19 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var city = null;
   var country = null;
   var description = null;
+  var socials = {};
 
   if (user !== undefined) {
     username = user.username;
     city = user.city;
     country = user.country;
     description = user.description;
+    socials = {
+      facebook: user.facebook,
+      websiteURL: user.websiteURL,
+      twitter: user.twitter,
+      instagram: user.instagram
+    };
   }
 
   return {
@@ -3610,7 +3615,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     username: username,
     city: city,
     country: country,
-    description: description
+    description: description,
+    socials: socials
   };
 };
 
@@ -3723,7 +3729,8 @@ var ProfileInfo = function ProfileInfo(_ref) {
       userName = _ref.userName,
       city = _ref.city,
       country = _ref.country,
-      description = _ref.description;
+      description = _ref.description,
+      socials = _ref.socials;
   var followButton = renderFollow === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButtonContainer__WEBPACK_IMPORTED_MODULE_1__.default, null) : null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-info"
@@ -4287,12 +4294,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 var checkActionForUser = function checkActionForUser(user) {
@@ -4312,8 +4313,14 @@ var sessionReducer = function sessionReducer() {
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
       if (action.payload.errors === undefined) {
+        var _action$payload$user = action.payload.user,
+            id = _action$payload$user.id,
+            username = _action$payload$user.username;
         return {
-          currentUser: _objectSpread({}, action.payload.user),
+          currentUser: {
+            id: id,
+            username: username
+          },
           loggedIn: true
         };
       } else {
@@ -4321,6 +4328,7 @@ var sessionReducer = function sessionReducer() {
       }
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGOUT:
+      localStorage.clear();
       return nullUser;
 
     default:
@@ -4404,6 +4412,7 @@ var defaultState = {
 var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  console.log("usersReducer", action);
   Object.freeze(state);
   var newState = Object.assign({}, state);
 
@@ -4442,6 +4451,13 @@ var usersReducer = function usersReducer() {
       return {
         users: _objectSpread({}, newState.users),
         followedUsers: follows
+      };
+
+    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGIN:
+      newState.users[action.payload.user.id] = action.payload.user;
+      return {
+        users: _objectSpread({}, newState.users),
+        followedUsers: newState.followedUsers
       };
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGOUT:
