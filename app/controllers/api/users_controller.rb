@@ -44,6 +44,7 @@ class Api::UsersController < ApplicationController
     end
 
   def create
+    p "params " + params.inspect
     @user = User.new(user_params)
     @errors = []
 
@@ -51,7 +52,9 @@ class Api::UsersController < ApplicationController
       render :show
     else
       @errors = @user.errors.full_messages
-      render :show
+
+      p "Errors " + @errors.inspect
+      render json: @errors, status: 422
     end
 
   end

@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "./base/footer";
 import { Link } from "react-router-dom";
 
 const SplashPage = (props) => (
@@ -11,6 +12,7 @@ const SplashPage = (props) => (
         </Link>
       </div>
     </div>
+  <Footer />
   </div>
 );
 

@@ -16,7 +16,7 @@ class Api::SessionsController < ApplicationController
       render :create
       return
     else
-      render json: { errors: "Invalid user and password combination" }
+      render json: ["Invalid user and password combination"], status: 422
       return
     end
     

@@ -14,10 +14,7 @@ class CreatePostForm extends React.Component {
     this.updateValue = this.updateValue.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
-  }
-
-  componentDidMount() {
-
+    this.checkFields = this.checkFields.bind(this);
   }
 
   updateValue(field) {
@@ -38,6 +35,18 @@ class CreatePostForm extends React.Component {
     if (file) {
       fileReader.readAsDataURL(file);
     }
+  }
+
+  checkFields(){
+    const state = this.state;
+    const errors = [];
+    if(state.title === ""){
+      errors.push("Post needs a title")
+    }
+    if(state.photoFile === null){
+      errors.push("No photo selected");
+    }
+
   }
 
   handleUpload(e) {

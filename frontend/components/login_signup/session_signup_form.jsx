@@ -14,7 +14,9 @@ class SignUpForm extends React.Component{
 
   handleSubmit= e => {
     e.preventDefault();
-    this.props.action(this.state);
+    this.props.action({
+      user: {...this.state}
+    });
     this.setState({password: ""})
   }
 

@@ -1,5 +1,5 @@
 import * as APIUtil from '../util/UserAPI';
-import { sessionLogin } from './sessionActions';
+import { receiveSessionErrors, sessionLogin } from './sessionActions';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_USER = 'RECEIVE_USER';
@@ -19,9 +19,11 @@ export const requestUser = userId => dispatch => (
 
 export const createUser = user => dispatch => (
   APIUtil.createUser(user)
-    .then(data => {
+    .then((data) => {
       dispatch(receiveUser(data))
       dispatch(sessionLogin(data))
+    }, (data) => {
+      dispatch(receiveSessionErrors(JSON.parse(data.responseText)))
     })
 )
 

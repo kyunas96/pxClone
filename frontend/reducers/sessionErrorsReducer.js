@@ -9,6 +9,9 @@ const sessionErrorsReducer = (state = {}, action) => {
         return action.payload.errors
       }
       return state;
+
+    case RECEIVE_SESSION_ERRORS:
+      return action.errors;
     case RESET_SESSION_ERRORS:
       return {};
     default:

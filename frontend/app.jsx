@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router";
 import HeaderContainer from "./components/base/header_container";
+import Footer from './components/base/footer';
 import SplashPage from "./components/splashPage";
 import LoginContainer from "./components/login_signup/login_form_container";
 import SignupContainer from "./components/login_signup/signup_form_container";
