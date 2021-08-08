@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Redirect } from "react-router";
+import { Link, withRouter } from "react-router-dom";
+
 
 class UserInfoDropdown extends React.Component {
   constructor(props) {
@@ -10,8 +10,10 @@ class UserInfoDropdown extends React.Component {
   }
 
   logoutAction(e){
+    e.stopPropagation();
     e.preventDefault();
-    this.props.logout()
+    this.props.logout();
+    this.props.history.push("/");
   }
 
   render() {
@@ -25,13 +27,13 @@ class UserInfoDropdown extends React.Component {
             Profile
           </Link>
         </div>
-        <div onClick={this.logoutAction}>Logout</div>
+        <div onClick={e=> this.logoutAction(e)}>Logout</div>
       </div>
     );
   }
 }
 
-export default UserInfoDropdown;
+export default withRouter(UserInfoDropdown);
 
 // profile button should reroute to user show page using the current user's id
 // to route to the correct profile, the user show page should check to see if the

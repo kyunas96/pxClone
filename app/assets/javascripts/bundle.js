@@ -612,6 +612,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  console.log("change in props");
   return {
     loggedIn: state.session.loggedIn
   };
@@ -957,8 +958,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -984,7 +985,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
   _inherits(UserInfoDropdown, _React$Component);
 
@@ -1004,14 +1004,18 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
   _createClass(UserInfoDropdown, [{
     key: "logoutAction",
     value: function logoutAction(e) {
+      e.stopPropagation();
       e.preventDefault();
       this.props.logout();
+      this.props.history.push("/");
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       if (!this.props.currentUser.id) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_1__.Redirect, {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Redirect, {
           to: "/"
         });
       }
@@ -1020,10 +1024,12 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
         className: "user-info-drowpdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         onClick: this.props.toggleDropdown
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/users/".concat(this.props.currentUser.id, "/profile")
       }, "Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        onClick: this.logoutAction
+        onClick: function onClick(e) {
+          return _this2.logoutAction(e);
+        }
       }, "Logout"));
     }
   }]);
@@ -1031,7 +1037,7 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
   return UserInfoDropdown;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserInfoDropdown); // profile button should reroute to user show page using the current user's id
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)(UserInfoDropdown)); // profile button should reroute to user show page using the current user's id
 // to route to the correct profile, the user show page should check to see if the
 // current user is the owner of the current profile page
 
