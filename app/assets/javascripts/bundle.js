@@ -451,12 +451,7 @@ var requestLogout = function requestLogout() {
       return dispatch(sessionLogout());
     });
   };
-}; // session:
-// errors: []
-// user: { id: 1, username: "kevin" }
-// __proto__: Object
-// type: "SESSION_LOGIN"
-// __proto__: Object
+};
 
 /***/ }),
 
@@ -482,8 +477,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sessionActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sessionActions */ "./frontend/actions/sessionActions.js");
 
 
-var RECEIVE_USERS = 'RECEIVE_USERS';
-var RECEIVE_USER = 'RECEIVE_USER';
+var RECEIVE_USERS = "RECEIVE_USERS";
+var RECEIVE_USER = "RECEIVE_USER";
 var UPDATE_USER = "UPDATE_USER";
 var FOLLOW_USER = "FOLLOW_USER";
 var UNFOLLOW_USER = "UNFOLLOW_USER";
@@ -518,10 +513,7 @@ var updateUser = function updateUser(user) {
       return dispatch(receiveUser(data));
     });
   };
-}; // Sign Up action layout
-// type: "RECEIVE_USER"
-// user: { user: { … }, errors: Array(2) }
-// __proto__: Object
+};
 
 /***/ }),
 

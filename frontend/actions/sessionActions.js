@@ -20,7 +20,7 @@ export const resetSessionErrors = () => ({
 
 export const receiveSessionErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
-  errors
+  errors,
 });
 
 export const requestLogin = (session) => (dispatch) => {
@@ -36,10 +36,3 @@ export const requestLogin = (session) => (dispatch) => {
 
 export const requestLogout = () => (dispatch) =>
   SessionAPI.requestLogout().then(() => dispatch(sessionLogout()));
-
-// session:
-// errors: []
-// user: { id: 1, username: "kevin" }
-// __proto__: Object
-// type: "SESSION_LOGIN"
-// __proto__: Object
