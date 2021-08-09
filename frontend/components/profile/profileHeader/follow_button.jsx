@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const FollowButton = (props) => {
-  console.log("followButton", props);
   let classList = props.following === true ? "following" : "follow";
   const profileId = props.profileId;
   const action = props.following

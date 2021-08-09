@@ -23,7 +23,6 @@ class Feed extends React.Component {
   }
 
   render() {
-    console.log("feedRender", this.props)
     const breakpointColumnsObj = {
       default: 4,
       1100: 3,

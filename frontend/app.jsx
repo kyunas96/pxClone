@@ -13,7 +13,6 @@ import ProfileShowContainer from './components/posts/profileShowContainer';
 import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
 
 const App = (props) => {
-  console.log("loggedin:" + props.loggedIn);
   return (
     <div id="app">
       <HeaderContainer />

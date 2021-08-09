@@ -19,46 +19,36 @@ class ProfileEditForm extends React.Component {
         bannerImage: this.props.user.bannerImage || null,
       },
     };
-    console.log("profileEditForm", this.props);
   }
 
   selectCountry(val) {
-    this.setState({ country: val }, () => console.log(this.state));
+    this.setState({ country: val });
   }
 
   setFormValue(e) {
-    console.log(e);
     if (e.target.type === "file") {
       this.updateFile(e);
     } else {
       const key = e.target.id;
       const value = e.target.value;
-      this.setState(
-        (prevState) => {
-          return { profile: { ...prevState.profile, [key]: value } };
-        },
-        () => console.log(this.state)
-      );
+      this.setState((prevState) => {
+        return { profile: { ...prevState.profile, [key]: value } };
+      });
     }
   }
 
   updateFile(e) {
     const file = e.target.files[0];
     const id = e.target.id;
-    console.log(file);
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      console.log(fileReader.result);
-      this.setState(
-        (prevState) => {
-          const previews = prevState.previews;
-          return {
-            profile: { ...prevState.profile, [id]: file },
-            previews: Object.assign(previews, { [id]: fileReader.result }),
-          };
-        },
-        () => console.log("addedPhoto", this.state)
-      );
+      this.setState((prevState) => {
+        const previews = prevState.previews;
+        return {
+          profile: { ...prevState.profile, [id]: file },
+          previews: Object.assign(previews, { [id]: fileReader.result }),
+        };
+      });
     };
     if (file) {
       fileReader.readAsDataURL(file);
@@ -70,7 +60,6 @@ class ProfileEditForm extends React.Component {
     const { userPhoto, bannerImage, ...rest } = this.state.profile;
     const formData = new FormData();
     if (userPhoto !== null && userPhoto !== undefined) {
-      console.log("not null");
       formData.append("profile[user_photo]", userPhoto);
     }
     if (bannerImage !== null && bannerImage !== undefined) {
@@ -81,9 +70,6 @@ class ProfileEditForm extends React.Component {
         formData.append(`profile[${key}]`, val);
       }
     }
-    for (const [key, val] of formData.entries()) {
-      console.log(`${key}: ${val}`);
-    }
 
     $.ajax({
       method: "PATCH",
@@ -91,12 +77,10 @@ class ProfileEditForm extends React.Component {
       data: formData,
       contentType: false,
       processData: false,
-    }).then((response) => console.log(response));
+    });
   }
 
   render() {
-    console.log("renderProps", this.props);
-    console.log("renderState", this.state);
     return (
       <form className="profile-edit-form" onSubmit={this.handleSubmit}>
         <ProfileEditFormHeader

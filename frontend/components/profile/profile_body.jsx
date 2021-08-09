@@ -4,28 +4,24 @@ import ProfileHeader from "./profileHeader/profile_header";
 import ProfileInfo from "./profileHeader/profile_info";
 
 const ProfileBody = (props) => {
-  console.log('profileBody', props)
-  if (props.profile !== undefined){
+  if (props.profile !== undefined) {
     var {
-        city, 
-        country, 
-        following, 
-        userName, 
-        description, 
-        socials, 
-        isCurrentUser, 
-        userId,
-        toggleFollow  
-      } = props.profile
+      city,
+      country,
+      following,
+      userName,
+      description,
+      socials,
+      isCurrentUser,
+      userId,
+      toggleFollow,
+    } = props.profile;
   }
 
   return (
     <div className="profile-body">
-      <ProfileHeader 
-        isCurrentUser={isCurrentUser}
-        userId={userId}
-      />
-      <ProfileInfo 
+      <ProfileHeader isCurrentUser={isCurrentUser} userId={userId} />
+      <ProfileInfo
         city={city}
         country={country}
         following={following}

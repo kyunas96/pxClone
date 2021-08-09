@@ -3,7 +3,6 @@ import LikedIcon from "./liked.svg";
 import UnlikedWhite from "../feed/unliked-white.svg";
 
 const LikeButton = (props) => {
-  console.log("likebutton", props)
   if (props.liked === null) {
     return null;
   }

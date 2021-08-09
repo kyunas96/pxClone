@@ -4,7 +4,6 @@ import PostShowFollowButton from "./postShowFollowButton";
 import { Link } from "react-router-dom";
 
 const PostShowInfo = ({ user, post }) => {
-  console.log("info", user);
   /*
     Notes: 
       • this component will need a container to have access to the dispatch

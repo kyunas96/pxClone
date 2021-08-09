@@ -10,20 +10,15 @@ const PostShowLike = (props) => {
 
   const action = props.liked
     ? (e) => {
-        console.log("fired", props.postId);
         e.preventDefault();
         e.stopPropagation();
         props.removeLike(props.postId);
       }
     : (e) => {
-        console.log("fired", props.postId);
         e.preventDefault();
         e.stopPropagation();
         props.addLike(props.postId);
       };
-
-  console.log("postShowLike", props);
-  console.log("action", action);
 
   return (
     <div key={"post-show-like-button"} className="like-button black" onClick={(e) => action(e)}>

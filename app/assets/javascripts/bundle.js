@@ -372,8 +372,7 @@ var requestUsersFeed = function requestUsersFeed() {
 };
 var requestPost = function requestPost(postId) {
   return function (dispatch) {
-    return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestPost(postId) // .then(data => console.log(data))
-    .then(function (payload) {
+    return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestPost(postId).then(function (payload) {
       return dispatch(receivePost(payload));
     });
   };
@@ -556,7 +555,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App(props) {
-  console.log("loggedin:" + props.loggedIn);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "app"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_base_header_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -612,7 +610,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("change in props");
   return {
     loggedIn: state.session.loggedIn
   };
@@ -1121,7 +1118,6 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("feedRender", this.props);
       var breakpointColumnsObj = {
         "default": 4,
         1100: 3,
@@ -1202,7 +1198,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log("feedContainer", state);
   var posts = state.entities.posts.posts;
   var followedUsers = state.entities.users.followedUsers; // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
   // format from the users slice of state
@@ -1222,8 +1217,7 @@ var mapStateToProps = function mapStateToProps(state) {
   var ret = {
     userId: state.session.currentUser.id,
     feedPosts: feedPosts
-  }; // console.log("feedContainer", ret)
-
+  };
   return ret;
 };
 
@@ -1298,7 +1292,6 @@ __webpack_require__.r(__webpack_exports__);
 var Image = function Image(_ref) {
   var post = _ref.post;
   var history = (0,react_router__WEBPACK_IMPORTED_MODULE_2__.useHistory)();
-  console.log("image", post);
   var postLink = post.isProfile ? "/users/".concat(post.posterId, "/posts/").concat(post.id) : "/posts/".concat(post.id);
 
   var handleClick = function handleClick(e) {
@@ -1407,8 +1400,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LikeButton = function LikeButton(props) {
-  console.log("likebutton", props);
-
   if (props.liked === null) {
     return null;
   }
@@ -1702,7 +1693,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      console.log("signin", this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "session-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -2025,7 +2015,6 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("post show", this.props);
       var postItem = this.props.post ? this.props.post.title : null;
 
       if (this.props.post) {
@@ -2108,7 +2097,8 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
       title: "",
       description: "",
       photoURL: null,
-      photoFile: null
+      photoFile: null,
+      errors: []
     };
     _this.updateValue = _this.updateValue.bind(_assertThisInitialized(_this));
     _this.updateFile = _this.updateFile.bind(_assertThisInitialized(_this));
@@ -2123,9 +2113,9 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        _this2.setState(_defineProperty({}, field, e.currentTarget.value), console.log(_this2.state));
+        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
-    } //make function to update the file field of the state 
+    } //make function to update the file field of the state
 
   }, {
     key: "updateFile",
@@ -2133,12 +2123,9 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var file = e.currentTarget.files[0];
-      console.log(file);
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        console.log(fileReader.result);
-
         _this3.setState({
           photoFile: file,
           photoURL: fileReader.result
@@ -2162,30 +2149,33 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
       if (state.photoFile === null) {
         errors.push("No photo selected");
       }
+
+      this.setState({
+        errors: errors
+      });
     }
   }, {
     key: "handleUpload",
     value: function handleUpload(e) {
       e.preventDefault();
-      var formData = new FormData();
-      formData.append('[post][title]', this.state.title);
-      formData.append('[post][description]', this.state.description);
 
-      if (this.state.photoFile) {
-        formData.append('[post][photo]', this.state.photoFile);
+      if (this.checkFields()) {
+        var formData = new FormData();
+        formData.append("[post][title]", this.state.title);
+        formData.append("[post][description]", this.state.description);
+
+        if (this.state.photoFile) {
+          formData.append("[post][photo]", this.state.photoFile);
+        }
+
+        $.ajax({
+          method: "POST",
+          url: "/api/posts",
+          data: formData,
+          contentType: false,
+          processData: false
+        });
       }
-
-      $.ajax({
-        method: 'POST',
-        url: '/api/posts',
-        data: formData,
-        contentType: false,
-        processData: false
-      }).then(function (response) {
-        return console.log(response);
-      }, function (responseErrors) {
-        return console.log(responseErrors);
-      });
     }
   }, {
     key: "render",
@@ -2203,18 +2193,22 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
           photo: this.state.photoURL
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
           onSubmit: this.handleUpload
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Upload a Photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+          className: "post-form-errors"
+        }, this.state.errors.map(function (error) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, error);
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Upload a Photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
           htmlFor: "title"
         }, "Title:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           id: "title",
           type: "text",
           name: "",
-          onChange: this.updateValue('title')
+          onChange: this.updateValue("title")
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
           htmlFor: "description"
         }, "Description:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
           id: "description",
-          onChange: this.updateValue('description')
+          onChange: this.updateValue("description")
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           type: "file",
           onChange: this.updateFile
@@ -2260,7 +2254,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var followedPosts = posts.filter(function (post) {
     return followedUsers.includes(post.posterId);
   });
-  console.log("followedPosts", followedPosts);
   var postNavIndices = (0,_util_Util__WEBPACK_IMPORTED_MODULE_3__.getPostShowNavIndices)(postId, followedPosts);
   return {
     postId: postId,
@@ -2337,7 +2330,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var postId = parseInt(ownProps.postId);
   var currentUserId = state.session.currentUser.id;
   var currentUserPosts = state.entities.users.users[currentUserId].userPosts;
-  console.log("currentUserPosts", currentUserPosts);
   var belongsToUser = currentUserPosts.includes(postId);
   var _state$entities$posts = state.entities.posts.posts[ownProps.postId],
       title = _state$entities$posts.title,
@@ -2405,7 +2397,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var following = state.entities.users.followedUsers.includes(ownProps.posterId);
-  console.log("following", following);
   return {
     following: following
   };
@@ -2516,7 +2507,7 @@ __webpack_require__.r(__webpack_exports__);
 var PostShowInfo = function PostShowInfo(_ref) {
   var user = _ref.user,
       post = _ref.post;
-  console.log("info", user);
+
   /*
     Notes: 
       • this component will need a container to have access to the dispatch
@@ -2528,7 +2519,6 @@ var PostShowInfo = function PostShowInfo(_ref) {
       4. follow button
       5. Upload date
   */
-
   var followButtonSpacing = post.belongsToUser ? null : " • ";
   var followButton = post.belongsToUser ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__.default, {
     posterId: user.posterId
@@ -2607,18 +2597,14 @@ var PostShowLike = function PostShowLike(props) {
 
   var heartIcon = props.liked ? (_feed_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (_feed_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2___default());
   var action = props.liked ? function (e) {
-    console.log("fired", props.postId);
     e.preventDefault();
     e.stopPropagation();
     props.removeLike(props.postId);
   } : function (e) {
-    console.log("fired", props.postId);
     e.preventDefault();
     e.stopPropagation();
     props.addLike(props.postId);
   };
-  console.log("postShowLike", props);
-  console.log("action", action);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     key: "post-show-like-button",
     className: "like-button black",
@@ -2768,7 +2754,6 @@ var PostShowNavigation = function PostShowNavigation(_ref) {
   var prevId = _ref.prevId,
       nextId = _ref.nextId,
       userId = _ref.userId;
-  console.log("postShowNav", prevId, nextId);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-nav"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowNavTile__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -2968,7 +2953,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var BannerUploadButton = function BannerUploadButton(props) {
-  console.log("bannerbutton", props);
   var buttonActionTitle = props.bannerImage === null ? "Upload a " : "Change";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     className: "banner-upload-button",
@@ -3010,7 +2994,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProfileEdit = function ProfileEdit(props) {
   var userId = props.match.params.userId;
-  console.log("profileEdit", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-edit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_2__.default, {
@@ -3043,7 +3026,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileEditBanner = function ProfileEditBanner(props) {
-  console.log("profileEditbanner", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-banner edit"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -3075,8 +3057,6 @@ __webpack_require__.r(__webpack_exports__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var _excluded = ["userPhoto", "bannerImage"];
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -3147,28 +3127,19 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         bannerImage: _this.props.user.bannerImage || null
       }
     };
-    console.log("profileEditForm", _this.props);
     return _this;
   }
 
   _createClass(ProfileEditForm, [{
     key: "selectCountry",
     value: function selectCountry(val) {
-      var _this2 = this;
-
       this.setState({
         country: val
-      }, function () {
-        return console.log(_this2.state);
       });
     }
   }, {
     key: "setFormValue",
     value: function setFormValue(e) {
-      var _this3 = this;
-
-      console.log(e);
-
       if (e.target.type === "file") {
         this.updateFile(e);
       } else {
@@ -3178,32 +3149,25 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
           return {
             profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, key, value))
           };
-        }, function () {
-          return console.log(_this3.state);
         });
       }
     }
   }, {
     key: "updateFile",
     value: function updateFile(e) {
-      var _this4 = this;
+      var _this2 = this;
 
       var file = e.target.files[0];
       var id = e.target.id;
-      console.log(file);
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        console.log(fileReader.result);
-
-        _this4.setState(function (prevState) {
+        _this2.setState(function (prevState) {
           var previews = prevState.previews;
           return {
             profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, id, file)),
             previews: Object.assign(previews, _defineProperty({}, id, fileReader.result))
           };
-        }, function () {
-          return console.log("addedPhoto", _this4.state);
         });
       };
 
@@ -3224,7 +3188,6 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       var formData = new FormData();
 
       if (userPhoto !== null && userPhoto !== undefined) {
-        console.log("not null");
         formData.append("profile[user_photo]", userPhoto);
       }
 
@@ -3242,38 +3205,17 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         }
       }
 
-      var _iterator = _createForOfIteratorHelper(formData.entries()),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var _step$value = _slicedToArray(_step.value, 2),
-              _key = _step$value[0],
-              _val = _step$value[1];
-
-          console.log("".concat(_key, ": ").concat(_val));
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
       $.ajax({
         method: "PATCH",
         url: "/api/profile/".concat(this.props.userId),
         data: formData,
         contentType: false,
         processData: false
-      }).then(function (response) {
-        return console.log(response);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      console.log("renderProps", this.props);
-      console.log("renderState", this.state);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "profile-edit-form",
         onSubmit: this.handleSubmit
@@ -3485,7 +3427,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileEditFormHeader = function ProfileEditFormHeader(props) {
-  console.log("profileEditFormHeader", props);
   var style = {
     backgroundImage: "url(".concat(props.bannerImage, ")")
   };
@@ -3600,7 +3541,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var FollowButton = function FollowButton(props) {
-  console.log("followButton", props);
   var classList = props.following === true ? "following" : "follow";
   var profileId = props.profileId;
   var action = props.following ? props.removeFollow : props.addFollow;
@@ -3633,7 +3573,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("profileheader", state.entities.users.users[ownProps.userId]);
   var user = state.entities.users.users[ownProps.userId];
   var bannerImage = null;
   var userPhoto = null;
@@ -3728,7 +3667,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileBanner = function ProfileBanner(props) {
-  console.log("banner", props);
   var style = {
     backgroundImage: "url(".concat(props.src, ")")
   };
@@ -4011,40 +3949,20 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
       posts: _this.props.posts
     };
     return _this;
-  } // componentDidMount() {
-  //   this.props.fetchProfilePosts(this.props.userId);
-  // }
-  // componentDidUpdate() {
-  //   this.props.fetchProfilePosts(this.props.userId);
-  // }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log("feedProps", nextProps.posts.keys)
-  //   // const curPostsLength = this.props.posts.keys.length;
-  //   // const nextPostsLength = nextProps.posts.keys.length;
-  //   if (
-  //     (nextProps.userId !== this.props.userId)
-  //   ) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
+  }
 
   _createClass(ProfileFeed, [{
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      console.log("feedRender", this.props);
       var breakpointColumnsObj = {
         "default": 4,
         1100: 3,
         700: 2,
         500: 1
       };
-      var images = []; // console.log(JSON.stringify(this.props.posts))
-
+      var images = [];
       Object.values(this.props.posts).forEach(function (post, i) {
         var liked = _this2.props.isCurrentUser ? null : _this2.props.likedPosts.includes(post.id);
         images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -4056,7 +3974,6 @@ var ProfileFeed = /*#__PURE__*/function (_React$Component) {
           like: true
         }));
       });
-      console.log("images", images);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-feed"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4093,13 +4010,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("profileFeed", state);
   var isCurrentUser = state.session.currentUser.id === ownProps.userId;
   var posts = Object.values(state.entities.posts.posts);
   posts = posts.filter(function (post) {
     return post.posterId === ownProps.userId;
   });
-  console.log("profile feed map", posts);
   var likedPosts = state.entities.posts.likedPosts;
   return {
     isCurrentUser: isCurrentUser,
@@ -4234,7 +4149,6 @@ var PostsReducer = function PostsReducer() {
 
   switch (action.type) {
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POST:
-      console.log("postsReducer", action);
       return {
         posts: _objectSpread(_objectSpread({}, state.posts), action.post),
         likedPosts: state.likedPosts
@@ -4352,7 +4266,6 @@ __webpack_require__.r(__webpack_exports__);
 var sessionErrorsReducer = function sessionErrorsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("sessionErrors", action);
   Object.freeze(state);
 
   switch (action.type) {
@@ -4508,7 +4421,6 @@ var defaultState = {
 var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("usersReducer", action);
   Object.freeze(state);
   var newState = Object.assign({}, state);
 

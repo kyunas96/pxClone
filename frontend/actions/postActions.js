@@ -26,7 +26,6 @@ export const requestUsersFeed = () => dispatch => (
 
 export const requestPost = postId => dispatch => (
   PostAPI.requestPost(postId)
-    // .then(data => console.log(data))
     .then(payload => dispatch(receivePost(payload)))
 )
 

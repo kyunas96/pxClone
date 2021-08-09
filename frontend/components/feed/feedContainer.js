@@ -4,7 +4,6 @@ import { requestUsersFeed } from "../../actions/postActions";
 import { fetchLikedPosts } from "../../actions/likeActions";
 
 const mapStateToProps = (state) => {
-  console.log("feedContainer", state);
   const posts = state.entities.posts.posts;
   const followedUsers = state.entities.users.followedUsers;
   // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
@@ -20,7 +19,6 @@ const mapStateToProps = (state) => {
     userId: state.session.currentUser.id,
     feedPosts
   };
-  // console.log("feedContainer", ret)
   
   return ret;
 };

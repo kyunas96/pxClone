@@ -10,29 +10,7 @@ class ProfileFeed extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.props.fetchProfilePosts(this.props.userId);
-  // }
-
-  // componentDidUpdate() {
-  //   this.props.fetchProfilePosts(this.props.userId);
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log("feedProps", nextProps.posts.keys)
-  //   // const curPostsLength = this.props.posts.keys.length;
-  //   // const nextPostsLength = nextProps.posts.keys.length;
-  //   if (
-  //     (nextProps.userId !== this.props.userId)
-  //   ) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
   render() {
-    console.log("feedRender", this.props);
     const breakpointColumnsObj = {
       default: 4,
       1100: 3,
@@ -42,15 +20,12 @@ class ProfileFeed extends React.Component {
 
     let images = [];
 
-    // console.log(JSON.stringify(this.props.posts))
     Object.values(this.props.posts).forEach((post, i) => {
       const liked = this.props.isCurrentUser
         ? null
         : this.props.likedPosts.includes(post.id);
       images.push(<Image post={{ ...post, liked, isProfile: true}} key={i} like />);
     });
-
-    console.log("images", images)
 
     return (
       <div className="profile-feed">

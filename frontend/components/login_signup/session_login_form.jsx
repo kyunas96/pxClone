@@ -37,7 +37,6 @@ class LoginForm extends React.Component {
     if (this.props.loggedIn) {
       return <Redirect to='/' />
     }
-    console.log("signin", this.props);
 
     return (
       <div className='session-form-container'>

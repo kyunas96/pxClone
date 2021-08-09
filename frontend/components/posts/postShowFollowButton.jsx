@@ -6,7 +6,6 @@ import { addFollow, removeFollow } from '../../actions/followActions';
 
 const mapStateToProps = (state, ownProps) => {
   const following = state.entities.users.followedUsers.includes(ownProps.posterId)
-  console.log("following", following)
   return {
     following
   }
