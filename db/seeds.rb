@@ -65,7 +65,7 @@ gabbyBanner = open("https://pxclone-seeds.s3.us-west-1.amazonaws.com/pxclone-ima
 
 
 # 1: Kevin
-kevin = User.create!(
+kevin_user = User.create!(
   username: "Kevin", 
   email: "kevinyunas@icloud.com", 
   password: "myPassword",
@@ -75,10 +75,10 @@ kevin = User.create!(
   'catching the golden hour light or the breeze at the beach :)'
 )
 
-kevin.user_photo.attach(io: kevinProfile, filename: "kevinProfile.jpg")
-kevin.banner_image.attach(io: kevinBanner, filename: "kevinBanner.jpg")
+kevin_user.user_photo.attach(io: kevinProfile, filename: "kevinProfile.jpg")
+kevin_user.banner_image.attach(io: kevinBanner, filename: "kevinBanner.jpg")
 # 2: Daniel
-daniel = User.create!(
+daniel_user = User.create!(
   username: "Daniel", 
   email: "daniel@email.com", 
   password: "danielPassword",
@@ -88,8 +88,8 @@ daniel = User.create!(
   'digital photo dumps'
 )
 
-daniel.user_photo.attach(io: danielProfile, filename: "danielProfile.jpg")
-daniel.banner_image.attach(io: danielBanner, filename: "danielBanner.jpg")
+daniel_user.user_photo.attach(io: danielProfile, filename: "danielProfile.jpg")
+daniel_user.banner_image.attach(io: danielBanner, filename: "danielBanner.jpg")
 # 3: Gabby
 gabby_user = User.create!(
   username: "Gabby", 
@@ -111,47 +111,47 @@ User.create!(
   city: "Los Angeles"
 )
 
-daniel1Post = Post.new(title: "Beach B/W", poster_id: 2, description: "")
-daniel2Post = Post.new(title: "Cheesin in Davis", poster_id: 2, description: "")
-daniel3Post = Post.new(title: "Beach flying", poster_id: 2, description: "")
-daniel4Post = Post.new(title: "How's my Nixon impression?", poster_id: 2, description: "")
-davis1Post = Post.new(title: "b0red", poster_id: 3, description: "")
-davis2Post = Post.new(title: "The Talking Heads", poster_id: 3, description: "")
-dazedPost = Post.new(title: "Woah", poster_id: 2, description: "")
-gabbyPost = Post.new(title: "Supreme Queen", poster_id: 3, description: "")
-gpaPost = Post.new(title: "Yikes", poster_id: 2, description: "")
-griffithPost = Post.new(title: "Thats a nice wallpaper", poster_id: 1, description: "")
-kristePost = Post.new(title: "Ayyyyy", poster_id: 1, description: "")
-littletokyoPost = Post.new(title: "City scapes", poster_id: 1, description: "")
-palacePost = Post.new(title: "Woah", poster_id: 1, description: "")
-sdPost = Post.new(title: "The water's fine", poster_id: 2, description: "")
-smPost = Post.new(title: "POP", poster_id: 1, description: "")
-sm1Post = Post.new(title: "When you need more photos", poster_id: 1, description: "")
-topanga1Post = Post.new(title: "You put the lime in the coconut", poster_id: 1, description: "")
-topanga2Post = Post.new(title: "Mild mannered postcard", poster_id: 1, description: "")
-tornPost = Post.new(title: "Torn", poster_id: 1, description: "")
-tunnelPost = Post.new(title: "Ok so you're going to walk through this tunnel...", poster_id: 2, description: "")
+daniel1Post = Post.new(title: "Beach B/W", poster_id: daniel_user.id, description: "")
+daniel2Post = Post.new(title: "Cheesin in Davis", poster_id: daniel_user.id, description: "")
+daniel3Post = Post.new(title: "Beach flying", poster_id: daniel_user.id, description: "")
+daniel4Post = Post.new(title: "How's my Nixon impression?", poster_id: daniel_user.id, description: "")
+davis1Post = Post.new(title: "b0red", poster_id: gabby_user.id, description: "")
+davis2Post = Post.new(title: "The Talking Heads", poster_id: gabby_user.id, description: "")
+dazedPost = Post.new(title: "Woah", poster_id: daniel_user.id, description: "")
+gabbyPost = Post.new(title: "Supreme Queen", poster_id: gabby_user.id, description: "")
+gpaPost = Post.new(title: "Yikes", poster_id: daniel_user.id, description: "")
+griffithPost = Post.new(title: "Thats a nice wallpaper", poster_id: kevin_user.id, description: "")
+kristePost = Post.new(title: "Ayyyyy", poster_id: kevin_user.id, description: "")
+littletokyoPost = Post.new(title: "City scapes", poster_id: kevin_user.id, description: "")
+palacePost = Post.new(title: "Woah", poster_id: kevin_user.id, description: "")
+sdPost = Post.new(title: "The water's fine", poster_id: daniel_user.id, description: "")
+smPost = Post.new(title: "POP", poster_id: kevin_user.id, description: "")
+sm1Post = Post.new(title: "When you need more photos", poster_id: kevin_user.id, description: "")
+topanga1Post = Post.new(title: "You put the lime in the coconut", poster_id: kevin_user.id, description: "")
+topanga2Post = Post.new(title: "Mild mannered postcard", poster_id: kevin_user.id, description: "")
+tornPost = Post.new(title: "Torn", poster_id: kevin_user.id, description: "")
+tunnelPost = Post.new(title: "Ok so you're going to walk through this tunnel...", poster_id: daniel_user.id, description: "")
 
-beachPost = Post.new(title: "Summer Breeze", poster_id: 1, description: "")
-canyonPost = Post.new(title: "Canyon", poster_id: 3, description: "")
-muricaPost = Post.new(title: "Peekaboo", poster_id: 1, description: "")
-tracksPost = Post.new(title: "To where", poster_id: 1, description: "")
-surfsupPost = Post.new(title: "Surfs up", poster_id: 3, description: "")
-monkPost = Post.new(title: "In another life", poster_id: 1, description: "")
-nosotrosPost = Post.new(title: "Nosotros", poster_id: 3, description: "")
-hashtagPost = Post.new(title: "Hashtag", poster_id: 3, description: "")
-grafittiPost = Post.new(title: "Fine print", poster_id: 3, description: "")
-ningunoPost = Post.new(title: "Ninguno", poster_id: 3, description: "")
-trippyPost = Post.new(title: "Cherry-coloured Funk", poster_id: 1, description: "")
-trishaPost = Post.new(title: "Trisha", poster_id: 2, description: "")
-liesPost = Post.new(title: "Makes you wonder", poster_id: 3, description: "")
-stairsPost = Post.new(title: "Where do they lead", poster_id: 3, description: "")
-daniel10Post = Post.new(title: "Lousiana", poster_id: 2, description: "")
-mardigrasPost = Post.new(title: "Mardigras awaits", poster_id: 2, description: "")
-soakPost = Post.new(title: "Soakin in the sun", poster_id: 2, description: "")
-hangloosePost = Post.new(title: "Hangloose", poster_id: 3, description: "")
-sunsetPost = Post.new(title: "Almost golden hour", poster_id: 2, description: "")
-daniel5Post = Post.new(title: "Stay awhile", poster_id: 2, description: "")
+beachPost = Post.new(title: "Summer Breeze", poster_id: kevin_user.id, description: "")
+canyonPost = Post.new(title: "Canyon", poster_id: gabby_user.id, description: "")
+muricaPost = Post.new(title: "Peekaboo", poster_id: kevin_user.id, description: "")
+tracksPost = Post.new(title: "To where", poster_id: kevin_user.id, description: "")
+surfsupPost = Post.new(title: "Surfs up", poster_id: gabby_user.id, description: "")
+monkPost = Post.new(title: "In another life", poster_id: kevin_user.id, description: "")
+nosotrosPost = Post.new(title: "Nosotros", poster_id: gabby_user.id, description: "")
+hashtagPost = Post.new(title: "Hashtag", poster_id: gabby_user.id, description: "")
+grafittiPost = Post.new(title: "Fine print", poster_id: gabby_user.id, description: "")
+ningunoPost = Post.new(title: "Ninguno", poster_id: gabby_user.id, description: "")
+trippyPost = Post.new(title: "Cherry-coloured Funk", poster_id: kevin_user.id, description: "")
+trishaPost = Post.new(title: "Trisha", poster_id: daniel_user.id, description: "")
+liesPost = Post.new(title: "Makes you wonder", poster_id: gabby_user.id, description: "")
+stairsPost = Post.new(title: "Where do they lead", poster_id: gabby_user.id, description: "")
+daniel10Post = Post.new(title: "Lousiana", poster_id: daniel_user.id, description: "")
+mardigrasPost = Post.new(title: "Mardigras awaits", poster_id: daniel_user.id, description: "")
+soakPost = Post.new(title: "Soakin in the sun", poster_id: daniel_user.id, description: "")
+hangloosePost = Post.new(title: "Hangloose", poster_id: gabby_user.id, description: "")
+sunsetPost = Post.new(title: "Almost golden hour", poster_id: daniel_user.id, description: "")
+daniel5Post = Post.new(title: "Stay awhile", poster_id: daniel_user.id, description: "")
 
 beachPost.photo.attach(io: beach, filename: "beach.jpg")
 canyonPost.photo.attach(io: canyon, filename: "canyon.jpg")
