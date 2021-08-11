@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router";
 import HeaderContainer from "./components/base/header_container";
+import {ProtectedRoute} from "./components/protectedRoute";
 import Footer from './components/base/footer';
 import SplashPage from "./components/splashPage";
 import LoginContainer from "./components/login_signup/login_form_container";
@@ -21,17 +22,15 @@ const App = (props) => {
           <Route exact path="/" component={props.loggedIn ? FeedContainer : SplashPage} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/signup" component={SignupContainer} />
-          {/* <Route path='/feed' component={FeedContainer} /> */}
-          <Route
+          <ProtectedRoute
             path="/users/:userId/profile/edit"
             component={ProfileEditContainer}
           />
-          <Route path="/users/:userId/profile" component={ProfileContainer} />
-          <Route path="/users/:userId/posts/:postId" component={ProfileShowContainer} />
+          <ProtectedRoute path="/users/:userId/profile" component={ProfileContainer} />
+          <ProtectedRoute path="/users/:userId/posts/:postId" component={ProfileShowContainer} />
           
-          <Route path="/post/create" component={CreatePostForm} />
-          <Route path="/posts/:postId" component={FeedShowContainer} />
-          {/* <Route exact path='/' component={IndexComponent} /> */}
+          <ProtectedRoute path="/post/create" component={CreatePostForm} />
+          <ProtectedRoute path="/posts/:postId" component={FeedShowContainer} />
           <Redirect to="/" />
         </Switch>
       </div>
