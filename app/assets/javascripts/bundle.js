@@ -43345,12 +43345,7 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root");
-  var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)(); // store.dispatch({type: SESSION_LOGIN, user})
-
-  window.store = _store_store__WEBPACK_IMPORTED_MODULE_4__.store;
-  window.dispatch = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch; // window.PostAPI = PostAPI;
-  // window.requestPost = requestPost;
-
+  var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)();
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: _store_store__WEBPACK_IMPORTED_MODULE_4__.store
   }), root);

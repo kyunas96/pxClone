@@ -10,11 +10,6 @@ import { SESSION_LOGIN } from "./actions/sessionActions";
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
   const user = fetchLocalState();
-  // store.dispatch({type: SESSION_LOGIN, user})
-  window.store = store;
-  window.dispatch = store.dispatch;
-  // window.PostAPI = PostAPI;
-  // window.requestPost = requestPost;
 
   ReactDOM.render(<Root store={store} />, root);
 });
