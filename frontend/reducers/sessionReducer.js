@@ -13,15 +13,10 @@ const sessionReducer = (state = nullUser, action) => {
   Object.freeze(state);
   switch (action.type) {
     case SESSION_LOGIN:
-      if (action.payload.errors === undefined) {
-        const {id, username } = action.payload.user;
-        return {
-          currentUser: { id, username},
-          loggedIn: true
-        };
-      } else {
-        return nullUser;
-      }
+      return {
+        currentUser: { id, username },
+        loggedIn: true,
+      };
     case SESSION_LOGOUT:
       localStorage.clear();
       return nullUser;

@@ -9,10 +9,10 @@ class Api::SessionsController < ApplicationController
     end
 
     if @user && @user.is_password?(params[:password])
+      login(@user)
       @posts = @user.posts.order(:created_at)
       @postIndices = @posts.pluck(:id)
       @liked_posts = []
-      login(@user)
       render :create
       return
     else

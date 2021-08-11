@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import FormErrors from './formErrors';
 import SessionInput from './sessionInput';
@@ -66,4 +67,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

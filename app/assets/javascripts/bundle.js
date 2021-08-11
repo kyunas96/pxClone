@@ -1632,6 +1632,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var LoginForm = /*#__PURE__*/function (_React$Component) {
   _inherits(LoginForm, _React$Component);
 
@@ -1724,7 +1725,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   return LoginForm;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoginForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router__WEBPACK_IMPORTED_MODULE_3__.withRouter)(LoginForm));
 
 /***/ }),
 
@@ -4285,20 +4286,13 @@ var sessionReducer = function sessionReducer() {
 
   switch (action.type) {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
-      if (action.payload.errors === undefined) {
-        var _action$payload$user = action.payload.user,
-            id = _action$payload$user.id,
-            username = _action$payload$user.username;
-        return {
-          currentUser: {
-            id: id,
-            username: username
-          },
-          loggedIn: true
-        };
-      } else {
-        return nullUser;
-      }
+      return {
+        currentUser: {
+          id: id,
+          username: username
+        },
+        loggedIn: true
+      };
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGOUT:
       localStorage.clear();
