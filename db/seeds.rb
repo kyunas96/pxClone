@@ -103,13 +103,29 @@ gabby_user = User.create!(
 gabby_user.user_photo.attach(io: gabbyProfile, filename: "gabbyProfile.jpg")
 gabby_user.banner_image.attach(io: gabbyBanner, filename: "gabbyBanner.jpg")
 #5 :Demo
-User.create!(
+demo_user = User.create!(
   username: "demoUser", 
   email: "demo@email.com", 
   password: "password",
   country: "United States",
   city: "Los Angeles"
 )
+
+# create follows between users so feed will have posts to populate from followed users
+
+kevin_gabby_follow = Follow.create!(follower: kevin_user, followed_user: gabby_user)
+kevin_daniel_follow = Follow.create!(follower: kevin_user, followed_user: daniel_user)
+
+gabby_kevin_follow = Follow.create!(follower: gabby_user, followed_user: kevin_user)
+gabby_daniel_follow = Follow.create!(follower: gabby_user, followed_user: daniel_user)
+
+daniel_gabby_follow = Follow.create!(follower: daniel_user, followed_user: gabby_user)
+daniel_kevin_follow = Follow.create!(follower: daniel_user, followed_user: kevin_user)
+
+demo_kevin_follow = Follow.create!(follower: demo_user, followed_user: kevin_user)
+demo_daniel_follow = Follow.create!(follower: demo_user, followed_user: daniel_user)
+demo_gabby_follow = Follow.create!(follower: demo_user, followed_user: gabby_user)
+
 
 daniel1Post = Post.new(title: "Beach B/W", poster_id: daniel_user.id, description: "")
 daniel2Post = Post.new(title: "Cheesin in Davis", poster_id: daniel_user.id, description: "")

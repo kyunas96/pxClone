@@ -18,9 +18,10 @@ const defaultState = {
 const usersReducer = (state = defaultState, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
+  let currentUser;
   switch (action.type) {
     case RECEIVE_USER:
-      let currentUser = newState.users[action.payload.user.id] || {};
+      currentUser = newState.users[action.payload.user.id] || {};
       let receivedUser = Object.assign(currentUser, action.payload.user);
       newState.users[action.payload.user.id] = receivedUser;
       return newState;
@@ -36,12 +37,21 @@ const usersReducer = (state = defaultState, action) => {
       newState.users[action.payload.user.id] = action.payload.user;
       return newState;
     case ADD_FOLLOW:
-      newState.users[action.data.userId].following = true;
+      currentUser = newState.users[action.data.userId] || {id: action.data.userId};
+      currentUser.following = true;
+      newState.users[action.data.userId] = currentUser;
       !newState.followedUsers.includes(action.data.userId) &&
         newState.followedUsers.push(action.data.userId);
-      return newState;
+      return {
+        users: {
+          ...newState.users,
+        },
+        followedUsers: newState.followedUsers
+      }
     case REMOVE_FOLLOW:
-      newState.users[action.data.userId].following = false;
+      currentUser = newState.users[action.data.userId] || {id: action.data.userId};
+      currentUser.following = false;
+      newState.users[action.data.userId] = currentUser;
       let follows = [];
       const likeIndex = newState.followedUsers.indexOf(action.data.userId);
       const left = newState.followedUsers.slice(0, likeIndex);

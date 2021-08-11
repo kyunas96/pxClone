@@ -16,11 +16,6 @@ class Api::UsersController < ApplicationController
       @posts = @user.posts.order(:created_at)
       @postIndices = @posts.pluck(:id)
 
-      p "user show"
-      p "@user " + @user.user_photo.inspect
-      p "@posts " + @posts.inspect
-      p "@postIndices " + @postIndices.inspect
-
       render :show
 
       return

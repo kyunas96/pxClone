@@ -4420,10 +4420,11 @@ var usersReducer = function usersReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState = Object.assign({}, state);
+  var currentUser;
 
   switch (action.type) {
     case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER:
-      var currentUser = newState.users[action.payload.user.id] || {};
+      currentUser = newState.users[action.payload.user.id] || {};
       var receivedUser = Object.assign(currentUser, action.payload.user);
       newState.users[action.payload.user.id] = receivedUser;
       return newState;
@@ -4442,12 +4443,23 @@ var usersReducer = function usersReducer() {
       return newState;
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.ADD_FOLLOW:
-      newState.users[action.data.userId].following = true;
+      currentUser = newState.users[action.data.userId] || {
+        id: action.data.userId
+      };
+      currentUser.following = true;
+      newState.users[action.data.userId] = currentUser;
       !newState.followedUsers.includes(action.data.userId) && newState.followedUsers.push(action.data.userId);
-      return newState;
+      return {
+        users: _objectSpread({}, newState.users),
+        followedUsers: newState.followedUsers
+      };
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.REMOVE_FOLLOW:
-      newState.users[action.data.userId].following = false;
+      currentUser = newState.users[action.data.userId] || {
+        id: action.data.userId
+      };
+      currentUser.following = false;
+      newState.users[action.data.userId] = currentUser;
       var follows = [];
       var likeIndex = newState.followedUsers.indexOf(action.data.userId);
       var left = newState.followedUsers.slice(0, likeIndex);
