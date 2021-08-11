@@ -2,13 +2,13 @@ import React from "react";
 import FollowButtonContainer from "./followButtonContainer";
 import ProfileLocation from "./profile_location";
 
-const ProfileInfo = ({renderFollow, userName, city, country, description, socials}) => {
+const ProfileInfo = ({renderFollow, username, city, country, description, socials}) => {
   const followButton =
     renderFollow === true ? (<FollowButtonContainer />) : (null) 
 
   return (
     <div className="profile-info">
-      <span id="profile-username">{userName}</span>
+      <span id="profile-username">{username}</span>
       <ProfileLocation city={city} country={country} />
       {followButton}
       

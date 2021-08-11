@@ -4,7 +4,6 @@ import { Link, withRouter } from "react-router-dom";
 
 class UserInfoDropdown extends React.Component {
   constructor(props) {
-    props;
     super(props);
     this.logoutAction = this.logoutAction.bind(this);
   }

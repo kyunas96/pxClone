@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import UploadButton from './uploadButton';
 import UserInfoDropdown from './userInfoDropdown';
-import userInfoButton from '../../images/user-circle-solid.svg';
+import userInfoButton from 'assets/images/user-circle-solid.svg';
+// import userInfoButton from '../../images/user-circle-solid.svg';
 
 class UserInfo extends React.Component {
   constructor(props) {

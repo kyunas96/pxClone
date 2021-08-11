@@ -31,7 +31,7 @@ class Api::PostsController < ApplicationController
     @post = Post.new(poster_id_appended)
     
     if @post.save
-      render json: {response: "Success"}
+      render json: {id: @post.id, posterId: current_user.id}
     else
       render json: @post.errors.full_messages
     end

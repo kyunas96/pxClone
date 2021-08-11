@@ -1,6 +1,6 @@
 import React from "react";
-import LikedIcon from "./liked.svg";
-import UnlikedWhite from "../feed/unliked-white.svg";
+import LikedIcon from 'assets/images/liked.svg';
+import UnlikedWhite from 'assets/images/unliked-white.svg';
 
 const LikeButton = (props) => {
   if (props.liked === null) {

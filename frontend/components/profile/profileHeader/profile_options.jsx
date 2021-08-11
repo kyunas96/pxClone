@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import editPencil from './pencil.png';
+import editPencil from 'assets/images/pencil.png';
 
 const ProfileOptions = ({isCurrentUser, userId}) => {
   if (isCurrentUser){

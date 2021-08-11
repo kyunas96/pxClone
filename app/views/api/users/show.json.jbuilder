@@ -11,8 +11,18 @@ json.user do
   :facebook,
   :twitter
 
-  json.bannerImage url_for(@user.banner_image)
-  json.userPhoto url_for(@user.user_photo)
+  if @user.banner_image.attached?
+    json.bannerImage url_for(@user.banner_image)
+  else
+    json.banner_image nil
+  end
+
+  if @user.user_photo.attached?
+    json.userPhoto url_for(@user.user_photo)
+  else
+    json.userPhoto nil
+  end
+  
   json.userPosts @postIndices
 end
 

@@ -1,6 +1,6 @@
 import React from "react";
-import userPhoto from '../../../images/portrait.jpg';
-import cameraIcon from './camera.png';
+import cameraIcon from 'assets/images/camera.png';
+// import cameraIcon from './camera.png';
 
 
 const ProfileEditUserPhoto = (props) => (

@@ -1,6 +1,6 @@
 import React from "react";
-import LikedIcon from "../feed/liked.svg";
-import UnlikedBlack from "../feed/unliked-black.svg";
+import LikedIcon from "assets/images/liked.svg";
+import UnlikedBlack from "assets/images/unliked-black.svg";
 
 const PostShowLike = (props) => {
   if (props.liked === null) {

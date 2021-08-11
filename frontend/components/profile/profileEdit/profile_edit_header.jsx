@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import backArrow from "./arrowback.png";
+import backArrow from 'assets/images/arrowback.png';
+// import backArrow from "./arrowback.png";
 
 const ProfileEditHeader = ({userId}) => (
   <div className="profile-edit-header-container">

@@ -1,7 +1,5 @@
 import React from "react";
-import defaultProfilePicture from "../../../images/user-circle-solid.svg";
-import myProfilePicture from "../../../images/portrait.jpg";
-import ProfileOptions from "./profile_options";
+import defaultProfilePicture from 'assets/images/user-circle-solid.svg';
 
 const ProfilePicture = ({userPhoto}) => {
   const imageUrl = userPhoto ? userPhoto : defaultProfilePicture;

@@ -631,23 +631,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _GitHub_Mark_64px_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GitHub-Mark-64px.png */ "./frontend/components/base/GitHub-Mark-64px.png");
-/* harmony import */ var _linkedin_64px_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./linkedin_64px.png */ "./frontend/components/base/linkedin_64px.png");
+/* harmony import */ var assets_images_GitHub_Mark_64px_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/GitHub-Mark-64px.png */ "./app/assets/images/GitHub-Mark-64px.png");
+/* harmony import */ var assets_images_linkedin_64px_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! assets/images/linkedin_64px.png */ "./app/assets/images/linkedin_64px.png");
 
 
-
+ // import GitHubLogo from './GitHub-Mark-64px.png';
+// import LinkedInLogo from './linkedin_64px.png';
 
 var Footer = function Footer(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://github.com/yunasty/pxClone",
     target: "_blank"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _GitHub_Mark_64px_png__WEBPACK_IMPORTED_MODULE_1__.default
+    src: assets_images_GitHub_Mark_64px_png__WEBPACK_IMPORTED_MODULE_1__.default
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://www.linkedin.com/in/kevin-yunas-987325183/",
     target: "_blank"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _linkedin_64px_png__WEBPACK_IMPORTED_MODULE_2__.default
+    src: assets_images_linkedin_64px_png__WEBPACK_IMPORTED_MODULE_2__.default
   }))));
 };
 
@@ -851,8 +852,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _uploadButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./uploadButton */ "./frontend/components/base/uploadButton.jsx");
 /* harmony import */ var _userInfoDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userInfoDropdown */ "./frontend/components/base/userInfoDropdown.jsx");
-/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../images/user-circle-solid.svg */ "./frontend/images/user-circle-solid.svg");
-/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! assets/images/user-circle-solid.svg */ "./app/assets/images/user-circle-solid.svg");
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -879,7 +880,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
+ // import userInfoButton from '../../images/user-circle-solid.svg';
 
 var UserInfo = /*#__PURE__*/function (_React$Component) {
   _inherits(UserInfo, _React$Component);
@@ -922,7 +923,7 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
           return _this2.toggleDropdown(e);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: (_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default())
+        src: (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default())
       })), this.state.showDropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userInfoDropdown__WEBPACK_IMPORTED_MODULE_2__.default, {
         currentUser: this.props.currentUser,
         logout: this.props.logout,
@@ -992,7 +993,6 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, UserInfoDropdown);
 
-    props;
     _this = _super.call(this, props);
     _this.logoutAction = _this.logoutAction.bind(_assertThisInitialized(_this));
     return _this;
@@ -1055,7 +1055,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./image */ "./frontend/components/feed/image.jsx");
 /* harmony import */ var react_masonry_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-masonry-css */ "./node_modules/react-masonry-css/dist/react-masonry-css.module.js");
 /* harmony import */ var _feedHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./feedHeader */ "./frontend/components/feed/feedHeader.jsx");
-/* harmony import */ var react_infinite_scroll_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-infinite-scroll-component */ "./node_modules/react-infinite-scroll-component/dist/index.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
@@ -1087,8 +1086,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
- // Feed should associate itself with the current user
+ // import InfiniteScroll from "react-infinite-scroll-component";
+// Feed should associate itself with the current user
 
 var Feed = /*#__PURE__*/function (_React$Component) {
   _inherits(Feed, _React$Component);
@@ -1391,10 +1390,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _liked_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./liked.svg */ "./frontend/components/feed/liked.svg");
-/* harmony import */ var _liked_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_liked_svg__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _feed_unliked_white_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../feed/unliked-white.svg */ "./frontend/components/feed/unliked-white.svg");
-/* harmony import */ var _feed_unliked_white_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_feed_unliked_white_svg__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var assets_images_liked_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/liked.svg */ "./app/assets/images/liked.svg");
+/* harmony import */ var assets_images_liked_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(assets_images_liked_svg__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var assets_images_unliked_white_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! assets/images/unliked-white.svg */ "./app/assets/images/unliked-white.svg");
+/* harmony import */ var assets_images_unliked_white_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(assets_images_unliked_white_svg__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -1404,7 +1403,7 @@ var LikeButton = function LikeButton(props) {
     return null;
   }
 
-  var heartIcon = props.liked ? (_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (_feed_unliked_white_svg__WEBPACK_IMPORTED_MODULE_2___default());
+  var heartIcon = props.liked ? (assets_images_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (assets_images_unliked_white_svg__WEBPACK_IMPORTED_MODULE_2___default());
   var action = props.liked ? function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -2053,6 +2052,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _postFormPreview__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postFormPreview */ "./frontend/components/posts/postFormPreview.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -2153,13 +2153,18 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
       this.setState({
         errors: errors
       });
+      console.log("errors", errors);
+      return errors.length === 0;
     }
   }, {
     key: "handleUpload",
     value: function handleUpload(e) {
+      var _this4 = this;
+
       e.preventDefault();
 
       if (this.checkFields()) {
+        console.log("Succeeded");
         var formData = new FormData();
         formData.append("[post][title]", this.state.title);
         formData.append("[post][description]", this.state.description);
@@ -2174,6 +2179,8 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
           data: formData,
           contentType: false,
           processData: false
+        }).then(function (data) {
+          _this4.props.history.push("/");
         });
       }
     }
@@ -2223,7 +2230,7 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
   return CreatePostForm;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreatePostForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)(CreatePostForm));
 
 /***/ }),
 
@@ -2582,10 +2589,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _feed_liked_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../feed/liked.svg */ "./frontend/components/feed/liked.svg");
-/* harmony import */ var _feed_liked_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_feed_liked_svg__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _feed_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../feed/unliked-black.svg */ "./frontend/components/feed/unliked-black.svg");
-/* harmony import */ var _feed_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_feed_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var assets_images_liked_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/liked.svg */ "./app/assets/images/liked.svg");
+/* harmony import */ var assets_images_liked_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(assets_images_liked_svg__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var assets_images_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! assets/images/unliked-black.svg */ "./app/assets/images/unliked-black.svg");
+/* harmony import */ var assets_images_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(assets_images_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -2595,7 +2602,7 @@ var PostShowLike = function PostShowLike(props) {
     return null;
   }
 
-  var heartIcon = props.liked ? (_feed_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (_feed_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2___default());
+  var heartIcon = props.liked ? (assets_images_liked_svg__WEBPACK_IMPORTED_MODULE_1___default()) : (assets_images_unliked_black_svg__WEBPACK_IMPORTED_MODULE_2___default());
   var action = props.liked ? function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -2947,8 +2954,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _camera_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./camera.svg */ "./frontend/components/profile/profileEdit/camera.svg");
-/* harmony import */ var _camera_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_camera_svg__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var assets_images_camera_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/camera.svg */ "./app/assets/images/camera.svg");
+/* harmony import */ var assets_images_camera_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(assets_images_camera_svg__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
@@ -2960,7 +2967,7 @@ var BannerUploadButton = function BannerUploadButton(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "camera-icon-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: (_camera_svg__WEBPACK_IMPORTED_MODULE_1___default())
+    src: (assets_images_camera_svg__WEBPACK_IMPORTED_MODULE_1___default())
   }), "".concat(buttonActionTitle, " cover photo"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     id: "bannerImage",
     type: "file",
@@ -3004,38 +3011,6 @@ var ProfileEdit = function ProfileEdit(props) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEdit);
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileEdit/profileEditBanner.jsx":
-/*!***********************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/profileEditBanner.jsx ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _bannerUploadButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bannerUploadButton */ "./frontend/components/profile/profileEdit/bannerUploadButton.jsx");
-/* harmony import */ var _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../images/griffith.jpg */ "./frontend/images/griffith.jpg");
-
-
-
-
-var ProfileEditBanner = function ProfileEditBanner(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-banner edit"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: props.bannerImage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_bannerUploadButton__WEBPACK_IMPORTED_MODULE_1__.default, {
-    isImage: props.bannerImage
-  }));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditBanner);
 
 /***/ }),
 
@@ -3333,11 +3308,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/portrait.jpg */ "./frontend/images/portrait.jpg");
-/* harmony import */ var _camera_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./camera.png */ "./frontend/components/profile/profileEdit/camera.png");
+/* harmony import */ var assets_images_camera_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/camera.png */ "./app/assets/images/camera.png");
 
-
-
+ // import cameraIcon from './camera.png';
 
 var ProfileEditUserPhoto = function ProfileEditUserPhoto(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3351,7 +3324,7 @@ var ProfileEditUserPhoto = function ProfileEditUserPhoto(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "userPhoto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _camera_png__WEBPACK_IMPORTED_MODULE_2__.default
+    src: assets_images_camera_png__WEBPACK_IMPORTED_MODULE_1__.default
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     id: "userPhoto",
     type: "file",
@@ -3418,10 +3391,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profileEditUserPhoto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileEditUserPhoto */ "./frontend/components/profile/profileEdit/profileEditUserPhoto.jsx");
 /* harmony import */ var _bannerUploadButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bannerUploadButton */ "./frontend/components/profile/profileEdit/bannerUploadButton.jsx");
-/* harmony import */ var _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../images/griffith.jpg */ "./frontend/images/griffith.jpg");
-/* harmony import */ var _profileEditBanner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profileEditBanner */ "./frontend/components/profile/profileEdit/profileEditBanner.jsx");
-
-
 
 
 
@@ -3459,10 +3428,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _arrowback_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./arrowback.png */ "./frontend/components/profile/profileEdit/arrowback.png");
+/* harmony import */ var assets_images_arrowback_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/arrowback.png */ "./app/assets/images/arrowback.png");
 
 
-
+ // import backArrow from "./arrowback.png";
 
 var ProfileEditHeader = function ProfileEditHeader(_ref) {
   var userId = _ref.userId;
@@ -3472,7 +3441,7 @@ var ProfileEditHeader = function ProfileEditHeader(_ref) {
     to: "/users/".concat(userId, "/profile"),
     id: "back-button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: _arrowback_png__WEBPACK_IMPORTED_MODULE_1__.default
+    src: assets_images_arrowback_png__WEBPACK_IMPORTED_MODULE_1__.default
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-edit-title"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Edit Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null));
@@ -3662,8 +3631,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _images_griffith_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/griffith.jpg */ "./frontend/images/griffith.jpg");
-
 
 
 var ProfileBanner = function ProfileBanner(props) {
@@ -3703,7 +3670,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileHeader = function ProfileHeader(_ref) {
-  var bannerImage = _ref.bannerImage,
+  var username = _ref.username,
+      bannerImage = _ref.bannerImage,
       userPhoto = _ref.userPhoto,
       isCurrentUser = _ref.isCurrentUser,
       id = _ref.id;
@@ -3749,7 +3717,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProfileInfo = function ProfileInfo(_ref) {
   var renderFollow = _ref.renderFollow,
-      userName = _ref.userName,
+      username = _ref.username,
       city = _ref.city,
       country = _ref.country,
       description = _ref.description,
@@ -3759,7 +3727,7 @@ var ProfileInfo = function ProfileInfo(_ref) {
     className: "profile-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     id: "profile-username"
-  }, userName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_location__WEBPACK_IMPORTED_MODULE_2__.default, {
+  }, username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_location__WEBPACK_IMPORTED_MODULE_2__.default, {
     city: city,
     country: country
   }), followButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -3783,7 +3751,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _pin_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pin.png */ "./frontend/components/profile/pin.png");
+/* harmony import */ var assets_images_pin_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/pin.png */ "./app/assets/images/pin.png");
 /* harmony import */ var _util_Util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/Util */ "./frontend/util/Util.js");
 
 
@@ -3800,7 +3768,7 @@ var ProfileLocation = function ProfileLocation(_ref) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       id: "location-pin"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: _pin_png__WEBPACK_IMPORTED_MODULE_1__.default
+      src: assets_images_pin_png__WEBPACK_IMPORTED_MODULE_1__.default
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, formattedLocation));
   } else {
     return null;
@@ -3824,7 +3792,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _pencil_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pencil.png */ "./frontend/components/profile/profileHeader/pencil.png");
+/* harmony import */ var assets_images_pencil_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/pencil.png */ "./app/assets/images/pencil.png");
 
 
 
@@ -3840,7 +3808,7 @@ var ProfileOptions = function ProfileOptions(_ref) {
       className: "profile-edit-button",
       to: "/users/".concat(userId, "/profile/edit")
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: _pencil_png__WEBPACK_IMPORTED_MODULE_1__.default
+      src: assets_images_pencil_png__WEBPACK_IMPORTED_MODULE_1__.default
     })));
   } else {
     return null;
@@ -3863,18 +3831,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../images/user-circle-solid.svg */ "./frontend/images/user-circle-solid.svg");
-/* harmony import */ var _images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _images_portrait_jpg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../images/portrait.jpg */ "./frontend/images/portrait.jpg");
-/* harmony import */ var _profile_options__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile_options */ "./frontend/components/profile/profileHeader/profile_options.jsx");
-
-
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/user-circle-solid.svg */ "./app/assets/images/user-circle-solid.svg");
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
 var ProfilePicture = function ProfilePicture(_ref) {
   var userPhoto = _ref.userPhoto;
-  var imageUrl = userPhoto ? userPhoto : (_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default());
+  var imageUrl = userPhoto ? userPhoto : (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default());
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-picture"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4842,10 +4806,10 @@ var getPostShowNavIndices = function getPostShowNavIndices(curPostId, posts) {
 
 /***/ }),
 
-/***/ "./frontend/components/base/GitHub-Mark-64px.png":
-/*!*******************************************************!*\
-  !*** ./frontend/components/base/GitHub-Mark-64px.png ***!
-  \*******************************************************/
+/***/ "./app/assets/images/GitHub-Mark-64px.png":
+/*!************************************************!*\
+  !*** ./app/assets/images/GitHub-Mark-64px.png ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4853,14 +4817,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "b039b2d83982c8256af34260e546303b.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/assets/webpack-assets/GitHub-Mark-64px438c17272c5f0e9f4a6da34d3e4bc5bd.png");
 
 /***/ }),
 
-/***/ "./frontend/components/base/linkedin_64px.png":
-/*!****************************************************!*\
-  !*** ./frontend/components/base/linkedin_64px.png ***!
-  \****************************************************/
+/***/ "./app/assets/images/arrowback.png":
+/*!*****************************************!*\
+  !*** ./app/assets/images/arrowback.png ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4868,13 +4832,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "770b9c5e56d957af1427c6b722eef9ff.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/assets/webpack-assets/arrowbackb666934a645dc1b20ab5fbc638d1dba6.png");
 
 /***/ }),
 
-/***/ "./frontend/components/profile/pin.png":
+/***/ "./app/assets/images/camera.png":
+/*!**************************************!*\
+  !*** ./app/assets/images/camera.png ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/assets/webpack-assets/camera15605961b59141ebd64e77e4b3559259.png");
+
+/***/ }),
+
+/***/ "./app/assets/images/linkedin_64px.png":
 /*!*********************************************!*\
-  !*** ./frontend/components/profile/pin.png ***!
+  !*** ./app/assets/images/linkedin_64px.png ***!
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4883,58 +4862,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "8210970acff9062a268bb87466ab7f54.png");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/assets/webpack-assets/linkedin_64px304955e2f4096785c7f539c5e0a06358.png");
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileEdit/arrowback.png":
-/*!***************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/arrowback.png ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "c4791f126f9b3b0f9568923cafb87b7f.png");
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileEdit/camera.png":
-/*!************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/camera.png ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "299af894760cb776cac4537184600eb0.png");
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileHeader/pencil.png":
-/*!**************************************************************!*\
-  !*** ./frontend/components/profile/profileHeader/pencil.png ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "48a509a89a20feb467d397605662047f.png");
-
-/***/ }),
-
-/***/ "./frontend/images/griffith.jpg":
+/***/ "./app/assets/images/pencil.png":
 /*!**************************************!*\
-  !*** ./frontend/images/griffith.jpg ***!
+  !*** ./app/assets/images/pencil.png ***!
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4943,14 +4877,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "77015b09e418ba89df087648ae92b434.jpg");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/assets/webpack-assets/pencil557bda3a9cd30126257ae2733dc51738.png");
 
 /***/ }),
 
-/***/ "./frontend/images/portrait.jpg":
-/*!**************************************!*\
-  !*** ./frontend/images/portrait.jpg ***!
-  \**************************************/
+/***/ "./app/assets/images/pin.png":
+/*!***********************************!*\
+  !*** ./app/assets/images/pin.png ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4958,7 +4892,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "df07bf55502bc1bf9b531725d80cc561.jpg");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/assets/webpack-assets/pina826c7b7526eec88fb314a3c18678536.png");
 
 /***/ }),
 
@@ -34465,469 +34399,6 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/react-infinite-scroll-component/dist/index.es.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/react-infinite-scroll-component/dist/index.es.js ***!
-  \***********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */
-/* global Reflect, Promise */
-
-var extendStatics = function(d, b) {
-    extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return extendStatics(d, b);
-};
-
-function __extends(d, b) {
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-
-var __assign = function() {
-    __assign = Object.assign || function __assign(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-
-/* eslint-disable no-undefined,no-param-reassign,no-shadow */
-
-/**
- * Throttle execution of a function. Especially useful for rate limiting
- * execution of handlers on events like resize and scroll.
- *
- * @param  {Number}    delay          A zero-or-greater delay in milliseconds. For event callbacks, values around 100 or 250 (or even higher) are most useful.
- * @param  {Boolean}   [noTrailing]   Optional, defaults to false. If noTrailing is true, callback will only execute every `delay` milliseconds while the
- *                                    throttled-function is being called. If noTrailing is false or unspecified, callback will be executed one final time
- *                                    after the last throttled-function call. (After the throttled-function has not been called for `delay` milliseconds,
- *                                    the internal counter is reset)
- * @param  {Function}  callback       A function to be executed after delay milliseconds. The `this` context and all arguments are passed through, as-is,
- *                                    to `callback` when the throttled-function is executed.
- * @param  {Boolean}   [debounceMode] If `debounceMode` is true (at begin), schedule `clear` to execute after `delay` ms. If `debounceMode` is false (at end),
- *                                    schedule `callback` to execute after `delay` ms.
- *
- * @return {Function}  A new, throttled, function.
- */
-function throttle (delay, noTrailing, callback, debounceMode) {
-  /*
-   * After wrapper has stopped being called, this timeout ensures that
-   * `callback` is executed at the proper times in `throttle` and `end`
-   * debounce modes.
-   */
-  var timeoutID;
-  var cancelled = false; // Keep track of the last time `callback` was executed.
-
-  var lastExec = 0; // Function to clear existing timeout
-
-  function clearExistingTimeout() {
-    if (timeoutID) {
-      clearTimeout(timeoutID);
-    }
-  } // Function to cancel next exec
-
-
-  function cancel() {
-    clearExistingTimeout();
-    cancelled = true;
-  } // `noTrailing` defaults to falsy.
-
-
-  if (typeof noTrailing !== 'boolean') {
-    debounceMode = callback;
-    callback = noTrailing;
-    noTrailing = undefined;
-  }
-  /*
-   * The `wrapper` function encapsulates all of the throttling / debouncing
-   * functionality and when executed will limit the rate at which `callback`
-   * is executed.
-   */
-
-
-  function wrapper() {
-    var self = this;
-    var elapsed = Date.now() - lastExec;
-    var args = arguments;
-
-    if (cancelled) {
-      return;
-    } // Execute `callback` and update the `lastExec` timestamp.
-
-
-    function exec() {
-      lastExec = Date.now();
-      callback.apply(self, args);
-    }
-    /*
-     * If `debounceMode` is true (at begin) this is used to clear the flag
-     * to allow future `callback` executions.
-     */
-
-
-    function clear() {
-      timeoutID = undefined;
-    }
-
-    if (debounceMode && !timeoutID) {
-      /*
-       * Since `wrapper` is being called for the first time and
-       * `debounceMode` is true (at begin), execute `callback`.
-       */
-      exec();
-    }
-
-    clearExistingTimeout();
-
-    if (debounceMode === undefined && elapsed > delay) {
-      /*
-       * In throttle mode, if `delay` time has been exceeded, execute
-       * `callback`.
-       */
-      exec();
-    } else if (noTrailing !== true) {
-      /*
-       * In trailing throttle mode, since `delay` time has not been
-       * exceeded, schedule `callback` to execute `delay` ms after most
-       * recent execution.
-       *
-       * If `debounceMode` is true (at begin), schedule `clear` to execute
-       * after `delay` ms.
-       *
-       * If `debounceMode` is false (at end), schedule `callback` to
-       * execute after `delay` ms.
-       */
-      timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay);
-    }
-  }
-
-  wrapper.cancel = cancel; // Return the wrapper function.
-
-  return wrapper;
-}
-
-var ThresholdUnits = {
-    Pixel: 'Pixel',
-    Percent: 'Percent',
-};
-var defaultThreshold = {
-    unit: ThresholdUnits.Percent,
-    value: 0.8,
-};
-function parseThreshold(scrollThreshold) {
-    if (typeof scrollThreshold === 'number') {
-        return {
-            unit: ThresholdUnits.Percent,
-            value: scrollThreshold * 100,
-        };
-    }
-    if (typeof scrollThreshold === 'string') {
-        if (scrollThreshold.match(/^(\d*(\.\d+)?)px$/)) {
-            return {
-                unit: ThresholdUnits.Pixel,
-                value: parseFloat(scrollThreshold),
-            };
-        }
-        if (scrollThreshold.match(/^(\d*(\.\d+)?)%$/)) {
-            return {
-                unit: ThresholdUnits.Percent,
-                value: parseFloat(scrollThreshold),
-            };
-        }
-        console.warn('scrollThreshold format is invalid. Valid formats: "120px", "50%"...');
-        return defaultThreshold;
-    }
-    console.warn('scrollThreshold should be string or number');
-    return defaultThreshold;
-}
-
-var InfiniteScroll = /** @class */ (function (_super) {
-    __extends(InfiniteScroll, _super);
-    function InfiniteScroll(props) {
-        var _this = _super.call(this, props) || this;
-        _this.lastScrollTop = 0;
-        _this.actionTriggered = false;
-        // variables to keep track of pull down behaviour
-        _this.startY = 0;
-        _this.currentY = 0;
-        _this.dragging = false;
-        // will be populated in componentDidMount
-        // based on the height of the pull down element
-        _this.maxPullDownDistance = 0;
-        _this.getScrollableTarget = function () {
-            if (_this.props.scrollableTarget instanceof HTMLElement)
-                return _this.props.scrollableTarget;
-            if (typeof _this.props.scrollableTarget === 'string') {
-                return document.getElementById(_this.props.scrollableTarget);
-            }
-            if (_this.props.scrollableTarget === null) {
-                console.warn("You are trying to pass scrollableTarget but it is null. This might\n        happen because the element may not have been added to DOM yet.\n        See https://github.com/ankeetmaini/react-infinite-scroll-component/issues/59 for more info.\n      ");
-            }
-            return null;
-        };
-        _this.onStart = function (evt) {
-            if (_this.lastScrollTop)
-                return;
-            _this.dragging = true;
-            if (evt instanceof MouseEvent) {
-                _this.startY = evt.pageY;
-            }
-            else if (evt instanceof TouchEvent) {
-                _this.startY = evt.touches[0].pageY;
-            }
-            _this.currentY = _this.startY;
-            if (_this._infScroll) {
-                _this._infScroll.style.willChange = 'transform';
-                _this._infScroll.style.transition = "transform 0.2s cubic-bezier(0,0,0.31,1)";
-            }
-        };
-        _this.onMove = function (evt) {
-            if (!_this.dragging)
-                return;
-            if (evt instanceof MouseEvent) {
-                _this.currentY = evt.pageY;
-            }
-            else if (evt instanceof TouchEvent) {
-                _this.currentY = evt.touches[0].pageY;
-            }
-            // user is scrolling down to up
-            if (_this.currentY < _this.startY)
-                return;
-            if (_this.currentY - _this.startY >=
-                Number(_this.props.pullDownToRefreshThreshold)) {
-                _this.setState({
-                    pullToRefreshThresholdBreached: true,
-                });
-            }
-            // so you can drag upto 1.5 times of the maxPullDownDistance
-            if (_this.currentY - _this.startY > _this.maxPullDownDistance * 1.5)
-                return;
-            if (_this._infScroll) {
-                _this._infScroll.style.overflow = 'visible';
-                _this._infScroll.style.transform = "translate3d(0px, " + (_this.currentY -
-                    _this.startY) + "px, 0px)";
-            }
-        };
-        _this.onEnd = function () {
-            _this.startY = 0;
-            _this.currentY = 0;
-            _this.dragging = false;
-            if (_this.state.pullToRefreshThresholdBreached) {
-                _this.props.refreshFunction && _this.props.refreshFunction();
-                _this.setState({
-                    pullToRefreshThresholdBreached: false,
-                });
-            }
-            requestAnimationFrame(function () {
-                // this._infScroll
-                if (_this._infScroll) {
-                    _this._infScroll.style.overflow = 'auto';
-                    _this._infScroll.style.transform = 'none';
-                    _this._infScroll.style.willChange = 'unset';
-                }
-            });
-        };
-        _this.onScrollListener = function (event) {
-            if (typeof _this.props.onScroll === 'function') {
-                // Execute this callback in next tick so that it does not affect the
-                // functionality of the library.
-                setTimeout(function () { return _this.props.onScroll && _this.props.onScroll(event); }, 0);
-            }
-            var target = _this.props.height || _this._scrollableNode
-                ? event.target
-                : document.documentElement.scrollTop
-                    ? document.documentElement
-                    : document.body;
-            // return immediately if the action has already been triggered,
-            // prevents multiple triggers.
-            if (_this.actionTriggered)
-                return;
-            var atBottom = _this.props.inverse
-                ? _this.isElementAtTop(target, _this.props.scrollThreshold)
-                : _this.isElementAtBottom(target, _this.props.scrollThreshold);
-            // call the `next` function in the props to trigger the next data fetch
-            if (atBottom && _this.props.hasMore) {
-                _this.actionTriggered = true;
-                _this.setState({ showLoader: true });
-                _this.props.next && _this.props.next();
-            }
-            _this.lastScrollTop = target.scrollTop;
-        };
-        _this.state = {
-            showLoader: false,
-            pullToRefreshThresholdBreached: false,
-            prevDataLength: props.dataLength,
-        };
-        _this.throttledOnScrollListener = throttle(150, _this.onScrollListener).bind(_this);
-        _this.onStart = _this.onStart.bind(_this);
-        _this.onMove = _this.onMove.bind(_this);
-        _this.onEnd = _this.onEnd.bind(_this);
-        return _this;
-    }
-    InfiniteScroll.prototype.componentDidMount = function () {
-        if (typeof this.props.dataLength === 'undefined') {
-            throw new Error("mandatory prop \"dataLength\" is missing. The prop is needed" +
-                " when loading more content. Check README.md for usage");
-        }
-        this._scrollableNode = this.getScrollableTarget();
-        this.el = this.props.height
-            ? this._infScroll
-            : this._scrollableNode || window;
-        if (this.el) {
-            this.el.addEventListener('scroll', this
-                .throttledOnScrollListener);
-        }
-        if (typeof this.props.initialScrollY === 'number' &&
-            this.el &&
-            this.el instanceof HTMLElement &&
-            this.el.scrollHeight > this.props.initialScrollY) {
-            this.el.scrollTo(0, this.props.initialScrollY);
-        }
-        if (this.props.pullDownToRefresh && this.el) {
-            this.el.addEventListener('touchstart', this.onStart);
-            this.el.addEventListener('touchmove', this.onMove);
-            this.el.addEventListener('touchend', this.onEnd);
-            this.el.addEventListener('mousedown', this.onStart);
-            this.el.addEventListener('mousemove', this.onMove);
-            this.el.addEventListener('mouseup', this.onEnd);
-            // get BCR of pullDown element to position it above
-            this.maxPullDownDistance =
-                (this._pullDown &&
-                    this._pullDown.firstChild &&
-                    this._pullDown.firstChild.getBoundingClientRect()
-                        .height) ||
-                    0;
-            this.forceUpdate();
-            if (typeof this.props.refreshFunction !== 'function') {
-                throw new Error("Mandatory prop \"refreshFunction\" missing.\n          Pull Down To Refresh functionality will not work\n          as expected. Check README.md for usage'");
-            }
-        }
-    };
-    InfiniteScroll.prototype.componentWillUnmount = function () {
-        if (this.el) {
-            this.el.removeEventListener('scroll', this
-                .throttledOnScrollListener);
-            if (this.props.pullDownToRefresh) {
-                this.el.removeEventListener('touchstart', this.onStart);
-                this.el.removeEventListener('touchmove', this.onMove);
-                this.el.removeEventListener('touchend', this.onEnd);
-                this.el.removeEventListener('mousedown', this.onStart);
-                this.el.removeEventListener('mousemove', this.onMove);
-                this.el.removeEventListener('mouseup', this.onEnd);
-            }
-        }
-    };
-    InfiniteScroll.prototype.componentDidUpdate = function (prevProps) {
-        // do nothing when dataLength is unchanged
-        if (this.props.dataLength === prevProps.dataLength)
-            return;
-        this.actionTriggered = false;
-        // update state when new data was sent in
-        this.setState({
-            showLoader: false,
-        });
-    };
-    InfiniteScroll.getDerivedStateFromProps = function (nextProps, prevState) {
-        var dataLengthChanged = nextProps.dataLength !== prevState.prevDataLength;
-        // reset when data changes
-        if (dataLengthChanged) {
-            return __assign(__assign({}, prevState), { prevDataLength: nextProps.dataLength });
-        }
-        return null;
-    };
-    InfiniteScroll.prototype.isElementAtTop = function (target, scrollThreshold) {
-        if (scrollThreshold === void 0) { scrollThreshold = 0.8; }
-        var clientHeight = target === document.body || target === document.documentElement
-            ? window.screen.availHeight
-            : target.clientHeight;
-        var threshold = parseThreshold(scrollThreshold);
-        if (threshold.unit === ThresholdUnits.Pixel) {
-            return (target.scrollTop <=
-                threshold.value + clientHeight - target.scrollHeight + 1);
-        }
-        return (target.scrollTop <=
-            threshold.value / 100 + clientHeight - target.scrollHeight + 1);
-    };
-    InfiniteScroll.prototype.isElementAtBottom = function (target, scrollThreshold) {
-        if (scrollThreshold === void 0) { scrollThreshold = 0.8; }
-        var clientHeight = target === document.body || target === document.documentElement
-            ? window.screen.availHeight
-            : target.clientHeight;
-        var threshold = parseThreshold(scrollThreshold);
-        if (threshold.unit === ThresholdUnits.Pixel) {
-            return (target.scrollTop + clientHeight >= target.scrollHeight - threshold.value);
-        }
-        return (target.scrollTop + clientHeight >=
-            (threshold.value / 100) * target.scrollHeight);
-    };
-    InfiniteScroll.prototype.render = function () {
-        var _this = this;
-        var style = __assign({ height: this.props.height || 'auto', overflow: 'auto', WebkitOverflowScrolling: 'touch' }, this.props.style);
-        var hasChildren = this.props.hasChildren ||
-            !!(this.props.children &&
-                this.props.children instanceof Array &&
-                this.props.children.length);
-        // because heighted infiniteScroll visualy breaks
-        // on drag down as overflow becomes visible
-        var outerDivStyle = this.props.pullDownToRefresh && this.props.height
-            ? { overflow: 'auto' }
-            : {};
-        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: outerDivStyle, className: "infinite-scroll-component__outerdiv" },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "infinite-scroll-component " + (this.props.className || ''), ref: function (infScroll) { return (_this._infScroll = infScroll); }, style: style },
-                this.props.pullDownToRefresh && (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: { position: 'relative' }, ref: function (pullDown) { return (_this._pullDown = pullDown); } },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { style: {
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            top: -1 * this.maxPullDownDistance,
-                        } }, this.state.pullToRefreshThresholdBreached
-                        ? this.props.releaseToRefreshContent
-                        : this.props.pullDownToRefreshContent))),
-                this.props.children,
-                !this.state.showLoader &&
-                    !hasChildren &&
-                    this.props.hasMore &&
-                    this.props.loader,
-                this.state.showLoader && this.props.hasMore && this.props.loader,
-                !this.props.hasMore && this.props.endMessage)));
-    };
-    return InfiniteScroll;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component));
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InfiniteScroll);
-//# sourceMappingURL=index.es.js.map
-
-
-/***/ }),
-
 /***/ "./node_modules/react-is/cjs/react-is.development.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-is/cjs/react-is.development.js ***!
@@ -43571,53 +43042,53 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./frontend/components/feed/liked.svg":
-/*!********************************************!*\
-  !*** ./frontend/components/feed/liked.svg ***!
-  \********************************************/
-/***/ ((module) => {
-
-module.exports = "data:image/svg+xml,%3csvg fill='rgb(220, 0, 0)' xmlns='http://www.w3.org/2000/svg' viewBox='-48 0 600 512'%3e %3cpath d='M376 30c-27.783 0-53.255 8.804-75.707 26.168-21.525 16.647-35.856 37.85-44.293 53.268-8.437-15.419-22.768-36.621-44.293-53.268C189.255 38.804 163.783 30 136 30 58.468 30 0 93.417 0 177.514c0 90.854 72.943 153.015 183.369 247.118 18.752 15.981 40.007 34.095 62.099 53.414C248.38 480.596 252.12 482 256 482s7.62-1.404 10.532-3.953c22.094-19.322 43.348-37.435 62.111-53.425C439.057 330.529 512 268.368 512 177.514 512 93.417 453.532 30 376 30z' /%3e %3c/svg%3e"
-
-/***/ }),
-
-/***/ "./frontend/components/feed/unliked-black.svg":
-/*!****************************************************!*\
-  !*** ./frontend/components/feed/unliked-black.svg ***!
-  \****************************************************/
-/***/ ((module) => {
-
-module.exports = "data:image/svg+xml,%3csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='-44 0 600 500'%3e %3cpath shape-rendering='optimizeQuality' stroke='black' stroke-width='20' d='M376 30c-27.783 0-53.255 8.804-75.707 26.168-21.525 16.647-35.856 37.85-44.293 53.268-8.437-15.419-22.768-36.621-44.293-53.268C189.255 38.804 163.783 30 136 30 58.468 30 0 93.417 0 177.514c0 90.854 72.943 153.015 183.369 247.118 18.752 15.981 40.007 34.095 62.099 53.414C248.38 480.596 252.12 482 256 482s7.62-1.404 10.532-3.953c22.094-19.322 43.348-37.435 62.111-53.425C439.057 330.529 512 268.368 512 177.514 512 93.417 453.532 30 376 30z' /%3e %3c/svg%3e"
-
-/***/ }),
-
-/***/ "./frontend/components/feed/unliked-white.svg":
-/*!****************************************************!*\
-  !*** ./frontend/components/feed/unliked-white.svg ***!
-  \****************************************************/
-/***/ ((module) => {
-
-module.exports = "data:image/svg+xml,%3csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='-44 0 600 500'%3e %3cpath shape-rendering='optimizeQuality' stroke='white' stroke-width='20' d='M376 30c-27.783 0-53.255 8.804-75.707 26.168-21.525 16.647-35.856 37.85-44.293 53.268-8.437-15.419-22.768-36.621-44.293-53.268C189.255 38.804 163.783 30 136 30 58.468 30 0 93.417 0 177.514c0 90.854 72.943 153.015 183.369 247.118 18.752 15.981 40.007 34.095 62.099 53.414C248.38 480.596 252.12 482 256 482s7.62-1.404 10.532-3.953c22.094-19.322 43.348-37.435 62.111-53.425C439.057 330.529 512 268.368 512 177.514 512 93.417 453.532 30 376 30z' /%3e %3c/svg%3e"
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileEdit/camera.svg":
-/*!************************************************************!*\
-  !*** ./frontend/components/profile/profileEdit/camera.svg ***!
-  \************************************************************/
+/***/ "./app/assets/images/camera.svg":
+/*!**************************************!*\
+  !*** ./app/assets/images/camera.svg ***!
+  \**************************************/
 /***/ ((module) => {
 
 module.exports = "data:image/svg+xml,%3csvg fill='rgb(64, 111, 205)' height='512' width='512' xmlns='http://www.w3.org/2000/svg'%3e %3cpath d='M457 101H356.812l-9.743-29.23A44.946 44.946 0 00304.377 41h-96.754a44.943 44.943 0 00-42.691 30.77L155.188 101H131V76c0-19.299-15.701-35-35-35H76c-19.299 0-35 15.701-35 35v26.812C17.432 109.02 0 130.51 0 156v260c0 30.327 24.673 55 55 55h402c30.327 0 55-24.673 55-55V156c0-30.327-24.673-55-55-55zM71 76c0-2.757 2.243-5 5-5h20c2.757 0 5 2.243 5 5v25H71zm411 340c0 13.785-11.215 25-25 25H55c-13.785 0-25-11.215-25-25V156c0-13.785 11.215-25 25-25h111a15 15 0 0014.23-10.257l13.162-39.486A14.983 14.983 0 01207.623 71h96.754a14.98 14.98 0 0114.23 10.256l13.162 39.487A15.002 15.002 0 00346 131h111c13.785 0 25 11.215 25 25z' /%3e %3ccircle cx='436' cy='176' r='15' /%3e %3cpath d='M106 161H76c-8.284 0-15 6.716-15 15s6.716 15 15 15h30c8.284 0 15-6.716 15-15s-6.716-15-15-15zM256 411c-74.439 0-135-60.561-135-135s60.561-135 135-135 135 60.561 135 135-60.561 135-135 135zm0-240c-57.897 0-105 47.103-105 105s47.103 105 105 105 105-47.103 105-105-47.103-105-105-105z' /%3e %3cpath d='M256 351c-41.355 0-75-33.645-75-75s33.645-75 75-75 75 33.645 75 75-33.645 75-75 75zm0-120c-24.813 0-45 20.187-45 45s20.187 45 45 45 45-20.187 45-45-20.187-45-45-45z' /%3e %3c/svg%3e"
 
 /***/ }),
 
-/***/ "./frontend/images/user-circle-solid.svg":
-/*!***********************************************!*\
-  !*** ./frontend/images/user-circle-solid.svg ***!
-  \***********************************************/
+/***/ "./app/assets/images/liked.svg":
+/*!*************************************!*\
+  !*** ./app/assets/images/liked.svg ***!
+  \*************************************/
 /***/ ((module) => {
 
-module.exports = "data:image/svg+xml,%3csvg aria-hidden='true' data-prefix='fas' data-icon='user-circle' class='prefix__svg-inline--fa prefix__fa-user-circle prefix__fa-w-16' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3e%3cpath fill='currentColor' d='M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z'/%3e%3c/svg%3e"
+module.exports = "data:image/svg+xml,%3csvg fill='rgb(220, 0, 0)' xmlns='http://www.w3.org/2000/svg' viewBox='-48 0 600 512'%3e %3cpath d='M376 30c-27.783 0-53.255 8.804-75.707 26.168-21.525 16.647-35.856 37.85-44.293 53.268-8.437-15.419-22.768-36.621-44.293-53.268C189.255 38.804 163.783 30 136 30 58.468 30 0 93.417 0 177.514c0 90.854 72.943 153.015 183.369 247.118 18.752 15.981 40.007 34.095 62.099 53.414C248.38 480.596 252.12 482 256 482s7.62-1.404 10.532-3.953c22.094-19.322 43.348-37.435 62.111-53.425C439.057 330.529 512 268.368 512 177.514 512 93.417 453.532 30 376 30z' /%3e %3c/svg%3e"
+
+/***/ }),
+
+/***/ "./app/assets/images/unliked-black.svg":
+/*!*********************************************!*\
+  !*** ./app/assets/images/unliked-black.svg ***!
+  \*********************************************/
+/***/ ((module) => {
+
+module.exports = "data:image/svg+xml,%3csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='-44 0 600 500'%3e %3cpath shape-rendering='optimizeQuality' stroke='black' stroke-width='20' d='M376 30c-27.783 0-53.255 8.804-75.707 26.168-21.525 16.647-35.856 37.85-44.293 53.268-8.437-15.419-22.768-36.621-44.293-53.268C189.255 38.804 163.783 30 136 30 58.468 30 0 93.417 0 177.514c0 90.854 72.943 153.015 183.369 247.118 18.752 15.981 40.007 34.095 62.099 53.414C248.38 480.596 252.12 482 256 482s7.62-1.404 10.532-3.953c22.094-19.322 43.348-37.435 62.111-53.425C439.057 330.529 512 268.368 512 177.514 512 93.417 453.532 30 376 30z' /%3e %3c/svg%3e"
+
+/***/ }),
+
+/***/ "./app/assets/images/unliked-white.svg":
+/*!*********************************************!*\
+  !*** ./app/assets/images/unliked-white.svg ***!
+  \*********************************************/
+/***/ ((module) => {
+
+module.exports = "data:image/svg+xml,%3csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='-44 0 600 500'%3e %3cpath shape-rendering='optimizeQuality' stroke='white' stroke-width='20' d='M376 30c-27.783 0-53.255 8.804-75.707 26.168-21.525 16.647-35.856 37.85-44.293 53.268-8.437-15.419-22.768-36.621-44.293-53.268C189.255 38.804 163.783 30 136 30 58.468 30 0 93.417 0 177.514c0 90.854 72.943 153.015 183.369 247.118 18.752 15.981 40.007 34.095 62.099 53.414C248.38 480.596 252.12 482 256 482s7.62-1.404 10.532-3.953c22.094-19.322 43.348-37.435 62.111-53.425C439.057 330.529 512 268.368 512 177.514 512 93.417 453.532 30 376 30z' /%3e %3c/svg%3e"
+
+/***/ }),
+
+/***/ "./app/assets/images/user-circle-solid.svg":
+/*!*************************************************!*\
+  !*** ./app/assets/images/user-circle-solid.svg ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = "data:image/svg+xml,%3csvg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='user-circle' class='svg-inline--fa fa-user-circle fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3e %3cpath fill='currentColor' d='M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z'%3e%3c/path%3e %3c/svg%3e"
 
 /***/ }),
 
@@ -43812,26 +43283,6 @@ function valueEqual(a, b) {
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/

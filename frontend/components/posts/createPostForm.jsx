@@ -1,5 +1,5 @@
 import React from "react";
-import { $CombinedState } from "redux";
+import { withRouter } from "react-router-dom";
 import PostFormPreview from "./postFormPreview";
 
 class CreatePostForm extends React.Component {
@@ -46,11 +46,14 @@ class CreatePostForm extends React.Component {
       errors.push("No photo selected");
     }
     this.setState({ errors });
+    console.log("errors", errors);
+    return errors.length === 0;
   }
 
   handleUpload(e) {
     e.preventDefault();
     if (this.checkFields()) {
+      console.log("Succeeded");
       const formData = new FormData();
       formData.append("[post][title]", this.state.title);
       formData.append("[post][description]", this.state.description);
@@ -63,6 +66,8 @@ class CreatePostForm extends React.Component {
         data: formData,
         contentType: false,
         processData: false,
+      }).then((data) => {
+        this.props.history.push("/");
       })
     }
   }
@@ -109,4 +114,4 @@ class CreatePostForm extends React.Component {
   }
 }
 
-export default CreatePostForm;
+export default withRouter(CreatePostForm);

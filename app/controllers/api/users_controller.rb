@@ -30,18 +30,18 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def get_user_posts
-    @user = User.find_by(id: params[:userId])
+  # def get_user_posts
+  #   @user = User.find_by(id: params[:userId])
 
-      if @user
-        @posts = @user.posts.order(:created_at)
+  #     if @user
+  #       @posts = @user.posts.order(:created_at)
 
-        render '/api/posts/profile_posts'
-      else
-        render json: {error: "User does not exist"}
-      end
+  #       render '/api/posts/profile_posts'
+  #     else
+  #       render json: {error: "User does not exist"}
+  #     end
 
-    end
+  # end
 
   def create
     p "params " + params.inspect
@@ -49,7 +49,7 @@ class Api::UsersController < ApplicationController
     @errors = []
 
     if @user.save
-      render :show
+      render :create
     else
       @errors = @user.errors.full_messages
 

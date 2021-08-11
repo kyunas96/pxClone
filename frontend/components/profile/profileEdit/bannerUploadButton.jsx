@@ -1,5 +1,5 @@
 import React from "react";
-import cameraIcon from "./camera.svg";
+import cameraIcon from 'assets/images/camera.svg';
 
 const BannerUploadButton = (props) => {
   const buttonActionTitle = props.bannerImage === null ? "Upload a " : "Change";

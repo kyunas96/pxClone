@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import ProfileEditUserPhoto from "./profileEditUserPhoto";
 import BannerUploadButton from "./bannerUploadButton";
-import bannerImage from "../../../images/griffith.jpg";
-import ProfileEditBanner from "./profileEditBanner";
 
 const ProfileEditFormHeader = (props) => {
   const style = { backgroundImage: `url(${props.bannerImage})` };
@@ -12,10 +10,6 @@ const ProfileEditFormHeader = (props) => {
         bannerImage={props.bannerImage}
         action={props.passValue}
       />
-      {/* <ProfileEditBanner
-        bannerImage={props.bannerImage}
-        action={props.passValue}
-      /> */}
       <ProfileEditUserPhoto
         userPhoto={props.userPhoto}
         action={props.passValue}

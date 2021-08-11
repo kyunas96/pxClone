@@ -1,5 +1,5 @@
 import React from 'react';
-import locationPin from '../pin.png';
+import locationPin from 'assets/images/pin.png';
 import { formatLocation } from "../../../util/Util";
 
 const ProfileLocation = ({city, country}) => {

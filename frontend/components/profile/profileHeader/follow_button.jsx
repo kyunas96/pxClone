@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const FollowButton = (props) => {
   let classList = props.following === true ? "following" : "follow";
