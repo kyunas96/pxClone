@@ -15,7 +15,7 @@ const defaultState = {
   followedUsers: [],
 };
 
-const usersReducer = (state = {}, action) => {
+const usersReducer = (state = defaultState, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {
