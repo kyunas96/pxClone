@@ -1011,12 +1011,6 @@ var UserInfoDropdown = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      if (!this.props.currentUser.id) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Redirect, {
-          to: "/"
-        });
-      }
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-info-drowpdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4288,8 +4282,8 @@ var sessionReducer = function sessionReducer() {
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGIN:
       return {
         currentUser: {
-          id: id,
-          username: username
+          id: action.payload.id,
+          username: action.payload.username
         },
         loggedIn: true
       };

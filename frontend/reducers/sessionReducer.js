@@ -14,7 +14,7 @@ const sessionReducer = (state = nullUser, action) => {
   switch (action.type) {
     case SESSION_LOGIN:
       return {
-        currentUser: { id, username },
+        currentUser: { id: action.payload.id, username: action.payload.username },
         loggedIn: true,
       };
     case SESSION_LOGOUT:

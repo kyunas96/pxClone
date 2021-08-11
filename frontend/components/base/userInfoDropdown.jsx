@@ -16,9 +16,6 @@ class UserInfoDropdown extends React.Component {
   }
 
   render() {
-    if(!this.props.currentUser.id){
-      return <Redirect to="/" />
-    }
     return (
       <div className="user-info-drowpdown">
         <div onClick={this.props.toggleDropdown}>
