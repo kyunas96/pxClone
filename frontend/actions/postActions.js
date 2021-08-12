@@ -1,35 +1,55 @@
-import * as PostAPI from '../util/PostAPI';
+import * as PostAPI from "../util/PostAPI";
 
-export const RECEIVE_POST = 'RECEIVE_POST';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const UPDATE_POST = 'UPDATE_POST';
+export const RECEIVE_POST = "RECEIVE_POST";
+export const RECEIVE_POSTS = "RECEIVE_POSTS";
+export const UPDATE_POST = "UPDATE_POST";
+export const RECEIVE_POST_ERRORS = "RECEIVE_POST_ERRORS";
+export const RESET_POST_ERRORS = "RESET_POST_ERRORS";
 
-export const receivePost = post => ({
+export const receivePost = (post) => ({
   type: RECEIVE_POST,
-  post
-})
+  post,
+});
 
-export const receivePosts = payload => ({
+export const receivePosts = (payload) => ({
   type: RECEIVE_POSTS,
-  payload
-})
+  payload,
+});
 
-const updatePost = post => ({
+export const recievePostErrors = (payload) => ({
+  type: RECEIVE_POST_ERRORS,
+  payload,
+});
+
+export const resetPostErrors = () => ({
+  type: RESET_POST_ERRORS,
+});
+
+const updatePost = (post) => ({
   type: UPDATE_POST,
-  post
-})
+  post,
+});
 
-export const requestUsersFeed = () => dispatch => (
-  PostAPI.requestUsersFeed()
-    .then(payload => dispatch(receivePosts(payload)))
-)
+export const requestUsersFeed = () => (dispatch) =>
+  PostAPI.requestUsersFeed().then(({ data }) => {
+    console.log("feed", data);
+    dispatch(receivePosts(data));
+  });
 
-export const requestPost = postId => dispatch => (
-  PostAPI.requestPost(postId)
-    .then(payload => dispatch(receivePost(payload)))
-)
+export const requestPost = (postId) => (dispatch) =>
+  PostAPI.requestPost(postId).then(
+    ({ data }) => {
+      dispatch(resetPostErrors());
+      dispatch(receivePost(data));
+    },
+    ({ response }) => {
+      dispatch(recievePostErrors(response.data));
+    }
+  );
+// .catch((payload) => {
+// console.log("payload", payload);
+// dispatch(recievePostErrors(payload));
+// });
 
-export const requestUpdatePost = post => dispatch => (
-  PostAPI.updatePost(post)
-    .then(payload => dispatch(receivePost(payload)))
-)
+export const requestUpdatePost = (post) => (dispatch) =>
+  PostAPI.updatePost(post).then((payload) => dispatch(receivePost(payload)));

@@ -8,12 +8,12 @@ const mapStateToProps = (state, ownProps) => {
   const posts = Object.values(state.entities.posts.posts);
   const followedUsers = state.entities.users.followedUsers;
   const followedPosts = posts.filter(post => followedUsers.includes(post.posterId));
-
-
   const postNavIndices = getPostShowNavIndices(postId, followedPosts);
+  const postErrors = state.errors.posts.error
 
   return {
     postId,
+    postErrors,
     post: state.entities.posts.posts[postId],
     prevPostId: postNavIndices.prevPostId,
     nextPostId: postNavIndices.nextPostId,

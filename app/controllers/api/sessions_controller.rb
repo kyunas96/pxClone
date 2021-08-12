@@ -4,7 +4,7 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
 
     if !@user 
-      render json: { errors: "User does not exist" } 
+      render json: ["User does not exist"], status: 422
       return 
     end
 

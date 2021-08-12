@@ -15,28 +15,14 @@ class Api::UsersController < ApplicationController
     if @user
       @posts = @user.posts.order(:created_at)
       @postIndices = @posts.pluck(:id)
-
-      render :show
-
+      render :show, status: 200
       return
     else
-      render json: { error: "User does not exist"}
+      p "failed"
+      render json: { error: "User does not exist"}, status: 404
       return
     end
   end
-
-  # def get_user_posts
-  #   @user = User.find_by(id: params[:userId])
-
-  #     if @user
-  #       @posts = @user.posts.order(:created_at)
-
-  #       render '/api/posts/profile_posts'
-  #     else
-  #       render json: {error: "User does not exist"}
-  #     end
-
-  # end
 
   def create
     p "params " + params.inspect

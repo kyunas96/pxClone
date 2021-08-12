@@ -15,17 +15,20 @@ class Api::PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
-    @poster = User.find_by(id: @post.poster_id).user_photo.blob
-    @liked = Like.find_by(user_id: current_user.id, post_id: params[:id]) ? true : false
-    @following = 
-      Follow.find_by(follower_id: current_user.id, followed_user_id: @post.user.id) ? true : false
 
-    p "post show " + @poster.inspect
+    p "post show " + @post.inspect
 
     if @post 
-      render :show
+      p "Succeded"
+      @poster = User.find_by(id: @post.poster_id).user_photo.blob
+      @liked = Like.find_by(user: current_user, post: @post) ? true : false
+      @following = Follow.find_by(follower: current_user, followed_user: @post.user) ? true : false
+      render :show, status: 200
+      return
     else
-      render json: "Post does not exist"
+      p "Failed"
+      render json: {error: "Post does not exist" }.to_json, status: 404
+      return
     end
   end
 

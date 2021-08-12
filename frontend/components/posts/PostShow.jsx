@@ -2,6 +2,7 @@ import React from "react";
 import PostShowGallery from "./postShowGallery";
 import { Link } from "react-router-dom";
 import PostShowLower from "./postShowLower";
+import NotFoundPage from "../notFound";
 
 class PostShow extends React.Component {
   constructor(props) {
@@ -18,7 +19,10 @@ class PostShow extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.postId !== this.props.postId) {
+    if (
+      nextProps.postId !== this.props.postId ||
+      nextProps.postErrors !== this.props.postErrors
+    ) {
       return true;
     } else {
       return false;
@@ -27,8 +31,9 @@ class PostShow extends React.Component {
 
   render() {
     const postItem = this.props.post ? this.props.post.title : null;
+    console.log("render", this.props);
 
-    if (this.props.post) {
+    if (this.props.post && this.props.postErrors === undefined) {
       return (
         <div className="post-show">
           <PostShowGallery
@@ -41,7 +46,7 @@ class PostShow extends React.Component {
         </div>
       );
     } else {
-      return null;
+      return <NotFoundPage errors={this.props.postErrors} />;
     }
   }
 }

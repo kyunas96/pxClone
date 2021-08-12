@@ -1,15 +1,19 @@
+import axios from "axios";
+
 export const requestUsersFeed = () => (
-  $.ajax({
-    method: 'GET',
-    url: `/api/posts`
-  })
+  axios.get('api/posts')
+  // $.ajax({
+  //   method: 'GET',
+  //   url: `/api/posts`
+  // })
 )
 
 export const requestPost = postId => (
-  $.ajax({
-    method: 'GET',
-    url: `/api/posts/${postId}`
-  })
+  axios.get(`/api/posts/${postId}`)
+  // $.ajax({
+    // method: 'GET',
+    // url: `/api/posts/${postId}`
+  // })
 )
 
 export const updatePost = post => (

@@ -25,11 +25,12 @@ export const receiveSessionErrors = (errors) => ({
 
 export const requestLogin = (session) => (dispatch) => {
   return SessionAPI.requestLogin(session).then(
-    (data) => {
+    ({data}) => {
+      console.log(data);
       dispatch(sessionLogin(data));
     },
-    (data) => {
-      dispatch(receiveSessionErrors(JSON.parse(data.responseText)));
+    ({response}) => {
+      dispatch(receiveSessionErrors(response.data));
     }
   );
 };

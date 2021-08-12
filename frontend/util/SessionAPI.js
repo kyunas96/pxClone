@@ -1,9 +1,12 @@
+import axios from 'axios';
+
 export const requestLogin = credentials => (
-  $.ajax({
-    method: 'POST',
-    url: 'api/session',
-    data: credentials
-  })
+  axios.post('api/session', credentials)
+  // $.ajax({
+  //   method: 'POST',
+  //   url: 'api/session',
+  //   data: credentials
+  // })
 )
 
 export const requestLogout = () => (

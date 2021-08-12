@@ -10,6 +10,7 @@ import { SESSION_LOGIN } from "./actions/sessionActions";
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("root");
   const user = fetchLocalState();
+  window.store = store;
 
   ReactDOM.render(<Root store={store} />, root);
 });
