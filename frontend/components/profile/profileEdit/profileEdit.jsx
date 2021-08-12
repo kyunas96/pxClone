@@ -7,7 +7,7 @@ const ProfileEdit = (props) => {
   return (
     <div className="profile-edit">
       <ProfileEditHeader userId={userId} />
-      <ProfileEditForm user={props.user} />
+      <ProfileEditForm user={props.user} updateUser={props.updateUser}/>
     </div>
   );
 };

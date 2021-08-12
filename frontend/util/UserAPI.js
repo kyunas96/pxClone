@@ -20,16 +20,16 @@ export const requestUser = (userId) => (
   // });
 )
 
-export const updateUser = (userId, profile) => (
-  axios.patch(`api/users/${userId}`,
-  profile)
-
-  // $.ajax({
-  //   method: "PATCH",
-  //   url: `api/users/${userId}`,
-  //   data: profile,
-  // });
-)
+export const updateUser = (userId, user) => {
+  console.log("updateUser reached");
+  return $.ajax({
+    method: "patch",
+    url: `api/users/${userId}`,
+    data: user,
+    contentType: false,
+    processData: false
+  })
+}
 
 export const requestUsersPosts = (userId) => (
   axios.get(`/api/users/${userId}/posts`)

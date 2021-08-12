@@ -2347,7 +2347,7 @@ var UPDATE_USER = "UPDATE_USER";
 var FOLLOW_USER = "FOLLOW_USER";
 var UNFOLLOW_USER = "UNFOLLOW_USER";
 var RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
-var RESET_USER_ERRORS = 'RESET_USER_ERRORS';
+var RESET_USER_ERRORS = "RESET_USER_ERRORS";
 
 var receiveUser = function receiveUser(payload) {
   return {
@@ -2394,10 +2394,11 @@ var createUser = function createUser(user) {
     });
   };
 };
-var updateUser = function updateUser(user) {
+var updateUser = function updateUser(userId, user) {
   return function (dispatch) {
-    return _util_UserAPI__WEBPACK_IMPORTED_MODULE_0__.updateUser(user).then(function (data) {
-      return dispatch(receiveUser(data));
+    return _util_UserAPI__WEBPACK_IMPORTED_MODULE_0__.updateUser(userId, user).then(function (data) {
+      console.log("received", data);
+      dispatch(receiveUser(data));
     });
   };
 };
@@ -4951,7 +4952,8 @@ var ProfileEdit = function ProfileEdit(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_header__WEBPACK_IMPORTED_MODULE_2__.default, {
     userId: userId
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileEditForm__WEBPACK_IMPORTED_MODULE_1__.default, {
-    user: props.user
+    user: props.user,
+    updateUser: props.updateUser
   }));
 };
 
@@ -4971,12 +4973,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_edit_form_header */ "./frontend/components/profile/profileEdit/profile_edit_form_header.jsx");
 /* harmony import */ var _actions_userActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/userActions */ "./frontend/actions/userActions.js");
 /* harmony import */ var react_country_region_selector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-country-region-selector */ "./node_modules/react-country-region-selector/dist/rcrs.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var _excluded = ["userPhoto", "bannerImage"];
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -5025,6 +5030,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
   _inherits(ProfileEditForm, _React$Component);
 
@@ -5060,6 +5066,8 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "setFormValue",
     value: function setFormValue(e) {
+      var _this2 = this;
+
       if (e.target.type === "file") {
         this.updateFile(e);
       } else {
@@ -5069,20 +5077,22 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
           return {
             profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, key, value))
           };
+        }, function () {
+          return console.log("newState", _this2.state);
         });
       }
     }
   }, {
     key: "updateFile",
     value: function updateFile(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       var file = e.target.files[0];
       var id = e.target.id;
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this2.setState(function (prevState) {
+        _this3.setState(function (prevState) {
           var previews = prevState.previews;
           return {
             profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, id, file)),
@@ -5108,11 +5118,11 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       var formData = new FormData();
 
       if (userPhoto !== null && userPhoto !== undefined) {
-        formData.append("profile[user_photo]", userPhoto);
+        formData.append("user[user_photo]", userPhoto);
       }
 
       if (bannerImage !== null && bannerImage !== undefined) {
-        formData.append("profile[banner_image]", bannerImage);
+        formData.append("user[banner_image]", bannerImage);
       }
 
       for (var _i = 0, _Object$entries = Object.entries(rest); _i < _Object$entries.length; _i++) {
@@ -5121,24 +5131,41 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
             val = _Object$entries$_i[1];
 
         if (val !== null) {
-          formData.append("profile[".concat(key, "]"), val);
+          formData.append("user[".concat(key, "]"), val);
         }
       }
 
-      $.ajax({
-        method: "PATCH",
-        url: "/api/profile/".concat(this.props.userId),
-        data: formData,
-        contentType: false,
-        processData: false
-      });
+      var _iterator = _createForOfIteratorHelper(formData.entries()),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var _step$value = _slicedToArray(_step.value, 2),
+              _key = _step$value[0],
+              _val = _step$value[1];
+
+          console.log(_key + " " + _val);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      this.props.updateUser(this.props.user.id, formData);
+      this.props.history.push("/users/".concat(this.props.user.id, "/profile"));
     }
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
+      console.log("render", this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "profile-edit-form",
-        onSubmit: this.handleSubmit
+        onSubmit: function onSubmit(e) {
+          return _this4.handleSubmit(e);
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__.default, {
         bannerImage: this.state.previews.bannerImage,
         userPhoto: this.state.previews.userPhoto,
@@ -5152,7 +5179,6 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
       }, "First name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         id: "firstname",
         value: this.state.profile.firstname || "",
-        type: "text",
         onChange: this.setFormValue
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-text"
@@ -5227,6 +5253,14 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         placeholder: "Username",
         onChange: this.setFormValue
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-edit-description"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "description"
+      }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+        id: "description",
+        value: this.state.profile.description || "",
+        onChange: this.setFormValue
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "profile-edit-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "profile-edit-save"
@@ -5237,7 +5271,7 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
   return ProfileEditForm;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileEditForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.withRouter)(ProfileEditForm));
 
 /***/ }),
 
@@ -5312,8 +5346,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     requestUser: function requestUser(userId) {
       return dispatch((0,_actions_userActions__WEBPACK_IMPORTED_MODULE_2__.requestUser)(userId));
     },
-    updateUser: function updateUser(userId, data) {
-      return (0,_actions_userActions__WEBPACK_IMPORTED_MODULE_2__.updateUser)(userId, data);
+    updateUser: function updateUser(userId, user) {
+      return dispatch((0,_actions_userActions__WEBPACK_IMPORTED_MODULE_2__.updateUser)(userId, user));
     }
   };
 };
@@ -6468,7 +6502,9 @@ var usersReducer = function usersReducer() {
     // status of a user changes
 
     case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.UPDATE_USER:
-      newState.users[action.payload.user.id] = action.payload.user;
+      currentUser = newState.users[action.payload.user.id];
+      currentUser = Object.assign(currentUser, action.payload.user);
+      newState.users[action.payload.user.id] = currentUser;
       return newState;
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.ADD_FOLLOW:
@@ -6825,13 +6861,15 @@ var requestUser = function requestUser(userId) {
   // });
   ;
 };
-var updateUser = function updateUser(userId, profile) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().patch("api/users/".concat(userId), profile) // $.ajax({
-  //   method: "PATCH",
-  //   url: `api/users/${userId}`,
-  //   data: profile,
-  // });
-  ;
+var updateUser = function updateUser(userId, user) {
+  console.log("updateUser reached");
+  return $.ajax({
+    method: "patch",
+    url: "api/users/".concat(userId),
+    data: user,
+    contentType: false,
+    processData: false
+  });
 };
 var requestUsersPosts = function requestUsersPosts(userId) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/users/".concat(userId, "/posts")) // $.ajax({

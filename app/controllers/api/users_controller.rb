@@ -41,21 +41,33 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:id])
+    p "user update: " + params.inspect
+    p "filtered params: " + user_params.inspect
 
-    if @user
-      if @user.save
-
-      else
-
-      end
+    if (params[:id].to_i == current_user.id)
+      @user = User.update(params[:id].to_i, user_params)
+      render :update, status: 200
+      return
     else
-
+      render json: {error: "Access Denied: Users do not match"}, status: 403
+      return
     end
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(
+      :username, 
+      :email,
+      :firstname,
+      :lastname,
+      :country,
+      :city,
+      :websiteURL,
+      :instagram,
+      :facebook,
+      :twitter,
+      :description
+    )
   end
   
 end

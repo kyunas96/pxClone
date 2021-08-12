@@ -34,7 +34,9 @@ const usersReducer = (state = defaultState, action) => {
     // this case will called when a userProfile is grabbed or when the follow
     // status of a user changes
     case UPDATE_USER:
-      newState.users[action.payload.user.id] = action.payload.user;
+      currentUser = newState.users[action.payload.user.id];
+      currentUser = Object.assign(currentUser, action.payload.user);
+      newState.users[action.payload.user.id] = currentUser;
       return newState;
     case ADD_FOLLOW:
       currentUser = newState.users[action.data.userId] || {id: action.data.userId};

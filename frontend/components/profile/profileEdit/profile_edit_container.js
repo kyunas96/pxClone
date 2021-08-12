@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     requestUser: (userId) => dispatch(requestUser(userId)),
-    updateUser: (userId, data) => updateUser(userId, data)
+    updateUser: (userId, user) => dispatch(updateUser(userId, user))
   }
 }
 

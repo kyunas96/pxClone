@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import ProfileEditFormHeader from "./profile_edit_form_header";
 import { getUser, updateUser } from "../../../actions/userActions";
 import { CountryDropdown } from "react-country-region-selector";
@@ -33,7 +34,7 @@ class ProfileEditForm extends React.Component {
       const value = e.target.value;
       this.setState((prevState) => {
         return { profile: { ...prevState.profile, [key]: value } };
-      });
+      }, () => console.log("newState", this.state));
     }
   }
 
@@ -60,29 +61,30 @@ class ProfileEditForm extends React.Component {
     const { userPhoto, bannerImage, ...rest } = this.state.profile;
     const formData = new FormData();
     if (userPhoto !== null && userPhoto !== undefined) {
-      formData.append("profile[user_photo]", userPhoto);
+      formData.append("user[user_photo]", userPhoto);
     }
     if (bannerImage !== null && bannerImage !== undefined) {
-      formData.append("profile[banner_image]", bannerImage);
+      formData.append("user[banner_image]", bannerImage);
     }
     for (const [key, val] of Object.entries(rest)) {
       if (val !== null) {
-        formData.append(`profile[${key}]`, val);
+        formData.append(`user[${key}]`, val);
       }
     }
-
-    $.ajax({
-      method: "PATCH",
-      url: `/api/profile/${this.props.userId}`,
-      data: formData,
-      contentType: false,
-      processData: false,
-    });
+    for (const [key, val] of formData.entries()) {
+      console.log(key + " " + val);
+    }
+    this.props.updateUser(this.props.user.id, formData);
+    this.props.history.push(`/users/${this.props.user.id}/profile`);
   }
 
   render() {
+    console.log("render", this.props);
     return (
-      <form className="profile-edit-form" onSubmit={this.handleSubmit}>
+      <form
+        className="profile-edit-form"
+        onSubmit={(e) => this.handleSubmit(e)}
+      >
         <ProfileEditFormHeader
           bannerImage={this.state.previews.bannerImage}
           userPhoto={this.state.previews.userPhoto}
@@ -94,7 +96,6 @@ class ProfileEditForm extends React.Component {
             <input
               id="firstname"
               value={this.state.profile.firstname || ""}
-              type="text"
               onChange={this.setFormValue}
             />
           </div>
@@ -171,6 +172,15 @@ class ProfileEditForm extends React.Component {
             />
           </div>
         </div>
+        <div className="profile-edit-description">
+          <label htmlFor="description">Description</label>
+          <textarea 
+            id="description" 
+            value={this.state.profile.description || ""}
+            onChange={this.setFormValue}
+
+          />
+        </div>
         <div className="profile-edit-buttons">
           <span>Cancel</span>
           <button className="profile-edit-save">Save Changes</button>
@@ -180,4 +190,4 @@ class ProfileEditForm extends React.Component {
   }
 }
 
-export default ProfileEditForm;
+export default withRouter(ProfileEditForm);
