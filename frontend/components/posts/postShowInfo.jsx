@@ -29,6 +29,7 @@ const PostShowInfo = ({ user, post }) => {
 
       <div className="post-show-poster-info">
         <h3>{post.title}</h3>
+        <h5>{post.description}</h5>
         <h3 id="post-show-links">
           by <Link to={`/users/${user.posterId}/profile`}>{user.poster}</Link>{followButtonSpacing}
           {followButton}
