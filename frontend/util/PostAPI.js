@@ -8,6 +8,10 @@ export const requestUsersFeed = () => (
   // })
 )
 
+export const requestLikedPosts = () => (
+  axios.get('api/posts/likedposts')
+)
+
 export const requestPost = postId => (
   axios.get(`/api/posts/${postId}`)
   // $.ajax({

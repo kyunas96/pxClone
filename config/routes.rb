@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   namespace :api, default: { format: :json } do
     resource :session, only: [:create, :destroy], defaults: {format: :json}
     resources :users, only: [:index, :show, :create, :update], defaults: {format: :json}
-    # get '/users/:userId/posts' => 'users#get_user_posts'
     resources :posts, only: [:index, :show, :create, :update, :destroy], defaults: {format: :json}
+    get '/posts/likedposts' => 'posts#liked_posts'
 
     resources :likes, only: [:index, :show, :create, :destroy], defaults: {format: :json}
 

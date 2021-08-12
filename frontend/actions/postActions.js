@@ -30,13 +30,20 @@ const updatePost = (post) => ({
   post,
 });
 
-export const requestUsersFeed = () => (dispatch) =>
+export const requestUsersFeed = () => (dispatch) =>(
   PostAPI.requestUsersFeed().then(({ data }) => {
     console.log("feed", data);
     dispatch(receivePosts(data));
-  });
+  })
+)
 
-export const requestPost = (postId) => (dispatch) =>
+export const requestLikedPosts = () => (dispatch) => (
+  PostAPI.requestLikedPosts()
+    .then((data) => console.log(data))
+)
+
+
+export const requestPost = (postId) => (dispatch) => (
   PostAPI.requestPost(postId).then(
     ({ data }) => {
       dispatch(resetPostErrors());
@@ -45,11 +52,9 @@ export const requestPost = (postId) => (dispatch) =>
     ({ response }) => {
       dispatch(recievePostErrors(response.data));
     }
-  );
-// .catch((payload) => {
-// console.log("payload", payload);
-// dispatch(recievePostErrors(payload));
-// });
+  )
+)
 
-export const requestUpdatePost = (post) => (dispatch) =>
-  PostAPI.updatePost(post).then((payload) => dispatch(receivePost(payload)));
+export const requestUpdatePost = (post) => (dispatch) => (
+  PostAPI.updatePost(post).then((payload) => dispatch(receivePost(payload)))
+)

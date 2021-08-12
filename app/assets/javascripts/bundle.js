@@ -2171,6 +2171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "recievePostErrors": () => (/* binding */ recievePostErrors),
 /* harmony export */   "resetPostErrors": () => (/* binding */ resetPostErrors),
 /* harmony export */   "requestUsersFeed": () => (/* binding */ requestUsersFeed),
+/* harmony export */   "requestLikedPosts": () => (/* binding */ requestLikedPosts),
 /* harmony export */   "requestPost": () => (/* binding */ requestPost),
 /* harmony export */   "requestUpdatePost": () => (/* binding */ requestUpdatePost)
 /* harmony export */ });
@@ -2221,6 +2222,13 @@ var requestUsersFeed = function requestUsersFeed() {
     });
   };
 };
+var requestLikedPosts = function requestLikedPosts() {
+  return function (dispatch) {
+    return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestLikedPosts().then(function (data) {
+      return console.log(data);
+    });
+  };
+};
 var requestPost = function requestPost(postId) {
   return function (dispatch) {
     return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestPost(postId).then(function (_ref2) {
@@ -2232,11 +2240,7 @@ var requestPost = function requestPost(postId) {
       dispatch(recievePostErrors(response.data));
     });
   };
-}; // .catch((payload) => {
-// console.log("payload", payload);
-// dispatch(recievePostErrors(payload));
-// });
-
+};
 var requestUpdatePost = function requestUpdatePost(post) {
   return function (dispatch) {
     return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.updatePost(post).then(function (payload) {
@@ -3375,7 +3379,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var FormErrors = function FormErrors(props) {
-  if ((0,_util_Util__WEBPACK_IMPORTED_MODULE_1__.isEmpty)(props.errors)) {
+  if (props.errors.length === 0) {
     return null;
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -6294,7 +6298,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var sessionErrorsReducer = function sessionErrorsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 
@@ -6310,7 +6314,7 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
       return action.errors;
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.RESET_SESSION_ERRORS:
-      return {};
+      return [];
 
     default:
       return state;
@@ -6768,6 +6772,7 @@ var deleteLike = function deleteLike(postId) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "requestUsersFeed": () => (/* binding */ requestUsersFeed),
+/* harmony export */   "requestLikedPosts": () => (/* binding */ requestLikedPosts),
 /* harmony export */   "requestPost": () => (/* binding */ requestPost),
 /* harmony export */   "updatePost": () => (/* binding */ updatePost)
 /* harmony export */ });
@@ -6780,6 +6785,9 @@ var requestUsersFeed = function requestUsersFeed() {
   //   url: `/api/posts`
   // })
   ;
+};
+var requestLikedPosts = function requestLikedPosts() {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/posts/likedposts');
 };
 var requestPost = function requestPost(postId) {
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/posts/".concat(postId)) // $.ajax({
@@ -45429,8 +45437,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _util_PostAPI__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/PostAPI */ "./frontend/util/PostAPI.js");
 /* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/postActions */ "./frontend/actions/postActions.js");
-/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./actions/sessionActions */ "./frontend/actions/sessionActions.js");
-
 
 
 
@@ -45442,6 +45448,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root");
   var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)();
   window.store = _store_store__WEBPACK_IMPORTED_MODULE_4__.store;
+  window.dispatch = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch;
+  window.req = _actions_postActions__WEBPACK_IMPORTED_MODULE_6__.requestLikedPosts;
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: _store_store__WEBPACK_IMPORTED_MODULE_4__.store
   }), root);

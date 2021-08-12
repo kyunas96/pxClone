@@ -2,7 +2,7 @@ import React from 'react';
 import { isEmpty } from '../../util/Util';
 
 const FormErrors = props => {
-  if (isEmpty(props.errors)) {
+  if (props.errors.length === 0) {
     return (null);
   } else {
     return (

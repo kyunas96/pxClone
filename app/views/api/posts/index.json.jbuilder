@@ -1,5 +1,5 @@
-if !@liked_posts.empty?
-    json.likedPosts @liked_posts
+if !@liked_posts_ids.empty?
+    json.likedPosts @liked_posts_ids
 else
     json.likedPosts []
 end

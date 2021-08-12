@@ -2,12 +2,12 @@ class Api::PostsController < ApplicationController
 
   def index 
     @followed_users_id = Follow.where(follower: current_user.id).map(&:followed_user_id)
-    @liked_posts = Like.where(user_id: current_user.id).map(&:post_id)
+    @liked_posts_ids = Like.where(user_id: current_user.id).map(&:post_id)
     @posts = Post.where(:poster_id => @followed_users_id).order(:created_at)
 
     p "Posts index "
     p "@followed_users_id: " + @followed_users_id.inspect
-    p "@liked_posts: " + @liked_posts.inspect
+    p "@liked_posts: " + @liked_posts_ids.inspect
     p "@posts: " + @posts.inspect
 
     render 'api/posts/index'
@@ -44,6 +44,14 @@ class Api::PostsController < ApplicationController
       render json: @post.errors.full_messages
     end
 
+  end
+
+  def liked_posts
+    @liked_posts_ids = Like.where(user_id: current_user.id).order(:created_at).map(&:post_id)
+    p "likedPostIds: " + @liked_post_ids.inspect
+    @liked_posts = Post.where(:id => @liked_post_ids).order(:created_at)
+
+    render :liked_posts
   end
 
   def destroy
