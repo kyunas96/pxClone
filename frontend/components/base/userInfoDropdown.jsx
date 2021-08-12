@@ -23,6 +23,11 @@ class UserInfoDropdown extends React.Component {
             Profile
           </Link>
         </div>
+        <div onClick={this.props.toggleDropdown}>
+          <Link to={`/users/${this.props.currentUser.id}/likedposts`}>
+            Liked Posts
+          </Link>
+        </div>
         <div onClick={e=> this.logoutAction(e)}>Logout</div>
       </div>
     );

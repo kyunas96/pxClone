@@ -12,6 +12,7 @@ import CreatePostForm from "./components/posts/createPostForm";
 import FeedShowContainer from './components/posts/feedShowContainer';
 import ProfileShowContainer from './components/posts/profileShowContainer';
 import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
+import LikedPostsContainer from "./components/likedPosts/likedPostsContainer";
 
 const App = (props) => {
   return (
@@ -26,8 +27,9 @@ const App = (props) => {
             path="/users/:userId/profile/edit"
             component={ProfileEditContainer}
           />
-          <ProtectedRoute path="/users/:userId/profile" component={ProfileContainer} />
-          <ProtectedRoute path="/users/:userId/posts/:postId" component={ProfileShowContainer} />
+          <ProtectedRoute exact path="/users/:userId/profile" component={ProfileContainer} />
+          <ProtectedRoute exact path="/users/:userId/posts/:postId" component={ProfileShowContainer} />
+          <ProtectedRoute exact path="/users/:userId/likedposts" component={LikedPostsContainer} />
           
           <ProtectedRoute path="/post/create" component={CreatePostForm} />
           <ProtectedRoute path="/posts/:postId" component={FeedShowContainer} />

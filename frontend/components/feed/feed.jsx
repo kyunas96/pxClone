@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "./image";
 import Masonry from "react-masonry-css";
-import FeedBanner from "./feedHeader";
+import FeedBanner from "./feedBanner";
 // import InfiniteScroll from "react-infinite-scroll-component";
 
 // Feed should associate itself with the current user
