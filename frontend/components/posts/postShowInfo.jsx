@@ -28,15 +28,9 @@ const PostShowInfo = ({ user, post }) => {
 
   return (
     <div className="post-show-info">
-      {/* {profile picture} */}
-      <div className="post-show-poster-picture">
-        {/* 
-          STYLE THIS CLASS SO THAT THE USER PICTURE IS A ROUND CIRCLE OF
-          APPROPRIATE SIZE
-         */}
-        {/* <img src={userPhoto} /> */}
+      <div className="post-show-user-picture">
+        <img src={userPhoto} />
       </div>
-
       <div className="post-show-poster-info">
         <h3>{post.title}</h3>
         <h5>{post.description}</h5>

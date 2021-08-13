@@ -21,7 +21,7 @@ const sessionReducer = (state = nullUser, action) => {
         loggedIn: true,
       };
     case SESSION_LOGOUT:
-      localStorage.clear();
+      window.localStorage.clear();
       return nullUser;
     default:
       return state;

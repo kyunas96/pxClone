@@ -14,7 +14,7 @@ const Image = ({ post }) => {
 
   return (
     <div className="image-container" onClick={(e) => handleClick(e)}>
-      <img src={post.photoUrl}></img>
+      <img src={post.photoUrl} loading="lazy"></img>
       <ImageHover
         title={post.title}
         username={post.poster}

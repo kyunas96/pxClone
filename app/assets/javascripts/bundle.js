@@ -3171,7 +3171,8 @@ var Image = function Image(_ref) {
       return handleClick(e);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: post.photoUrl
+    src: post.photoUrl,
+    loading: "lazy"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_imageHover__WEBPACK_IMPORTED_MODULE_1__.default, {
     title: post.title,
     username: post.poster,
@@ -4614,8 +4615,10 @@ var PostShowInfo = function PostShowInfo(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "post-show-poster-picture"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "post-show-user-picture"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: userPhoto
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-poster-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, post.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     id: "post-show-links"
@@ -6523,7 +6526,7 @@ var sessionReducer = function sessionReducer() {
       };
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_0__.SESSION_LOGOUT:
-      localStorage.clear();
+      window.localStorage.clear();
       return nullUser;
 
     default:
