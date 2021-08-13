@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import PostShowFollowButton from "./postShowFollowButton";
 import { Link } from "react-router-dom";
+import PostShowFollowButton from "./postShowFollowButton";
+import defaultUserImage from 'assets/images/user-circle-solid.svg';
 
 const PostShowInfo = ({ user, post }) => {
+  console.log("postshowinfo", user);
   /*
     Notes: 
       • this component will need a container to have access to the dispatch
@@ -22,10 +24,18 @@ const PostShowInfo = ({ user, post }) => {
     <PostShowFollowButton posterId={user.posterId} />
   );
 
+  const userPhoto = user.userPhoto ? user.userPhoto : defaultUserImage;
+
   return (
     <div className="post-show-info">
       {/* {profile picture} */}
-      <div className="post-show-poster-picture"></div>
+      <div className="post-show-poster-picture">
+        {/* 
+          STYLE THIS CLASS SO THAT THE USER PICTURE IS A ROUND CIRCLE OF
+          APPROPRIATE SIZE
+         */}
+        {/* <img src={userPhoto} /> */}
+      </div>
 
       <div className="post-show-poster-info">
         <h3>{post.title}</h3>

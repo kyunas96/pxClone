@@ -2706,40 +2706,6 @@ var Logo = function Logo() {
 
 /***/ }),
 
-/***/ "./frontend/components/base/uploadButton.jsx":
-/*!***************************************************!*\
-  !*** ./frontend/components/base/uploadButton.jsx ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-var UploadButton = function UploadButton() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
-    "aria-hidden": "true",
-    focusable: "false",
-    "data-prefix": "fas",
-    "data-icon": "arrow-up",
-    "class": "svg-inline--fa fa-arrow-up fa-w-14",
-    role: "img",
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 448 512"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    fill: "currentColor",
-    d: "M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"
-  }));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadButton);
-
-/***/ }),
-
 /***/ "./frontend/components/base/userInfo.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/base/userInfo.jsx ***!
@@ -2752,11 +2718,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _uploadButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./uploadButton */ "./frontend/components/base/uploadButton.jsx");
-/* harmony import */ var _userInfoDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userInfoDropdown */ "./frontend/components/base/userInfoDropdown.jsx");
-/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! assets/images/user-circle-solid.svg */ "./app/assets/images/user-circle-solid.svg");
-/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _userInfoDropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userInfoDropdown */ "./frontend/components/base/userInfoDropdown.jsx");
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! assets/images/user-circle-solid.svg */ "./app/assets/images/user-circle-solid.svg");
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2780,10 +2745,10 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+ // import UploadButton from './uploadButton';
 
 
 
- // import userInfoButton from '../../images/user-circle-solid.svg';
 
 var UserInfo = /*#__PURE__*/function (_React$Component) {
   _inherits(UserInfo, _React$Component);
@@ -2826,14 +2791,14 @@ var UserInfo = /*#__PURE__*/function (_React$Component) {
           return _this2.toggleDropdown(e);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default())
-      })), this.state.showDropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userInfoDropdown__WEBPACK_IMPORTED_MODULE_2__.default, {
+        src: (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2___default())
+      })), this.state.showDropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userInfoDropdown__WEBPACK_IMPORTED_MODULE_1__.default, {
         currentUser: this.props.currentUser,
         logout: this.props.logout,
         toggleDropdown: this.toggleDropdown
       }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-info-upload"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/post/create",
         className: "upload-button"
       }, "Upload")));
@@ -4441,6 +4406,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var _state$entities$users;
+
   var postId = parseInt(ownProps.postId);
   var currentUserId = state.session.currentUser.id;
   var currentUserPosts = state.entities.users.users[currentUserId].userPosts;
@@ -4454,6 +4421,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       liked = _state$entities$posts.liked,
       following = _state$entities$posts.following,
       createdAt = _state$entities$posts.createdAt;
+  var userPhoto = (_state$entities$users = state.entities.users.users[posterId]) === null || _state$entities$users === void 0 ? void 0 : _state$entities$users.userPhoto;
   return {
     post: {
       title: title,
@@ -4466,7 +4434,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     user: {
       poster: poster,
       posterId: posterId,
-      following: following
+      following: following,
+      userPhoto: userPhoto
     }
   };
 };
@@ -4611,8 +4580,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./postShowFollowButton */ "./frontend/components/posts/postShowFollowButton.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! assets/images/user-circle-solid.svg */ "./app/assets/images/user-circle-solid.svg");
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -4621,7 +4593,7 @@ __webpack_require__.r(__webpack_exports__);
 var PostShowInfo = function PostShowInfo(_ref) {
   var user = _ref.user,
       post = _ref.post;
-
+  console.log("postshowinfo", user);
   /*
     Notes: 
       • this component will need a container to have access to the dispatch
@@ -4633,10 +4605,12 @@ var PostShowInfo = function PostShowInfo(_ref) {
       4. follow button
       5. Upload date
   */
+
   var followButtonSpacing = post.belongsToUser ? null : " • ";
   var followButton = post.belongsToUser ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__.default, {
     posterId: user.posterId
   });
+  var userPhoto = user.userPhoto ? user.userPhoto : (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_3___default());
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "post-show-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4645,7 +4619,7 @@ var PostShowInfo = function PostShowInfo(_ref) {
     className: "post-show-poster-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, post.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, post.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     id: "post-show-links"
-  }, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+  }, "by ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
     to: "/users/".concat(user.posterId, "/profile")
   }, user.poster), followButtonSpacing, followButton)));
 };
@@ -6689,6 +6663,13 @@ var usersReducer = function usersReducer() {
       return newState;
     // this case will called when a userProfile is grabbed or when the follow
     // status of a user changes
+
+    case _actions_postActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_POST:
+      currentUser = newState.users[action.post.posterId] || {};
+      var unpackedUser = Object.values(action.post)[0];
+      currentUser.userPhoto = unpackedUser.userPhoto;
+      newState.users[unpackedUser.posterId] = currentUser;
+      return newState;
 
     case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.UPDATE_USER:
       currentUser = newState.users[action.payload.user.id];

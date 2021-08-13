@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   const currentUserId = state.session.currentUser.id;
   const currentUserPosts = state.entities.users.users[currentUserId].userPosts;
   const belongsToUser = currentUserPosts.includes(postId);
-
+  
   const {
     title,
     id,
@@ -19,7 +19,9 @@ const mapStateToProps = (state, ownProps) => {
     following,
     createdAt,
   } = state.entities.posts.posts[ownProps.postId];
-
+  
+  const userPhoto = state.entities.users.users[posterId]?.userPhoto;
+  
   return {
     post: {
       title,
@@ -33,6 +35,7 @@ const mapStateToProps = (state, ownProps) => {
       poster,
       posterId,
       following,
+      userPhoto
     },
   };
 };

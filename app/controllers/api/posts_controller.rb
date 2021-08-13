@@ -24,11 +24,9 @@ class Api::PostsController < ApplicationController
   def show
     @post = Post.find_by(id: params[:id])
 
-    p "post show " + @post.inspect
-
     if @post 
-      p "Succeded"
-      @poster = User.find_by(id: @post.poster_id).user_photo.blob
+      @poster = User.find_by(id: @post.poster_id)
+      @userPhoto = url_for(@poster.user_photo)
       @liked = Like.find_by(user: current_user, post: @post) ? true : false
       @following = Follow.find_by(follower: current_user, followed_user: @post.user) ? true : false
       render :show, status: 200

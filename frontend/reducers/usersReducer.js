@@ -6,7 +6,7 @@ import {
   UPDATE_USER,
 } from "../actions/userActions";
 
-import { RECEIVE_POSTS } from "../actions/postActions";
+import { RECEIVE_POST, RECEIVE_POSTS } from "../actions/postActions";
 import { ADD_FOLLOW, REMOVE_FOLLOW } from "../actions/followActions";
 import { SESSION_LOGIN, SESSION_LOGOUT } from "../actions/sessionActions";
 
@@ -33,6 +33,12 @@ const usersReducer = (state = defaultState, action) => {
       return newState;
     // this case will called when a userProfile is grabbed or when the follow
     // status of a user changes
+    case RECEIVE_POST:
+      currentUser = newState.users[action.post.posterId] || {};
+      const unpackedUser = Object.values(action.post)[0];
+      currentUser.userPhoto = unpackedUser.userPhoto
+      newState.users[unpackedUser.posterId] = currentUser;
+      return newState;
     case UPDATE_USER:
       currentUser = newState.users[action.payload.user.id];
       currentUser = Object.assign(currentUser, action.payload.user);

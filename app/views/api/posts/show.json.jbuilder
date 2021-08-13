@@ -4,6 +4,7 @@
 json.set! @post.id do
   json.extract! @post, :id, :title, :description
   json.posterId @post.user.id
+  json.userPhoto @userPhoto
   json.liked @liked
   json.following @following
   json.poster @post.user.username
