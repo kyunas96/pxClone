@@ -1,19 +1,19 @@
 class Api::FollowsController < ApplicationController 
 
   def followers
-    user = User.find_by(id: params[:user_id])
+    user = User.includes(:followers).find_by(id: params[:user_id])
+    @follower_ids = user.followers.map(&:id)
+    @users = User.includes(user_photo_attachment: :blob).where(id: @follower_ids)
 
-    @followers = user.followers
-
-    render :followers
+    render :follow_list
   end
 
   def followings
-    user = User.find_by(id: params[:user_id])
-
-    @followings = user.followings
-
-    render :followings
+    user = User.includes(:followings).find_by(id: params[:user_id])
+    @followings_ids = user.followings.map(&:id)
+    @users = User.includes(user_photo_attachment: :blob).where(id: @followings_ids)
+    
+    render :follow_list
   end
 
   def following

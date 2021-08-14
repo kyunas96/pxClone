@@ -1,8 +1,6 @@
 import {
   RECEIVE_USER,
   RECEIVE_USERS,
-  FOLLOW_USER,
-  UNFOLLOW_USER,
   UPDATE_USER,
 } from "../actions/userActions";
 
@@ -28,6 +26,14 @@ const usersReducer = (state = defaultState, action) => {
     // this case will be called when the posts for a user's feed are retrieved
     // and with them the ids of the users that are being followed by the
     // current user
+    case RECEIVE_USERS:
+      // const payload = action.payload;
+      // for(const[key, val] of Object.entries(payload)){
+      //   const curUser = newState.users[val.id] || {};
+      //   const updatedUser = Object.assign(curUser, val);
+      //   newState.users[val.id] = updatedUser;
+      // }
+      return newState;
     case RECEIVE_POSTS:
       newState.followedUsers = action.payload.followedUsers
       return newState;

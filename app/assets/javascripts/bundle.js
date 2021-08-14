@@ -2054,60 +2054,9 @@ var resetPostFormErrors = function resetPostFormErrors() {
 /*!*******************************************!*\
   !*** ./frontend/actions/followActions.js ***!
   \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "RECEIVE_FOLLOW": () => (/* binding */ RECEIVE_FOLLOW),
-/* harmony export */   "ADD_FOLLOW": () => (/* binding */ ADD_FOLLOW),
-/* harmony export */   "REMOVE_FOLLOW": () => (/* binding */ REMOVE_FOLLOW),
-/* harmony export */   "UPDATE_FOLLOW": () => (/* binding */ UPDATE_FOLLOW),
-/* harmony export */   "addFollow": () => (/* binding */ addFollow),
-/* harmony export */   "removeFollow": () => (/* binding */ removeFollow),
-/* harmony export */   "getFollowStatus": () => (/* binding */ getFollowStatus)
-/* harmony export */ });
-/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/FollowAPI */ "./frontend/util/FollowAPI.js");
-
-var RECEIVE_FOLLOW = 'RECEIVE_FOLLOW';
-var ADD_FOLLOW = "ADD_FOLLOW";
-var REMOVE_FOLLOW = "REMOVE_FOLLOW";
-var UPDATE_FOLLOW = 'UPDATE_FOLLOW';
-
-var receiveFollow = function receiveFollow(follow) {
-  return {
-    type: RECEIVE_FOLLOW,
-    follow: follow
-  };
-};
-
-var addFollow = function addFollow(profileId) {
-  return function (dispatch) {
-    _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.createFollow(profileId).then(function (data) {
-      dispatch({
-        type: ADD_FOLLOW,
-        data: data
-      });
-    });
-  };
-};
-var removeFollow = function removeFollow(profileId) {
-  return function (dispatch) {
-    _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.deleteFollow(profileId).then(function (data) {
-      dispatch({
-        type: REMOVE_FOLLOW,
-        data: data
-      });
-    });
-  };
-};
-var getFollowStatus = function getFollowStatus(userId) {
-  return function (dispatch) {
-    return _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.getFollowing(userId).then(function (data) {
-      return dispatch(receiveFollow(data));
-    });
-  };
-};
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/KRY/Documents/App Academy/pxClone/frontend/actions/followActions.js: Unexpected token, expected \"{\" (24:0)\n\n\u001b[0m \u001b[90m 22 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[0m\n\u001b[0m \u001b[90m 23 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mconst\u001b[39m removeFollow \u001b[33m=\u001b[39m (profileId) \u001b[33m=>\u001b[39m (dispatch) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 |\u001b[39m   \u001b[33mFollowAPI\u001b[39m\u001b[33m.\u001b[39mdeleteFollow(profileId)\u001b[33m.\u001b[39mthen((data) \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 26 |\u001b[39m     dispatch({\u001b[0m\n\u001b[0m \u001b[90m 27 |\u001b[39m       type\u001b[33m:\u001b[39m \u001b[33mREMOVE_FOLLOW\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n    at Object._raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:810:17)\n    at Object.raiseWithData (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:803:17)\n    at Object.raise (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:764:17)\n    at Object.unexpected (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:9980:16)\n    at Object.parseExport (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:13723:16)\n    at Object.parseStatementContent (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:12702:27)\n    at Object.parseStatement (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:12596:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:13185:25)\n    at Object.parseBlockBody (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:13176:10)\n    at Object.parseProgram (/Users/KRY/Documents/App Academy/pxClone/node_modules/@babel/parser/lib/index.js:12519:10)");
 
 /***/ }),
 
@@ -6661,6 +6610,15 @@ var usersReducer = function usersReducer() {
     // and with them the ids of the users that are being followed by the
     // current user
 
+    case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USERS:
+      // const payload = action.payload;
+      // for(const[key, val] of Object.entries(payload)){
+      //   const curUser = newState.users[val.id] || {};
+      //   const updatedUser = Object.assign(curUser, val);
+      //   newState.users[val.id] = updatedUser;
+      // }
+      return newState;
+
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_POSTS:
       newState.followedUsers = action.payload.followedUsers;
       return newState;
@@ -6827,70 +6785,6 @@ if (true) {
 var store = (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_0__.default, redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware.apply(void 0, middlewares));
 var persistor = (0,redux_persist__WEBPACK_IMPORTED_MODULE_1__.persistStore)(store);
 
-
-/***/ }),
-
-/***/ "./frontend/util/FollowAPI.js":
-/*!************************************!*\
-  !*** ./frontend/util/FollowAPI.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getFollowers": () => (/* binding */ getFollowers),
-/* harmony export */   "getFollowings": () => (/* binding */ getFollowings),
-/* harmony export */   "getFollowing": () => (/* binding */ getFollowing),
-/* harmony export */   "createFollow": () => (/* binding */ createFollow),
-/* harmony export */   "deleteFollow": () => (/* binding */ deleteFollow)
-/* harmony export */ });
-/* 
-  getFollowers and getFollowings do not need a url parameter since the backend
-  already knows who the current user and their id
-*/
-var getFollowers = function getFollowers() {
-  return $.ajax({
-    method: 'GET',
-    url: '/api/followers/',
-    data: {
-      user_id: userId
-    }
-  });
-};
-var getFollowings = function getFollowings() {
-  return $.ajax({
-    method: 'GET',
-    url: '/api/followings/',
-    data: {
-      user_id: userId
-    }
-  });
-};
-var getFollowing = function getFollowing(followee_id) {
-  return $.ajax({
-    method: 'GET',
-    url: "/api/following/".concat(followee_id)
-  });
-};
-var createFollow = function createFollow(followedUserId) {
-  return $.ajax({
-    method: 'POST',
-    url: '/api/follows/',
-    data: {
-      followed_user_id: followedUserId
-    }
-  });
-};
-var deleteFollow = function deleteFollow(followedUserId) {
-  return $.ajax({
-    method: 'DELETE',
-    url: '/api/follows/',
-    data: {
-      followed_user_id: followedUserId
-    }
-  });
-};
 
 /***/ }),
 
