@@ -32,7 +32,7 @@ const PostShowInfo = ({ user, post }) => {
         <img src={userPhoto} />
       </div>
       <div className="post-show-poster-info">
-        <h3>{post.title}</h3>
+        <h2>{post.title}</h2>
         <h5>{post.description}</h5>
         <h3 id="post-show-links">
           by <Link to={`/users/${user.posterId}/profile`}>{user.poster}</Link>{followButtonSpacing}
