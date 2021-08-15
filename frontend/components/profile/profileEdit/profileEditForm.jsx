@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import ProfileEditFormHeader from "./profile_edit_form_header";
 import { getUser, updateUser } from "../../../actions/userActions";
 import { CountryDropdown } from "react-country-region-selector";
@@ -182,7 +182,7 @@ class ProfileEditForm extends React.Component {
           />
         </div>
         <div className="profile-edit-buttons">
-          <span>Cancel</span>
+          <Link className="cancel-button" to={`/users/${this.props.user.id}/profile`}>Cancel</Link>
           <button className="profile-edit-save">Save Changes</button>
         </div>
       </form>
