@@ -13,6 +13,8 @@ import FeedShowContainer from './components/posts/feedShowContainer';
 import ProfileShowContainer from './components/posts/profileShowContainer';
 import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
 import LikedPostsContainer from "./components/likedPosts/likedPostsContainer";
+import followersListContainer from "./components/userListings/followersListContainer";
+import followingsListContainer from "./components/userListings/followingsListContainer";
 
 const App = (props) => {
   return (
@@ -30,6 +32,8 @@ const App = (props) => {
           <ProtectedRoute exact path="/users/:userId/profile" component={ProfileContainer} />
           <ProtectedRoute exact path="/users/:userId/posts/:postId" component={ProfileShowContainer} />
           <ProtectedRoute exact path="/users/:userId/likedposts" component={LikedPostsContainer} />
+          <ProtectedRoute exact path="/users/:userId/followings" component={followingsListContainer} />
+          <ProtectedRoute exact path="/users/:userId/followers" component={followersListContainer} />
           
           <ProtectedRoute path="/post/create" component={CreatePostForm} />
           <ProtectedRoute path="/posts/:postId" component={FeedShowContainer} />

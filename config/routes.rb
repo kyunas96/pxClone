@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :likes, only: [:index, :show, :create, :destroy], defaults: {format: :json}
 
     # resources :follows, only: [:create, :destroy]
-    post '/followers' => 'follows#create'
     get '/followers' => 'follows#followers'
     get '/followings' => 'follows#followings'
     get '/following/:followee_id' => 'follows#following'

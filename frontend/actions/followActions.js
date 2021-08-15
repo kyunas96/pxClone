@@ -4,9 +4,9 @@ import { RECEIVE_USERS } from "./userActions";
 export const RECEIVE_FOLLOW = 'RECEIVE_FOLLOW';
 export const ADD_FOLLOW = "ADD_FOLLOW";
 export const REMOVE_FOLLOW = "REMOVE_FOLLOW";
+export const RECEIVE_FOLLOWS = "RECEIVE_FOLLOWS";
+export const RECEIVE_FOLLOWINGS = "RECEIVE_FOLLOWINGS";
 export const UPDATE_FOLLOW = 'UPDATE_FOLLOW';
-
-
 
 
 const receiveFollow = follow => ({
@@ -14,24 +14,30 @@ const receiveFollow = follow => ({
   follow
 })
 
-const receiveFollows = follows => ({
-  type: RECEIVE_USERS,
-  users: follows
+const receiveFollows = (userId, follows) => ({
+  type: RECEIVE_FOLLOWS,
+  payload: {
+    userId,
+    follows
+  }
 })
 
-const receiveFollowings = followings => ({
-  type: RECEIVE_USERS,
-  users: followings
+const receiveFollowings = (userId, followings) => ({
+  type: RECEIVE_FOLLOWINGS,
+  payload: {
+    userId,
+    followings
+  }
 })
 
-export const requestFollows = (userId) => (dispatch) => (
+export const requestFollowers = (userId) => (dispatch) => (
   FollowAPI.getFollowers(userId)
-    .then(payload => dispatch(receiveFollows(payload)))
+    .then(payload => dispatch(receiveFollows(userId, payload)))
 ) 
 
 export const requestFollowings = (userId) => (dispatch) => (
   FollowAPI.getFollowings(userId)
-    .then(payload => dispatch(receiveFollowings(payload)))
+    .then(payload => dispatch(receiveFollowings(userId, payload)))
 )
 
 
@@ -43,8 +49,6 @@ export const addFollow = (profileId) => (dispatch) => {
     })
   });
 }
-
-export 
 
 export const removeFollow = (profileId) => (dispatch) => {
   FollowAPI.deleteFollow(profileId).then((data) => {
