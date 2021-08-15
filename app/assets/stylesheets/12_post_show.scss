@@ -139,6 +139,14 @@
 #post-show-links {
   display: inline-block;
   width: 200px;
+
+  a{
+    color: black;
+  }
+
+  a:visited{
+    color: black;
+  }
 }
 
 #post-show-follow {
