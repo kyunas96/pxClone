@@ -97,8 +97,6 @@
   height: 100%;
 }
 
-.post-show-lower {
-}
 
 .post-show-info{
   display: flex;
@@ -147,21 +145,27 @@
   display: none;
 }
 
-label.following {
+.following-text {
   &::after {
     content: "Following";
   }
 
-  &:hover &::after {
+  &:hover{
+    color: lighten($color: $pxBlueText, $amount: 10%);
+
+    &::after {
     content: "Unfollow";
   }
+  } 
 }
 
-label.folllow {
-  &:after {
+.follow-text {
+  color: $pxBlueText;
+  &::after {
     content: "Follow";
   }
 
-  &:hover {
+  &:hover{
+    color: lighten($color: $pxBlueText, $amount: 10%);
   }
 }

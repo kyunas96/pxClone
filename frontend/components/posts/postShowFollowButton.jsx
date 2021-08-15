@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 /* FIX THIS, THE ACTION DOES NOT WORK PROPERLY RIGHT NOW*/
 
 const PostShowFollowButton = (props) => {
-  const classList = props.following ? "following" : "follow";
+  const classList = props.following ? "following-text" : "follow-text";
   const action = props.following ? 
     e => {
       e.preventDefault();

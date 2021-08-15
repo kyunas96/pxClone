@@ -4500,7 +4500,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 
 var PostShowFollowButton = function PostShowFollowButton(props) {
-  var classList = props.following ? "following" : "follow";
+  var classList = props.following ? "following-text" : "follow-text";
   var action = props.following ? function (e) {
     e.preventDefault();
     e.stopPropagation();
