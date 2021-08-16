@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # CRRLL
 
   def current_user
-    @current_user || User.find_by(session_token: session[:session_token])
+    @current_user ||= User.find_by(session_token: session[:session_token])
   end
 
   def login(user)
