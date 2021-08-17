@@ -1,5 +1,5 @@
 import React from "react";
-import FollowButtonContainer from "./followButtonContainer";
+import FollowButtonContainer from "./followButton/followButtonContainer";
 import ProfileLocation from "./profile_location";
 
 const ProfileInfo = ({renderFollow, username, city, country, description, socials}) => {

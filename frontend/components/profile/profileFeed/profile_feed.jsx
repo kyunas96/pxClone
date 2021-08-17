@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "../feed/image";
+import Image from "../../feed/image";
 import Masonry from "react-masonry-css";
 
 class ProfileFeed extends React.Component {

@@ -35,9 +35,8 @@ const usersReducer = (state = defaultState, action) => {
     // status of a user changes
     case RECEIVE_POST:
       currentUser = newState.users[action.post.posterId] || {};
-      const unpackedUser = Object.values(action.post)[0];
-      currentUser.userPhoto = unpackedUser.userPhoto
-      newState.users[unpackedUser.posterId] = currentUser;
+      currentUser.userPhoto = action.post.userPhoto;
+      newState.users[action.post.posterId] = currentUser;
       return newState;
     case UPDATE_USER:
       currentUser = newState.users[action.payload.user.id];

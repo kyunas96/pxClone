@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileHeaderContainer from "./profileHeader/profileHeaderContainer";
-import ProfileFeedContainer from "./profile_feed_container";
+import ProfileFeedContainer from "./profileFeed/profile_feed_container";
 import NotFoundPage from "../notFound";
 
 class Profile extends React.Component {

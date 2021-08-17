@@ -4882,6 +4882,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var userId = parseInt(ownProps.match.params.userId);
   var postId = parseInt(ownProps.match.params.postId);
   var usersPosts = state.entities.users.users[userId].userPosts;
+  console.log("profileShowContainer", state);
   var curPostIdx = usersPosts.indexOf(postId);
   var prevPostId = usersPosts[curPostIdx - 1];
   var nextPostId = usersPosts[curPostIdx + 1];
@@ -4922,7 +4923,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profileHeader_profileHeaderContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileHeader/profileHeaderContainer */ "./frontend/components/profile/profileHeader/profileHeaderContainer.js");
-/* harmony import */ var _profile_feed_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_feed_container */ "./frontend/components/profile/profile_feed_container.js");
+/* harmony import */ var _profileFeed_profile_feed_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profileFeed/profile_feed_container */ "./frontend/components/profile/profileFeed/profile_feed_container.js");
 /* harmony import */ var _notFound__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../notFound */ "./frontend/components/notFound.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5003,7 +5004,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           className: "user-profile"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profileHeaderContainer__WEBPACK_IMPORTED_MODULE_1__.default, {
           userId: this.props.userId
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_feed_container__WEBPACK_IMPORTED_MODULE_2__.default, {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileFeed_profile_feed_container__WEBPACK_IMPORTED_MODULE_2__.default, {
           userId: this.props.userId
         }));
       }
@@ -5600,10 +5601,115 @@ var ProfileEditHeader = function ProfileEditHeader(_ref) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileHeader/followButtonContainer.js":
-/*!****************************************************************************!*\
-  !*** ./frontend/components/profile/profileHeader/followButtonContainer.js ***!
-  \****************************************************************************/
+/***/ "./frontend/components/profile/profileFeed/profile_feed.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/profile/profileFeed/profile_feed.jsx ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _feed_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../feed/image */ "./frontend/components/feed/image.jsx");
+/* harmony import */ var react_masonry_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-masonry-css */ "./node_modules/react-masonry-css/dist/react-masonry-css.module.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var ProfileFeed = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProfileFeed, _React$Component);
+
+  var _super = _createSuper(ProfileFeed);
+
+  function ProfileFeed(props) {
+    var _this;
+
+    _classCallCheck(this, ProfileFeed);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      posts: _this.props.posts
+    };
+    return _this;
+  }
+
+  _createClass(ProfileFeed, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var breakpointColumnsObj = {
+        "default": 4,
+        1100: 3,
+        700: 2,
+        500: 1
+      };
+      var images = [];
+      Object.values(this.props.posts).forEach(function (post, i) {
+        var liked = _this2.props.isCurrentUser ? null : _this2.props.likedPosts.includes(post.id);
+        images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
+          post: _objectSpread(_objectSpread({}, post), {}, {
+            liked: liked,
+            isProfile: true
+          }),
+          key: i,
+          like: true
+        }));
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-feed"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "masonry-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
+        breakpointCols: breakpointColumnsObj,
+        className: "my-masonry-grid",
+        columnClassName: "my-masonry-grid-column"
+      }, images)));
+    }
+  }]);
+
+  return ProfileFeed;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileFeed);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileFeed/profile_feed_container.js":
+/*!***************************************************************************!*\
+  !*** ./frontend/components/profile/profileFeed/profile_feed_container.js ***!
+  \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5612,8 +5718,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/profileHeader/follow_button.jsx");
-/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/followActions */ "./frontend/actions/followActions.js");
+/* harmony import */ var _profile_feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_feed */ "./frontend/components/profile/profileFeed/profile_feed.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var isCurrentUser = state.session.currentUser.id === ownProps.userId;
+  var posts = Object.values(state.entities.posts.posts);
+  posts = posts.filter(function (post) {
+    return post.posterId === ownProps.userId;
+  });
+  var likedPosts = state.entities.posts.likedPosts;
+  return {
+    isCurrentUser: isCurrentUser,
+    userId: ownProps.userId,
+    posts: posts,
+    likedPosts: likedPosts
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps)(_profile_feed__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileHeader/followButton/followButtonContainer.js":
+/*!*****************************************************************************************!*\
+  !*** ./frontend/components/profile/profileHeader/followButton/followButtonContainer.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/profileHeader/followButton/follow_button.jsx");
+/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../actions/followActions */ "./frontend/actions/followActions.js");
 
 
 
@@ -5644,10 +5785,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileHeader/follow_button.jsx":
-/*!*********************************************************************!*\
-  !*** ./frontend/components/profile/profileHeader/follow_button.jsx ***!
-  \*********************************************************************/
+/***/ "./frontend/components/profile/profileHeader/followButton/follow_button.jsx":
+/*!**********************************************************************************!*\
+  !*** ./frontend/components/profile/profileHeader/followButton/follow_button.jsx ***!
+  \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5858,7 +5999,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _followButtonContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./followButtonContainer */ "./frontend/components/profile/profileHeader/followButtonContainer.js");
+/* harmony import */ var _followButton_followButtonContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./followButton/followButtonContainer */ "./frontend/components/profile/profileHeader/followButton/followButtonContainer.js");
 /* harmony import */ var _profile_location__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_location */ "./frontend/components/profile/profileHeader/profile_location.jsx");
 
 
@@ -5871,7 +6012,7 @@ var ProfileInfo = function ProfileInfo(_ref) {
       country = _ref.country,
       description = _ref.description,
       socials = _ref.socials;
-  var followButton = renderFollow === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButtonContainer__WEBPACK_IMPORTED_MODULE_1__.default, null) : null;
+  var followButton = renderFollow === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButton_followButtonContainer__WEBPACK_IMPORTED_MODULE_1__.default, null) : null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -5998,146 +6139,6 @@ var ProfilePicture = function ProfilePicture(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfilePicture);
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profile_feed.jsx":
-/*!******************************************************!*\
-  !*** ./frontend/components/profile/profile_feed.jsx ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _feed_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../feed/image */ "./frontend/components/feed/image.jsx");
-/* harmony import */ var react_masonry_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-masonry-css */ "./node_modules/react-masonry-css/dist/react-masonry-css.module.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-
-var ProfileFeed = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileFeed, _React$Component);
-
-  var _super = _createSuper(ProfileFeed);
-
-  function ProfileFeed(props) {
-    var _this;
-
-    _classCallCheck(this, ProfileFeed);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      posts: _this.props.posts
-    };
-    return _this;
-  }
-
-  _createClass(ProfileFeed, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var breakpointColumnsObj = {
-        "default": 4,
-        1100: 3,
-        700: 2,
-        500: 1
-      };
-      var images = [];
-      Object.values(this.props.posts).forEach(function (post, i) {
-        var liked = _this2.props.isCurrentUser ? null : _this2.props.likedPosts.includes(post.id);
-        images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-          post: _objectSpread(_objectSpread({}, post), {}, {
-            liked: liked,
-            isProfile: true
-          }),
-          key: i,
-          like: true
-        }));
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "profile-feed"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "masonry-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
-        breakpointCols: breakpointColumnsObj,
-        className: "my-masonry-grid",
-        columnClassName: "my-masonry-grid-column"
-      }, images)));
-    }
-  }]);
-
-  return ProfileFeed;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileFeed);
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profile_feed_container.js":
-/*!***************************************************************!*\
-  !*** ./frontend/components/profile/profile_feed_container.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _profile_feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_feed */ "./frontend/components/profile/profile_feed.jsx");
-
-
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var isCurrentUser = state.session.currentUser.id === ownProps.userId;
-  var posts = Object.values(state.entities.posts.posts);
-  posts = posts.filter(function (post) {
-    return post.posterId === ownProps.userId;
-  });
-  var likedPosts = state.entities.posts.likedPosts;
-  return {
-    isCurrentUser: isCurrentUser,
-    userId: ownProps.userId,
-    posts: posts,
-    likedPosts: likedPosts
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps)(_profile_feed__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 
@@ -6673,9 +6674,8 @@ var usersReducer = function usersReducer() {
 
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_POST:
       currentUser = newState.users[action.post.posterId] || {};
-      var unpackedUser = Object.values(action.post)[0];
-      currentUser.userPhoto = unpackedUser.userPhoto;
-      newState.users[unpackedUser.posterId] = currentUser;
+      currentUser.userPhoto = action.post.userPhoto;
+      newState.users[action.post.posterId] = currentUser;
       return newState;
 
     case _actions_userActions__WEBPACK_IMPORTED_MODULE_0__.UPDATE_USER:

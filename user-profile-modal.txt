@@ -1,0 +1,23 @@
+Link components that route to user-profile modals will user urls.
+
+Routes will use paths to grab the current location 
+
+
+<Link to="users/:userId/profile"> (this route will be synonymous with profile feed)
+
+
+// as Link components, these can be placed anywhere since their url is absolute
+<Link to="users/:userId/likedposts">
+<Link to="users/:userId/following">
+<Link to="users/:userId/followers">
+
+
+// these will be placed within the profile component 
+
+<Switch>
+  <Route path="likedposts" component={LikedPostsContainer}/>
+  <Route path="/following" component={followingContainer}/>
+  <Route path="/followers" component={followersContainer}/>
+  <Route path="/profile" component={feedComponent}/>
+  <Route path="/" component={feedComponent}/>
+</Switch>
