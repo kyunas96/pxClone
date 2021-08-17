@@ -27,7 +27,7 @@ const App = (props) => {
             path="/users/:userId/profile/edit"
             component={ProfileEditContainer}
           />
-          <ProtectedRoute exact path="/users/:userId/profile" component={ProfileContainer} />
+          <ProtectedRoute exact path="/users/:userId/:subComponent" component={ProfileContainer} />
           <ProtectedRoute exact path="/users/:userId/posts/:postId" component={ProfileShowContainer} />
           <ProtectedRoute exact path="/users/:userId/likedposts" component={LikedPostsContainer} />
           
