@@ -6194,7 +6194,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // THIS COMPONENT WILL DETERMINE WHAT IS TO BE RENDERED BASED ON THE CURRENT 
+// ROUTE
 
 var ProfileLower = function ProfileLower(props) {
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)(),
