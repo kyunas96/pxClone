@@ -1,0 +1,26 @@
+this component will contain the subcomponents that will be rendered in the lower
+half of the profile component:
+1. Feed
+2. LikedPosts
+3. Following
+4. Followers
+
+Follows/Followings will be fetched as a batch
+
+requestFollowsFollowings(userId)
+  .then((data) => dispatch(receiveFollows(data)))
+
+data :{
+  userId: (the userId whose information was requested for),
+  users: {
+    will contain the users as objects
+  },
+  followedUsers: [],
+  followingUsers: []
+}
+
+the followsReducer must intercept the action to grab either the followedUsers or 
+followingUsers arrays and cache them under the id of the user
+
+the usersReducer must intercept the action to grab the users from the users object
+and place them within the users slice of state to cache them

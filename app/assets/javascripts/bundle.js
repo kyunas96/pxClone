@@ -2060,16 +2060,24 @@ var resetPostFormErrors = function resetPostFormErrors() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_FOLLOW": () => (/* binding */ RECEIVE_FOLLOW),
+/* harmony export */   "RECEIVE_FOLLOWS": () => (/* binding */ RECEIVE_FOLLOWS),
+/* harmony export */   "RECEIVE_FOLLOWINGS": () => (/* binding */ RECEIVE_FOLLOWINGS),
 /* harmony export */   "ADD_FOLLOW": () => (/* binding */ ADD_FOLLOW),
 /* harmony export */   "REMOVE_FOLLOW": () => (/* binding */ REMOVE_FOLLOW),
 /* harmony export */   "UPDATE_FOLLOW": () => (/* binding */ UPDATE_FOLLOW),
 /* harmony export */   "addFollow": () => (/* binding */ addFollow),
 /* harmony export */   "removeFollow": () => (/* binding */ removeFollow),
+/* harmony export */   "receiveFollowers": () => (/* binding */ receiveFollowers),
+/* harmony export */   "receiveFollowings": () => (/* binding */ receiveFollowings),
+/* harmony export */   "requestFollowers": () => (/* binding */ requestFollowers),
+/* harmony export */   "requestFollowings": () => (/* binding */ requestFollowings),
 /* harmony export */   "getFollowStatus": () => (/* binding */ getFollowStatus)
 /* harmony export */ });
 /* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/FollowAPI */ "./frontend/util/FollowAPI.js");
 
 var RECEIVE_FOLLOW = 'RECEIVE_FOLLOW';
+var RECEIVE_FOLLOWS = "RECEIVE_FOLLOWS";
+var RECEIVE_FOLLOWINGS = "RECEIVE_FOLLOWINGS";
 var ADD_FOLLOW = "ADD_FOLLOW";
 var REMOVE_FOLLOW = "REMOVE_FOLLOW";
 var UPDATE_FOLLOW = 'UPDATE_FOLLOW';
@@ -2098,6 +2106,32 @@ var removeFollow = function removeFollow(profileId) {
         type: REMOVE_FOLLOW,
         data: data
       });
+    });
+  };
+};
+var receiveFollowers = function receiveFollowers(follows) {
+  return {
+    type: RECEIVE_FOLLOWS,
+    follows: follows
+  };
+};
+var receiveFollowings = function receiveFollowings(followings) {
+  return {
+    type: RECEIVE_FOLLOWINGS,
+    followings: followings
+  };
+};
+var requestFollowers = function requestFollowers(userId) {
+  return function (dispatch) {
+    _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.getFollowers(userId).then(function (data) {
+      return dispatch(receiveFollowers(data));
+    });
+  };
+};
+var requestFollowings = function requestFollowings(userId) {
+  return function (dispatch) {
+    _util_FollowAPI__WEBPACK_IMPORTED_MODULE_0__.getFollowings(userId).then(function (data) {
+      return dispatch(receiveFollowings(data));
     });
   };
 };
@@ -6853,7 +6887,7 @@ __webpack_require__.r(__webpack_exports__);
   getFollowers and getFollowings do not need a url parameter since the backend
   already knows who the current user and their id
 */
-var getFollowers = function getFollowers() {
+var getFollowers = function getFollowers(userId) {
   return $.ajax({
     method: 'GET',
     url: '/api/followers/',
@@ -6862,7 +6896,7 @@ var getFollowers = function getFollowers() {
     }
   });
 };
-var getFollowings = function getFollowings() {
+var getFollowings = function getFollowings(userId) {
   return $.ajax({
     method: 'GET',
     url: '/api/followings/',

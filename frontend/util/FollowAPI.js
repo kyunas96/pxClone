@@ -3,7 +3,7 @@
   already knows who the current user and their id
 */
 
-export const getFollowers = () => (
+export const getFollowers = (userId) => (
   $.ajax({
     method: 'GET',
     url: '/api/followers/',
@@ -11,7 +11,7 @@ export const getFollowers = () => (
   })
 )
 
-export const getFollowings = () => (
+export const getFollowings = (userId) => (
   $.ajax({
     method: 'GET',
     url: '/api/followings/',
