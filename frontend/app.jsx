@@ -33,7 +33,7 @@ const App = (props) => {
           
           <ProtectedRoute path="/post/create" component={CreatePostForm} />
           <ProtectedRoute path="/posts/:postId" component={FeedShowContainer} />
-          <Redirect to="/" />
+          {/* <Redirect to="/" /> */}
         </Switch>
       </div>
     </div>

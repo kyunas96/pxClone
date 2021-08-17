@@ -2521,8 +2521,6 @@ var App = function App(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_protectedRoute__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
     path: "/posts/:postId",
     component: _components_posts_feedShowContainer__WEBPACK_IMPORTED_MODULE_10__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_14__.Redirect, {
-    to: "/"
   }))));
 };
 
@@ -4958,9 +4956,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _profileHeader_profileHeaderContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileHeader/profileHeaderContainer */ "./frontend/components/profile/profileHeader/profileHeaderContainer.js");
 /* harmony import */ var _notFound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../notFound */ "./frontend/components/notFound.jsx");
-/* harmony import */ var _likedPosts_likedPostsContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../likedPosts/likedPostsContainer */ "./frontend/components/likedPosts/likedPostsContainer.js");
-/* harmony import */ var _profileFeed_profile_feed_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profileFeed/profile_feed_container */ "./frontend/components/profile/profileFeed/profile_feed_container.js");
-/* harmony import */ var _profileLower_profileLower__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profileLower/profileLower */ "./frontend/components/profile/profileLower/profileLower.js");
+/* harmony import */ var _profileLower_profileLower__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profileLower/profileLower */ "./frontend/components/profile/profileLower/profileLower.jsx");
+/* harmony import */ var _profileNavigation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profileNavigation */ "./frontend/components/profile/profileNavigation.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -4982,8 +4979,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
 
 
 
@@ -5043,9 +5038,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
           className: "user-profile"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profileHeaderContainer__WEBPACK_IMPORTED_MODULE_1__.default, {
           userId: this.props.userId
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "profile-navigation"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileLower_profileLower__WEBPACK_IMPORTED_MODULE_5__.default, null));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileLower_profileLower__WEBPACK_IMPORTED_MODULE_3__.default, null));
       }
     }
   }]);
@@ -6183,10 +6176,10 @@ var ProfilePicture = function ProfilePicture(_ref) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileLower/profileLower.js":
-/*!******************************************************************!*\
-  !*** ./frontend/components/profile/profileLower/profileLower.js ***!
-  \******************************************************************/
+/***/ "./frontend/components/profile/profileLower/profileLower.jsx":
+/*!*******************************************************************!*\
+  !*** ./frontend/components/profile/profileLower/profileLower.jsx ***!
+  \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6195,50 +6188,79 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _profileFeed_profile_feed_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../profileFeed/profile_feed_container */ "./frontend/components/profile/profileFeed/profile_feed_container.js");
+/* harmony import */ var _profileNavigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profileNavigation */ "./frontend/components/profile/profileNavigation.jsx");
+
 
 
 
 
 var ProfileLower = function ProfileLower(props) {
-  var _useParams = (0,react_router__WEBPACK_IMPORTED_MODULE_2__.useParams)(),
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)(),
       subComponent = _useParams.subComponent,
-      userId = _useParams.userId; // console.log("params", params)
+      userId = _useParams.userId;
 
-
-  var component;
-
-  switch (subComponent) {
-    case "profile":
-    case "feed":
-      component = "feed";
-      break;
-
-    case "likedPosts":
-      component = "likedPosts";
-      break;
-
-    case "followers":
-      component = "followers";
-      break;
-
-    case "followings":
-      component = "followings";
-      break;
-
-    default:
-      component = "profile";
-      break;
-    // render the profile feed on the default case
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "profile-lower"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, component));
+  var rootUserPath = "/users/".concat(userId);
+  return (
+    /*#__PURE__*/
+    // <div className="profile-lower">
+    //     <span>{component}</span>
+    // </div>
+    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "profile-lower"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileNavigation__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
+      path: "".concat(rootUserPath, "/posts")
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Posts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
+      path: "".concat(rootUserPath, "/likedPosts")
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "LikedPosts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
+      path: "".concat(rootUserPath, "/followers")
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Followers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
+      path: "".concat(rootUserPath, "/followings")
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Followings"))))
+  );
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileLower);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profileNavigation.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/profile/profileNavigation.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var ProfileNavigation = function ProfileNavigation(props) {
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useParams)(),
+      userId = _useParams.userId;
+
+  var rootUserPath = "/users/".concat(userId);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-navigation"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "".concat(rootUserPath, "/posts")
+  }, "Posts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "".concat(rootUserPath, "/likedPosts")
+  }, "Liked Posts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "".concat(rootUserPath, "/followers")
+  }, "Followers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "".concat(rootUserPath, "/followings")
+  }, "Following")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileNavigation);
 
 /***/ }),
 

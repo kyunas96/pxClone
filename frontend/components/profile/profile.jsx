@@ -1,10 +1,8 @@
 import React from "react";
 import ProfileHeaderContainer from "./profileHeader/profileHeaderContainer";
 import NotFoundPage from "../notFound";
-import { Switch, Route } from "react-router";
-import likedPostsContainer from "../likedPosts/likedPostsContainer";
-import profile_feed_container from "./profileFeed/profile_feed_container";
 import ProfileLower from './profileLower/profileLower';
+import ProfileNavigation from "./profileNavigation";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -43,16 +41,6 @@ class Profile extends React.Component {
       return (
         <div className="user-profile">
           <ProfileHeaderContainer userId={this.props.userId} />
-
-          {/* 
-            based on the subcomponent that is being routed to, the correct
-            component will be rendered
-           */}
-           <div className="profile-navigation">
-            {/* <Link to={`${this.props.url}`} ></Link>
-            <Link to={} ></Link>
-            <Link to={} ></Link> */}
-           </div>
           <ProfileLower />
           {/* <ProfileFeedContainer userId={this.props.userId} /> */}
           {/* feed component will be rendered here as well */}
