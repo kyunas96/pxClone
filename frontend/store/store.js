@@ -5,9 +5,9 @@ import thunk from 'redux-thunk';
 
 const middlewares = [thunk];
 
-const configureStore = () => (
-  createStore(RootReducer, applyMiddleware(thunk))
-)
+// const configureStore = () => (
+//   createStore(RootReducer, applyMiddleware(thunk))
+// )
 
 
 if (process.env.NODE_ENV !== "production") {

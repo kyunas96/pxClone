@@ -3,6 +3,8 @@
   already knows who the current user and their id
 */
 
+import axios from "axios"
+
 export const getFollowers = (userId) => (
   $.ajax({
     method: 'GET',
