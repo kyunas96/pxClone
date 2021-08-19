@@ -6,7 +6,7 @@ import {
   useParams,
   useRouteMatch,
 } from "react-router-dom";
-import profileFeedContainer from "../profileFeed/profile_feed_container";
+import ProfileFeed from "../profileFeed/profile_feed";
 import ProfileNavigation from "../profileNavigation";
 
 
@@ -25,29 +25,30 @@ const ProfileLower = (props) => {
       <ProfileNavigation />
 
       <Switch>
-        <Route path={`${rootUserPath}/posts`}>
-        {/* 
-          THIS ROUTE WILL RENDER THE USER'S FEED
-         */}
-          <h3>Posts</h3>
-        </Route>
         <Route path={`${rootUserPath}/likedPosts`}>
-        {/* 
+          {/* 
           THIS ROUTE WILL RENDER THE USER'S LIKED POSTS
          */}
           <h3>LikedPosts</h3>
         </Route>
         <Route path={`${rootUserPath}/followers`}>
-        {/* 
+          {/* 
           THIS ROUTE WILL RENDER THE USER'S FOLLOWERS  
         */}
           <h3>Followers</h3>
         </Route>
         <Route path={`${rootUserPath}/followings`}>
-        {/* 
+          {/* 
           THIS ROUTE WILL RENDER THE USER'S FOLLOWINGS
          */}
           <h3>Followings</h3>
+        </Route>
+        <Route path="/">
+          <ProfileFeed userId={userId} />
+          {/* 
+          THIS ROUTE WILL RENDER THE USER'S FEED
+         */}
+          <h3>Nosts</h3>
         </Route>
       </Switch>
     </div>

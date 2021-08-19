@@ -5649,129 +5649,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _feed_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../feed/image */ "./frontend/components/feed/image.jsx");
 /* harmony import */ var react_masonry_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-masonry-css */ "./node_modules/react-masonry-css/dist/react-masonry-css.module.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
 
 
-var ProfileFeed = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileFeed, _React$Component);
-
-  var _super = _createSuper(ProfileFeed);
-
-  function ProfileFeed(props) {
-    var _this;
-
-    _classCallCheck(this, ProfileFeed);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      posts: _this.props.posts
-    };
-    return _this;
-  }
-
-  _createClass(ProfileFeed, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var breakpointColumnsObj = {
-        "default": 4,
-        1100: 3,
-        700: 2,
-        500: 1
-      };
-      var images = [];
-      Object.values(this.props.posts).forEach(function (post, i) {
-        var liked = _this2.props.isCurrentUser ? null : _this2.props.likedPosts.includes(post.id);
-        images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
-          post: _objectSpread(_objectSpread({}, post), {}, {
-            liked: liked,
-            isProfile: true
-          }),
-          key: i,
-          like: true
-        }));
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "profile-feed"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "masonry-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
-        breakpointCols: breakpointColumnsObj,
-        className: "my-masonry-grid",
-        columnClassName: "my-masonry-grid-column"
-      }, images)));
-    }
-  }]);
-
-  return ProfileFeed;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileFeed);
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileFeed/profile_feed_container.js":
-/*!***************************************************************************!*\
-  !*** ./frontend/components/profile/profileFeed/profile_feed_container.js ***!
-  \***************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _profile_feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_feed */ "./frontend/components/profile/profileFeed/profile_feed.jsx");
-
-
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var isCurrentUser = state.session.currentUser.id === ownProps.userId;
-  var posts = Object.values(state.entities.posts.posts);
-  posts = posts.filter(function (post) {
-    return post.posterId === ownProps.userId;
+var ProfileFeed = function ProfileFeed(props) {
+  var profileId = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.session.currentUser.id;
   });
-  var likedPosts = state.entities.posts.likedPosts;
-  return {
-    isCurrentUser: isCurrentUser,
-    userId: ownProps.userId,
-    posts: posts,
-    likedPosts: likedPosts
+  var isCurrentUser = profileId === props.userId;
+  var posts = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return Object.values(state.entities.posts.posts);
+  });
+  posts = posts.filter(function (post) {
+    return post.posterId === profileId;
+  });
+  var likedPosts = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.entities.posts.likedPosts;
+  });
+  var breakpointColumnsObj = {
+    "default": 4,
+    1100: 3,
+    700: 2,
+    500: 1
   };
+  var images = [];
+  Object.values(posts).forEach(function (post, i) {
+    var liked = isCurrentUser ? null : likedPosts.includes(post.id);
+    images.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed_image__WEBPACK_IMPORTED_MODULE_1__.default, {
+      post: _objectSpread(_objectSpread({}, post), {}, {
+        liked: liked,
+        isProfile: true
+      }),
+      key: i,
+      like: true
+    }));
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "profile-feed"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "masonry-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
+    breakpointCols: breakpointColumnsObj,
+    className: "my-masonry-grid",
+    columnClassName: "my-masonry-grid-column"
+  }, images)));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps)(_profile_feed__WEBPACK_IMPORTED_MODULE_1__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileFeed);
 
 /***/ }),
 
@@ -6189,7 +6122,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _profileFeed_profile_feed_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../profileFeed/profile_feed_container */ "./frontend/components/profile/profileFeed/profile_feed_container.js");
+/* harmony import */ var _profileFeed_profile_feed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../profileFeed/profile_feed */ "./frontend/components/profile/profileFeed/profile_feed.jsx");
 /* harmony import */ var _profileNavigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profileNavigation */ "./frontend/components/profile/profileNavigation.jsx");
 
 
@@ -6211,14 +6144,16 @@ var ProfileLower = function ProfileLower(props) {
     react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "profile-lower"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileNavigation__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
-      path: "".concat(rootUserPath, "/posts")
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Posts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
       path: "".concat(rootUserPath, "/likedPosts")
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "LikedPosts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
       path: "".concat(rootUserPath, "/followers")
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Followers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
       path: "".concat(rootUserPath, "/followings")
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Followings"))))
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Followings")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Route, {
+      path: "/"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileFeed_profile_feed__WEBPACK_IMPORTED_MODULE_1__.default, {
+      userId: userId
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Nosts"))))
   );
 };
 
