@@ -25,23 +25,12 @@ const ProfileLower = (props) => {
 
       <Switch>
         <Route path={`${rootUserPath}/likedPosts`}>
-          {/* 
-          THIS ROUTE WILL RENDER THE USER'S LIKED POSTS
-            LIKED POST FEED WILL HAVE TO BE REFACTORED INTO A FUNCTIONAL COMPONENT
-            AND COMPOUNDED INTO ONE FILE, ELIMINATING THE CONTAINER FILE
-         */}
           <h3>LikedPosts</h3>
         </Route>
         <Route path={`${rootUserPath}/followers`}>
-          {/* 
-          THIS ROUTE WILL RENDER THE USER'S FOLLOWERS  
-        */}
           <FollowersList userId={userId} /> 
         </Route>
         <Route path={`${rootUserPath}/followings`}>
-          {/* 
-          THIS ROUTE WILL RENDER THE USER'S FOLLOWINGS
-         */}
           <FollowingsList userId={userId} />
         </Route>
         <Route path={`${rootUserPath}/profile`}>
