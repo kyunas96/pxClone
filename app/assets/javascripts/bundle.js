@@ -5662,10 +5662,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var ProfileFeed = function ProfileFeed(props) {
-  var profileId = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+  console.log("props", props);
+  var profileId = parseInt(props.userId);
+  var currentUserId = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return state.session.currentUser.id;
   });
-  var isCurrentUser = profileId === props.userId;
+  var isCurrentUser = profileId === currentUserId;
   var posts = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
     return Object.values(state.entities.posts.posts);
   });

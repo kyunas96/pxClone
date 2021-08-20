@@ -4,8 +4,10 @@ import Masonry from "react-masonry-css";
 import { useSelector } from "react-redux";
 
 const ProfileFeed = (props) => {
-  const profileId = useSelector(state => state.session.currentUser.id)
-  const isCurrentUser = profileId === props.userId;
+  console.log("props", props);
+  const profileId = parseInt(props.userId);
+  const currentUserId = useSelector(state => state.session.currentUser.id)
+  const isCurrentUser = profileId === currentUserId;
   let posts = useSelector(state => Object.values(state.entities.posts.posts));
   posts = posts.filter(post => post.posterId === profileId);
   const likedPosts = useSelector(state => state.entities.posts.likedPosts);
