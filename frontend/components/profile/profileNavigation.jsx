@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Link,
+  NavLink,
   Switch,
   Route,
   useParams,
@@ -14,10 +14,10 @@ const ProfileNavigation = (props) => {
   return (
     <>
       <div className="profile-navigation">
-        <Link to={`${rootUserPath}/posts`}>Posts</Link>
-        <Link to={`${rootUserPath}/likedPosts`}>Liked Posts</Link>
-        <Link to={`${rootUserPath}/followers`}>Followers</Link>
-        <Link to={`${rootUserPath}/followings`}>Following</Link>
+        <NavLink activeClassName="selected" to={`${rootUserPath}/profile`}>Posts</NavLink>
+        <NavLink activeClassName="selected" to={`${rootUserPath}/likedPosts`}>Liked Posts</NavLink>
+        <NavLink activeClassName="selected" to={`${rootUserPath}/followers`}>Followers</NavLink>
+        <NavLink activeClassName="selected" to={`${rootUserPath}/followings`}>Following</NavLink>
       </div>
     </>
   );

@@ -1,8 +1,6 @@
-import React from "react";
-import UserList from "./userList";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 import * as FollowAPI from "../../../../util/FollowAPI";
-import { useState, useEffect } from "react";
+import UserList from "./userList";
 
 const FollowingsList = ({ userId }) => {
   let [users, setUsers] = useState([]);
@@ -10,9 +8,9 @@ const FollowingsList = ({ userId }) => {
 
   useEffect(() => {
     if (initialMount) {
-      FollowAPI.getFollowings(userId).then((data) => {
+      FollowAPI.getFollowings(userId).then(data => {
         setUsers(Object.values(data.users));
-        console.log("users", data.users);
+        console.log("followings", data.users);
         setInitialMount(false);
       });
     }

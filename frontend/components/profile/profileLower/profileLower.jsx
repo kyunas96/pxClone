@@ -37,14 +37,12 @@ const ProfileLower = (props) => {
           THIS ROUTE WILL RENDER THE USER'S FOLLOWERS  
         */}
           <FollowersList userId={userId} /> 
-          <h3>Followers</h3>
         </Route>
         <Route path={`${rootUserPath}/followings`}>
           {/* 
           THIS ROUTE WILL RENDER THE USER'S FOLLOWINGS
          */}
           <FollowingsList userId={userId} />
-          <h3>Followings</h3>
         </Route>
         <Route path={`${rootUserPath}/profile`}>
           <ProfileFeed userId={userId} />
