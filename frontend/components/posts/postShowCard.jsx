@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     liked,
     following,
     createdAt,
-  } = state.entities.posts.posts[ownProps.postId];
+  } = state.entities.posts[postId];
   
   const userPhoto = state.entities.users.users[posterId]?.userPhoto;
   

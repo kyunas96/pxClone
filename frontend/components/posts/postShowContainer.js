@@ -4,14 +4,14 @@ import { requestPost, requestUpdatePost } from "../../actions/postActions";
 import { getPostShowNavIndices } from "../../util/Util";
 
 const mSTP = (state, ownProps) => {
-  const postId = ownProps.match.params.postId;
-  const posts = state.entities.posts.posts
-  const postNavIndices = getPostShowNavIndices(parseInt(postId), posts)
+  const postId = parseInt(ownProps.match.params.postId);
+  const posts = state.entities.posts;
+  const postNavIndices = getPostShowNavIndices(postId, posts)
   const postErrors = state.errors.posts.error
 
   return {
     postId,
-    post: state.entities.posts.posts[postId],
+    post: state.entities.posts[postId],
     postErrors,
     prevPostId: postNavIndices.prevPostId,
     nextPostId: postNavIndices.nextPostId

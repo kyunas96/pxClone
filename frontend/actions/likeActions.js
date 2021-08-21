@@ -14,7 +14,7 @@ export const addLike = (postId) => (dispatch) => (
     .then(data => {
       dispatch({
         type: ADD_LIKE,
-        post: data
+        payload: data
       })
     })
 )
@@ -24,7 +24,7 @@ export const removeLike = (postId) => (dispatch) => (
     .then(data => {
       dispatch({
         type: REMOVE_LIKE,
-        post: data
+        payload: data
       })
     })
 )

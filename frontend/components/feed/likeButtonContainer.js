@@ -4,9 +4,12 @@ import LikeButton from "./likeButton";
 
 const mapStateToProps = (state, ownProps) => {
   const isCurrentUser = ownProps.liked === null;
+  const currentUser = state.session.currentUser.id;
+  const curUserLikedPosts = state.entities.likes[currentUser] || [];
   let liked = null;
   if (!isCurrentUser) {
-    liked = state.entities.posts.likedPosts.includes(ownProps.postId);
+    liked = curUserLikedPosts.includes(ownProps.postId)
+    // liked = state.entities.posts.likedPosts.includes(ownProps.postId);
   }
   return {
     liked,

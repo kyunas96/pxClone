@@ -1,3 +1,5 @@
+json.userId current_user.id
+
 if !@liked_posts_ids.empty?
     json.likedPosts @liked_posts_ids
 else

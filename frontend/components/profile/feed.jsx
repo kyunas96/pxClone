@@ -3,6 +3,7 @@ import Image from "../feed/image";
 import Masonry from "react-masonry-css";
 
 const Feed = ({posts, isCurrentUser, likedPosts}) => {
+  console.log("feed", posts);
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,
@@ -15,7 +16,7 @@ const Feed = ({posts, isCurrentUser, likedPosts}) => {
    posts.forEach((post, i) => {
      const liked = isCurrentUser ? null : likedPosts.includes(post.id);
      images.push(
-       <Image post={{ ...post, liked, isProfile: true }} key={i} like />
+       <Image post={{ ...post, liked, isProfile: true }} key={i} />
      );
    });
 

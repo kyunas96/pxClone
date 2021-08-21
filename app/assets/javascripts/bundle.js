@@ -2178,7 +2178,7 @@ var addLike = function addLike(postId) {
     return _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__.addLike(postId).then(function (data) {
       dispatch({
         type: ADD_LIKE,
-        post: data
+        payload: data
       });
     });
   };
@@ -2188,7 +2188,7 @@ var removeLike = function removeLike(postId) {
     return _util_LikeAPI__WEBPACK_IMPORTED_MODULE_0__.deleteLike(postId).then(function (data) {
       dispatch({
         type: REMOVE_LIKE,
-        post: data
+        payload: data
       });
     });
   };
@@ -3128,7 +3128,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var posts = state.entities.posts.posts;
+  var posts = state.entities.posts;
   var followedUsers = state.entities.users.followedUsers; // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
   // format from the users slice of state
 
@@ -3355,10 +3355,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var isCurrentUser = ownProps.liked === null;
+  var currentUser = state.session.currentUser.id;
+  var curUserLikedPosts = state.entities.likes[currentUser] || [];
   var liked = null;
 
   if (!isCurrentUser) {
-    liked = state.entities.posts.likedPosts.includes(ownProps.postId);
+    liked = curUserLikedPosts.includes(ownProps.postId); // liked = state.entities.posts.likedPosts.includes(ownProps.postId);
   }
 
   return {
@@ -4195,7 +4197,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var postId = parseInt(ownProps.match.params.postId);
-  var posts = Object.values(state.entities.posts.posts);
+  var posts = Object.values(state.entities.posts);
   var followedUsers = state.entities.users.followedUsers;
   var followedPosts = posts.filter(function (post) {
     return followedUsers.includes(post.posterId);
@@ -4205,7 +4207,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     postId: postId,
     postErrors: postErrors,
-    post: state.entities.posts.posts[postId],
+    post: state.entities.posts[postId],
     prevPostId: postNavIndices.prevPostId,
     nextPostId: postNavIndices.nextPostId
   };
@@ -4281,7 +4283,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var currentUserId = state.session.currentUser.id;
   var currentUserPosts = state.entities.users.users[currentUserId].userPosts;
   var belongsToUser = currentUserPosts.includes(postId);
-  var _state$entities$posts = state.entities.posts.posts[ownProps.postId],
+  var _state$entities$posts = state.entities.posts[postId],
       title = _state$entities$posts.title,
       id = _state$entities$posts.id,
       description = _state$entities$posts.description,
@@ -4598,8 +4600,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var currentUserId = state.session.currentUser.id;
+  var currentUserLikes = state.entities.likes[currentUserId] || [];
   return {
-    liked: state.entities.posts.likedPosts.includes(ownProps.postId)
+    liked: currentUserLikes.includes(ownProps.postId)
   };
 };
 
@@ -4755,7 +4759,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var prevPostId = usersPosts[curPostIdx - 1];
   var nextPostId = usersPosts[curPostIdx + 1];
   return {
-    post: state.entities.posts.posts[postId],
+    post: state.entities.posts[postId],
     userId: userId,
     postId: postId,
     prevPostId: prevPostId,
@@ -4806,6 +4810,7 @@ var Feed = function Feed(_ref) {
   var posts = _ref.posts,
       isCurrentUser = _ref.isCurrentUser,
       likedPosts = _ref.likedPosts;
+  console.log("feed", posts);
   var breakpointColumnsObj = {
     "default": 4,
     1100: 3,
@@ -4820,8 +4825,7 @@ var Feed = function Feed(_ref) {
         liked: liked,
         isProfile: true
       }),
-      key: i,
-      like: true
+      key: i
     }));
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5562,7 +5566,7 @@ var ProfileFeed = function ProfileFeed(props) {
   });
   var isCurrentUser = profileId === currentUserId;
   var posts = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (state) {
-    return Object.values(state.entities.posts.posts);
+    return Object.values(state.entities.posts);
   });
   posts = posts.filter(function (post) {
     return post.posterId === profileId;
@@ -5570,11 +5574,15 @@ var ProfileFeed = function ProfileFeed(props) {
   var likedPosts = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (state) {
     return state.entities.posts.likedPosts;
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed__WEBPACK_IMPORTED_MODULE_1__.default, {
-    posts: posts,
-    isCurrentUser: isCurrentUser,
-    likedPosts: likedPosts
-  });
+  return (
+    /*#__PURE__*/
+    // <div>placeholder</div>
+    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed__WEBPACK_IMPORTED_MODULE_1__.default, {
+      posts: posts,
+      isCurrentUser: isCurrentUser,
+      likedPosts: likedPosts
+    })
+  );
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProfileFeed);
@@ -6027,9 +6035,9 @@ var LikedPostsFeed = function LikedPostsFeed(_ref) {
   var isCurrentUser = userIdAsInt === currentUserId;
   var likedPosts = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.entities.likes[userIdAsInt];
-  });
+  }) || [];
   var allPosts = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
-    return Object.values(state.entities.posts.posts);
+    return Object.values(state.entities.posts);
   });
   var siftedPosts = allPosts.filter(function (post) {
     return likedPosts.includes(post.id);
@@ -6039,11 +6047,6 @@ var LikedPostsFeed = function LikedPostsFeed(_ref) {
       _useState2 = _slicedToArray(_useState, 2),
       initialMount = _useState2[0],
       setInitialMount = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(siftedPosts),
-      _useState4 = _slicedToArray(_useState3, 2),
-      posts = _useState4[0],
-      setPosts = _useState4[1];
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -6060,14 +6063,16 @@ var LikedPostsFeed = function LikedPostsFeed(_ref) {
     }
   }, [initialMount]);
 
-  if (posts.length > 0) {
+  if (siftedPosts.length > 0) {
     // return <div> PlaceHolder</div>
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feed__WEBPACK_IMPORTED_MODULE_4__.default, {
-      images: posts
+      posts: siftedPosts,
+      isCurrentUser: false,
+      likedPosts: likedPosts
     });
   } else {
     var messagePrefix = isCurrentUser ? "You haven't" : "This user hasn't";
-    var message = messagePrefix.concat(' ', "liked any posts.");
+    var message = messagePrefix.concat(" ", "liked any posts.");
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, message);
   }
 };
@@ -6527,7 +6532,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_likeActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/likeActions */ "./frontend/actions/likeActions.js");
-/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
+/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+
 
 
 
@@ -6535,14 +6542,46 @@ var LikesReducer = function LikesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var newState = Object.assign({}, state);
+  var newState = Object.assign({}, state); // console.log(currentUserId);
+
+  var curUserLikes; // now the payload will have the user's id attached to it and thus can be accessed
+  // within the payload
 
   switch (action.type) {
+    case _actions_postActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_POSTS:
+      if (action.payload.likedPosts !== undefined) {
+        newState[action.payload.userId] = action.payload.likedPosts;
+      } else {
+        return newState;
+      }
+
     case _actions_likeActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_LIKES:
       newState[action.payload.userId] = action.payload.likedPosts;
       return newState;
 
-    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_1__.SESSION_LOGOUT:
+    case _actions_likeActions__WEBPACK_IMPORTED_MODULE_0__.ADD_LIKE:
+      curUserLikes = newState[action.payload.userId] || [];
+
+      if (!curUserLikes.includes(action.payload.id)) {
+        curUserLikes.push(action.payload.id);
+      }
+
+      newState[action.payload.userId] = curUserLikes;
+      return newState;
+
+    case _actions_likeActions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_LIKE:
+      curUserLikes = newState[action.payload.userId] || [];
+
+      if (curUserLikes.includes(action.payload.id)) {
+        curUserLikes = curUserLikes.filter(function (id) {
+          return id !== action.payload.id;
+        });
+      }
+
+      newState[action.payload.userId] = curUserLikes;
+      return newState;
+
+    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_2__.SESSION_LOGOUT:
       return {};
 
     default:
@@ -6617,13 +6656,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var defaultState = {
-  posts: {},
-  likedPosts: []
-};
 
 var PostsReducer = function PostsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState = Object.assign({}, state);
@@ -6631,58 +6666,22 @@ var PostsReducer = function PostsReducer() {
 
   switch (action.type) {
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POST:
-      return {
-        posts: _objectSpread(_objectSpread({}, state.posts), action.post),
-        likedPosts: state.likedPosts
-      };
+      return Object.assign({}, newState, action.post);
 
     case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POSTS:
-      return {
-        posts: _objectSpread(_objectSpread({}, state.posts), action.payload.posts),
-        likedPosts: action.payload.likedPosts
-      };
+      return _objectSpread(_objectSpread({}, state.posts), action.payload.posts);
 
     case _actions_userActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_USER:
-      return {
-        posts: _objectSpread(_objectSpread({}, state.posts), action.payload.posts),
-        likedPosts: state.likedPosts
-      };
+      return Object.assign({}, newState, action.payload.posts);
 
     case _actions_likeActions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_LIKES:
       return Object.assign(newState, action.payload.posts);
 
-    case _actions_likeActions__WEBPACK_IMPORTED_MODULE_2__.ADD_LIKE:
-      newState.posts[action.post.id].liked = true;
-      !newState.likedPosts.includes(action.post.id) && newState.likedPosts.push(action.post.id);
-      return {
-        posts: _objectSpread({}, newState.posts),
-        likedPosts: newState.likedPosts
-      };
-
-    case _actions_likeActions__WEBPACK_IMPORTED_MODULE_2__.REMOVE_LIKE:
-      newState.posts[action.post.id].liked = false;
-      var likes = [];
-
-      if (newState.likedPosts.includes(action.post.id)) {
-        var likeIndex = newState.likedPosts.indexOf(action.post.id);
-        var left = newState.likedPosts.slice(0, likeIndex);
-        var right = newState.likedPosts.slice(likeIndex + 1);
-        likes = left.concat(right);
-      }
-
-      return {
-        posts: _objectSpread({}, newState.posts),
-        likedPosts: likes
-      };
-
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGIN:
-      return {
-        posts: _objectSpread(_objectSpread({}, newState.posts), action.payload.posts),
-        likedPosts: newState.likedPosts
-      };
+      return _objectSpread(_objectSpread({}, newState.posts), action.payload.posts);
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGOUT:
-      return defaultState;
+      return {};
 
     default:
       return state;

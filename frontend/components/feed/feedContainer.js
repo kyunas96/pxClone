@@ -4,7 +4,7 @@ import { requestUsersFeed } from "../../actions/postActions";
 import { fetchLikedPosts } from "../../actions/likeActions";
 
 const mapStateToProps = (state) => {
-  const posts = state.entities.posts.posts;
+  const posts = state.entities.posts;
   const followedUsers = state.entities.users.followedUsers;
   // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
   // format from the users slice of state
