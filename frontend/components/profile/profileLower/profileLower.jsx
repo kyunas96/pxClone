@@ -10,6 +10,7 @@ import ProfileNavigation from "../profileNavigation";
 import FollowingsList from "./userLists/followingsList";
 import FollowersList from "./userLists/followersList";
 import ProfileFeed from "../profileFeed/profile_feed";
+import LikedPostsFeed from "./likedPostsFeed";
 
 
 // THIS COMPONENT WILL DETERMINE WHAT IS TO BE RENDERED BASED ON THE CURRENT 
@@ -25,7 +26,7 @@ const ProfileLower = (props) => {
 
       <Switch>
         <Route path={`${rootUserPath}/likedPosts`}>
-          <h3>LikedPosts</h3>
+          <LikedPostsFeed userId={userId} />
         </Route>
         <Route path={`${rootUserPath}/followers`}>
           <FollowersList userId={userId} /> 

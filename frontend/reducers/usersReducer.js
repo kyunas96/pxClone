@@ -15,7 +15,7 @@ const defaultState = {
   followedUsers: [],
 };
 
-const usersReducer = (state = defaultState, action) => {
+const UsersReducer = (state = defaultState, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
   let currentUser;
@@ -85,4 +85,4 @@ const usersReducer = (state = defaultState, action) => {
   }
 };
 
-export default usersReducer;
+export default UsersReducer;

@@ -1,7 +1,7 @@
-export const fetchLikes = () => (
+export const fetchLikes = (userId) => (
   $.ajax({
     method: 'GET',
-    url: '/api/likes/'
+    url: `/api/likes/${userId}`,
   })
 )
 

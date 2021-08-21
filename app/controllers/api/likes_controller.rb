@@ -1,12 +1,13 @@
 class Api::LikesController < ApplicationController
 
-  def index 
-    p "reached likes index"
-     @liked_posts = Like.where(:user_id => current_user.id).map(&:post_id)
+  def liked_posts
+    @user_id = params[:user_id]
+    @liked_posts_ids = Like.where(user_id: @user_id).map(&:post_id)
+    p "likedPostIds: " + @liked_posts_ids.inspect
+    @liked_posts = Post.where(:id => @liked_posts_ids).order(:created_at)
+    p "likedPosts: " + @liked_posts.inspect
 
-     p "liked posts" + @liked_posts.inspect
-
-    render json: @liked_posts
+    render :liked_posts
   end
 
   def create

@@ -1,8 +1,7 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router";
+import { Route, Switch } from "react-router";
 import HeaderContainer from "./components/base/header_container";
 import {ProtectedRoute} from "./components/protectedRoute";
-import Footer from './components/base/footer';
 import SplashPage from "./components/splashPage";
 import LoginContainer from "./components/login_signup/login_form_container";
 import SignupContainer from "./components/login_signup/signup_form_container";
@@ -12,7 +11,6 @@ import CreatePostForm from "./components/posts/createPostForm";
 import FeedShowContainer from './components/posts/feedShowContainer';
 import ProfileShowContainer from './components/posts/profileShowContainer';
 import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
-import LikedPostsContainer from "./components/likedPosts/likedPostsContainer";
 
 const App = (props) => {
   return (
@@ -29,7 +27,6 @@ const App = (props) => {
           />
           <ProtectedRoute exact path="/users/:userId/:subComponent" component={ProfileContainer} />
           <ProtectedRoute exact path="/users/:userId/posts/:postId" component={ProfileShowContainer} />
-          <ProtectedRoute exact path="/users/:userId/likedposts" component={LikedPostsContainer} />
           
           <ProtectedRoute path="/post/create" component={CreatePostForm} />
           <ProtectedRoute path="/posts/:postId" component={FeedShowContainer} />

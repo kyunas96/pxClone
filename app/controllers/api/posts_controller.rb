@@ -13,14 +13,6 @@ class Api::PostsController < ApplicationController
     render 'api/posts/index'
   end
 
-  def liked_posts
-    @liked_posts_ids = Like.where(user_id: current_user.id).map(&:post_id)
-    p "likedPostIds: " + @liked_post_ids.inspect
-    @liked_posts = Post.where(:id => @liked_post_ids).order(:created_at)
-
-    render :liked_posts
-  end
-
   def show
     @post = Post.find_by(id: params[:id])
 
@@ -50,19 +42,6 @@ class Api::PostsController < ApplicationController
       render json: @post.errors.full_messages
     end
 
-  end
-
-
-  def destroy
-    # @post = Post.find_by(id: params[:id])
-
-    # if @post 
-    #   if current_user.id == @post.poster_id
-    #     # @post.destroy
-    #   end
-    # else
-    #   render json: "Post does not exist"
-    # end
   end
 
   def post_params

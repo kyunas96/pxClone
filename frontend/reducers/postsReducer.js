@@ -5,7 +5,7 @@ import {
 } from "../actions/postActions";
 
 import { RECEIVE_USER } from "../actions/userActions";
-import { ADD_LIKE, REMOVE_LIKE } from "../actions/likeActions";
+import { ADD_LIKE, REMOVE_LIKE, RECEIVE_LIKES } from "../actions/likeActions";
 import { SESSION_LOGIN, SESSION_LOGOUT } from "../actions/sessionActions";
 
 const defaultState = {
@@ -43,6 +43,8 @@ const PostsReducer = (state = defaultState, action) => {
         },
         likedPosts: state.likedPosts,
       };
+    case RECEIVE_LIKES:
+      return Object.assign(newState, action.payload.posts)
     case ADD_LIKE:
       newState.posts[action.post.id].liked = true;
       !newState.likedPosts.includes(action.post.id) &&
