@@ -6151,6 +6151,53 @@ var ProfileLower = function ProfileLower(props) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/profileLower/userLists/followButton.jsx":
+/*!*****************************************************************************!*\
+  !*** ./frontend/components/profile/profileLower/userLists/followButton.jsx ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../actions/followActions */ "./frontend/actions/followActions.js");
+
+
+
+
+var FollowButton = function FollowButton(_ref) {
+  var userId = _ref.userId,
+      isFollowing = _ref.isFollowing;
+
+  if (isFollowing === null) {
+    return null;
+  }
+
+  var classList = isFollowing ? "user-list-follow following" : "user-list-follow follow";
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var action = isFollowing ? function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.removeFollow)(userId));
+  } : function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.addFollow)(userId));
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: classList,
+    onClick: action
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FollowButton);
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profileLower/userLists/followersList.js":
 /*!*****************************************************************************!*\
   !*** ./frontend/components/profile/profileLower/userLists/followersList.js ***!
@@ -6194,16 +6241,24 @@ var FollowersList = function FollowersList(_ref) {
       initialMount = _useState2[0],
       setInitialMount = _useState2[1];
 
-  var followers = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+  var currentUserId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.session.currentUser.id;
+  });
+  var currentUserFollowings = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     var _state$entities$follo;
 
-    return (_state$entities$follo = state.entities.follows[userId]) === null || _state$entities$follo === void 0 ? void 0 : _state$entities$follo.followers;
+    return (_state$entities$follo = state.entities.follows[currentUserId]) === null || _state$entities$follo === void 0 ? void 0 : _state$entities$follo.followings;
+  }) || [];
+  var followerIds = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    var _state$entities$follo2;
+
+    return (_state$entities$follo2 = state.entities.follows[userId]) === null || _state$entities$follo2 === void 0 ? void 0 : _state$entities$follo2.followers;
   }) || [];
   var users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return Object.values(state.entities.users);
   });
   var siftedUsers = users.filter(function (user) {
-    return followers.includes(user.id);
+    return followerIds.includes(user.id);
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (initialMount) {
@@ -6221,7 +6276,8 @@ var FollowersList = function FollowersList(_ref) {
 
   if (siftedUsers.length > 0) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userList__WEBPACK_IMPORTED_MODULE_3__.default, {
-      users: siftedUsers
+      users: siftedUsers,
+      followings: currentUserFollowings
     });
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "This user doesn't have any followers.");
@@ -6275,16 +6331,24 @@ var FollowingsList = function FollowingsList(_ref) {
       initialMount = _useState2[0],
       setInitialMount = _useState2[1];
 
-  var followings = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+  var currentUserId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.session.currentUser.id;
+  });
+  var currentUserFollowings = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     var _state$entities$follo;
 
-    return (_state$entities$follo = state.entities.follows[userId]) === null || _state$entities$follo === void 0 ? void 0 : _state$entities$follo.followings;
+    return (_state$entities$follo = state.entities.follows[currentUserId]) === null || _state$entities$follo === void 0 ? void 0 : _state$entities$follo.followings;
+  }) || [];
+  var followingIds = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    var _state$entities$follo2;
+
+    return (_state$entities$follo2 = state.entities.follows[userId]) === null || _state$entities$follo2 === void 0 ? void 0 : _state$entities$follo2.followings;
   }) || [];
   var users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return Object.values(state.entities.users);
   });
   var siftedUsers = users.filter(function (user) {
-    return followings.includes(user.id);
+    return followingIds.includes(user.id);
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (initialMount) {
@@ -6302,7 +6366,8 @@ var FollowingsList = function FollowingsList(_ref) {
 
   if (siftedUsers.length > 0) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userList__WEBPACK_IMPORTED_MODULE_4__.default, {
-      users: siftedUsers
+      users: siftedUsers,
+      followings: currentUserFollowings
     });
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "This user doesn't follow anyone.");
@@ -6325,20 +6390,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _userListing__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userListing */ "./frontend/components/profile/profileLower/userLists/userListing.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _userListing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userListing */ "./frontend/components/profile/profileLower/userLists/userListing.js");
+
 
 
 
 var UserList = function UserList(_ref) {
-  var users = _ref.users;
+  var users = _ref.users,
+      followings = _ref.followings;
   // this function will take in the users as objects and render them within
   // a list
+  var curUserId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.session.currentUser.id;
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-list"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, users.map(function (user, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userListing__WEBPACK_IMPORTED_MODULE_1__.default, {
+    var isCurrentUser = user.id === curUserId;
+    var isFollowing = isCurrentUser ? null : followings.includes(user.id);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userListing__WEBPACK_IMPORTED_MODULE_2__.default, {
       user: user,
-      key: i
+      key: i,
+      isFollowing: isFollowing
     });
   })));
 };
@@ -6359,27 +6433,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/user-circle-solid.svg */ "./app/assets/images/user-circle-solid.svg");
-/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _followButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./followButton */ "./frontend/components/profile/profileLower/userLists/followButton.jsx");
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! assets/images/user-circle-solid.svg */ "./app/assets/images/user-circle-solid.svg");
+/* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
 var UserListing = function UserListing(_ref) {
-  var user = _ref.user;
-  return (
-    /*#__PURE__*/
+  var user = _ref.user,
+      isFollowing = _ref.isFollowing;
 
-    /* 
-      this component will be a flex-row container 
-    */
-    react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-      className: "user-listing"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "user-listing-photo"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: user.userPhoto || (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default())
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null))
-  );
+  /* 
+    this component will be a flex-row container 
+  */
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+    className: "user-listing"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "user-listing-photo"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: user.userPhoto || (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_2___default())
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButton__WEBPACK_IMPORTED_MODULE_1__.default, {
+    userId: user.id,
+    isFollowing: isFollowing
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserListing);

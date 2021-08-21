@@ -7,9 +7,15 @@ import { receiveFollowers } from "../../../../actions/followActions";
 const FollowersList = ({ userId }) => {
   let dispatch = useDispatch();
   let [initialMount, setInitialMount] = useState(true);
-  let followers = useSelector((state) => state.entities.follows[userId]?.followers) || [];
-  let users = useSelector(state => Object.values(state.entities.users));
-  let siftedUsers = users.filter(user => followers.includes(user.id));
+
+  let currentUserId = useSelector((state) => state.session.currentUser.id);
+  let currentUserFollowings =
+    useSelector((state) => state.entities.follows[currentUserId]?.followings) || [];
+
+  let followerIds =
+    useSelector((state) => state.entities.follows[userId]?.followers) || [];
+  let users = useSelector((state) => Object.values(state.entities.users));
+  let siftedUsers = users.filter((user) => followerIds.includes(user.id));
 
   useEffect(() => {
     if (initialMount) {
@@ -24,13 +30,10 @@ const FollowersList = ({ userId }) => {
     return () => setInitialMount(true);
   });
 
-  if(siftedUsers.length > 0){
-    return <UserList users={siftedUsers} />;
-  }else{
-    return <div>
-      This user doesn't have any followers.
-    </div>
+  if (siftedUsers.length > 0) {
+    return <UserList users={siftedUsers} followings={currentUserFollowings} />;
+  } else {
+    return <div>This user doesn't have any followers.</div>;
   }
-
 };
 export default FollowersList;
