@@ -5,9 +5,11 @@ import { addFollow, removeFollow } from '../../actions/followActions';
 
 
 const mapStateToProps = (state, ownProps) => {
-  const following = state.entities.users.followedUsers.includes(ownProps.posterId)
+  const currentUser = state.session.currentUser.id;
+  const followings = state.entities.follows[currentUser]?.followings || [];
+  const isFollowing = followings.includes(ownProps.posterId);
   return {
-    following
+    isFollowing
   }
 }
 
@@ -22,8 +24,8 @@ const mapDispatchToProps = (dispatch) => {
 /* FIX THIS, THE ACTION DOES NOT WORK PROPERLY RIGHT NOW*/
 
 const PostShowFollowButton = (props) => {
-  const classList = props.following ? "following-text" : "follow-text";
-  const action = props.following ? 
+  const classList = props.isFollowing ? "following-text" : "follow-text";
+  const action = props.isFollowing ? 
     e => {
       e.preventDefault();
       e.stopPropagation();

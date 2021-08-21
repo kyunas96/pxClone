@@ -1,3 +1,5 @@
+json.userId @user.id
+
 json.followingIds @followings.map(&:id)
 
 json.users do

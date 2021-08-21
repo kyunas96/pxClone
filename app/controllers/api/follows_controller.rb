@@ -1,17 +1,17 @@
 class Api::FollowsController < ApplicationController 
 
   def followers
-    user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
 
-    @followers = user.followers
+    @followers = @user.followers
 
     render :followers
   end
 
   def followings
-    user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
 
-    @followings = user.followings
+    @followings = @user.followings
 
     render :followings
   end
@@ -49,7 +49,11 @@ class Api::FollowsController < ApplicationController
     )
 
     if @follow.save
-      render json: { following: true, userId: params[:followed_user_id].to_i }
+      render json: { 
+        following: true, 
+        userId: params[:followed_user_id].to_i , 
+        curUserId: current_user.id.to_i
+      }
     else
       render json: "follow not created"
     end
@@ -66,7 +70,11 @@ class Api::FollowsController < ApplicationController
 
     if @follow
       if @follow.destroy
-        render json: { following: false, userId: params[:followed_user_id].to_i }
+        render json: { 
+          following: false, 
+          userId: params[:followed_user_id].to_i,
+          curUserId: current_user.id.to_i
+        }
       end
     end
   end

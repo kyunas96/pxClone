@@ -30,14 +30,14 @@ export const removeFollow = (profileId) => (dispatch) => {
   });
 }
 
-export const receiveFollowers = (follows) => ({
+export const receiveFollowers = (data) => ({
   type: RECEIVE_FOLLOWS,
-  follows 
+  data 
 })
 
-export const receiveFollowings = (followings) => ({
+export const receiveFollowings = (data) => ({
   type: RECEIVE_FOLLOWINGS,
-  followings
+  data
 })
 
 export const requestFollowers = (userId) => (dispatch) => {

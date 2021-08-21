@@ -2109,16 +2109,16 @@ var removeFollow = function removeFollow(profileId) {
     });
   };
 };
-var receiveFollowers = function receiveFollowers(follows) {
+var receiveFollowers = function receiveFollowers(data) {
   return {
     type: RECEIVE_FOLLOWS,
-    follows: follows
+    data: data
   };
 };
-var receiveFollowings = function receiveFollowings(followings) {
+var receiveFollowings = function receiveFollowings(data) {
   return {
     type: RECEIVE_FOLLOWINGS,
-    followings: followings
+    data: data
   };
 };
 var requestFollowers = function requestFollowers(userId) {
@@ -4350,9 +4350,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var following = state.entities.users.followedUsers.includes(ownProps.posterId);
+  var _state$entities$follo;
+
+  var currentUser = state.session.currentUser.id;
+  var followings = ((_state$entities$follo = state.entities.follows[currentUser]) === null || _state$entities$follo === void 0 ? void 0 : _state$entities$follo.followings) || [];
+  var isFollowing = followings.includes(ownProps.posterId);
   return {
-    following: following
+    isFollowing: isFollowing
   };
 };
 
@@ -4370,8 +4374,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 
 var PostShowFollowButton = function PostShowFollowButton(props) {
-  var classList = props.following ? "following-text" : "follow-text";
-  var action = props.following ? function (e) {
+  var classList = props.isFollowing ? "following-text" : "follow-text";
+  var action = props.isFollowing ? function (e) {
     e.preventDefault();
     e.stopPropagation();
     props.removeFollow(props.posterId);
@@ -5565,14 +5569,14 @@ var ProfileFeed = function ProfileFeed(props) {
     return state.session.currentUser.id;
   });
   var isCurrentUser = profileId === currentUserId;
+  var likedPosts = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (state) {
+    return state.entities.likes[currentUserId];
+  });
   var posts = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (state) {
     return Object.values(state.entities.posts);
   });
   posts = posts.filter(function (post) {
     return post.posterId === profileId;
-  });
-  var likedPosts = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (state) {
-    return state.entities.posts.likedPosts;
   });
   return (
     /*#__PURE__*/
@@ -6151,8 +6155,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../util/FollowAPI */ "./frontend/util/FollowAPI.js");
-/* harmony import */ var _userList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userList */ "./frontend/components/profile/profileLower/userLists/userList.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../util/FollowAPI */ "./frontend/util/FollowAPI.js");
+/* harmony import */ var _userList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./userList */ "./frontend/components/profile/profileLower/userLists/userList.jsx");
+/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../actions/followActions */ "./frontend/actions/followActions.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6169,23 +6175,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var FollowersList = function FollowersList(_ref) {
   var userId = _ref.userId;
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
-      users = _useState2[0],
-      setUsers = _useState2[1];
+      initialMount = _useState2[0],
+      setInitialMount = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-      _useState4 = _slicedToArray(_useState3, 2),
-      initialMount = _useState4[0],
-      setInitialMount = _useState4[1];
-
+  var users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.entities.follows;
+  });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (initialMount) {
-      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_1__.getFollowers(userId).then(function (data) {
-        setUsers(Object.values(data.users));
+      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.getFollowers(userId).then(function (data) {
+        dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_4__.receiveFollowers)(data.users)); // setUsers(Object.values(data.users))
+
         console.log("followers", data.users);
         setInitialMount(false);
       });
@@ -6196,7 +6204,7 @@ var FollowersList = function FollowersList(_ref) {
       return setInitialMount(true);
     };
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userList__WEBPACK_IMPORTED_MODULE_2__.default, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userList__WEBPACK_IMPORTED_MODULE_3__.default, {
     users: users
   });
 };
@@ -6475,18 +6483,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _likesReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./likesReducer */ "./frontend/reducers/likesReducer.js");
 /* harmony import */ var _postsReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./postsReducer */ "./frontend/reducers/postsReducer.js");
 /* harmony import */ var _usersReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./usersReducer */ "./frontend/reducers/usersReducer.js");
+/* harmony import */ var _followsReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./followsReducer */ "./frontend/reducers/followsReducer.js");
 
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   users: _usersReducer__WEBPACK_IMPORTED_MODULE_2__.default,
   posts: _postsReducer__WEBPACK_IMPORTED_MODULE_1__.default,
-  likes: _likesReducer__WEBPACK_IMPORTED_MODULE_0__.default
+  likes: _likesReducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  follows: _followsReducer__WEBPACK_IMPORTED_MODULE_3__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -6517,6 +6528,78 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   users: _userErrorsReducer__WEBPACK_IMPORTED_MODULE_2__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/followsReducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/followsReducer.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/postActions */ "./frontend/actions/postActions.js");
+/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/followActions */ "./frontend/actions/followActions.js");
+/* harmony import */ var _actions_sessionActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/sessionActions */ "./frontend/actions/sessionActions.js");
+
+
+
+
+var FollowsReducer = function FollowsReducer() {
+  var _newState$action$data, _newState$action$data2;
+
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState = Object.assign({}, state);
+  var currentUserFollowings;
+
+  switch (action.type) {
+    case _actions_postActions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_POSTS:
+      currentUserFollowings = newState[action.payload.userId] || {};
+      currentUserFollowings.followings = action.payload.followedUsers;
+      newState[action.payload.userId] = currentUserFollowings;
+      return newState;
+
+    case _actions_followActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_FOLLOWS:
+      newState[action.data.userId].followers = action.data.followerIds;
+      return newState;
+
+    case _actions_followActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_FOLLOWINGS:
+      newState[action.data.userId].followings = action.data.followingIds;
+      return newState;
+
+    case _actions_followActions__WEBPACK_IMPORTED_MODULE_1__.ADD_FOLLOW:
+      currentUserFollowings = ((_newState$action$data = newState[action.data.curUserId]) === null || _newState$action$data === void 0 ? void 0 : _newState$action$data.followings) || [];
+
+      if (!currentUserFollowings.includes(action.data.userId)) {
+        currentUserFollowings.push(action.data.userId);
+      }
+
+      newState[action.data.curUserId].followings = currentUserFollowings;
+      return newState;
+
+    case _actions_followActions__WEBPACK_IMPORTED_MODULE_1__.REMOVE_FOLLOW:
+      currentUserFollowings = ((_newState$action$data2 = newState[action.data.curUserId]) === null || _newState$action$data2 === void 0 ? void 0 : _newState$action$data2.followings) || [];
+      currentUserFollowings = currentUserFollowings.filter(function (userId) {
+        return userId !== action.data.userId;
+      });
+      newState[action.data.curUserId].followings = currentUserFollowings;
+      return newState;
+
+    case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_2__.SESSION_LOGOUT:
+      return {};
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FollowsReducer);
 
 /***/ }),
 
@@ -6967,33 +7050,11 @@ var UsersReducer = function UsersReducer() {
       newState.users[action.payload.user.id] = currentUser;
       return newState;
 
-    case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.ADD_FOLLOW:
-      currentUser = newState.users[action.data.userId] || {
-        id: action.data.userId
-      };
-      currentUser.following = true;
-      newState.users[action.data.userId] = currentUser;
-      !newState.followedUsers.includes(action.data.userId) && newState.followedUsers.push(action.data.userId);
-      return {
-        users: _objectSpread({}, newState.users),
-        followedUsers: newState.followedUsers
-      };
+    case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_FOLLOWS:
+      return Object.assign(newState, action.payload.users);
 
-    case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.REMOVE_FOLLOW:
-      currentUser = newState.users[action.data.userId] || {
-        id: action.data.userId
-      };
-      currentUser.following = false;
-      newState.users[action.data.userId] = currentUser;
-      var follows = [];
-      var likeIndex = newState.followedUsers.indexOf(action.data.userId);
-      var left = newState.followedUsers.slice(0, likeIndex);
-      var right = newState.followedUsers.slice(likeIndex + 1);
-      follows = left.concat(right);
-      return {
-        users: _objectSpread({}, newState.users),
-        followedUsers: follows
-      };
+    case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_FOLLOWINGS:
+      return Object.assign(newState, action.payload.users);
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGIN:
       newState.users[action.payload.user.id] = action.payload.user;

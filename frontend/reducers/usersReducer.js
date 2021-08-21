@@ -7,7 +7,7 @@ import {
 } from "../actions/userActions";
 
 import { RECEIVE_POST, RECEIVE_POSTS } from "../actions/postActions";
-import { ADD_FOLLOW, REMOVE_FOLLOW } from "../actions/followActions";
+import { ADD_FOLLOW, REMOVE_FOLLOW, RECEIVE_FOLLOWS, RECEIVE_FOLLOWINGS } from "../actions/followActions";
 import { SESSION_LOGIN, SESSION_LOGOUT } from "../actions/sessionActions";
 
 const defaultState = {
@@ -43,33 +43,10 @@ const UsersReducer = (state = defaultState, action) => {
       currentUser = Object.assign(currentUser, action.payload.user);
       newState.users[action.payload.user.id] = currentUser;
       return newState;
-    case ADD_FOLLOW:
-      currentUser = newState.users[action.data.userId] || {id: action.data.userId};
-      currentUser.following = true;
-      newState.users[action.data.userId] = currentUser;
-      !newState.followedUsers.includes(action.data.userId) &&
-        newState.followedUsers.push(action.data.userId);
-      return {
-        users: {
-          ...newState.users,
-        },
-        followedUsers: newState.followedUsers
-      }
-    case REMOVE_FOLLOW:
-      currentUser = newState.users[action.data.userId] || {id: action.data.userId};
-      currentUser.following = false;
-      newState.users[action.data.userId] = currentUser;
-      let follows = [];
-      const likeIndex = newState.followedUsers.indexOf(action.data.userId);
-      const left = newState.followedUsers.slice(0, likeIndex);
-      const right = newState.followedUsers.slice(likeIndex + 1);
-      follows = left.concat(right);
-      return {
-        users: {
-          ...newState.users,
-        },
-        followedUsers: follows,
-      };
+    case RECEIVE_FOLLOWS:
+      return Object.assign(newState, action.payload.users);
+    case RECEIVE_FOLLOWINGS:
+      return Object.assign(newState, action.payload.users);
     case SESSION_LOGIN:
       newState.users[action.payload.user.id] = action.payload.user;
       return {
