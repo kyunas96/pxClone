@@ -6186,15 +6186,21 @@ var FollowersList = function FollowersList(_ref) {
       initialMount = _useState2[0],
       setInitialMount = _useState2[1];
 
+  var followers = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    var _state$entities$follo;
+
+    return (_state$entities$follo = state.entities.follows[userId]) === null || _state$entities$follo === void 0 ? void 0 : _state$entities$follo.followers;
+  }) || [];
   var users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
-    return state.entities.follows;
+    return Object.values(state.entities.users);
+  });
+  var siftedUsers = users.filter(function (user) {
+    return followers.includes(user.id);
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (initialMount) {
       _util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.getFollowers(userId).then(function (data) {
-        dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_4__.receiveFollowers)(data.users)); // setUsers(Object.values(data.users))
-
-        console.log("followers", data.users);
+        dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_4__.receiveFollowers)(data));
         setInitialMount(false);
       });
     }
@@ -6204,9 +6210,14 @@ var FollowersList = function FollowersList(_ref) {
       return setInitialMount(true);
     };
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userList__WEBPACK_IMPORTED_MODULE_3__.default, {
-    users: users
-  });
+
+  if (siftedUsers.length > 0) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userList__WEBPACK_IMPORTED_MODULE_3__.default, {
+      users: siftedUsers
+    });
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "This user doesn't have any followers.");
+  }
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FollowersList);
@@ -6225,8 +6236,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../util/FollowAPI */ "./frontend/util/FollowAPI.js");
-/* harmony import */ var _userList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userList */ "./frontend/components/profile/profileLower/userLists/userList.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../util/FollowAPI */ "./frontend/util/FollowAPI.js");
+/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../actions/followActions */ "./frontend/actions/followActions.js");
+/* harmony import */ var _userList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./userList */ "./frontend/components/profile/profileLower/userLists/userList.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6243,24 +6256,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var FollowingsList = function FollowingsList(_ref) {
   var userId = _ref.userId;
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
-      users = _useState2[0],
-      setUsers = _useState2[1];
+      initialMount = _useState2[0],
+      setInitialMount = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
-      _useState4 = _slicedToArray(_useState3, 2),
-      initialMount = _useState4[0],
-      setInitialMount = _useState4[1];
+  var followings = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    var _state$entities$follo;
 
+    return (_state$entities$follo = state.entities.follows[userId]) === null || _state$entities$follo === void 0 ? void 0 : _state$entities$follo.followings;
+  }) || [];
+  var users = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return Object.values(state.entities.users);
+  });
+  var siftedUsers = users.filter(function (user) {
+    return followings.includes(user.id);
+  });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (initialMount) {
-      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_1__.getFollowings(userId).then(function (data) {
-        setUsers(Object.values(data.users));
-        console.log("followings", data.users);
+      _util_FollowAPI__WEBPACK_IMPORTED_MODULE_2__.getFollowings(userId).then(function (data) {
+        dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_3__.receiveFollowings)(data));
         setInitialMount(false);
       });
     }
@@ -6270,9 +6291,14 @@ var FollowingsList = function FollowingsList(_ref) {
       return setInitialMount(true);
     };
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userList__WEBPACK_IMPORTED_MODULE_2__.default, {
-    users: users
-  });
+
+  if (siftedUsers.length > 0) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userList__WEBPACK_IMPORTED_MODULE_4__.default, {
+      users: siftedUsers
+    });
+  } else {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "This user doesn't follow anyone.");
+  }
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FollowingsList);
@@ -6301,9 +6327,10 @@ var UserList = function UserList(_ref) {
   // a list
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-list"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, users.map(function (user) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, users.map(function (user, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userListing__WEBPACK_IMPORTED_MODULE_1__.default, {
-      user: user
+      user: user,
+      key: i
     });
   })));
 };
@@ -6566,11 +6593,15 @@ var FollowsReducer = function FollowsReducer() {
       return newState;
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_FOLLOWS:
-      newState[action.data.userId].followers = action.data.followerIds;
+      currentUserFollowings = newState[action.data.userId] || {};
+      currentUserFollowings.followers = action.data.followerIds;
+      newState[action.data.userId] = currentUserFollowings;
       return newState;
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_FOLLOWINGS:
-      newState[action.data.userId].followings = action.data.followingIds;
+      currentUserFollowings = newState[action.data.userId] || {};
+      currentUserFollowings.followings = action.data.followingIds;
+      newState[action.data.userId] = currentUserFollowings;
       return newState;
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_1__.ADD_FOLLOW:
@@ -7051,10 +7082,10 @@ var UsersReducer = function UsersReducer() {
       return newState;
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_FOLLOWS:
-      return Object.assign(newState, action.payload.users);
+      return Object.assign(newState, action.data.users);
 
     case _actions_followActions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_FOLLOWINGS:
-      return Object.assign(newState, action.payload.users);
+      return Object.assign(newState, action.data.users);
 
     case _actions_sessionActions__WEBPACK_IMPORTED_MODULE_3__.SESSION_LOGIN:
       newState.users[action.payload.user.id] = action.payload.user;

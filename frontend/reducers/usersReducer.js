@@ -44,9 +44,9 @@ const UsersReducer = (state = defaultState, action) => {
       newState.users[action.payload.user.id] = currentUser;
       return newState;
     case RECEIVE_FOLLOWS:
-      return Object.assign(newState, action.payload.users);
+      return Object.assign(newState, action.data.users);
     case RECEIVE_FOLLOWINGS:
-      return Object.assign(newState, action.payload.users);
+      return Object.assign(newState, action.data.users);
     case SESSION_LOGIN:
       newState.users[action.payload.user.id] = action.payload.user;
       return {

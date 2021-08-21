@@ -19,10 +19,14 @@ const FollowsReducer = (state = {}, action) => {
       newState[action.payload.userId] = currentUserFollowings
       return newState;
     case RECEIVE_FOLLOWS:
-      newState[action.data.userId].followers = action.data.followerIds;
+      currentUserFollowings = newState[action.data.userId] || {};
+      currentUserFollowings.followers = action.data.followerIds;
+      newState[action.data.userId] = currentUserFollowings;
       return newState;
     case RECEIVE_FOLLOWINGS:
-      newState[action.data.userId].followings = action.data.followingIds;
+      currentUserFollowings = newState[action.data.userId] || {};
+      currentUserFollowings.followings = action.data.followingIds;
+      newState[action.data.userId] = currentUserFollowings;
       return newState;
     case ADD_FOLLOW:
       currentUserFollowings =
