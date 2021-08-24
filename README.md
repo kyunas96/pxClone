@@ -7,6 +7,13 @@ pxClone is a clone of 500px.com that allows users to share images with other use
 ### Live Demo: 
   * https://pxclone.herokuapp.com/
 
+### Screenshots
+
+![](./screenshots/home.png)
+![](./screenshots/homeFeed.png)
+![](./screenshots/postShow.png)
+![](./screenshots/profile.png)
+
 ### Technologies used:
 * Ruby on Rails
   * connected to s3 remote bucket using ActiveStorage
