@@ -19,6 +19,7 @@ pxClone is a clone of [500px.com](https://www.500px.com) that allows users to sh
   * connected to s3 remote bucket using ActiveStorage
 * [React](https://www.npmjs.com/package/react)
 * [Redux](https://www.npmjs.com/package/redux)
+* [redux-persist](https://www.npmjs.com/package/redux-persist)
 * [react-redux](https://www.npmjs.com/package/react-redux)
 * [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 * [react-responsive-masonry](https://www.npmjs.com/package/react-responsive-masonry)
