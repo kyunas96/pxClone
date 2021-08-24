@@ -7,7 +7,11 @@ import UserList from "./userList";
 const FollowingsList = ({ userId }) => {
   let dispatch = useDispatch();
   let [initialMount, setInitialMount] = useState(true);
+
+  let userIdAsInt = parseInt(userId);
   let currentUserId = useSelector((state) => state.session.currentUser.id);
+  let isCurrentUser = currentUserId === userIdAsInt;
+  console.log("isCurrentUSer", isCurrentUser)
   let currentUserFollowings =
     useSelector((state) => state.entities.follows[currentUserId]?.followings) || [];
   let followingIds =
@@ -31,7 +35,8 @@ const FollowingsList = ({ userId }) => {
   if (siftedUsers.length > 0) {
     return <UserList users={siftedUsers} followings={currentUserFollowings} />;
   } else {
-    return <div>This user doesn't follow anyone.</div>;
+    const message = isCurrentUser ? "You do" : "This user does"
+    return <div>{`${message} not follow anyone.`}</div>;
   }
 };
 

@@ -5601,54 +5601,10 @@ var ProfileFeed = function ProfileFeed(props) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileHeader/followButton/followButtonContainer.js":
-/*!*****************************************************************************************!*\
-  !*** ./frontend/components/profile/profileHeader/followButton/followButtonContainer.js ***!
-  \*****************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/profileHeader/followButton/follow_button.jsx");
-/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../actions/followActions */ "./frontend/actions/followActions.js");
-
-
-
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var following = state.entities.users.followedUsers.includes(state.ui.currentProfileId);
-  return {
-    following: following,
-    profileId: state.ui.currentProfileId
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    fetchFollow: function fetchFollow(userId) {
-      return dispatch(getFollowStatus(userId));
-    },
-    addFollow: function addFollow(profileId) {
-      return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.addFollow)(profileId));
-    },
-    removeFollow: function removeFollow(profileId) {
-      return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.removeFollow)(profileId));
-    }
-  };
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default));
-
-/***/ }),
-
-/***/ "./frontend/components/profile/profileHeader/followButton/follow_button.jsx":
-/*!**********************************************************************************!*\
-  !*** ./frontend/components/profile/profileHeader/followButton/follow_button.jsx ***!
-  \**********************************************************************************/
+/***/ "./frontend/components/profile/profileHeader/follow_button.jsx":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/profile/profileHeader/follow_button.jsx ***!
+  \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5657,16 +5613,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_followActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/followActions */ "./frontend/actions/followActions.js");
+
+
 
 
 var FollowButton = function FollowButton(props) {
-  var classList = props.following === true ? "following" : "follow";
-  var profileId = props.profileId;
-  var action = props.following ? props.removeFollow : props.addFollow;
+  var curUserId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.session.currentUser.id;
+  });
+  var followings = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    var _state$entities$follo;
+
+    return (_state$entities$follo = state.entities.follows[curUserId]) === null || _state$entities$follo === void 0 ? void 0 : _state$entities$follo.followings;
+  }) || [];
+  var curProfileId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.ui.currentProfileId;
+  });
+  var isFollowing = followings.includes(curProfileId);
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var classList = isFollowing === true ? "following" : "follow";
+  var action = isFollowing ? function () {
+    return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.removeFollow)(curProfileId));
+  } : function () {
+    return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.addFollow)(curProfileId));
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "follow-button ".concat(classList),
     onClick: function onClick() {
-      return action(props.profileId);
+      return action();
     }
   });
 };
@@ -5859,7 +5835,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _followButton_followButtonContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./followButton/followButtonContainer */ "./frontend/components/profile/profileHeader/followButton/followButtonContainer.js");
+/* harmony import */ var _follow_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./follow_button */ "./frontend/components/profile/profileHeader/follow_button.jsx");
 /* harmony import */ var _profile_location__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_location */ "./frontend/components/profile/profileHeader/profile_location.jsx");
 
 
@@ -5872,7 +5848,7 @@ var ProfileInfo = function ProfileInfo(_ref) {
       country = _ref.country,
       description = _ref.description,
       socials = _ref.socials;
-  var followButton = renderFollow === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButton_followButtonContainer__WEBPACK_IMPORTED_MODULE_1__.default, null) : null;
+  var followButton = renderFollow === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_follow_button__WEBPACK_IMPORTED_MODULE_1__.default, null) : null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "profile-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
@@ -6362,9 +6338,12 @@ var FollowingsList = function FollowingsList(_ref) {
       initialMount = _useState2[0],
       setInitialMount = _useState2[1];
 
+  var userIdAsInt = parseInt(userId);
   var currentUserId = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.session.currentUser.id;
   });
+  var isCurrentUser = currentUserId === userIdAsInt;
+  console.log("isCurrentUSer", isCurrentUser);
   var currentUserFollowings = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     var _state$entities$follo;
 
@@ -6401,7 +6380,8 @@ var FollowingsList = function FollowingsList(_ref) {
       followings: currentUserFollowings
     });
   } else {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "This user doesn't follow anyone.");
+    var message = isCurrentUser ? "You do" : "This user does";
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "".concat(message, " not follow anyone."));
   }
 };
 

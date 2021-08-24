@@ -33,14 +33,17 @@
 }
 
 .user-list-follow.following {
-  background-color: $pxBlueText;
-  color: white;
+  border: 2px solid $pxBlueText;
+  background-color: white;
+  // color: white;
 
   &:hover{
     background-color: red;
+    border: none;
   }
 
   &:hover:after {
+    color:white;
     content: "Unfollow";
   }
 

@@ -154,8 +154,9 @@
   height: 30px;
   font-family: sans-serif;
   font-weight: bold;
+}
 
-  .follow {
+.follow {
     &::after {
       content: "Follow";
     }
@@ -184,4 +185,3 @@
       color: red;
     }
   }
-}

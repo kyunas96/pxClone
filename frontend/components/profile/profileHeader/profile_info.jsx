@@ -1,10 +1,10 @@
 import React from "react";
-import FollowButtonContainer from "./followButton/followButtonContainer";
+import FollowButton from "./follow_button";
 import ProfileLocation from "./profile_location";
 
 const ProfileInfo = ({renderFollow, username, city, country, description, socials}) => {
   const followButton =
-    renderFollow === true ? (<FollowButtonContainer />) : (null) 
+    renderFollow === true ? (<FollowButton />) : (null) 
 
   return (
     <div className="profile-info">
