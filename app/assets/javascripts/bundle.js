@@ -6127,10 +6127,10 @@ var ProfileLower = function ProfileLower(props) {
 
 /***/ }),
 
-/***/ "./frontend/components/profile/profileLower/userListingPhoto.jsx":
-/*!***********************************************************************!*\
-  !*** ./frontend/components/profile/profileLower/userListingPhoto.jsx ***!
-  \***********************************************************************/
+/***/ "./frontend/components/profile/profileLower/userListingPicture.jsx":
+/*!*************************************************************************!*\
+  !*** ./frontend/components/profile/profileLower/userListingPicture.jsx ***!
+  \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6139,19 +6139,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! assets/images/user-circle-solid.svg */ "./app/assets/images/user-circle-solid.svg");
 /* harmony import */ var assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
+
 var UserListingPicture = function UserListingPicture(_ref) {
-  var userPhoto = _ref.userPhoto;
-  var src = userPhoto ? userPhoto : (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default());
+  var user = _ref.user;
+  var src = user.userPhoto ? user.userPhoto : (assets_images_user_circle_solid_svg__WEBPACK_IMPORTED_MODULE_1___default());
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-listing-photo"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: "/users/".concat(user.id, "/profile")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: src
-  }));
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserListingPicture);
@@ -6445,7 +6449,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _followButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./followButton */ "./frontend/components/profile/profileLower/userLists/followButton.jsx");
-/* harmony import */ var _userListingPhoto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../userListingPhoto */ "./frontend/components/profile/profileLower/userListingPhoto.jsx");
+/* harmony import */ var _userListingPicture__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../userListingPicture */ "./frontend/components/profile/profileLower/userListingPicture.jsx");
 
 
 
@@ -6459,8 +6463,8 @@ var UserListing = function UserListing(_ref) {
   */
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
     className: "user-listing"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userListingPhoto__WEBPACK_IMPORTED_MODULE_2__.default, {
-    userPhoto: user.userPhoto
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_userListingPicture__WEBPACK_IMPORTED_MODULE_2__.default, {
+    user: user
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-listing-username"
   }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButton__WEBPACK_IMPORTED_MODULE_1__.default, {

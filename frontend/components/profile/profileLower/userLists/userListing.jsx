@@ -1,6 +1,6 @@
 import React from "react";
 import FollowButton from "./followButton";
-import UserListingPicture from "../userListingPhoto";
+import UserListingPicture from "../userListingPicture";
 
 const UserListing = ({ user, isFollowing }) => {
   /* 
@@ -10,7 +10,7 @@ const UserListing = ({ user, isFollowing }) => {
   return (
     <li className="user-listing">
       <div>
-        <UserListingPicture userPhoto={user.userPhoto} />
+        <UserListingPicture user={user} />
       </div>
       <div className="user-listing-username">
         {user.username}
