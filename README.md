@@ -2,7 +2,7 @@
 
 ## pxClone
 
-pxClone is a clone of 500px.com that allows users to share images with other users.
+pxClone is a clone of [500px.com](https://www.500px.com) that allows users to share images.
 
 ### Live Demo: 
   * https://pxclone.herokuapp.com/
@@ -17,13 +17,21 @@ pxClone is a clone of 500px.com that allows users to share images with other use
 ### Technologies used:
 * Ruby on Rails
   * connected to s3 remote bucket using ActiveStorage
-* React 
-* Redux
+* [React](https://www.npmjs.com/package/react)
+* [Redux](https://www.npmjs.com/package/redux)
+* [react-redux](https://www.npmjs.com/package/react-redux)
+* [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+* [react-responsive-masonry](https://www.npmjs.com/package/react-responsive-masonry)
+* [react-country-region-selector](https://www.npmjs.com/package/react-country-region-selector)
+* [axios](https://www.npmjs.com/package/axios)
+
 
 ### Features
 
 * Allows users to post images to the site and view them
-* Feed component that allows users to see images
+* Feed component that sources images from followed users
+* Ability to like images and see them as part of a liked posts feed
+* Users can follow eachother, allowing them to get a personalized home feed
 
 ### Solution Highlights
 
