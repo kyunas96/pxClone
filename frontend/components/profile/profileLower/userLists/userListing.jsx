@@ -1,6 +1,6 @@
 import React from "react";
 import FollowButton from "./followButton";
-import defaultProfilePicture from "assets/images/user-circle-solid.svg";
+import UserListingPicture from "../userListingPhoto";
 
 const UserListing = ({ user, isFollowing }) => {
   /* 
@@ -9,11 +9,12 @@ const UserListing = ({ user, isFollowing }) => {
 
   return (
     <li className="user-listing">
-      <div className="user-listing-photo">
-        <img src={user.userPhoto || defaultProfilePicture} />
+      <div>
+        <UserListingPicture userPhoto={user.userPhoto} />
       </div>
-      <div>{user.username}</div>
-      <div>{/* this last div will be for a follow button */}</div>
+      <div className="user-listing-username">
+        {user.username}
+      </div>
       <div>
         <FollowButton userId={user.id} isFollowing={isFollowing} />
       </div>
