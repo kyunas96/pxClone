@@ -1,6 +1,7 @@
 import React from "react";
 import FollowButton from "./followButton";
 import UserListingPicture from "../userListingPicture";
+import { Link } from "react-router-dom";
 
 const UserListing = ({ user, isFollowing }) => {
   /* 
@@ -13,7 +14,7 @@ const UserListing = ({ user, isFollowing }) => {
         <UserListingPicture user={user} />
       </div>
       <div className="user-listing-username">
-        {user.username}
+        <Link to={`/users/${user.id}/profile`}>{user.username}</Link>
       </div>
       <div>
         <FollowButton userId={user.id} isFollowing={isFollowing} />

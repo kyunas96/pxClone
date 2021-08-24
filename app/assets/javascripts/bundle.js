@@ -6450,6 +6450,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _followButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./followButton */ "./frontend/components/profile/profileLower/userLists/followButton.jsx");
 /* harmony import */ var _userListingPicture__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../userListingPicture */ "./frontend/components/profile/profileLower/userListingPicture.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -6467,7 +6469,9 @@ var UserListing = function UserListing(_ref) {
     user: user
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "user-listing-username"
-  }, user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButton__WEBPACK_IMPORTED_MODULE_1__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    to: "/users/".concat(user.id, "/profile")
+  }, user.username)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_followButton__WEBPACK_IMPORTED_MODULE_1__.default, {
     userId: user.id,
     isFollowing: isFollowing
   })));
