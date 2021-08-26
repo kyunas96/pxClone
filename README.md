@@ -7,6 +7,12 @@ pxClone is a clone of [500px.com](https://www.500px.com) that allows users to sh
 ### Live Demo: 
   * https://pxclone.herokuapp.com/
 
+### Table of Contents
+  * [Screenshots](#screenshots)
+  * [Technologies](#technologies)
+  * [Features](#features)
+  * [Solution Highlights](#solution-highlights)
+
 ### Screenshots
 
 ![](./screenshots/home.png)
@@ -14,7 +20,7 @@ pxClone is a clone of [500px.com](https://www.500px.com) that allows users to sh
 ![](./screenshots/postShow.png)
 ![](./screenshots/profile.png)
 
-### Technologies used:
+### Technologies
 * Ruby on Rails
   * connected to s3 remote bucket using ActiveStorage
 * [React](https://www.npmjs.com/package/react)
