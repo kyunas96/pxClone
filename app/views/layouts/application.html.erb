@@ -2,12 +2,20 @@
 <html>
   <head>
     <title>PxClone</title>
-    <%= favicon_link_tag asset_path('500pxLogo.png') %>
+    <%= favicon_link_tag asset_path("500pxLogo.png") %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application'%>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+    <%= javascript_include_tag "application" %>
+
+    <meta name="description" content="A photography sharing website for users to
+    like images and follow others." />
+    <meta name="title" property="og:title" content="500px" />
+    <meta name="image" property="og:image" content="https://raw.githubusercontent.com/yunasty/pxClone/main/screenshots/home.png" />
+    <meta name="description" property="og:description" content="A photography sharing website for users to
+    like images and follow others." />
+
   </head>
 
   <body>
