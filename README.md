@@ -22,7 +22,7 @@ pxClone is a clone of [500px.com](https://www.500px.com) that allows users to sh
 
 ### Technologies
 * Ruby on Rails
-  * connected to s3 remote bucket using ActiveStorage
+* Amazon Web Services s3
 * [React](https://www.npmjs.com/package/react)
 * [Redux](https://www.npmjs.com/package/redux)
 * [redux-persist](https://www.npmjs.com/package/redux-persist)
