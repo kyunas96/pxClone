@@ -1,8 +1,6 @@
 import React from 'react';
 import GitHubLogo from 'assets/images/GitHub-Mark-64px.png';
 import LinkedInLogo from 'assets/images/linkedin_64px.png';
-// import GitHubLogo from './GitHub-Mark-64px.png';
-// import LinkedInLogo from './linkedin_64px.png';
 
 const Footer = (props) => (
   <footer>
