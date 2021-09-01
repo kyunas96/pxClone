@@ -7,7 +7,7 @@ import LinkedInLogo from 'assets/images/linkedin_64px.png';
 const Footer = (props) => (
   <footer>
     <div>
-      <a href="https://github.com/yunasty/pxClone" target="_blank">
+      <a href="https://github.com/kyunas96/pxClone" target="_blank">
         <img src={GitHubLogo} />
       </a>
     </div>
