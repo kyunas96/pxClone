@@ -14,12 +14,14 @@ import FeedShowContainer from './components/posts/feedShowContainer';
 import ProfileShowContainer from './components/posts/profileShowContainer';
 import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
 
-const toggleDropdown = (e) => {
-  e.preventDefault();
-  dispatch(closeDropdown);
-};
-
 const App = (props) => {
+  const dispatch = useDispatch();
+
+  const toggleDropdown = (e) => {
+    e.preventDefault();
+    dispatch(closeDropdown);
+  };
+
   return (
     <div id="app" onClick={toggleDropdown}>
       <HeaderContainer />

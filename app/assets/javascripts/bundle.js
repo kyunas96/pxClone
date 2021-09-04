@@ -2519,12 +2519,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var toggleDropdown = function toggleDropdown(e) {
-  e.preventDefault();
-  dispatch(_actions_uiActions__WEBPACK_IMPORTED_MODULE_2__.closeDropdown);
-};
-
 var App = function App(props) {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+
+  var toggleDropdown = function toggleDropdown(e) {
+    e.preventDefault();
+    dispatch(_actions_uiActions__WEBPACK_IMPORTED_MODULE_2__.closeDropdown);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "app",
     onClick: toggleDropdown
@@ -46067,9 +46069,6 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root");
-  var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)();
-  window.store = _store_store__WEBPACK_IMPORTED_MODULE_4__.store;
-  window.dispatch = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch;
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: _store_store__WEBPACK_IMPORTED_MODULE_4__.store
   }), root);
