@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router";
+import { useDispatch } from "react-redux";
+import { closeDropdown } from "./actions/uiActions";
 import HeaderContainer from "./components/base/header_container";
 import {ProtectedRoute} from "./components/protectedRoute";
 import SplashPage from "./components/splashPage";
@@ -12,9 +14,14 @@ import FeedShowContainer from './components/posts/feedShowContainer';
 import ProfileShowContainer from './components/posts/profileShowContainer';
 import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
 
+const toggleDropdown = (e) => {
+  e.preventDefault();
+  dispatch(closeDropdown);
+};
+
 const App = (props) => {
   return (
-    <div id="app">
+    <div id="app" onClick={toggleDropdown}>
       <HeaderContainer />
       <div id="body">
         <Switch>

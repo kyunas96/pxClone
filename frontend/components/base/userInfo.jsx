@@ -1,44 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-// import UploadButton from './uploadButton';
-import UserInfoDropdown from './userInfoDropdown';
-import userInfoButton from 'assets/images/user-circle-solid.svg';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDropdown as toggleDropdownAction } from "../../actions/uiActions";
+import UserInfoDropdown from "./userInfoDropdown";
+import userInfoButton from "assets/images/user-circle-solid.svg";
 
-class UserInfo extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { showDropdown: false }
-    this.toggleDropdown = this.toggleDropdown.bind(this)
-  }
+const UserInfo = ({currentUser, logout}) => {
+  const dispatch = useDispatch();
+  const dropdownIsVisible = useSelector(state => state.ui.dropdownIsVisible);
 
-  toggleDropdown(e) {
+  const toggleDropdown = (e) => {
     e.preventDefault();
-    this.setState(prevState => ({
-      showDropdown: !prevState.showDropdown
-    })
-    )
+    e.stopPropagation();
+    dispatch(toggleDropdownAction)
   }
 
-  render() {
-    return (
-      <div className='user-info' >
-        <button className='user-info-toggle' onClick={e => this.toggleDropdown(e)}>
-          <img src={userInfoButton} />
-        </button>
-        {this.state.showDropdown ?
-          <UserInfoDropdown
-            currentUser={this.props.currentUser}
-            logout={this.props.logout}
-            toggleDropdown={this.toggleDropdown}
-          /> : (null)}
-        <div className='user-info-upload'>
-          <Link to='/post/create' className='upload-button'>
+  return (
+    <div className="user-info">
+      <button
+        className="user-info-toggle"
+        onClick={e => toggleDropdown(e)}
+      >
+        <img src={userInfoButton} />
+      </button>
+      {dropdownIsVisible ? (
+        <UserInfoDropdown
+          currentUser={currentUser}
+          logout={logout}
+          toggleDropdown={e => toggleDropdown(e)}
+        />
+      ) : null}
+      <div className="user-info-upload">
+        <Link to="/post/create" className="upload-button">
           Upload
-          </Link>
-        </div>
+        </Link>
       </div>
-    )
-  }
-}
+    </div>
+  );
+};
 
 export default UserInfo;
