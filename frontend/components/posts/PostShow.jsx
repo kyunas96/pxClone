@@ -31,7 +31,6 @@ class PostShow extends React.Component {
 
   render() {
     const postItem = this.props.post ? this.props.post.title : null;
-    console.log("render", this.props);
 
     if (this.props.post && this.props.postErrors === undefined) {
       return (

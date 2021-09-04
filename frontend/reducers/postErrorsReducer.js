@@ -1,7 +1,6 @@
 import { RECEIVE_POST_ERRORS, RESET_POST_ERRORS } from "../actions/postActions";
 
 const postErrorsReducer = (state = {}, action) => {
-  console.log("postErrors", action);
   Object.freeze(state);
   switch(action.type){
     case RECEIVE_POST_ERRORS:

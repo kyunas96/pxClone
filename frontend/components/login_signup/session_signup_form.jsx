@@ -14,6 +14,7 @@ class SignUpForm extends React.Component{
 
   handleSubmit= e => {
     e.preventDefault();
+    e.stopPropagation();
     this.props.action({
       user: {...this.state}
     });

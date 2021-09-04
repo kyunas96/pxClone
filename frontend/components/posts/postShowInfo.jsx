@@ -5,7 +5,6 @@ import PostShowFollowButton from "./postShowFollowButton";
 import defaultUserImage from 'assets/images/user-circle-solid.svg';
 
 const PostShowInfo = ({ user, post }) => {
-  console.log("postshowinfo", user);
   /*
     Notes: 
       • this component will need a container to have access to the dispatch

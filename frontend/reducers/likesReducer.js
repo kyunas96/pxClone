@@ -5,8 +5,6 @@ import { SESSION_LOGOUT } from "../actions/sessionActions";
 const LikesReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
-  
-  // console.log(currentUserId);
   let curUserLikes;
   // now the payload will have the user's id attached to it and thus can be accessed
   // within the payload

@@ -20,12 +20,10 @@ const LikedPostsFeed = ({ userId }) => {
 
   useEffect(() => {
     if (initialMount) {
-      console.log("crap");
       // if its the initial mount then we want to dispatch the action that will
       // retrieve the posts from the backend and cache them in the store
       LikeAPI.fetchLikes(userIdAsInt).then((data) => {
         dispatch(receiveLikes(data));
-        console.log("data", data);
         // setPosts(data.posts);
         setInitialMount(false);
       });

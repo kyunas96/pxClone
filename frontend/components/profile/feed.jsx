@@ -3,7 +3,6 @@ import Image from "../feed/image";
 import Masonry from "react-masonry-css";
 
 const Feed = ({posts, isCurrentUser, likedPosts}) => {
-  console.log("feed", posts);
   const breakpointColumnsObj = {
     default: 4,
     1100: 3,

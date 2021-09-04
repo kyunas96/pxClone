@@ -44,13 +44,11 @@ export const createUser = (user) => (dispatch) =>
       dispatch(sessionLogin(data));
     },
     ({ response }) => {
-      console.log("user create", response);
       dispatch(receiveSessionErrors(response.data));
     }
   );
 
 export const updateUser = (userId, user) => (dispatch) =>
   APIUtil.updateUser(userId, user).then((data) => {
-    console.log("received", data);
     dispatch(receiveUser(data));
   });

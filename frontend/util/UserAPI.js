@@ -21,7 +21,6 @@ export const requestUser = (userId) => (
 )
 
 export const updateUser = (userId, user) => {
-  console.log("updateUser reached");
   return $.ajax({
     method: "patch",
     url: `api/users/${userId}`,

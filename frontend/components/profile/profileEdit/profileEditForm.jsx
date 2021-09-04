@@ -34,7 +34,7 @@ class ProfileEditForm extends React.Component {
       const value = e.target.value;
       this.setState((prevState) => {
         return { profile: { ...prevState.profile, [key]: value } };
-      }, () => console.log("newState", this.state));
+      });
     }
   }
 
@@ -71,15 +71,11 @@ class ProfileEditForm extends React.Component {
         formData.append(`user[${key}]`, val);
       }
     }
-    for (const [key, val] of formData.entries()) {
-      console.log(key + " " + val);
-    }
     this.props.updateUser(this.props.user.id, formData);
     this.props.history.push(`/users/${this.props.user.id}/profile`);
   }
 
   render() {
-    console.log("render", this.props);
     return (
       <form
         className="profile-edit-form"

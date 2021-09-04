@@ -32,15 +32,14 @@ const updatePost = (post) => ({
 
 export const requestUsersFeed = () => (dispatch) =>(
   PostAPI.requestUsersFeed().then(({ data }) => {
-    console.log("feed", data);
     dispatch(receivePosts(data));
   })
 )
 
-export const requestLikedPosts = () => (dispatch) => (
-  PostAPI.requestLikedPosts()
-    .then((data) => console.log(data))
-)
+// export const requestLikedPosts = () => (dispatch) => (
+//   PostAPI.requestLikedPosts()
+//     .then((data) => console.log(data))
+// )
 
 
 export const requestPost = (postId) => (dispatch) => (

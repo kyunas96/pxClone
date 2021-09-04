@@ -46,14 +46,12 @@ class CreatePostForm extends React.Component {
       errors.push("No photo selected");
     }
     this.setState({ errors });
-    console.log("errors", errors);
     return errors.length === 0;
   }
 
   handleUpload(e) {
     e.preventDefault();
     if (this.checkFields()) {
-      console.log("Succeeded");
       const formData = new FormData();
       formData.append("[post][title]", this.state.title);
       formData.append("[post][description]", this.state.description);

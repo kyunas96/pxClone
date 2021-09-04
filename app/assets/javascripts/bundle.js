@@ -2222,7 +2222,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "recievePostErrors": () => (/* binding */ recievePostErrors),
 /* harmony export */   "resetPostErrors": () => (/* binding */ resetPostErrors),
 /* harmony export */   "requestUsersFeed": () => (/* binding */ requestUsersFeed),
-/* harmony export */   "requestLikedPosts": () => (/* binding */ requestLikedPosts),
 /* harmony export */   "requestPost": () => (/* binding */ requestPost),
 /* harmony export */   "requestUpdatePost": () => (/* binding */ requestUpdatePost)
 /* harmony export */ });
@@ -2268,18 +2267,14 @@ var requestUsersFeed = function requestUsersFeed() {
   return function (dispatch) {
     return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestUsersFeed().then(function (_ref) {
       var data = _ref.data;
-      console.log("feed", data);
       dispatch(receivePosts(data));
     });
   };
-};
-var requestLikedPosts = function requestLikedPosts() {
-  return function (dispatch) {
-    return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestLikedPosts().then(function (data) {
-      return console.log(data);
-    });
-  };
-};
+}; // export const requestLikedPosts = () => (dispatch) => (
+//   PostAPI.requestLikedPosts()
+//     .then((data) => console.log(data))
+// )
+
 var requestPost = function requestPost(postId) {
   return function (dispatch) {
     return _util_PostAPI__WEBPACK_IMPORTED_MODULE_0__.requestPost(postId).then(function (_ref2) {
@@ -2354,7 +2349,6 @@ var requestLogin = function requestLogin(session) {
   return function (dispatch) {
     return _util_SessionAPI__WEBPACK_IMPORTED_MODULE_0__.requestLogin(session).then(function (_ref) {
       var data = _ref.data;
-      console.log(data);
       dispatch(sessionLogin(data));
     }, function (_ref2) {
       var response = _ref2.response;
@@ -2469,7 +2463,6 @@ var createUser = function createUser(user) {
       dispatch((0,_sessionActions__WEBPACK_IMPORTED_MODULE_1__.sessionLogin)(data));
     }, function (_ref3) {
       var response = _ref3.response;
-      console.log("user create", response);
       dispatch((0,_sessionActions__WEBPACK_IMPORTED_MODULE_1__.receiveSessionErrors)(response.data));
     });
   };
@@ -2477,7 +2470,6 @@ var createUser = function createUser(user) {
 var updateUser = function updateUser(userId, user) {
   return function (dispatch) {
     return _util_UserAPI__WEBPACK_IMPORTED_MODULE_0__.updateUser(userId, user).then(function (data) {
-      console.log("received", data);
       dispatch(receiveUser(data));
     });
   };
@@ -3407,8 +3399,10 @@ var FormErrors = function FormErrors(props) {
   } else {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "session-form-errors"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, props.errors.map(function (error) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, error);
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, props.errors.map(function (error, i) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        key: i
+      }, error);
     })));
   }
 };
@@ -3558,6 +3552,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
+      console.log("handling submit");
+      e.stopPropagation();
       e.preventDefault();
 
       _this.props.action(_this.state);
@@ -3597,8 +3593,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
       if (this.props.loggedIn) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__.Redirect, {
           to: "/"
@@ -3608,10 +3602,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "session-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        className: "session-form",
-        onSubmit: function onSubmit(e) {
-          return _this3.handleSubmit(e);
-        }
+        className: "session-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Log in to 500px"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_formErrors__WEBPACK_IMPORTED_MODULE_1__.default, {
         errors: this.props.errors
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_sessionInput__WEBPACK_IMPORTED_MODULE_2__.default, {
@@ -3627,7 +3618,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('password'),
         autoComplete: "current-password"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        type: "submit"
+        type: "submit",
+        onClick: this.handleSubmit
       }, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.demoLogin
       }, "Demo Login")));
@@ -3704,6 +3696,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
 
     _defineProperty(_assertThisInitialized(_this), "handleSubmit", function (e) {
       e.preventDefault();
+      e.stopPropagation();
 
       _this.props.action({
         user: _objectSpread({}, _this.state)
@@ -3955,7 +3948,6 @@ var PostShow = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var postItem = this.props.post ? this.props.post.title : null;
-      console.log("render", this.props);
 
       if (this.props.post && this.props.postErrors === undefined) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4096,7 +4088,6 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
       this.setState({
         errors: errors
       });
-      console.log("errors", errors);
       return errors.length === 0;
     }
   }, {
@@ -4107,7 +4098,6 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
 
       if (this.checkFields()) {
-        console.log("Succeeded");
         var formData = new FormData();
         formData.append("[post][title]", this.state.title);
         formData.append("[post][description]", this.state.description);
@@ -4470,7 +4460,7 @@ __webpack_require__.r(__webpack_exports__);
 var PostShowInfo = function PostShowInfo(_ref) {
   var user = _ref.user,
       post = _ref.post;
-  console.log("postshowinfo", user);
+
   /*
     Notes: 
       • this component will need a container to have access to the dispatch
@@ -4482,7 +4472,6 @@ var PostShowInfo = function PostShowInfo(_ref) {
       4. follow button
       5. Upload date
   */
-
   var followButtonSpacing = post.belongsToUser ? null : " • ";
   var followButton = post.belongsToUser ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_postShowFollowButton__WEBPACK_IMPORTED_MODULE_2__.default, {
     posterId: user.posterId
@@ -4760,7 +4749,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var userId = parseInt(ownProps.match.params.userId);
   var postId = parseInt(ownProps.match.params.postId);
   var usersPosts = state.entities.users.users[userId].userPosts;
-  console.log("profileShowContainer", state);
   var curPostIdx = usersPosts.indexOf(postId);
   var prevPostId = usersPosts[curPostIdx - 1];
   var nextPostId = usersPosts[curPostIdx + 1];
@@ -4816,7 +4804,6 @@ var Feed = function Feed(_ref) {
   var posts = _ref.posts,
       isCurrentUser = _ref.isCurrentUser,
       likedPosts = _ref.likedPosts;
-  console.log("feed", posts);
   var breakpointColumnsObj = {
     "default": 4,
     1100: 3,
@@ -4932,15 +4919,11 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("render", this.props);
-
       if (this.props.userErrors !== undefined) {
-        console.log("errored", this.props.userErrors);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_notFound__WEBPACK_IMPORTED_MODULE_2__.default, {
           errors: this.props.userErrors
         });
       } else {
-        console.log("succeeded");
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "user-profile"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profileHeader_profileHeaderContainer__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -4976,7 +4959,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("mstp", ownProps);
   return {
     subComponent: ownProps.match.params.subComponent,
     userId: parseInt(ownProps.match.params.userId),
@@ -5090,8 +5072,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 var _excluded = ["userPhoto", "bannerImage"];
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5175,8 +5155,6 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "setFormValue",
     value: function setFormValue(e) {
-      var _this2 = this;
-
       if (e.target.type === "file") {
         this.updateFile(e);
       } else {
@@ -5186,22 +5164,20 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
           return {
             profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, key, value))
           };
-        }, function () {
-          return console.log("newState", _this2.state);
         });
       }
     }
   }, {
     key: "updateFile",
     value: function updateFile(e) {
-      var _this3 = this;
+      var _this2 = this;
 
       var file = e.target.files[0];
       var id = e.target.id;
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this3.setState(function (prevState) {
+        _this2.setState(function (prevState) {
           var previews = prevState.previews;
           return {
             profile: _objectSpread(_objectSpread({}, prevState.profile), {}, _defineProperty({}, id, file)),
@@ -5244,36 +5220,18 @@ var ProfileEditForm = /*#__PURE__*/function (_React$Component) {
         }
       }
 
-      var _iterator = _createForOfIteratorHelper(formData.entries()),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var _step$value = _slicedToArray(_step.value, 2),
-              _key = _step$value[0],
-              _val = _step$value[1];
-
-          console.log(_key + " " + _val);
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
       this.props.updateUser(this.props.user.id, formData);
       this.props.history.push("/users/".concat(this.props.user.id, "/profile"));
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
-      console.log("render", this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         className: "profile-edit-form",
         onSubmit: function onSubmit(e) {
-          return _this4.handleSubmit(e);
+          return _this3.handleSubmit(e);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_profile_edit_form_header__WEBPACK_IMPORTED_MODULE_1__.default, {
         bannerImage: this.state.previews.bannerImage,
@@ -5565,7 +5523,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileFeed = function ProfileFeed(props) {
-  console.log("props", props);
   var profileId = parseInt(props.userId);
   var currentUserId = (0,react_redux__WEBPACK_IMPORTED_MODULE_4__.useSelector)(function (state) {
     return state.session.currentUser.id;
@@ -5628,16 +5585,18 @@ var FollowButton = function FollowButton(props) {
   var isFollowing = followings.includes(curProfileId);
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   var classList = isFollowing === true ? "following" : "follow";
-  var action = isFollowing ? function () {
-    return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.removeFollow)(curProfileId));
-  } : function () {
-    return dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.addFollow)(curProfileId));
+  var action = isFollowing ? function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.removeFollow)(curProfileId));
+  } : function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch((0,_actions_followActions__WEBPACK_IMPORTED_MODULE_2__.addFollow)(curProfileId));
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "follow-button ".concat(classList),
-    onClick: function onClick() {
-      return action();
-    }
+    onClick: action
   });
 };
 
@@ -6033,12 +5992,10 @@ var LikedPostsFeed = function LikedPostsFeed(_ref) {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (initialMount) {
-      console.log("crap"); // if its the initial mount then we want to dispatch the action that will
+      // if its the initial mount then we want to dispatch the action that will
       // retrieve the posts from the backend and cache them in the store
-
       _util_LikeAPI__WEBPACK_IMPORTED_MODULE_2__.fetchLikes(userIdAsInt).then(function (data) {
-        dispatch((0,_actions_likeActions__WEBPACK_IMPORTED_MODULE_3__.receiveLikes)(data));
-        console.log("data", data); // setPosts(data.posts);
+        dispatch((0,_actions_likeActions__WEBPACK_IMPORTED_MODULE_3__.receiveLikes)(data)); // setPosts(data.posts);
 
         setInitialMount(false);
       });
@@ -6341,7 +6298,6 @@ var FollowingsList = function FollowingsList(_ref) {
     return state.session.currentUser.id;
   });
   var isCurrentUser = currentUserId === userIdAsInt;
-  console.log("isCurrentUSer", isCurrentUser);
   var currentUserFollowings = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     var _state$entities$follo;
 
@@ -6753,8 +6709,7 @@ var LikesReducer = function LikesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var newState = Object.assign({}, state); // console.log(currentUserId);
-
+  var newState = Object.assign({}, state);
   var curUserLikes; // now the payload will have the user's id attached to it and thus can be accessed
   // within the payload
 
@@ -6821,7 +6776,6 @@ __webpack_require__.r(__webpack_exports__);
 var postErrorsReducer = function postErrorsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("postErrors", action);
   Object.freeze(state);
 
   switch (action.type) {
@@ -7540,7 +7494,6 @@ var requestUser = function requestUser(userId) {
   ;
 };
 var updateUser = function updateUser(userId, user) {
-  console.log("updateUser reached");
   return $.ajax({
     method: "patch",
     url: "api/users/".concat(userId),
@@ -46106,8 +46059,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/fetchLocalState */ "./frontend/store/fetchLocalState.js");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _util_PostAPI__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/PostAPI */ "./frontend/util/PostAPI.js");
-/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/postActions */ "./frontend/actions/postActions.js");
-
 
 
 
@@ -46119,7 +46070,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)();
   window.store = _store_store__WEBPACK_IMPORTED_MODULE_4__.store;
   window.dispatch = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch;
-  window.req = _actions_postActions__WEBPACK_IMPORTED_MODULE_6__.requestLikedPosts;
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: _store_store__WEBPACK_IMPORTED_MODULE_4__.store
   }), root);

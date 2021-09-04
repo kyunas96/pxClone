@@ -32,12 +32,9 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log("render", this.props);
     if (this.props.userErrors !== undefined) {
-      console.log("errored", this.props.userErrors);
       return <NotFoundPage errors={this.props.userErrors} />;
     } else {
-      console.log("succeeded");
       return (
         <div className="user-profile">
           <ProfileHeaderContainer userId={this.props.userId} />

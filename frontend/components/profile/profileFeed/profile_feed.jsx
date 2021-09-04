@@ -5,7 +5,6 @@ import Masonry from "react-masonry-css";
 import { useSelector } from "react-redux";
 
 const ProfileFeed = (props) => {
-  console.log("props", props);
   const profileId = parseInt(props.userId);
   const currentUserId = useSelector((state) => state.session.currentUser.id);
   const isCurrentUser = profileId === currentUserId;

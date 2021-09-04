@@ -13,6 +13,8 @@ class LoginForm extends React.Component {
   }
 
   handleSubmit = e => {
+    console.log("handling submit");
+    e.stopPropagation();
     e.preventDefault()
     this.props.action(this.state)
     this.setState({ password: "" })
@@ -41,7 +43,7 @@ class LoginForm extends React.Component {
 
     return (
       <div className='session-form-container'>
-        <form className='session-form' onSubmit={e => this.handleSubmit(e)}>
+        <form className='session-form'>
           <h2>Log in to 500px</h2>
           <FormErrors errors={this.props.errors} />
           <SessionInput
@@ -59,7 +61,7 @@ class LoginForm extends React.Component {
             autoComplete='current-password'
           />
 
-          <button type='submit'>Log in</button>
+          <button type='submit' onClick={this.handleSubmit}>Log in</button>
           <button onClick={this.demoLogin}>Demo Login</button>
         </form>
       </div>

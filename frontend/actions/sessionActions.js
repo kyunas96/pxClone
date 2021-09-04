@@ -26,7 +26,6 @@ export const receiveSessionErrors = (errors) => ({
 export const requestLogin = (session) => (dispatch) => {
   return SessionAPI.requestLogin(session).then(
     ({data}) => {
-      console.log(data);
       dispatch(sessionLogin(data));
     },
     ({response}) => {

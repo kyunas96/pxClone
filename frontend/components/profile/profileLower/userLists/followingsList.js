@@ -11,7 +11,6 @@ const FollowingsList = ({ userId }) => {
   let userIdAsInt = parseInt(userId);
   let currentUserId = useSelector((state) => state.session.currentUser.id);
   let isCurrentUser = currentUserId === userIdAsInt;
-  console.log("isCurrentUSer", isCurrentUser)
   let currentUserFollowings =
     useSelector((state) => state.entities.follows[currentUserId]?.followings) || [];
   let followingIds =

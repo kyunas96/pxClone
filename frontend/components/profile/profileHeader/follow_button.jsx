@@ -12,13 +12,21 @@ const FollowButton = (props) => {
 
   let classList = isFollowing === true ? "following" : "follow";
   const action = isFollowing
-    ? () => dispatch(removeFollow(curProfileId))
-    : () => dispatch(addFollow(curProfileId));
+    ? (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dispatch(removeFollow(curProfileId))
+    }
+    : (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dispatch(addFollow(curProfileId))
+    };
 
   return (
     <button
       className={`follow-button ${classList}`}
-      onClick={() => action()}
+      onClick={action}
     ></button>
   );
 };
