@@ -2,17 +2,17 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import { useDispatch } from "react-redux";
 import { closeDropdown } from "./actions/uiActions";
-import HeaderContainer from "./components/base/header_container";
+import HeaderContainer from "./components/base/headerContainer";
 import {ProtectedRoute} from "./components/protectedRoute";
 import SplashPage from "./components/splashPage";
-import LoginContainer from "./components/login_signup/login_form_container";
-import SignupContainer from "./components/login_signup/signup_form_container";
+import LoginContainer from "./components/login_signup/loginFormContainer";
+import SignupContainer from "./components/login_signup/signupFormContainer";
 import FeedContainer from "./components/feed/feedContainer";
 import ProfileContainer from "./components/profile/profileContainer";
 import CreatePostForm from "./components/posts/createPostForm";
 import FeedShowContainer from './components/posts/feedShowContainer';
 import ProfileShowContainer from './components/posts/profileShowContainer';
-import ProfileEditContainer from "./components/profile/profileEdit/profile_edit_container";
+import ProfileEditContainer from "./components/profile/profileEdit/profileEditContainer";
 
 const App = (props) => {
   const dispatch = useDispatch();

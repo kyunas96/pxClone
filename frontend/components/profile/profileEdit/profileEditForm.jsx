@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import ProfileEditFormHeader from "./profile_edit_form_header";
+import ProfileEditFormHeader from "./profileEditFormHeader";
 import { getUser, updateUser } from "../../../actions/userActions";
 import { CountryDropdown } from "react-country-region-selector";
 

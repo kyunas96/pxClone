@@ -9,7 +9,7 @@ import {
 import ProfileNavigation from "../profileNavigation";
 import FollowingsList from "./userLists/followingsList";
 import FollowersList from "./userLists/followersList";
-import ProfileFeed from "../profileFeed/profile_feed";
+import ProfileFeed from "../profileFeed/profileFeed";
 import LikedPostsFeed from "./likedPostsFeed";
 
 

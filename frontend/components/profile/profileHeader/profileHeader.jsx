@@ -1,8 +1,8 @@
 import React from "react";
-import ProfilePicture from "./profile_picture";
-import ProfileBanner from "./profile_banner";
+import ProfilePicture from "./profilePicture";
+import ProfileBanner from "./profileBanner";
 import ProfileInfoContainer from "./profileInfoContainer";
-import ProfileOptions from "./profile_options";
+import ProfileOptions from "./profileOptions";
 
 const ProfileHeader = ({ username, bannerImage, userPhoto, isCurrentUser, id }) => {
   return (

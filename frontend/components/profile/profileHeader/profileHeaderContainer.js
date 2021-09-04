@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import ProfileHeader from "./profile_header";
+import ProfileHeader from "./profileHeader";
 
 const mapStateToProps = (state, ownProps) => {
   const user = state.entities.users.users[ownProps.userId];

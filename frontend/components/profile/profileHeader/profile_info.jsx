@@ -1,6 +1,6 @@
 import React from "react";
-import FollowButton from "./follow_button";
-import ProfileLocation from "./profile_location";
+import FollowButton from "./followButton";
+import ProfileLocation from "./profileLocation";
 
 const ProfileInfo = ({renderFollow, username, city, country, description, socials}) => {
   const followButton =

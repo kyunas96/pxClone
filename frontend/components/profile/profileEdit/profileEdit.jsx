@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileEditForm from "./profileEditForm";
-import ProfileEditHeader from "./profile_edit_header";
+import ProfileEditHeader from "./profileEditHeader";
 
 const ProfileEdit = (props) => {
   const userId = props.match.params.userId;
