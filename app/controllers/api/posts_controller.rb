@@ -2,7 +2,7 @@ class Api::PostsController < ApplicationController
 
   def index 
     # refactor 
-    @followed_users_id = Follow.where(follower: current_user.id).map(&:followed_user_id)
+    @followed_users_id = current_user.followings.map(&:id)
     @liked_posts_ids = current_user.likes.map(&:post_id)
     @posts = Post.where(:poster_id => @followed_users_id).order(:created_at)
 
