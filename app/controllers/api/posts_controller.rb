@@ -1,18 +1,17 @@
 class Api::PostsController < ApplicationController
 
   def index 
-    # refactor 
     # all the followed users can be gathered upfront with their 
     # has_many_attatched :posts included
-    # @followed_users = current_user.followings.includes(:posts)
+    @followed_users = current_user.followings.includes(:posts)
     # since the posts were eagerly loaded when the followed users were retrieved,
     # the posts can be plucked straight from the users
-    # @posts = @followed_users.map(&:posts).order(:created_at)
+    
     # applying .limit and .offset would facilitate post retrieval for an infinite
     # scroll feature
-    @followed_users_id = current_user.followings.map(&:id)
+    @followed_users_id = @followed_users.map(&:id)
     @liked_posts_ids = current_user.likes.map(&:post_id)
-    @posts = Post.where(:poster_id => @followed_users_id).order(:created_at)
+    @posts = @followed_users.map(&:posts).flatten.sort_by(&:created_at)
 
     render 'api/posts/index'
   end
