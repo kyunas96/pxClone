@@ -2559,6 +2559,9 @@ var App = function App(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_protectedRoute__WEBPACK_IMPORTED_MODULE_4__.ProtectedRoute, {
     path: "/posts/:postId",
     component: _components_posts_feedShowContainer__WEBPACK_IMPORTED_MODULE_11__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router__WEBPACK_IMPORTED_MODULE_14__.Route, {
+    path: "/",
+    component: props.loggedIn ? _components_feed_feedContainer__WEBPACK_IMPORTED_MODULE_8__.default : _components_splashPage__WEBPACK_IMPORTED_MODULE_5__.default
   }))));
 };
 
@@ -3009,6 +3012,13 @@ var Feed = /*#__PURE__*/function (_React$Component) {
       this.props.getFeedItems(this.props.userId);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this.props.history.location.pathname !== "/feed") {
+        this.props.history.push("/feed");
+      }
+    }
+  }, {
     key: "shouldComponentUpdate",
     value: function shouldComponentUpdate(nextProps, nextState) {
       if (nextProps.feedPosts !== undefined) {
@@ -3123,7 +3133,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  console.log("ownProps: " + JSON.stringify(ownProps.history));
   var posts = state.entities.posts;
   var followedUsers = state.entities.users.followedUsers; // !!! Refactor the grabbing of feedPosts to work with the new followedUsers
   // format from the users slice of state
@@ -3142,7 +3153,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
   var ret = {
     userId: state.session.currentUser.id,
-    feedPosts: feedPosts
+    feedPosts: feedPosts,
+    history: ownProps.history
   };
   return ret;
 };
@@ -6532,19 +6544,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _base_footer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./base/footer */ "./frontend/components/base/footer.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
 
 var SplashPage = function SplashPage(props) {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useHistory)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (history.location.pathname !== "/") {
+      history.push("/");
+    }
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "splash-page"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "splash-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "splash-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Discover and share the world's best photos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Discover and share the world's best photos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/signup",
     id: "signup-button"
   }, "Sign up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_base_footer__WEBPACK_IMPORTED_MODULE_1__.default, null));

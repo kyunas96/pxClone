@@ -14,6 +14,12 @@ class Feed extends React.Component {
     this.props.getFeedItems(this.props.userId);
   }
 
+  componentDidUpdate() {
+    if (this.props.history.location.pathname !== "/feed") {
+      this.props.history.push("/feed");
+    }
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.feedPosts !== undefined) {
       return true;
@@ -34,7 +40,7 @@ class Feed extends React.Component {
 
     if (this.props.feedPosts !== null) {
       Object.values(this.props.feedPosts).forEach((post, i) => {
-        images.push(<Image post={{...post, isProfile: false}} key={i} />);
+        images.push(<Image post={{ ...post, isProfile: false }} key={i} />);
       });
     }
 
@@ -42,13 +48,13 @@ class Feed extends React.Component {
       <div className="feed">
         <FeedBanner />
         <div className="masonry-container">
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid"
-          columnClassName="my-masonry-grid-column"
-        >
-          {images}
-        </Masonry>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid-column"
+          >
+            {images}
+          </Masonry>
         </div>
       </div>
     );
