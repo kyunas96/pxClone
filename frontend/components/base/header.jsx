@@ -8,11 +8,13 @@ import Logo from './logo';
 function Header(props) {
 
   let innerContent;
+  let logoLink;
 
   if (props.loggedIn) {
-    innerContent = (null);
+    logoLink="/feed";
     innerContent = <UserInfo currentUser={props.currentUser} logout={props.requestLogout} />
   } else {
+    logoLink="/";
     innerContent = <LoginSignupContainer />
   }
 
@@ -20,7 +22,7 @@ function Header(props) {
   return (
     <div className='header'>
       <div className='splash-logo'>
-        <Link to='/' className='logo-link svg'>
+        <Link to={logoLink} className='logo-link svg'>
           <Logo />
         </Link>
       </div>

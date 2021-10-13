@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router";
+import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { closeDropdown } from "./actions/uiActions";
 import HeaderContainer from "./components/base/headerContainer";
@@ -32,6 +33,9 @@ const App = (props) => {
             path="/"
             component={props.loggedIn ? FeedContainer : SplashPage}
           />
+          <Route exact path="/feed">
+            {props.loggedIn ? <FeedContainer /> : <Redirect to="/" />}
+          </Route>
           <Route path="/login" component={LoginContainer} />
           <Route path="/signup" component={SignupContainer} />
           <ProtectedRoute

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "./image";
 import Masonry from "react-masonry-css";
 import FeedBanner from "./feedBanner";
+import { withRouter } from "react-router";
 // import InfiniteScroll from "react-infinite-scroll-component";
 
 // Feed should associate itself with the current user
@@ -15,6 +16,7 @@ class Feed extends React.Component {
   }
 
   componentDidUpdate() {
+    console.log("props: " + JSON.stringify(this.props.history));
     if (this.props.history.location.pathname !== "/feed") {
       this.props.history.push("/feed");
     }
@@ -46,6 +48,7 @@ class Feed extends React.Component {
 
     return (
       <div className="feed">
+      <a href="http://google.com" target="_blank">Google</a>
         <FeedBanner />
         <div className="masonry-container">
           <Masonry
@@ -61,7 +64,7 @@ class Feed extends React.Component {
   }
 }
 
-export default Feed;
+export default withRouter(Feed);
 
 // What does InfiniteScroll need?
 //  -the length of the data
