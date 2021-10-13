@@ -48,7 +48,6 @@ class Feed extends React.Component {
 
     return (
       <div className="feed">
-      <a href="http://google.com" target="_blank">Google</a>
         <FeedBanner />
         <div className="masonry-container">
           <Masonry

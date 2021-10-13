@@ -2619,18 +2619,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var openURLinNewTab = function openURLinNewTab(e, url) {
+  e.preventDefault();
+  e.stopPropagation();
+  window.open(url, "_blank");
+};
+
 var Footer = function Footer(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://github.com/kyunas96/pxClone",
-    target: "_blank"
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer-link",
+    onClick: function onClick(e) {
+      return openURLinNewTab(e, "https://github.com/kyunas96/pxClone");
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: assets_images_GitHub_Mark_64px_png__WEBPACK_IMPORTED_MODULE_1__.default
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "https://www.linkedin.com/in/kevin-yunas-987325183/",
-    target: "_blank"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "footer-link",
+    onClick: function onClick(e) {
+      return openURLinNewTab(e, "https://www.linkedin.com/in/kevin-yunas-987325183/");
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: assets_images_linkedin_64px_png__WEBPACK_IMPORTED_MODULE_2__.default
-  }))));
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -3063,10 +3073,7 @@ var Feed = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "feed"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "http://google.com",
-        target: "_blank"
-      }, "Google"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feedBanner__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_feedBanner__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "masonry-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_masonry_css__WEBPACK_IMPORTED_MODULE_2__.default, {
         breakpointCols: breakpointColumnsObj,
