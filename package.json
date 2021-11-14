@@ -50,5 +50,8 @@
   "bugs": {
     "url": "https://github.com/yunasty/pxClone/issues"
   },
-  "homepage": "https://github.com/yunasty/pxClone#readme"
+  "homepage": "https://github.com/yunasty/pxClone#readme",
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.9"
+  }
 }

@@ -6561,19 +6561,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _base_footer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./base/footer */ "./frontend/components/base/footer.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
 
 
 var SplashPage = function SplashPage(props) {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useHistory)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (history.location.pathname !== "/") {
+      history.push("/");
+    }
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "splash-page"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "splash-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "splash-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Discover and share the world's best photos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Discover and share the world's best photos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
     to: "/signup",
     id: "signup-button"
   }, "Sign up"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_base_footer__WEBPACK_IMPORTED_MODULE_1__.default, null));
@@ -6740,8 +6747,7 @@ var LikesReducer = function LikesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var newState = Object.assign({}, state); // console.log(currentUserId);
-
+  var newState = Object.assign({}, state);
   var curUserLikes; // now the payload will have the user's id attached to it and thus can be accessed
   // within the payload
 
@@ -6808,7 +6814,6 @@ __webpack_require__.r(__webpack_exports__);
 var postErrorsReducer = function postErrorsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log("postErrors", action);
   Object.freeze(state);
 
   switch (action.type) {
@@ -7290,10 +7295,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "store": () => (/* binding */ store),
 /* harmony export */   "persistor": () => (/* binding */ persistor)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _reducers_rootReducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../reducers/rootReducer */ "./frontend/reducers/rootReducer.js");
 /* harmony import */ var redux_persist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-persist */ "./node_modules/redux-persist/es/index.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
+/* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
+
 
 
 
@@ -7309,7 +7316,8 @@ if (true) {
   middlewares.push(logger);
 }
 
-var store = (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_0__.default, redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware.apply(void 0, middlewares));
+var store = (0,redux__WEBPACK_IMPORTED_MODULE_4__.createStore)(_reducers_rootReducer__WEBPACK_IMPORTED_MODULE_0__.default, (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__.composeWithDevTools)(redux__WEBPACK_IMPORTED_MODULE_4__.applyMiddleware.apply(void 0, middlewares)) // other store enhancers if any
+);
 var persistor = (0,redux_persist__WEBPACK_IMPORTED_MODULE_1__.persistStore)(store);
 
 
@@ -7527,7 +7535,6 @@ var requestUser = function requestUser(userId) {
   ;
 };
 var updateUser = function updateUser(userId, user) {
-  console.log("updateUser reached");
   return $.ajax({
     method: "patch",
     url: "api/users/".concat(userId),
@@ -42866,6 +42873,39 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/redux-devtools-extension/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/redux-devtools-extension/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var compose = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js").compose;
+
+exports.__esModule = true;
+exports.composeWithDevTools =
+  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : function () {
+        if (arguments.length === 0) return undefined;
+        if (typeof arguments[0] === 'object') return compose;
+        return compose.apply(null, arguments);
+      };
+
+exports.devToolsEnhancer =
+  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__
+    ? window.__REDUX_DEVTOOLS_EXTENSION__
+    : function () {
+        return function (noop) {
+          return noop;
+        };
+      };
+
+
+/***/ }),
+
 /***/ "./node_modules/redux-logger/dist/redux-logger.js":
 /*!********************************************************!*\
   !*** ./node_modules/redux-logger/dist/redux-logger.js ***!
@@ -46093,8 +46133,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/fetchLocalState */ "./frontend/store/fetchLocalState.js");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _util_PostAPI__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/PostAPI */ "./frontend/util/PostAPI.js");
-/* harmony import */ var _actions_postActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/postActions */ "./frontend/actions/postActions.js");
-
 
 
 
@@ -46103,10 +46141,8 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root");
-  var user = (0,_store_fetchLocalState__WEBPACK_IMPORTED_MODULE_3__.default)();
   window.store = _store_store__WEBPACK_IMPORTED_MODULE_4__.store;
-  window.dispatch = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.dispatch;
-  window.req = _actions_postActions__WEBPACK_IMPORTED_MODULE_6__.requestLikedPosts;
+  window.state = _store_store__WEBPACK_IMPORTED_MODULE_4__.store.getState();
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_root__WEBPACK_IMPORTED_MODULE_2__.default, {
     store: _store_store__WEBPACK_IMPORTED_MODULE_4__.store
   }), root);
