@@ -16,7 +16,6 @@ class Feed extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("props: " + JSON.stringify(this.props.history));
     if (this.props.history.location.pathname !== "/feed") {
       this.props.history.push("/feed");
     }

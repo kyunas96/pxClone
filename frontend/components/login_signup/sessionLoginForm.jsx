@@ -13,7 +13,6 @@ class LoginForm extends React.Component {
   }
 
   handleSubmit = e => {
-    console.log("handling submit");
     e.stopPropagation();
     e.preventDefault()
     this.props.action(this.state)
