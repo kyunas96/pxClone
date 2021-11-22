@@ -26,13 +26,10 @@ class CreatePostForm extends React.Component {
 
   //make function to update the file field of the state
   updateFile(e) {
-    console.log("clicked");
-    e.preventDefault();
-    e.stopPropagation();
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      // console.log(fileReader.result);
+      console.log(fileReader.result);
       this.setState({ photoFile: file, photoURL: fileReader.result });
     };
     if (file) {
@@ -107,8 +104,7 @@ class CreatePostForm extends React.Component {
             onChange={this.updateValue("description")}
           ></textarea>
 
-              <input type="file" />
-          {/* <input type="file" onChange={this.updateFile}/> */}
+          <input type="file" onChange={this.updateFile}/>
 
           <input type="submit" value="Upload Photo"></input>
         </form>

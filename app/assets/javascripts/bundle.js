@@ -4089,14 +4089,12 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
     value: function updateFile(e) {
       var _this3 = this;
 
-      console.log("clicked");
-      e.preventDefault();
-      e.stopPropagation();
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        // console.log(fileReader.result);
+        console.log(fileReader.result);
+
         _this3.setState({
           photoFile: file,
           photoURL: fileReader.result
@@ -4186,7 +4184,8 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
           id: "description",
           onChange: this.updateValue("description")
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-          type: "file"
+          type: "file",
+          onChange: this.updateFile
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           type: "submit",
           value: "Upload Photo"
