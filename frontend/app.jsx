@@ -19,8 +19,11 @@ const App = (props) => {
   const dispatch = useDispatch();
 
   const toggleDropdown = (e) => {
-    e.preventDefault();
-    dispatch(closeDropdown);
+    if(e.target !== ".user-info-drowpdown"){
+      dispatch(closeDropdown);
+      e.preventDefault();
+      e.stopPropagation();
+    }
   };
 
   return (

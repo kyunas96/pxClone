@@ -44,7 +44,6 @@ class Api::PostsController < ApplicationController
     else
       render json: @post.errors.full_messages
     end
-
   end
 
   def post_params

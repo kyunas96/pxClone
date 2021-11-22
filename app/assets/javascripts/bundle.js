@@ -2524,8 +2524,11 @@ var App = function App(props) {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
 
   var toggleDropdown = function toggleDropdown(e) {
-    e.preventDefault();
-    dispatch(_actions_uiActions__WEBPACK_IMPORTED_MODULE_2__.closeDropdown);
+    if (e.target !== ".user-info-drowpdown") {
+      dispatch(_actions_uiActions__WEBPACK_IMPORTED_MODULE_2__.closeDropdown);
+      e.preventDefault();
+      e.stopPropagation();
+    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -4088,6 +4091,9 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
     value: function updateFile(e) {
       var _this3 = this;
 
+      console.log("clicked");
+      e.preventDefault();
+      e.stopPropagation();
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
@@ -4181,8 +4187,7 @@ var CreatePostForm = /*#__PURE__*/function (_React$Component) {
           id: "description",
           onChange: this.updateValue("description")
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-          type: "file",
-          onChange: this.updateFile
+          type: "file"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           type: "submit",
           value: "Upload Photo"
