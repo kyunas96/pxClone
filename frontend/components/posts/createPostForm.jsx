@@ -32,6 +32,7 @@ class CreatePostForm extends React.Component {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
+      // console.log(fileReader.result);
       this.setState({ photoFile: file, photoURL: fileReader.result });
     };
     if (file) {
