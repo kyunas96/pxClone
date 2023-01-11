@@ -42,7 +42,7 @@ pxClone is a clone of [500px.com](https://www.500px.com) that allows users to sh
 
 ### Solution Highlights
 
-- To provide the front-end with a bactch of data to work with, the posts controller supplies the main feed component with `users_followed_ids`, the `liked_post_ids`, and based on the ids within `liked_post_ids` grabs the relevant posts
+- To provide the front-end with a batch of data to work with, the posts controller supplies the main feed component with `users_followed_ids`, the `liked_post_ids`, and based on the ids within `liked_post_ids` grabs the relevant posts
 
 ```ruby
   def index
